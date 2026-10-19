@@ -157,6 +157,5 @@ For the exact differences from Thermal's devices, see [Known differences](Known-
 
 ## Where to look in the files
 
-For people who want the details: the machine and item list is `audit/1211/id_map_thermal.tsv` in the source repository, and
-the scripts are `thermalReplacements.js`, `thermalDevicesA.js` and `thermalDevicesB.js` in the pack's `kubejs` folder.
-TODO(owner): remove this section if the `audit/` folder is not in the public repository.
+For people who want the details: the scripts are `thermalReplacements.js`, `thermalDevicesA.js` and
+`thermalDevicesB.js` in the pack's `kubejs` folder (`startup_scripts` and `server_scripts`).

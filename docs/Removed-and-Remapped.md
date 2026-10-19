@@ -127,6 +127,5 @@ Glowstone dust can still be obtained.
 
 ## Where to look in the files
 
-The full item list is `audit/1211/id_map_thermal.tsv` and `audit/1211/id_map_other.tsv` in the source repository.
-The reasons for dropped mods are in `pack/mods.json`, under `dropped`.
-TODO(owner): remove this section if the `audit/` folder is not in the public repository.
+The reasons for dropped mods are in `pack/mods.json`, under `dropped`. The replacement content is in the pack's
+`kubejs` folder (`startup_scripts` and `server_scripts`).

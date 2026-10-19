@@ -69,5 +69,3 @@ These small things were already like this in the original, and were left alone:
 - Do not right click PneumaticCraft's creative heat block. Its screen crashes the client.
 - Unformed Multiblocked2 controllers open no screen. This is how that mod works.
 
-TODO(owner): check this list again against the final release, in particular the lines about the Thermal devices, which were
-written from the code and tested with scripts.

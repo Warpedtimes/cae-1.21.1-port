@@ -10,7 +10,7 @@ The original pack: <https://www.curseforge.com/minecraft/modpacks/create-arcane-
 
 ## The port
 
-The 1.21.1 port was done by the pack owner with the help of Claude (an AI assistant by Anthropic). TODO(owner): put your name or handle here, as you want it shown.
+The 1.21.1 port was done by **Warpedtimes**, with the help of Claude (an AI assistant by Anthropic).
 
 ## Every mod in the pack
 

@@ -94,8 +94,8 @@ Like the original, this temple is **very rare**:
 
 The pack gives you a **temple map**: a Supplementaries Cartographer's Quill. The map searches 5000 chunks around you. On an
 unlucky seed this can be too far. If your world has no temple within reach of the map, travel further and try again, or start
-a new world with a different seed. An operator can also use `/locate structure cae:arcane_temple` to find the nearest one.
-TODO(owner): check that command in game before release.
+a new world with a different seed. An operator can also use `/locate structure cae:arcane_temple` to find the nearest one (it can take a while, because
+they are so rare).
 
 ## Dimensions
 

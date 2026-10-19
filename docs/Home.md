@@ -42,27 +42,31 @@ turned on. You can turn shaders off. See [Install](Install.md).
 
 ## How to install
 
-1. Install [Prism Launcher](https://prismlauncher.org/).
-2. Download the release file from the Releases page of this repository.
-   TODO(owner): name the exact file here once the packaging is decided (a `.mrpack` or a CurseForge `.zip`).
-3. In Prism, choose **Add Instance**, then **Import**, and pick the file.
-4. Give the instance 8 GB of memory and start it.
+1. Download **`CAE-1.21.1-Port-1.0.0-Client.zip`** from the
+   [Releases page](https://github.com/Warpedtimes/cae-1.21.1-port/releases).
+2. Import it into your launcher:
+   - **[Prism Launcher](https://prismlauncher.org/)**: **Add Instance**, then **Import**, and pick the file.
+   - **CurseForge app**: **My Modpacks**, then **Create Custom Profile**, then **import**, and pick the file.
+
+   The launcher downloads every mod from CurseForge by itself. If Prism lists a few mods to download by hand, click
+   each link; Prism picks the files up from your Downloads folder.
+3. Give the game 8 GB of memory and start it.
 
 Step by step instructions, with the memory setting and first launch tips, are in [Install](Install.md).
 
 ## How to run a server
 
-1. Download the **server pack** from the Releases page.
-   TODO(owner): name the exact server pack file here.
-2. Install Java 21.
-3. Follow the steps in [Install](Install.md#server). Set `allow-flight=true` in `server.properties`, or players who
-   fly with the pack's items can be kicked.
+1. Download **`CAE-1.21.1-Port-1.0.0-Server.zip`** from the Releases page and unzip it into an empty folder.
+2. Install Java 21 and Python 3, then run `python setup.py` once. It installs NeoForge and downloads the mods the zip
+   can't include.
+3. Accept the EULA in `eula.txt` and start the server with `start.sh` or `start.bat`. The details are in
+   [Install](Install.md#server). The pack's `server.properties` already has `allow-flight=true`, which it needs.
 
 ## Reporting problems
 
-Open an issue on this repository. Say what you did, what you expected and what happened. Please attach the log
-(`logs/latest.log`) for crashes. Say if you were in singleplayer or on a server.
-TODO(owner): put the link to the issues page here.
+Open an issue on [this repository](https://github.com/Warpedtimes/cae-1.21.1-port/issues). Say what you did, what
+you expected and what happened. Please attach the log (`logs/latest.log`) for crashes. Say if you were in singleplayer
+or on a server.
 
 ## Credits
 
@@ -74,8 +78,8 @@ authors and links, is on the [Credits](Credits.md) page.
 - The **content of the original pack** (quests, scripts, ideas, textures and so on) belongs to its author,
   FortnitePro420Xx. It is shared here with their permission. This does not give you the right to reuse it elsewhere.
 - **Each mod** belongs to its own authors and keeps its own licence. See [Credits](Credits.md).
-- The port's **own code** (the `core/` folder and the build tools) has no licence yet.
-  TODO(owner): choose a licence for `core/` and the tools and put it here.
+- The port's **own code** (the `core/` folder and the build tools) has no open-source licence yet. Ask before
+  reusing it.
 
 ## Pages
 

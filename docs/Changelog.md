@@ -5,8 +5,7 @@
 ## 1.0.0 (first public release)
 
 The port began on 18 October 2026. This is the first version shared publicly. It is
-**Create: Arcane Engineering (1.21.1 Port)**, for Minecraft 1.21.1 with NeoForge 21.1.262.
-TODO(owner): put the release date here.
+**Create: Arcane Engineering (1.21.1 Port)**, for Minecraft 1.21.1 with NeoForge 21.1.262, released 19 October 2026.
 
 ### Porting
 

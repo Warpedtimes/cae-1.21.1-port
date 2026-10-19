@@ -13,23 +13,36 @@ You need:
 | Java | 21 |
 | Memory | 8 GB given to the game (so a computer with 16 GB or more is best) |
 
-You do not need to install Minecraft, NeoForge or Java by hand if you use Prism Launcher. The pack file tells Prism
-what to download.
+You do not need to install Minecraft, NeoForge or Java by hand if you use Prism Launcher or the CurseForge app. The
+pack file tells the launcher what to download.
 
 ## Client (playing)
+
+The client download is **`CAE-1.21.1-Port-1.0.0-Client.zip`** on the
+[Releases page](https://github.com/Warpedtimes/cae-1.21.1-port/releases). It is a CurseForge-format modpack: it lists
+the mods, and your launcher downloads each one from CurseForge.
 
 ### Step by step with Prism Launcher
 
 1. Install [Prism Launcher](https://prismlauncher.org/) and sign in with your Minecraft account.
-2. Download the pack file from the Releases page of this repository.
-   TODO(owner): put the exact file name here (a `.mrpack` or a CurseForge `.zip`, whichever is released).
+2. Download `CAE-1.21.1-Port-1.0.0-Client.zip`.
 3. In Prism, click **Add Instance**.
 4. Choose **Import** on the left. Pick the file you downloaded (or drag it into the window).
 5. Click **OK**. Prism downloads the mods. This can take a few minutes.
+   If a window lists mods to download by hand (their authors block downloads from other apps), click each link to
+   download it in your browser. Prism picks the files up from your Downloads folder by itself.
 6. Right click the new instance and choose **Edit**, then **Settings**, then **Java**.
    Tick **Memory** and set the **maximum memory allocation** to **8192 MiB** (8 GB).
    Prism picks Java 21 for you. If it does not, point it at a Java 21 install.
 7. Start the instance.
+
+### Step by step with the CurseForge app
+
+1. Download `CAE-1.21.1-Port-1.0.0-Client.zip`.
+2. In the CurseForge app, open Minecraft, then **My Modpacks**, then **Create Custom Profile**.
+3. Click **import** (the link under the profile form) and pick the file. The app downloads the mods.
+4. Set the memory to 8 GB: **Settings**, then **Minecraft**, then **Java Settings**, then **Allocated Memory**.
+5. Press **Play**.
 
 ### Memory
 
@@ -64,40 +77,26 @@ To turn it on again, pick `ComplementaryReimagined_r5.9.3.zip` in the same scree
 
 ## Server
 
-A dedicated server needs the **server pack**, not the client file. The server pack leaves out client-only mods
-(shaders, zoom, menus and so on).
+A dedicated server needs **`CAE-1.21.1-Port-1.0.0-Server.zip`**, not the client file. It leaves out client-only mods
+(shaders, zoom, menus and so on) and has its own `README-server.txt`.
 
 ### Steps
 
-1. Install **Java 21**. Check with `java -version`.
-2. Download the server pack from the Releases page and unzip it into an empty folder.
-   TODO(owner): put the exact server pack file name here, and say whether it already contains the NeoForge server files
-   or only the mods and configs.
-3. Install the NeoForge server if the pack does not already contain it. Download the NeoForge **21.1.262** installer and
-   run it in the server folder:
+1. Install **Java 21** (for example [Temurin](https://adoptium.net)). Check with `java -version`.
+2. Install **Python 3** (only needed for the one-time setup).
+3. Unzip `CAE-1.21.1-Port-1.0.0-Server.zip` into an empty folder.
+4. In that folder, run `python setup.py` once. It downloads and runs the NeoForge **21.1.262** installer, then downloads
+   the mods whose licences don't allow including them in the zip (from Modrinth and CurseForge, checked by checksum).
+   A mod that fails to download is listed with its page, so you can fetch it by hand into `mods/`.
+5. Read the [Minecraft EULA](https://aka.ms/MinecraftEULA) and, if you agree, set `eula=true` in `eula.txt`.
+6. Start the server with `./start.sh` (Linux/macOS) or `start.bat` (Windows).
+7. The first start builds a new world. This can take a while.
 
-   `java -jar neoforge-21.1.262-installer.jar --install-server`
+### Memory and the start scripts
 
-4. Accept the Minecraft EULA by setting `eula=true` in `eula.txt`.
-5. Set the memory and start the server (see the next section).
-6. The first start builds a new world. This can take a while.
-
-### Start script
-
-NeoForge writes the Java arguments into files. The start command is:
-
-- Windows: `java @user_jvm_args.txt @libraries/net/neoforged/neoforge/21.1.262/win_args.txt nogui`
-- Linux: `java @user_jvm_args.txt @libraries/net/neoforged/neoforge/21.1.262/unix_args.txt nogui`
-
-Put the memory setting in `user_jvm_args.txt`, for example:
-
-```
--Xms4G
--Xmx8G
-```
-
-TODO(owner): confirm the server memory to recommend (8 GB is the number tested for players), and say if the server pack
-includes ready-made start scripts.
+`start.sh` and `start.bat` run NeoForge with the settings in `user_jvm_args.txt`. That file starts the server with
+4 GB and lets it use up to 8 GB (`-Xms4G`, `-Xmx8G`), which handles a few players; the pack itself needs about 5 GB.
+Raise `-Xmx` for more players.
 
 Always use the Java 21 program for the command, not an older one. If `java` on your system is an older version, write
 the full path to Java 21.
@@ -123,6 +122,7 @@ Other things to know:
 
 ## Updating
 
-Back up your world before you update. Import the new release as a **new** Prism instance and copy your `saves` folder over
-if you want to keep a world. Check the [Changelog](Changelog.md) first.
-TODO(owner): say how updates are shipped (full pack only, or also an update zip).
+Back up your world before you update. Each release is a full pack: import the new Client zip as a **new** instance and
+copy your `saves` folder over if you want to keep a world. On a server, unzip the new Server zip over the old folder,
+run `python setup.py` again, and delete jars from `mods/` that the new release no longer lists. Check the
+[Changelog](Changelog.md) first.

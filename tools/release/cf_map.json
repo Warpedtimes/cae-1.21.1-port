@@ -1,0 +1,668 @@
+{
+ "Integrated Dungeons and Structures": {
+  "file": "idas-1.13.7+1.21.1-neoforge.jar",
+  "modrinth_slug": "idas",
+  "cf": [
+   605375,
+   8232359
+  ],
+  "status": "identical",
+  "cf_project": 605375
+ },
+ "Amendments": {
+  "file": "amendments-1.21-2.1.11-neoforge.jar",
+  "modrinth_slug": "amendments",
+  "cf": [
+   896746,
+   9122440
+  ],
+  "status": "identical",
+  "cf_project": 896746
+ },
+ "Athena": {
+  "file": "athena-neoforge-1.21.1-4.0.6.jar",
+  "modrinth_slug": "athena-ctm",
+  "cf": [
+   841890,
+   8061947
+  ],
+  "status": "identical",
+  "cf_project": 841890
+ },
+ "AzureLib": {
+  "file": "azurelib-neo-1.21.1-3.1.23-alpha.2.jar",
+  "modrinth_slug": "azurelib",
+  "cf": [
+   817423,
+   9213708
+  ],
+  "status": "identical",
+  "cf_project": 817423
+ },
+ "Chunky": {
+  "file": "Chunky-NeoForge-1.4.23.jar",
+  "modrinth_slug": "chunky",
+  "cf": [
+   485681,
+   6383261
+  ],
+  "status": "identical",
+  "cf_project": 485681
+ },
+ "Construction Wand - KOTS": {
+  "file": "constructionwand-kots-1.21.1-2.16.12.jar",
+  "modrinth_slug": "construction-wand-kots",
+  "cf": [
+   1382688,
+   8606447
+  ],
+  "status": "identical",
+  "cf_project": 1382688
+ },
+ "CorgiLib": {
+  "file": "Corgilib-NeoForge-1.21.1-5.0.0.10.jar",
+  "modrinth_slug": "corgilib",
+  "cf": [
+   693313,
+   9113612
+  ],
+  "status": "identical",
+  "cf_project": 693313
+ },
+ "CraterLib": {
+  "file": "CraterLib-Neoforge-1.21-3.1.3.jar",
+  "modrinth_slug": "craterlib",
+  "cf": [
+   867099,
+   8884785
+  ],
+  "status": "identical",
+  "cf_project": 867099
+ },
+ "Create: Easy Structures": {
+  "file": "create_easy_structures-0.2a-neoforge-1.21.1.jar",
+  "modrinth_slug": "create-easy-structures",
+  "cf": [
+   949158,
+   6344382
+  ],
+  "status": "identical",
+  "cf_project": 949158
+ },
+ "Create: Let The Adventure Begin": {
+  "file": "create_ltab-4.1.0.jar",
+  "modrinth_slug": "create-let-the-adventure-begin",
+  "cf": [
+   1007872,
+   8608393
+  ],
+  "status": "identical",
+  "cf_project": 1007872
+ },
+ "Create: Metallurgy": {
+  "file": "createmetallurgy-1.0.3-1.21.1.jar",
+  "modrinth_slug": "create-metallurgy",
+  "cf": [
+   1007404,
+   8128243
+  ],
+  "status": "identical",
+  "cf_project": 1007404
+ },
+ "Create: Prismatic Shine": {
+  "file": "createprism-1.2.2.jar",
+  "modrinth_slug": "create-prismatic-shine",
+  "cf": [
+   1355767,
+   8050591
+  ],
+  "status": "identical",
+  "cf_project": 1355767
+ },
+ "Create: Structures Arise": {
+  "file": "Create-Structures-Arise-1.21.1-NeoForge-176.49.49.jar",
+  "modrinth_slug": "create-structures-arise",
+  "cf": [
+   1010066,
+   8837992
+  ],
+  "status": "identical",
+  "cf_project": 1010066
+ },
+ "Custom Window Title": {
+  "file": "CustomWindowTitle-1.21.4+v1.4.1.jar",
+  "modrinth_slug": "custom-window-title",
+  "cf": [
+   360673,
+   6273384
+  ],
+  "status": "identical",
+  "cf_project": 360673
+ },
+ "Decorative Blocks Reborn": {
+  "file": "DecorativeBlocks-Reborn-neoforge-1.21.1-6.0.2.jar",
+  "modrinth_slug": "decorative-blocks-reborn",
+  "cf": [
+   1327768,
+   7926194
+  ],
+  "status": "identical",
+  "cf_project": 1327768
+ },
+ "Forgified Fabric API": {
+  "file": "forgified-fabric-api-0.116.15+2.3.6+1.21.1.jar",
+  "modrinth_slug": "forgified-fabric-api",
+  "cf": [
+   889079,
+   9195559
+  ],
+  "status": "same file name, different bytes",
+  "cf_project": 889079
+ },
+ "Full Brightness Toggle": {
+  "file": "fullbrightnesstoggle-1.21.1-4.9.jar",
+  "modrinth_slug": "full-brightness-toggle",
+  "cf": [
+   391656,
+   9152474
+  ],
+  "status": "identical",
+  "cf_project": 391656
+ },
+ "Glassential Renewed": {
+  "file": "Glassential-renewed-1.21.1-3.4.7.jar",
+  "modrinth_slug": "glassential-renewed",
+  "cf": [
+   945149,
+   8871444
+  ],
+  "status": "identical",
+  "cf_project": 945149
+ },
+ "GlitchCore": {
+  "file": "GlitchCore-neoforge-1.21.1-2.1.0.2.jar",
+  "modrinth_slug": "glitchcore",
+  "cf": [
+   955399,
+   8109792
+  ],
+  "status": "same file name, different bytes",
+  "cf_project": 955399
+ },
+ "GuideME": {
+  "file": "guideme-21.1.19.jar",
+  "modrinth_slug": "guideme",
+  "cf": [
+   1173950,
+   8897145
+  ],
+  "status": "identical",
+  "cf_project": 1173950
+ },
+ "Immersive Weathering: Renewed": {
+  "file": "Immersive-weathering-V1.0.4-neoforge-beta.jar",
+  "modrinth_slug": "immersive-weather-renewed",
+  "cf": null,
+  "status": "no CurseForge project found"
+ },
+ "Integrated API": {
+  "file": "integrated_api-neoforge-1.21.1-1.9.1.jar",
+  "modrinth_slug": "integrated-api",
+  "cf": [
+   817709,
+   9151098
+  ],
+  "status": "identical",
+  "cf_project": 817709
+ },
+ "Integrated Dungeons Arise": {
+  "file": "IDA_v2.1.3-1.21.1.jar",
+  "modrinth_slug": "integrated-dungeons-arise",
+  "cf": [
+   1325457,
+   9015554
+  ],
+  "status": "identical",
+  "cf_project": 1325457
+ },
+ "Integrated Patches": {
+  "file": "integrated_patches v1.2.0-1.21.1.jar",
+  "modrinth_slug": "integrated-patches",
+  "cf": [
+   1690092,
+   8995436
+  ],
+  "status": "identical",
+  "cf_project": 1690092
+ },
+ "Integrated Seven Seas": {
+  "file": "ISS-1.21.1.jar",
+  "modrinth_slug": "integrated-seven-seas",
+  "cf": [
+   1482366,
+   8203979
+  ],
+  "status": "identical",
+  "cf_project": 1482366
+ },
+ "Integrated Stronghold": {
+  "file": "integrated_stronghold-1.1.4+1.21.1-neoforge.jar",
+  "modrinth_slug": "integrated-stronghold",
+  "cf": [
+   815548,
+   7802495
+  ],
+  "status": "identical",
+  "cf_project": 815548
+ },
+ "Iris Shaders": {
+  "file": "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
+  "modrinth_slug": "iris",
+  "cf": [
+   455508,
+   8242804
+  ],
+  "status": "identical",
+  "cf_project": 455508
+ },
+ "KilaGraph": {
+  "file": "kilagraph-neoforge-1.21.1-21.1.0.16.jar",
+  "modrinth_slug": "kilagraph",
+  "cf": [
+   1579792,
+   9070731
+  ],
+  "status": "identical",
+  "cf_project": 1579792
+ },
+ "Kotlin for Forge": {
+  "file": "kotlinforforge-5.12.0-all.jar",
+  "modrinth_slug": "kotlin-for-forge",
+  "cf": [
+   351264,
+   8335665
+  ],
+  "status": "same file name, different bytes",
+  "cf_project": 351264
+ },
+ "Lithostitched": {
+  "file": "lithostitched-1.8.1-neoforge-21.1.jar",
+  "modrinth_slug": "lithostitched",
+  "cf": [
+   936015,
+   9170709
+  ],
+  "status": "identical",
+  "cf_project": 936015
+ },
+ "Mekanism": {
+  "file": "Mekanism-1.21.1-10.7.19.85.jar",
+  "modrinth_slug": "mekanism",
+  "cf": [
+   268560,
+   7904058
+  ],
+  "status": "identical",
+  "cf_project": 268560
+ },
+ "Mekanism Generators": {
+  "file": "MekanismGenerators-1.21.1-10.7.19.85.jar",
+  "modrinth_slug": "mekanism-generators",
+  "cf": [
+   268566,
+   7904061
+  ],
+  "status": "identical",
+  "cf_project": 268566
+ },
+ "Melody": {
+  "file": "melody_neoforge_1.0.10_MC_1.21.jar",
+  "modrinth_slug": "melody",
+  "cf": [
+   938643,
+   5453382
+  ],
+  "status": "identical",
+  "cf_project": 938643
+ },
+ "MNS - Moog's Nether Structures": {
+  "file": "MoogsNetherStructures-universal-1.21-3.1.1.jar",
+  "modrinth_slug": "mns-moogs-nether-structures",
+  "cf": [
+   967466,
+   8902210
+  ],
+  "status": "identical",
+  "cf_project": 967466
+ },
+ "Modern Train Parts": {
+  "file": "moderntrainparts-0.2.5-neoforge-mc1.21.1-cr6.0.10.jar",
+  "modrinth_slug": "modern-train-parts",
+  "cf": [
+   834415,
+   8748447
+  ],
+  "status": "identical",
+  "cf_project": 834415
+ },
+ "Moog's Structure Lib (moogs_structures)": {
+  "file": "MoogsStructureLib-neoforge-1.21.1-3.4.2.jar",
+  "modrinth_slug": "moogs-structure-lib",
+  "cf": [
+   1337167,
+   9047179
+  ],
+  "status": "identical",
+  "cf_project": 1337167
+ },
+ "MSS - Moog's Soaring Structures": {
+  "file": "MoogsSoaringStructures-universal-1.21-2.2.0.jar",
+  "modrinth_slug": "mss-moogs-soaring-structures",
+  "cf": [
+   1040210,
+   8931330
+  ],
+  "status": "identical",
+  "cf_project": 1040210
+ },
+ "Multiblocked2": {
+  "file": "Multiblocked2-1.21-1.21.1-21.1.2-all.jar",
+  "modrinth_slug": "multiblocked2",
+  "cf": [
+   1104057,
+   8859279
+  ],
+  "status": "identical",
+  "cf_project": 1104057
+ },
+ "Oh The Biomes We've Gone": {
+  "file": "Oh-The-Biomes-Weve-Gone-NeoForge-2.6.3.jar",
+  "modrinth_slug": "oh-the-biomes-weve-gone",
+  "cf": [
+   1070751,
+   9114631
+  ],
+  "status": "identical",
+  "cf_project": 1070751
+ },
+ "Oh The Trees You'll Grow": {
+  "file": "Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.5.jar",
+  "modrinth_slug": "oh-the-trees-youll-grow",
+  "cf": [
+   962544,
+   9113653
+  ],
+  "status": "identical",
+  "cf_project": 962544
+ },
+ "Ok Zoomer - It's Zoom!": {
+  "file": "ok_zoomer-neo-10.0.0-beta.13.jar",
+  "modrinth_slug": "ok-zoomer",
+  "cf": [
+   354047,
+   7676612
+  ],
+  "status": "identical",
+  "cf_project": 354047
+ },
+ "Particle Rain": {
+  "file": "particlerain-4.0.2+1.21.1-neoforge.jar",
+  "modrinth_slug": "particle-rain",
+  "cf": [
+   421897,
+   9113934
+  ],
+  "status": "identical",
+  "cf_project": 421897
+ },
+ "Regions Unexplored": {
+  "file": "regions-unexplored-0.6.2-neoforge-21.1.jar",
+  "modrinth_slug": "regions-unexplored",
+  "cf": [
+   659110,
+   8419667
+  ],
+  "status": "identical",
+  "cf_project": 659110
+ },
+ "Resourceful Lib": {
+  "file": "resourcefullib-neoforge-1.21-3.0.12.jar",
+  "modrinth_slug": "resourceful-lib",
+  "cf": [
+   570073,
+   5973188
+  ],
+  "status": "identical",
+  "cf_project": 570073
+ },
+ "Searchables": {
+  "file": "Searchables-neoforge-1.21.1-1.0.2.jar",
+  "modrinth_slug": "searchables",
+  "cf": [
+   858542,
+   5831692
+  ],
+  "status": "identical",
+  "cf_project": 858542
+ },
+ "Sodium": {
+  "file": "sodium-neoforge-0.8.13+mc1.21.1.jar",
+  "modrinth_slug": "sodium",
+  "cf": [
+   394468,
+   8756580
+  ],
+  "status": "identical",
+  "cf_project": 394468
+ },
+ "Steam 'n' Rails Neoforge": {
+  "file": "railways-0.3.0-beta.2+neoforge-mc1.21.1.jar",
+  "modrinth_slug": "create-steam-n-rails-1.21.1",
+  "cf": [
+   1414670,
+   8522154
+  ],
+  "status": "identical",
+  "cf_project": 1414670
+ },
+ "Structory: Towers": {
+  "file": "Structory_Towers_1.21.x_v1.0.10.jar",
+  "modrinth_slug": "structory-towers",
+  "cf": [
+   783522,
+   5962265
+  ],
+  "status": "identical",
+  "cf_project": 783522
+ },
+ "Swing Through Grass": {
+  "file": "swingthroughgrass-neoforge-1.21.1-1.1.0.jar",
+  "modrinth_slug": "swing-through-grass",
+  "cf": [
+   1477279,
+   9063127
+  ],
+  "status": "identical",
+  "cf_project": 1477279
+ },
+ "Tectonic": {
+  "file": "tectonic-3.0.28-neoforge-21.1.jar",
+  "modrinth_slug": "tectonic",
+  "cf": [
+   686836,
+   8855043
+  ],
+  "status": "identical",
+  "cf_project": 686836
+ },
+ "TerraBlender": {
+  "file": "TerraBlender-neoforge-1.21.1-4.1.0.8.jar",
+  "modrinth_slug": "terrablender",
+  "cf": [
+   940057,
+   6054947
+  ],
+  "status": "same file name, different bytes",
+  "cf_project": 940057
+ },
+ "The Lost Castle": {
+  "file": "tlc-neoforge-1.21.1-2.1.0.jar",
+  "modrinth_slug": "the-lost-castle",
+  "cf": [
+   687118,
+   8064581
+  ],
+  "status": "identical",
+  "cf_project": 687118
+ },
+ "Towns and Towers": {
+  "file": "t_and_t-fabric-neoforge-1.13.11.jar",
+  "modrinth_slug": "towns-and-towers",
+  "cf": [
+   626761,
+   8657120
+  ],
+  "status": "identical",
+  "cf_project": 626761
+ },
+ "UnionLib": {
+  "file": "UnionLib-1.21.1-12.0.18-NeoForge-all.jar",
+  "modrinth_slug": "unionlib",
+  "cf": [
+   367806,
+   6813511
+  ],
+  "status": "identical",
+  "cf_project": 367806
+ },
+ "Xaero's Maps: Multiplayer+": {
+  "file": "xmmp-1.2.2+1.21.1-neoforge.jar",
+  "modrinth_slug": "xaeros-maps-multiplayer-plus",
+  "cf": [
+   1525919,
+   9194850
+  ],
+  "status": "identical",
+  "cf_project": 1525919
+ },
+ "Xaero's Minimap": {
+  "file": "xaerominimap-neoforge-1.21.1-26.6.0.jar",
+  "modrinth_slug": "xaeros-minimap",
+  "cf": [
+   263420,
+   9067173
+  ],
+  "status": "identical",
+  "cf_project": 263420
+ },
+ "Xaero's World Map": {
+  "file": "xaeroworldmap-neoforge-1.21.1-1.47.0.jar",
+  "modrinth_slug": "xaeros-world-map",
+  "cf": [
+   317780,
+   9067277
+  ],
+  "status": "identical",
+  "cf_project": 317780
+ },
+ "YetAnotherConfigLib (YACL)": {
+  "file": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
+  "modrinth_slug": "yacl",
+  "cf": [
+   667299,
+   7437845
+  ],
+  "status": "identical",
+  "cf_project": 667299
+ },
+ "YUNG's API": {
+  "file": "YungsApi-1.21.1-NeoForge-5.1.9.jar",
+  "modrinth_slug": "yungs-api",
+  "cf": [
+   1015100,
+   8894736
+  ],
+  "status": "identical",
+  "cf_project": 1015100
+ },
+ "YUNG's Better Desert Temples": {
+  "file": "YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
+  "modrinth_slug": "yungs-better-desert-temples",
+  "cf": [
+   1015114,
+   6276955
+  ],
+  "status": "identical",
+  "cf_project": 1015114
+ },
+ "YUNG's Better Dungeons": {
+  "file": "YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
+  "modrinth_slug": "yungs-better-dungeons",
+  "cf": [
+   1015112,
+   5954804
+  ],
+  "status": "identical",
+  "cf_project": 1015112
+ },
+ "YUNG's Better Jungle Temples": {
+  "file": "YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
+  "modrinth_slug": "yungs-better-jungle-temples",
+  "cf": [
+   1015123,
+   5924482
+  ],
+  "status": "identical",
+  "cf_project": 1015123
+ },
+ "YUNG's Better Mineshafts": {
+  "file": "YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
+  "modrinth_slug": "yungs-better-mineshafts",
+  "cf": [
+   1015096,
+   5812193
+  ],
+  "status": "identical",
+  "cf_project": 1015096
+ },
+ "YUNG's Better Nether Fortresses": {
+  "file": "YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
+  "modrinth_slug": "yungs-better-nether-fortresses",
+  "cf": [
+   1015118,
+   6606621
+  ],
+  "status": "identical",
+  "cf_project": 1015118
+ },
+ "YUNG's Better Ocean Monuments": {
+  "file": "YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
+  "modrinth_slug": "yungs-better-ocean-monuments",
+  "cf": [
+   1015115,
+   5924487
+  ],
+  "status": "identical",
+  "cf_project": 1015115
+ },
+ "YUNG's Better Witch Huts": {
+  "file": "YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
+  "modrinth_slug": "yungs-better-witch-huts",
+  "cf": [
+   1015144,
+   5812532
+  ],
+  "status": "identical",
+  "cf_project": 1015144
+ },
+ "Zeta": {
+  "file": "Zeta-1.1-40.jar",
+  "modrinth_slug": "zeta",
+  "cf": [
+   968868,
+   7980010
+  ],
+  "status": "identical",
+  "cf_project": 968868
+ }
+}

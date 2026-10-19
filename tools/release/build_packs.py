@@ -4,26 +4,24 @@
 
 Reads tools/release/release.json (name, version, slug, ...), pack/mods.json, pack/overrides, pack/overrides-client,
 pack/client-defaults, pack/local, the jars in run/cache/ and audit/release/mod_licenses.json (made by
-tools/release/pack_licenses.py: the licence verdict per mod and the Modrinth download of each mod). Writes:
+tools/release/pack_licenses.py: the licence verdict per mod and the Modrinth download of each mod) and
+tools/release/cf_map.json (made by tools/release/pack_cf_map.py: the CurseForge file of each Modrinth-sourced mod).
+Writes:
 
-  <slug>-<version>.mrpack          client pack, small: Modrinth downloads + the few jars that cannot be linked
-  <slug>-<version>-full.mrpack     client pack with every freely licensed ("bundle") jar inside; the rest downloaded
-  <slug>-<version>-server.zip      server pack (NeoForge installer is fetched by setup.py; mods bundled or fetched)
+  <file_prefix>-<version>-Client.zip   CurseForge-format modpack: the CurseForge app and Prism Launcher (Add Instance
+                                       > Import) import it and download every mod from CurseForge themselves
+  <file_prefix>-<version>-Server.zip   server pack (NeoForge installer is fetched by setup.py; mods bundled or fetched)
   SHA256SUMS.txt, build-report.json
+  (--mrpack also writes <slug>-<version>.mrpack, a Modrinth-format pack; not released, see below)
 
-FORMAT DECISION (details in audit/release/notes-packaging.md)
-  Prism Launcher imports both Modrinth .mrpack and CurseForge zips, but neither format covers this pack alone:
-    * an .mrpack may only link to Modrinth's CDN (and github/gitlab); 67 of our 210 mods exist only as Modrinth
-      files and about 190 are on Modrinth in total, but 143 were picked from CurseForge, so a CurseForge manifest
-      cannot name the Modrinth-only ones;
-    * a CurseForge manifest names projects and file ids, and Prism makes the player fetch every mod whose author
-      disabled third-party downloads by hand in a dialog (with a CurseForge key of its own).
-  The .mrpack wins: it needs no key, downloads straight from a CDN, verifies sha1 and sha512, carries per-file
-  client/server sides, and still lets us put the jars whose licence allows it in the pack itself. What it cannot
-  express is the handful of mods that are on CurseForge only and not freely licensed (19 of 210); those go into
-  fetch_mods.json and a one-click helper (fetch_mods.py / fetch_mods.bat) in the pack, which uses CurseForge's
-  public download address. Everything is decided per mod from the licence audit; nothing All Rights Reserved is
-  ever put inside a download.
+FORMAT DECISION
+  The Client download is a CurseForge-format zip: every one of the 210 mods has a CurseForge file (209 by project and
+  file id, 66 of them found for the Modrinth-sourced mods by pack_cf_map.py, 62 byte-identical to the tested jars and
+  4 the same release rebuilt), so the launcher fetches them all from CurseForge, and Prism handles any author who
+  disabled third-party downloads with its own blocked-mods window. A Modrinth .mrpack can't point at CurseForge-only
+  mods at all (it needed a separate helper for 19 of them), so it isn't released. Only our core jar and mods that are
+  not on CurseForge and whose licence allows it (Immersive Weathering: Renewed, LGPL) go inside the zip; nothing All
+  Rights Reserved is ever put inside a download.
 
 release.json may also hold (all optional): "exclude_overrides": [paths under pack/ to leave out, e.g.
 "overrides-client/shaderpacks/ComplementaryReimagined_r5.9.3.zip"], "bundle_unclear": false (true: ship the mods the
@@ -141,8 +139,8 @@ SETUP (once)
   4. Start: ./start.sh (Linux/macOS) or start.bat (Windows). The first start builds the world and takes a while.
 
 PLAYERS
-  Players use the matching client pack ({slug}-{version}.mrpack or ...-full.mrpack) and need 8 GB of RAM
-  allocated to the game. The server and client must be the same pack version.
+  Players use the matching client pack, {prefix}-{version}-Client.zip (import it in Prism Launcher or the
+  CurseForge app), and need 8 GB of RAM allocated to the game. The server and client must be the same pack version.
 
 WHAT IS IN HERE
   mods/                the freely licensed mods, plus the Create: Arcane Engineering core mod (cae-3.0.0.jar)
@@ -305,6 +303,56 @@ def stat_embed(plan, embed_all, side_filter=lambda m: True):
     return [it for it in plan.items if side_filter(it["mod"]) and Plan.mode(it, embed_all) == "embed"]
 
 
+CF_MAP = os.path.join(HERE, "cf_map.json")
+
+
+def build_curseforge(rel, plan, excluded):
+    """The Client download: a CurseForge-format modpack zip (manifest.json + overrides/). The CurseForge app and Prism
+    Launcher (Add Instance > Import) both import it and download every listed mod from CurseForge themselves; Prism
+    shows its blocked-mods window for any author who disabled third-party downloads. Every mod is listed by its
+    CurseForge file: mods.json's own `cf` ids, or for the Modrinth-sourced ones the matching CurseForge file from
+    tools/release/pack_cf_map.py (tools/release/cf_map.json). A mod with no CurseForge file goes inside the zip, which
+    its licence must allow."""
+    name = f"{rel['file_prefix']}-{rel['version']}-Client.zip"
+    path = os.path.join(OUT, name)
+    cf_map = {e["file"]: e for e in load_json(CF_MAP).values()}
+    files, embedded = [], []
+    for it in plan.items:
+        m = it["mod"]
+        ids = m.get("cf") or (cf_map.get(m["file"]) or {}).get("cf")
+        if ids:
+            files.append({"projectID": ids[0], "fileID": ids[1], "required": True})
+        elif it["verdict"] == "bundle":
+            embedded.append(it)
+        else:
+            sys.exit(f"{m['file']}: not on CurseForge and its licence doesn't allow shipping it ({it['verdict']})")
+    manifest = {
+        "minecraft": {"version": rel["minecraft"],
+                      "modLoaders": [{"id": f"{rel['loader']}-{rel['loader_version']}", "primary": True}],
+                      "recommendedRam": rel["recommended_memory_mb"]},
+        "manifestType": "minecraftModpack", "manifestVersion": 1,
+        "name": rel["name"], "version": rel["version"], "author": rel.get("author", ""),
+        "files": files, "overrides": "overrides"}
+    rows = "".join(f"<li>{it['mod']['name'].strip()}</li>" for it in plan.items)
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+        add_text(z, "manifest.json", json.dumps(manifest, indent=1))
+        add_text(z, "modlist.html", f"<ul>{rows}</ul>\n")
+        for it in embedded:
+            add_file(z, "overrides/mods/" + it["mod"]["file"], it["jar"])
+        for jar in plan.local:
+            add_file(z, "overrides/mods/" + os.path.basename(jar), jar)
+        for relp, src in walk_files(os.path.join(PACK, "overrides"), "overrides", excluded):
+            add_file(z, "overrides/" + relp, src)
+        for relp, src in walk_files(os.path.join(PACK, "overrides-client"), "overrides-client", excluded):
+            add_file(z, "overrides/" + relp, src)
+        # a fresh player's options.txt and the Quark bubble marker (SKIP_FILES keeps servers.dat out)
+        for relp, src in walk_files(os.path.join(PACK, "client-defaults"), "client-defaults", excluded):
+            add_file(z, "overrides/" + relp, src)
+        add_text(z, "overrides/MOD-LICENSES.md", license_text(rel, plan, False, lambda m: True))
+    return {"file": name, "mods_listed": len(files), "mods_embedded": len(embedded) + len(plan.local),
+            "embedded_mb": round(sum(os.path.getsize(it["jar"]) for it in embedded) / 1048576, 1)}
+
+
 def build_mrpack(rel, plan, full, excluded):
     name = f"{rel['slug']}-{rel['version']}" + ("-full" if full else "") + ".mrpack"
     path = os.path.join(OUT, name)
@@ -356,7 +404,7 @@ def build_mrpack(rel, plan, full, excluded):
 
 
 def build_server(rel, plan, excluded):
-    name = f"{rel['slug']}-{rel['version']}-server.zip"
+    name = f"{rel['file_prefix']}-{rel['version']}-Server.zip"
     path = os.path.join(OUT, name)
     sel = lambda m: m["side"] != "client"  # noqa: E731
     embedded, fetch = [], []
@@ -390,7 +438,7 @@ def build_server(rel, plan, excluded):
         title = f"{rel['name']} {rel['version']}"
         add_text(z, "README-server.txt", README_SERVER.format(
             name=rel["name"], version=rel["version"], underline="=" * (len(title) + 22), mc=rel["minecraft"],
-            nf=rel["loader_version"], slug=rel["slug"], original=rel["original_pack"]))
+            nf=rel["loader_version"], slug=rel["slug"], prefix=rel["file_prefix"], original=rel["original_pack"]))
         add_text(z, "MOD-LICENSES.md", license_text(rel, plan, True, sel))
     return {"file": name, "mods_embedded": len(embedded) + len(plan.local), "mods_fetched_by_setup": len(fetch),
             "embedded_mb": round(sum(os.path.getsize(it["jar"]) for it in embedded) / 1048576, 1)}
@@ -428,9 +476,12 @@ def main():
     excluded = tuple(rel.get("exclude_overrides", []))
     plan = Plan(rel)
     report = {"release": {k: rel[k] for k in ("name", "version", "slug")}, "mods_in_pack": len(plan.items), "outputs": []}
-    report["outputs"].append(build_mrpack(rel, plan, False, excluded))
-    report["outputs"].append(build_mrpack(rel, plan, True, excluded))
+    # the release ships two downloads: Client (CurseForge format) and Server. build_mrpack() can still make a Modrinth
+    # .mrpack (`--mrpack`), but that format can't point at CurseForge-only mods (it needs the fetch_mods helper).
+    report["outputs"].append(build_curseforge(rel, plan, excluded))
     report["outputs"].append(build_server(rel, plan, excluded))
+    if "--mrpack" in sys.argv:
+        report["outputs"].append(build_mrpack(rel, plan, False, excluded))
     sums = []
     problems = []
     for o in report["outputs"]:
