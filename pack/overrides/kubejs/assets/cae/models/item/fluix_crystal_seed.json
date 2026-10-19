@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cae:item/crystal_seed_fluix"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "cae:item/fluix_crystal_seed_1"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "cae:item/fluix_crystal_seed_2"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "cae:block/restored/createdeco/palettes/sheet_metal/cast_iron_sheet_metal"
+  }
+}

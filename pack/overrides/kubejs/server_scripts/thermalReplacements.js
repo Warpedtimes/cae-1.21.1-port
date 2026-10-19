@@ -47,6 +47,8 @@ ServerEvents.tags('item', event => {
     event.add('c:rubber', ['cae:rubber', 'cae:cured_rubber'])
     event.add('c:glass_blocks', ['cae:obsidian_glass', 'cae:enderium_glass', 'cae:lumium_glass', 'cae:signalum_glass'])
     event.add('cae:glass/hardened', ['cae:obsidian_glass', 'cae:enderium_glass', 'cae:lumium_glass', 'cae:signalum_glass'])
+    // what the Arboreal Extractor's boost slot takes (startup script filter; the boosts are CAE_TREE_BOOSTS below)
+    event.add('cae:tree_extractor_boost', Object.keys(CAE_TREE_BOOSTS))
 })
 
 ServerEvents.tags('block', event => {
@@ -365,6 +367,12 @@ const CAE_FLUID_ACTION = Java.loadClass('net.neoforged.neoforge.fluids.capabilit
 const CAE_TREE_STEP = 20
 const CAE_TREE_TIME_CONSTANT = 500
 const CAE_TREE_NUM_LEAVES = 3
+// thermal_foundation data/thermal/recipes/devices/tree_extractor/tree_extractor_boost_*.json: item -> [output multiplier, cycles]
+// (thermal:compost -> cae:compost; phytogro is not in the pack, see the right click handler below)
+const CAE_TREE_BOOSTS = {
+    'minecraft:bone_meal': [1.5, 8],
+    'cae:compost': [1.5, 8]
+}
 
 // DeviceTreeExtractorTile.isTrunkBase checks Material.GRASS / DIRT / STONE under the trunk. 1211 substitute: Materials are gone in
 // 1.21.1, so the same idea is a handful of block tags (dirt incl. grass / podzol / mycelium, the base stones, nylium, the c: stone groups).
@@ -491,6 +499,38 @@ function caeTreeFindStraight(block) {
     return { trunk: trunk, pick: leafRows[hits[0].id] }
 }
 
+// The working look (Thermal's ACTIVE blockstate; the models switch on it, kubejs/assets/cae/blockstates/device_*.json): `values`
+// maps a property name to the wanted value ('true' / 'false' / a number); one setBlock (flags 3, like Thermal's) when anything changed.
+// The live state comes from the level, because the block entity's event.block keeps the state it first saw. StateHolder.cycle steps
+// to the next value, so no JS value has to become a Java Comparable for setValue. Same helper as gdaLook (thermalDevicesA.js).
+let caeDevLookWarned = false
+function caeDevLook(block, values) {
+    try {
+        let level = block.level
+        let pos = block.pos
+        let orig = level.getBlockState(pos)
+        let state = orig
+        let def = state.getBlock().getStateDefinition()
+        let names = Object.keys(values)
+        for (let i = 0; i < names.length; i++) {
+            let prop = def.getProperty(names[i])
+            if (prop == null) { continue }
+            let want = String(values[names[i]])
+            for (let n = 0; n < 16 && String(state.getValue(prop)) != want; n++) { state = state.cycle(prop) }
+            if (String(state.getValue(prop)) != want) { state = orig; break }
+        }
+        if (String(state) != String(orig)) { level.setBlock(pos, state, 3) } // 1211: Rhino hides equals(); a state prints all its properties
+    } catch (err) {
+        if (!caeDevLookWarned) { console.warn('thermalReplacements.js: device look not set: ' + err) }
+        caeDevLookWarned = true
+    }
+}
+
+// Thermal's tile re-checks the tree on every neighbour change and on every cycle (updateValidity), and looks active while it is valid.
+// A KubeJS block hears no neighbour changes, so between cycles the check runs every CAE_TREE_LOOK ticks (and on the first tick); the
+// output still only comes at the end of a cycle, from the check made then.
+const CAE_TREE_LOOK = 100
+
 BlockEvents.blockEntityTick('cae:device_tree_extractor', event => {
     const block = event.block
     const entity = block.entity
@@ -500,11 +540,20 @@ BlockEvents.blockEntityTick('cae:device_tree_extractor', event => {
     let process = data.contains('process') ? data.getInt('process') : CAE_TREE_TIME_CONSTANT / 2
     process -= CAE_TREE_STEP
     if (process > 0) {
+        let look = data.contains('look') ? data.getInt('look') : 0
+        look -= CAE_TREE_STEP
+        if (look <= 0) {
+            look = CAE_TREE_LOOK
+            caeDevLook(block, { active: caeTreeFind(block).pick != null })
+        }
+        data.putInt('look', look)
         data.putInt('process', process)
         entity.save()
         return
     }
     const found = caeTreeFind(block)
+    caeDevLook(block, { active: found.pick != null })
+    data.putInt('look', CAE_TREE_LOOK)
     // getTimeConstant(): timeConstant / 2 + timeConstant / 2 per extractor in the 3x3 around the trunk (itself included), clamped to
     // timeConstant .. 2 * timeConstant. 1211: `let`, not `const`, inside loops (Rhino throws "redeclaration of var" on the second pass).
     const centre = found.trunk || block
@@ -517,17 +566,25 @@ BlockEvents.blockEntityTick('cae:device_tree_extractor', event => {
     const half = CAE_TREE_TIME_CONSTANT / 2
     data.putInt('process', Math.max(CAE_TREE_TIME_CONSTANT, Math.min(2 * CAE_TREE_TIME_CONSTANT, half + half * extractors)))
     if (found.pick != null) {
-        // boost: while boostCycles > 0 the cycle counts one down with the stored multiplier; otherwise a bone meal from the virtual
-        // stock starts 8 cycles at x1.5 (thermal:tree_extractor_boost bone_meal: output 1.5, cycles 8); otherwise x1
+        // boost: while boostCycles > 0 the cycle counts one down with the stored multiplier; otherwise one item from the boost slot
+        // starts its cycles at its multiplier (CAE_TREE_BOOSTS) and is used up; otherwise x1. Extractors from before the slot existed
+        // kept their bone meal as a count ('boostStock'): that is used first, as bone meal.
         let cycles = data.getInt('boostCycles')
         let mult = data.contains('boostMult') ? data.getFloat('boostMult') : 1
         let stock = data.getInt('boostStock')
+        let slot = entity.attachments.get('boost')
+        let item = slot ? slot.getStackInSlot(0) : null
+        let def = item && !item.isEmpty() ? CAE_TREE_BOOSTS[String(item.id)] : null
         if (cycles > 0) {
             cycles--
         } else if (stock > 0) {
-            cycles = 8
-            mult = 1.5
+            cycles = CAE_TREE_BOOSTS['minecraft:bone_meal'][1]
+            mult = CAE_TREE_BOOSTS['minecraft:bone_meal'][0]
             stock--
+        } else if (def) {
+            cycles = def[1]
+            mult = def[0]
+            slot.extractItem(0, 1, false)
         } else {
             cycles = 0
             mult = 1
@@ -542,21 +599,29 @@ BlockEvents.blockEntityTick('cae:device_tree_extractor', event => {
     entity.save()
 })
 
-// Boosts. The tile has a 1 slot item input; a KubeJS block entity can only have one right click action (it is the bucket fill here), so
-// the slot is a virtual stock of up to 64 bone meal that a right click with bone meal fills (consumed like the slot item: 1 per boost).
-// 1211 substitute: no slot GUI / hopper input. Compost (thermal:compost, output 1.5, cycles 8) and Phytogro (output 2.0, cycles 16)
-// are not ported: neither item exists in this pack.
+// Boosts: the tile's 1 slot input (inputSlot), filled by hoppers and pipes on any side (startup_scripts/thermalDevicesA.js, "Item
+// sides") or here by right click. A KubeJS block entity has one right click action (the bucket fill here), so: a boost item in the hand
+// goes into the slot (one kind at a time, like a slot); sneaking with an empty hand takes it back. No slot screen.
+// The thermal:tree_extractor_boost recipes of 9.2.2.58: item -> [output multiplier, cycles]. thermal:compost is the Batch Composter's
+// cae:compost here. 1211 substitute: Phytogro (thermal:phytogro, output 2.0, cycles 16) is not ported: the item is not in this pack.
 BlockEvents.rightClicked('cae:device_tree_extractor', event => {
-    if (event.item.id != 'minecraft:bone_meal') { return }
     const entity = event.block.entity
     if (!entity) { return }
-    const stock = entity.data.getInt('boostStock')
-    const n = Math.min(event.item.count, 64 - stock)
-    if (n <= 0) { return }
-    entity.data.putInt('boostStock', stock + n)
-    entity.save()
-    if (!event.player.isCreative()) { event.item.shrink(n) }
-    event.cancel()
+    const slot = entity.attachments.get('boost')
+    if (!slot) { return }
+    const held = event.item
+    if (!held.isEmpty() && CAE_TREE_BOOSTS[String(held.id)]) {
+        let rest = slot.insertItem(0, held.copy(), false)
+        let taken = held.count - rest.count
+        if (taken <= 0) { return }
+        if (!event.player.isCreative()) { held.shrink(taken) }
+        entity.save()
+        event.cancel()
+    } else if (held.isEmpty() && event.player.isCrouching() && !slot.getStackInSlot(0).isEmpty()) {
+        event.player.give(slot.extractItem(0, 64, false))
+        entity.save()
+        event.cancel()
+    }
 })
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -622,9 +687,12 @@ BlockEvents.blockEntityTick('cae:device_rock_gen', event => {
         if (nb.id == 'minecraft:lava' && isSource) { lava++ }
         adjacent.push(isSource ? String(nb.id) : 'minecraft:air')
     }
-    if (lava <= 0) { return }
-    const out = caeRockLookup(String(block.offset(0, -1, 0).id), adjacent)
-    if (out == null || !Item.exists(out)) { return }
+    const out = lava > 0 ? caeRockLookup(String(block.offset(0, -1, 0).id), adjacent) : null
+    // updateValidity(): valid = lava next to it and a mapping with a result; the tile looks active while valid (redstone "ignored").
+    // The active model shows lava behind the side windows, as Thermal's underlay did (its renderFluid is always lava).
+    const valid = out != null && Item.exists(out)
+    caeDevLook(block, { active: valid })
+    if (!valid) { return }
     // one item per 20 ticks, doubled (a 10 tick cycle) in the Nether. 1211 substitute: Nether = the vanilla Nether biomes or the
     // Nether dimension; Thermal asked for Biome.BiomeCategory.NETHER.
     let nether = false
@@ -714,7 +782,9 @@ function caeGlow(level, x, y, z, r) {
     caeNearLiving(level, x, y, z, r, ent => {
         level.server.runCommandSilent('effect give ' + ent.uuid + ' minecraft:glowing 15 1 true')
         let undead = false
-        try { undead = ent.isUndead() } catch (err) { undead = false }
+        // 1211: LivingEntity.isUndead() (MobType.UNDEAD) is gone since 1.20.5 and threw here, so undead were never hit;
+        // isInvertedHealAndHarm() is the same test now (entity type tag minecraft:inverted_healing_and_harm)
+        try { undead = ent.isInvertedHealAndHarm() } catch (err) { undead = false }
         if (undead) {
             level.server.runCommandSilent('damage ' + ent.uuid + ' 4 minecraft:magic')
             try { ent.setRemainingFireTicks(300) } catch (err) { }

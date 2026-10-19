@@ -30,8 +30,8 @@ ServerEvents.tags('item', event => {
     event.add('create:funkynuggets','create:zinc_nugget')
     event.add('create:kinetic_mechanisms','kubejs:makeshift_kinetic_mechanism')
     event.add('create:kinetic_mechanisms','kubejs:kinetic_mechanism')
-    // port: dropped, Dave's Building Extended is not in the 1.20.1 pack
-    //event.add('davebuildingmod:skeleton', /^davebuildingmod:skeleton_/)
+    // 1211: Dave's Building Extended is gone; its six skeletons are restored blocks (startup_scripts/restoredBlocks.js)
+    event.add('davebuildingmod:skeleton', /^davebuildingmod:skeleton_/)
 
     const wrenchpickupables =
     ["", "", "", "", "", "", "", "", "", "",]

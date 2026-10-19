@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cae:item/crystal_seed_fluix2"
+  }
+}

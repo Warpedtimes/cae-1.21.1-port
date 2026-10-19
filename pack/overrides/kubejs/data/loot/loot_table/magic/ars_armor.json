@@ -21,7 +21,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ars_nouveau:magebloom_fiber",
+          "name": "ars_nouveau:blaze_fiber",
           "functions": [
             {
               "function": "minecraft:set_count",

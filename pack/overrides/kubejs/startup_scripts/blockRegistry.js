@@ -2,7 +2,9 @@ StartupEvents.registry('block', event => {
   let layer = "cutout"
   // port: .material('lantern') is gone in KubeJS 6; .soundType('lantern') replaces its sound
   event.create('skystone_catalyst').unbreakable().displayName('Skystone Catalyst').soundType('lantern').notSolid().renderType(layer).hardness(3.0)
-  event.create('source_time_crystal').displayName('Source Time Crystal').soundType('lantern').notSolid().renderType(layer).hardness(3.0)
+  // 1211: translucent, not cutout. Its texture is all ~45% alpha; Sodium and the shaders cut out pixels under 50%, so as
+  // a cutout block the crystal was invisible (only its outline showed)
+  event.create('source_time_crystal').displayName('Source Time Crystal').soundType('lantern').notSolid().renderType('translucent').hardness(3.0)
   //event.create('andesite_machine').displayName('Andesite Machine').material('lantern').notSolid().renderType(layer).hardness(3.0)
   //event.create('brass_machine').displayName('Brass Machine').material('lantern').notSolid().renderType(layer).hardness(3.0)
   //event.create('sealed_machine').displayName('Copper Machine').material('lantern').notSolid().renderType(layer).hardness(3.0)

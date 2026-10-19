@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cae:block/restored/davebuildingmod/biohazard_block"
+    },
+    "facing=east": {
+      "model": "cae:block/restored/davebuildingmod/biohazard_block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cae:block/restored/davebuildingmod/biohazard_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cae:block/restored/davebuildingmod/biohazard_block",
+      "y": 270
+    }
+  }
+}

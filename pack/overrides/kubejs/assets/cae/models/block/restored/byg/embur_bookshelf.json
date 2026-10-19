@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/byg/embur_planks",
+    "up": "cae:block/restored/byg/embur_planks",
+    "north": "cae:block/restored/byg/embur_bookshelf",
+    "east": "cae:block/restored/byg/embur_bookshelf",
+    "south": "cae:block/restored/byg/embur_bookshelf",
+    "west": "cae:block/restored/byg/embur_bookshelf",
+    "particle": "cae:block/restored/byg/embur_planks"
+  }
+}

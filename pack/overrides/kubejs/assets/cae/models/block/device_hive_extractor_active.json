@@ -1,0 +1,6 @@
+{
+  "parent": "cae:block/device_hive_extractor",
+  "textures": {
+    "north": "cae:block/device_hive_extractor_active"
+  }
+}

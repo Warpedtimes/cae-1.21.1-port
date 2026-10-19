@@ -1,0 +1,6 @@
+{
+  "parent": "cae:block/restored/createdeco/vertical_slab",
+  "textures": {
+    "side": "cae:block/restored/createdeco/palettes/bricks/red/red_bricks"
+  }
+}

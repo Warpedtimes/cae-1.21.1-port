@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cae:block/restored/dustrial_decor/large_lantern_top",
+    "north": "cae:block/restored/dustrial_decor/large_lantern",
+    "south": "cae:block/restored/dustrial_decor/large_lantern",
+    "east": "cae:block/restored/dustrial_decor/large_lantern",
+    "west": "cae:block/restored/dustrial_decor/large_lantern",
+    "up": "cae:block/restored/dustrial_decor/large_lantern_top",
+    "down": "cae:block/restored/dustrial_decor/large_lantern_bottom"
+  }
+}

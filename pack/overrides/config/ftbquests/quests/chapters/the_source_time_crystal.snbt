@@ -92,7 +92,7 @@
 			}]
 		}
 		{
-			title: "Any Skeleton Skull"
+			title: "Any Daves BE Skeleton"
 			x: 2.0d
 			y: 2.5d
 			shape: "rsquare"
@@ -100,7 +100,7 @@
 			tasks: [{
 				id: "599BFD1264B063BE"
 				type: "item"
-				item: "minecraft:skeleton_skull"
+				item: "davebuildingmod:skeleton_3"
 			}]
 		}
 		{

@@ -55,7 +55,18 @@
   "Entangled Fix": "bug fix for 1.18 Entangled; not needed",
   "Rubidium": "replaced by Sodium (with Iris for shaders)",
   "Starlight": "the vanilla light engine took its ideas",
-  "Redirector": "ModernFix flags it as harmful"
+  "Redirector": "ModernFix flags it as harmful",
+  "Create Aeronautics": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Sable": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create Stuff 'N Additions x Sable & Aeronautics Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Jade Sable Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Aeronautics Hot Air Fix": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create: Crafts & Additions and Aeronautics Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create Additions - Sable Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Sable: Physics Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create Aeronautics: Compatibility": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create Aeronautics: Mekanism Compatibility": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Create Aeronautics x Curios API Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page"
  },
  "mods": [
   {
@@ -371,6 +382,18 @@
    "side": "both"
   },
   {
+   "name": "Concurrent Chunk Management Engine (NeoForge)",
+   "mr": [
+    "COlSi5iR",
+    "avwWYPbG"
+   ],
+   "file": "c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar",
+   "url": "https://cdn.modrinth.com/data/COlSi5iR/versions/avwWYPbG/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar",
+   "sha1": "50fe2e38c6369b51e4dee1106d0295185e6251c4",
+   "side": "both",
+   "why": "C2ME (owner's request): concurrent chunk loading and generation"
+  },
+  {
    "name": "Configured",
    "cf": [
     457570,
@@ -663,6 +686,18 @@
    "side": "both"
   },
   {
+   "name": "Distant Horizons",
+   "mr": [
+    "uCdwusMi",
+    "9w34y8ai"
+   ],
+   "file": "DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/uCdwusMi/versions/9w34y8ai/DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar",
+   "sha1": "4357b4d19fab818780c94f0e43dad1cc931634b2",
+   "side": "both",
+   "why": "Distant Horizons (owner's request, 19 Oct 2026): far terrain as LODs beyond the render distance"
+  },
+  {
    "name": "Do a Barrel Roll",
    "cf": [
     663658,
@@ -771,13 +806,14 @@
    "side": "both"
   },
   {
-   "name": "Farsight [Forge]",
+   "name": "Farsight [Forge/Neo]",
    "cf": [
     495693,
     8874976
    ],
    "file": "farsight-1.21.1-5.5.jar",
-   "side": "client"
+   "side": "client",
+   "why": "Farsight (owner's request): keeps chunks the client got beyond the server's view distance"
   },
   {
    "name": "Fast Leaf Decay",
@@ -1020,6 +1056,18 @@
    ],
    "file": "Iceberg-1.21.1-neoforge-1.3.2.jar",
    "side": "both"
+  },
+  {
+   "name": "ImmediatelyFast",
+   "mr": [
+    "5ZwdcRci",
+    "EJzmEPZV"
+   ],
+   "file": "ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/EJzmEPZV/ImmediatelyFast-NeoForge-1.6.15%2B1.21.1.jar",
+   "sha1": "f991166f7c82b493481c876e3c83c9fac4159671",
+   "side": "client",
+   "why": "ImmediatelyFast (owner's request): faster HUD, text and immediate-mode rendering"
   },
   {
    "name": "Immersive Weathering: Renewed",
@@ -1310,6 +1358,18 @@
    "side": "client"
   },
   {
+   "name": "Lithium",
+   "mr": [
+    "gvQqBUqZ",
+    "DDUrRVCA"
+   ],
+   "file": "lithium-neoforge-0.15.4+mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/gvQqBUqZ/versions/DDUrRVCA/lithium-neoforge-0.15.4%2Bmc1.21.1.jar",
+   "sha1": "97212e45c963730bbfc7c44780df99317814c21b",
+   "side": "both",
+   "why": "Lithium (owner's request): game logic optimisations"
+  },
+  {
    "name": "Lithostitched",
    "mr": [
     "XaDC71GB",
@@ -1515,6 +1575,18 @@
    ],
    "file": "NaturesCompass-1.21.1-3.4.0-neoforge.jar",
    "side": "both"
+  },
+  {
+   "name": "Noisium",
+   "mr": [
+    "KuNKN7d2",
+    "nJBE6tif"
+   ],
+   "file": "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/KuNKN7d2/versions/nJBE6tif/noisium-neoforge-2.3.0%2Bmc1.21-1.21.1.jar",
+   "sha1": "1bea6b61378ba80f038256c4345d9ff3b67928c4",
+   "side": "both",
+   "why": "Noisium (owner's request): faster world generation"
   },
   {
    "name": "Oh The Biomes We've Gone",
@@ -1800,6 +1872,18 @@
    ],
    "file": "spark-1.10.124-neoforge.jar",
    "side": "both"
+  },
+  {
+   "name": "Sparse Structures",
+   "mr": [
+    "qwvI41y9",
+    "MoJZpi20"
+   ],
+   "file": "sparsestructures-neoforge-1.21.1-3.0.jar",
+   "url": "https://cdn.modrinth.com/data/qwvI41y9/versions/MoJZpi20/sparsestructures-neoforge-1.21.1-3.0.jar",
+   "sha1": "daa7235c52c822524e9a4edd8b382a68ec78b1f8",
+   "side": "both",
+   "why": "Worldgen: spreads every structure out (global factor plus per-structure exceptions in config/sparsestructures.json5)"
   },
   {
    "name": "Steam 'n' Rails Neoforge",

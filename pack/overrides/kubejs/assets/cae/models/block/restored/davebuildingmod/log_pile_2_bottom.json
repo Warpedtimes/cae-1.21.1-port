@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/5logpile1_bottom",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/logpile_top",
+    "particle": "cae:block/restored/davebuildingmod/logpile_top",
+    "0": "cae:block/restored/davebuildingmod/campfire_log"
+  },
+  "render_type": "minecraft:cutout"
+}

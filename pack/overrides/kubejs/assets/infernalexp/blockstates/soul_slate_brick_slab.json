@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cae:block/restored/infernalexp/soul_slate_brick_slab"
+    },
+    "type=double": {
+      "model": "cae:block/restored/infernalexp/soul_slate_bricks"
+    },
+    "type=top": {
+      "model": "cae:block/restored/infernalexp/soul_slate_brick_slab_top"
+    }
+  }
+}

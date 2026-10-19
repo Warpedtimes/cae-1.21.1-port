@@ -12,7 +12,9 @@ ItemEvents.rightClicked(event =>{
 })
 let arcaneblox = ['forbidden_arcanus:arcane_polished_darkstone',"forbidden_arcanus:arcane_crystal_block"]
 let dontIDparts = ["integratedtunnels:part_importer_item","integratedtunnels:part_interface_item","integratedtunnels:part_exporter_item"]
-let dontIDcomponents = ["integratedtunnels:part_importer_item","integratedtunnels:part_interface_item","integratedtunnels:part_exporter_item"]
+// 1211: part TYPE names as the cable saves them (__partType = IPartType.getUniqueName(): Integrated Tunnels 1.13 still
+// "integratedtunnels:importer_item" etc.), as in the 1.18.2 script; the port had put the part ITEM IDs here, which never match
+let dontIDcomponents = ["integratedtunnels:importer_item","integratedtunnels:interface_item","integratedtunnels:exporter_item"]
 let nonoIDArray = ["create:basin","create:depot","create:chute","create:smart_chute","create:andesite_tunnel","create:brass_tunnel","create:belt"]
 function getdirx(text){
 	if(text == "north") return 0;
@@ -47,8 +49,9 @@ function dirtostr(x,y,z){
 	if(x == 0 && y== -1 && z == 0){ return "down"};
 }
 // port: entityData is a Java CompoundTag now; read the cable's parts with CompoundTag methods
-// 1211: unsure. Integrated Dynamics 1.38.1 (1.21.1) serialises its part container itself (PartContainerDefault.serializeNBT(HolderLookup.Provider));
-// whether the keys partContainer / parts / __partType / __side survived is unchecked. The try/catch makes a mismatch silent (no warning shown).
+// 1211: checked 19 Oct 2026 against Integrated Dynamics 1.38.1: the multipart block entity still saves "partContainer"
+// (BlockEntityMultipartTicking) and PartHelpers still writes "parts" with "__partType" (the part's unique name) and
+// "__side" (Direction.getSerializedName: "north" ...).
 function cableHasPart(cable, side){
 	let found = false
 	try {

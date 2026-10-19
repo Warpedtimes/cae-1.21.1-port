@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_bottom",
+  "textures": {
+    "texture": "cae:block/restored/davebuildingmod/steel_mesh",
+    "particle": "cae:block/restored/davebuildingmod/steel_mesh"
+  },
+  "render_type": "minecraft:cutout"
+}

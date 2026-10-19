@@ -369,7 +369,7 @@
 			title: "Synthesizing Skeletons from Thin Air"
 			x: -2.0d
 			y: 3.5d
-			description: ["Spawn an Amplified Skeleton by rightclicking a Skeleton Skull with a Soul. ALL of the Amplified Skeletons will have a custom lootable that can sustain the block cycle"]
+			description: ["Spawn an Amplified Skeleton by rightclicking a DavesBE skeleton with a Soul. ALL of the Amplified Skeletons will have a custom lootable that can sustain the block cycle"]
 			dependencies: [
 				"1D13EA7170FD3C81"
 				"68F10C80D3E640D7"
@@ -572,7 +572,7 @@
 			}]
 		}
 		{
-			title: "Any Skeleton Skull"
+			title: "Any Daves BE Skeleton"
 			x: -2.0d
 			y: 5.0d
 			dependencies: ["51B16B49FDE64745"]
@@ -580,7 +580,13 @@
 			tasks: [{
 				id: "7106A635AB6781C6"
 				type: "item"
-				item: "minecraft:skeleton_skull"
+				title: "Any #davebuildingmod:skeleton"
+				item: {
+					id: "ftbfiltersystem:smart_filter"
+					components: {
+						"ftbfiltersystem:filter": "item_tag(davebuildingmod:skeleton)"
+					}
+				}
 			}]
 		}
 		{

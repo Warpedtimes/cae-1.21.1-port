@@ -394,6 +394,24 @@ def client():
     place(client_jars(pack), os.path.join(INSTANCE, "minecraft", "mods"))
     sync_overrides(os.path.join(INSTANCE, "minecraft"))
     sync_overrides(os.path.join(INSTANCE, "minecraft"), CLIENT_OVERRIDES, CLIENT_MIRRORED)
+    shaders_off(os.path.join(INSTANCE, "minecraft"))
+
+
+def shaders_off(game_dir):
+    """The test client runs without shaders (they max out the PC's fans) and without Distant Horizons' far terrain
+    (screenshot comparisons); the pack itself still ships both on."""
+    path = os.path.join(game_dir, "config", "iris.properties")
+    if os.path.exists(path):
+        text = open(path, encoding="utf-8").read()
+        open(path, "w", encoding="utf-8").write(re.sub(r"(?m)^enableShaders=.*$", "enableShaders=false", text))
+    path = os.path.join(game_dir, "config", "DistantHorizons.toml")
+    if os.path.exists(path):
+        text = open(path, encoding="utf-8").read()
+        if re.search(r"(?m)^\s*quickEnableRendering\s*=", text):
+            text = re.sub(r"(?m)^(\s*)quickEnableRendering\s*=.*$", r"\1quickEnableRendering = false", text)
+        else:
+            text = re.sub(r"(?m)^\[client\]\s*$", "[client]\n\tquickEnableRendering = false", text, count=1)
+        open(path, "w", encoding="utf-8").write(text)
 
 
 if __name__ == "__main__":

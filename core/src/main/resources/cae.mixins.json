@@ -8,7 +8,9 @@
     "MbdMekanismInitMixin",
     "RecipeAdvancementFilterMixin",
     "FtbBackupsHandlerMixin",
-    "FtbBackupsFileUtilsMixin"
+    "FtbBackupsFileUtilsMixin",
+    "DhChunkyAccessorMixin",
+    "BwgPalmSaplingMixin"
   ],
   "injectors": {
     "defaultRequire": 1

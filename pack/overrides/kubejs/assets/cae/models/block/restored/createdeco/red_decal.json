@@ -1,0 +1,8 @@
+{
+  "parent": "cae:block/restored/createdeco/decal",
+  "textures": {
+    "face": "cae:block/restored/createdeco/red_decal",
+    "particle": "cae:block/restored/createdeco/red_decal"
+  },
+  "render_type": "minecraft:cutout"
+}

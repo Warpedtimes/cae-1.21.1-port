@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cae:block/restored/byg/soapstone_brick_slab"
+    },
+    "type=top": {
+      "model": "cae:block/restored/byg/soapstone_brick_slab_top"
+    },
+    "type=double": {
+      "model": "cae:block/restored/byg/soapstone_bricks"
+    }
+  }
+}

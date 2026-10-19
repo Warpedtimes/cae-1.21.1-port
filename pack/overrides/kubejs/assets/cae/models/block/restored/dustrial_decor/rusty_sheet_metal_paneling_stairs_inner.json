@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "cae:block/restored/dustrial_decor/rusty_sheet_metal_plating",
+    "top": "cae:block/restored/dustrial_decor/rusty_sheet_metal_plating",
+    "side": "cae:block/restored/dustrial_decor/rusty_sheet_metal_plating"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "cae:block/restored/thermal/potato_block_top",
+    "bottom": "cae:block/restored/thermal/potato_block_bottom",
+    "side": "cae:block/restored/thermal/potato_block_side"
+  }
+}

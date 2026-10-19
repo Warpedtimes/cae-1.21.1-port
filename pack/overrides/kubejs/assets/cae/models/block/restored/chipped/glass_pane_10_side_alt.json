@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "textures": {
+    "pane": "cae:block/restored/chipped/glass/glass_10",
+    "edge": "cae:block/restored/chipped/glass_pane/glass_pane_10_top"
+  },
+  "render_type": "minecraft:cutout"
+}

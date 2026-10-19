@@ -215,9 +215,20 @@ function mbdStates(c, newBuilder) {
   if (multi) {
     mbdModel(b, c.unformed)
     b.child('formed', f => {
-      if (geo) f.renderer(geo)
-      f.child('working', w => { w.child('waiting') })
-      f.child('suspend')
+      // a formed state without its own renderer draws nothing (the Source Time Crystal, oil pump and oil tower went
+      // invisible once formed); the 1.18.2 machines without a GeckoLib model kept their unformed look, so they do here
+      if (geo) {
+        f.renderer(geo)
+        f.child('working', w => { w.child('waiting') })
+        f.child('suspend')
+      } else {
+        mbdModel(f, c.unformed)
+        f.child('working', w => {
+          mbdModel(w, c.unformed)
+          w.child('waiting', v => { mbdModel(v, c.unformed) })
+        })
+        f.child('suspend', s => { mbdModel(s, c.unformed) })
+      }
     })
   } else {
     if (geo) b.renderer(geo)

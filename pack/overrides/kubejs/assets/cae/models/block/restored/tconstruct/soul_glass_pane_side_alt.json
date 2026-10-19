@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "pane": "cae:block/restored/tconstruct/soul_glass",
+    "edge": "cae:block/restored/tconstruct/soul_glass_top"
+  }
+}

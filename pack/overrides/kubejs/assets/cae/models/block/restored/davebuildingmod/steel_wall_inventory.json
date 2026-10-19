@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "cae:block/restored/davebuildingmod/steel_seemless",
+    "particle": "cae:block/restored/davebuildingmod/steel_seemless"
+  }
+}

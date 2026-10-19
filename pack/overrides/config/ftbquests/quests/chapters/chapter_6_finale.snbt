@@ -696,7 +696,7 @@
 			tasks: [{
 				id: "7E5908AB39259191"
 				type: "item"
-				item: "minecraft:barrier"
+				item: "davebuildingmod:alarm_sign"
 			}]
 		}
 		{
@@ -909,7 +909,7 @@
 			tasks: [{
 				id: "4A5E1DC606F8F692"
 				type: "item"
-				item: "chipped:polished_amethyst_block"
+				item: "chipped:loded_amethyst_block"
 			}]
 		}
 		{

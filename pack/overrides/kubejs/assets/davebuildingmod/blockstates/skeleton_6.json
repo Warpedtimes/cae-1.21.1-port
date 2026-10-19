@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cae:block/restored/davebuildingmod/skeleton_6"
+    },
+    "facing=east": {
+      "model": "cae:block/restored/davebuildingmod/skeleton_6",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cae:block/restored/davebuildingmod/skeleton_6",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cae:block/restored/davebuildingmod/skeleton_6",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "cae:block/device_composter",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "side": "cae:block/device_composter_side_active"
+  }
+}

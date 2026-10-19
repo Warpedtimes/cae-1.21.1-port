@@ -1,6 +1,6 @@
 # Create: Arcane Engineering (1.21.1 Port)
 
-Version 1.0.0
+Version 1.1.0
 
 This is an **unofficial community port** of **Create: Arcane Engineering**, a Minecraft modpack made by
 **FortnitePro420Xx**. The original runs on Minecraft 1.18.2 with Forge. This port runs on **Minecraft 1.21.1 with
@@ -42,7 +42,7 @@ turned on. You can turn shaders off. See [Install](https://github.com/Warpedtime
 
 ## How to install
 
-1. Download **`CAE-1.21.1-Port-1.0.0-Client.zip`** from the
+1. Download **`CAE-1.21.1-Port-1.1.0-Client.zip`** from the
    [Releases page](https://github.com/Warpedtimes/cae-1.21.1-port/releases).
 2. Import it into your launcher:
    - **[Prism Launcher](https://prismlauncher.org/)**: **Add Instance**, then **Import**, and pick the file.
@@ -56,7 +56,7 @@ Step by step instructions, with the memory setting and first launch tips, are in
 
 ## How to run a server
 
-1. Download **`CAE-1.21.1-Port-1.0.0-Server.zip`** from the Releases page and unzip it into an empty folder.
+1. Download **`CAE-1.21.1-Port-1.1.0-Server.zip`** from the Releases page and unzip it into an empty folder.
 2. Install Java 21 and Python 3, then run `python setup.py` once. It installs NeoForge and downloads the mods the zip
    can't include.
 3. Accept the EULA in `eula.txt` and start the server with `start.sh` or `start.bat`. The details are in

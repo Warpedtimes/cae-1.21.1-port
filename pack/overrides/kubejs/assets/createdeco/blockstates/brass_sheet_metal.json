@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "createdeco:block/brass_sheet_metal"
+    },
+    "axis=y": {
+      "model": "createdeco:block/brass_sheet_metal"
+    },
+    "axis=z": {
+      "model": "createdeco:block/brass_sheet_metal"
+    }
+  }
+}

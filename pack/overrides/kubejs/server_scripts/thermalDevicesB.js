@@ -54,6 +54,33 @@ function caebTankEffects(tank) {
     return out
 }
 
+// The working look (Thermal's ACTIVE blockstate; kubejs/assets/cae/blockstates/device_potion_diffuser.json picks the model): sets the
+// named properties to the wanted values ('true' / 'false'), one setBlock (flags 3) when something changed. The live state comes from the
+// level (event.block keeps the state it first saw); StateHolder.cycle avoids handing a JS value to setValue. Same helper as gdaLook
+// (thermalDevicesA.js).
+let caebLookWarned = false
+function caebLook(block, values) {
+    try {
+        let level = block.level
+        let pos = block.pos
+        let orig = level.getBlockState(pos)
+        let state = orig
+        let def = state.getBlock().getStateDefinition()
+        let names = Object.keys(values)
+        for (let i = 0; i < names.length; i++) {
+            let prop = def.getProperty(names[i])
+            if (prop == null) { continue }
+            let want = String(values[names[i]])
+            for (let n = 0; n < 16 && String(state.getValue(prop)) != want; n++) { state = state.cycle(prop) }
+            if (String(state.getValue(prop)) != want) { state = orig; break }
+        }
+        if (String(state) != String(orig)) { level.setBlock(pos, state, 3) } // 1211: Rhino hides equals(); a state prints all its properties
+    } catch (err) {
+        if (!caebLookWarned) { console.warn('thermalDevicesB.js: device look not set: ' + err) }
+        caebLookWarned = true
+    }
+}
+
 BlockEvents.blockEntityTick('cae:device_potion_diffuser', event => {
     let block = event.block
     let entity = block.entity
@@ -61,7 +88,8 @@ BlockEvents.blockEntityTick('cae:device_potion_diffuser', event => {
     let tank = entity.attachments.get('tank')
     if (!tank) { return }
     let data = entity.data
-    // isValid(): at least 25 mB; inactive resets process to 1
+    // isValid(): at least 25 mB; that is also when it looks active (redstone control "ignored"). Inactive resets process to 1.
+    caebLook(block, { active: tank.getFluidAmount() >= CAEB_DIFFUSER_FLUID })
     if (tank.getFluidAmount() < CAEB_DIFFUSER_FLUID) {
         if (data.contains('process') && data.getInt('process') != 1) { data.putInt('process', 1); entity.save() }
         return

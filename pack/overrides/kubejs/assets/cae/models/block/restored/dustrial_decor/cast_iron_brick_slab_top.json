@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "cae:block/restored/dustrial_decor/cast_iron_bricks_top",
+    "top": "cae:block/restored/dustrial_decor/cast_iron_bricks_top",
+    "side": "cae:block/restored/dustrial_decor/cast_iron_bricks"
+  }
+}

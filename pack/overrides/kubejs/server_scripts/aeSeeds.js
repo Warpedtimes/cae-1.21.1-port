@@ -26,6 +26,7 @@ var CAE_SEED_CLOCK = {}   // dimension id -> ticks since the last rescan
 
 var CaeSeedDataComponents = Java.loadClass('net.minecraft.core.component.DataComponents')
 var CaeSeedCustomData = Java.loadClass('net.minecraft.world.item.component.CustomData')
+var CaeSeedModelData = Java.loadClass('net.minecraft.world.item.component.CustomModelData')
 var CaeSeedCompound = Java.loadClass('net.minecraft.nbt.CompoundTag')
 var CaeSeedFluidTags = Java.loadClass('net.minecraft.tags.FluidTags')
 var CaeSeedBlockPos = Java.loadClass('net.minecraft.core.BlockPos')
@@ -41,6 +42,14 @@ function caeSeedSetProgress(stack, p) {
   let tag = existing == null ? new CaeSeedCompound() : existing.copyTag()
   tag.putInt('p', Math.max(0, Math.min(CAE_SEED_REQUIRED, p)))
   stack.set(CaeSeedDataComponents.CUSTOM_DATA, CaeSeedCustomData.of(tag))
+  // the bigger crystal at 1/3 and 2/3 growth, as AE2 1.18's "ae2:growth" item model predicate (0.333 / 0.666): the item
+  // models in kubejs/assets/cae/models/item pick it by custom_model_data 1 / 2
+  let stage = p >= CAE_SEED_REQUIRED * 0.666 ? 2 : (p >= CAE_SEED_REQUIRED * 0.333 ? 1 : 0)
+  let current = stack.get(CaeSeedDataComponents.CUSTOM_MODEL_DATA)
+  if ((current == null ? 0 : current.value()) != stage) {
+    if (stage == 0) stack.remove(CaeSeedDataComponents.CUSTOM_MODEL_DATA)
+    else stack.set(CaeSeedDataComponents.CUSTOM_MODEL_DATA, new CaeSeedModelData(stage))
+  }
 }
 
 function caeSeedEntityKey(e) {

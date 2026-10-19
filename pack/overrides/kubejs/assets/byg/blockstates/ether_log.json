@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "cae:block/restored/byg/ether_log"
+    },
+    "axis=z": {
+      "model": "cae:block/restored/byg/ether_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "cae:block/restored/byg/ether_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

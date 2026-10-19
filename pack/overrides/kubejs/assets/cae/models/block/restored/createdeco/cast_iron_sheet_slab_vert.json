@@ -1,0 +1,6 @@
+{
+  "parent": "cae:block/restored/createdeco/vertical_slab",
+  "textures": {
+    "side": "cae:block/restored/createdeco/palettes/sheet_metal/cast_iron_sheet_metal"
+  }
+}

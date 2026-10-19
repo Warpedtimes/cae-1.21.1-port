@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cae:block/restored/davebuildingmod/light_gray_steel_slab"
+    },
+    "type=top": {
+      "model": "cae:block/restored/davebuildingmod/light_gray_steel_slab_top"
+    },
+    "type=double": {
+      "model": "cae:block/restored/davebuildingmod/light_gray_steel_slab_full"
+    }
+  }
+}

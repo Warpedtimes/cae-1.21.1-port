@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_open",
+  "textures": {
+    "texture": "cae:block/restored/davebuildingmod/white_steel",
+    "particle": "cae:block/restored/davebuildingmod/white_steel"
+  }
+}

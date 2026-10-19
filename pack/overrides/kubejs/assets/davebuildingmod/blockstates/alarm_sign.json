@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cae:block/restored/davebuildingmod/alarm_sign"
+    },
+    "facing=east": {
+      "model": "cae:block/restored/davebuildingmod/alarm_sign",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cae:block/restored/davebuildingmod/alarm_sign",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cae:block/restored/davebuildingmod/alarm_sign",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "cae:block/device_nullifier",
+  "textures": {
+    "north": "cae:block/device_nullifier_active"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/book2",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/books",
+    "particle": "cae:block/restored/davebuildingmod/books",
+    "0": "cae:block/restored/davebuildingmod/books"
+  },
+  "render_type": "minecraft:cutout"
+}

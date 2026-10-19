@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "cae:block/restored/biomesoplenty/pink_cherry_leaves"
+  },
+  "render_type": "minecraft:cutout_mipped"
+}

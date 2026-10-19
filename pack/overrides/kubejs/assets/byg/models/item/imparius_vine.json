@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cae:block/restored/byg/imparius_vine_plant"
+  }
+}

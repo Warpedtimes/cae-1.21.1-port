@@ -5,12 +5,19 @@
 //   metals Thermal Foundation had and 1.21.1 does not (silver, nickel, invar, constantan, signalum, lumium, enderium),
 //   the trade coins, rubber, tar, rosin, the sap / oil fluids, the hardened glass, a few small crafting parts,
 //   the TNT / grenades, and two ticking machines (the tree extractor and the rock generator).
-// Textures are copies of the Thermal 11 ones (copied from Thermal), in kubejs/assets/cae/textures/{item,block}.
+// Textures are copies of the Thermal 11 ones (copied from Thermal), in kubejs/assets/cae/textures/{item,block}. The devices' textures
+// and models are Thermal 9.2.2.58's. The hardened glass connects like Thermal's: Thermal shipped CTM sheets, which
+// ConnectedTexturesMod doesn't apply to these KubeJS blocks, so tools/connected_glass.py turns them into Fusion strips
+// (*_glass_connected.png) and models/block/*_glass.json use Fusion's "fusion:model" loader.
 // The recipes that go with all of this live in server_scripts/thermalReplacements.js.
 // Notes on the KubeJS 7 APIs used (read in KubeJS 2101 sources, block/entity/*):
 //   BlockBuilder.blockEntity(info => { info.serverTicking(); info.tickFrequency(n); info.fluidTank(id, dirs, cap);
 //   info.inventory(id, dirs, w, h); info.rightClickFillsTank(id); info.rightClickOpensInventory(id) }) and the server-side
 //   BlockEvents.blockEntityTick(blockId, e => ...) event; an empty direction list means every side.
+
+// Thermal's working look (cofh.lib.util.constants.BlockStatePropertiesCoFH.ACTIVE, a boolean blockstate property the device tile
+// sets while it works). The server scripts set it; kubejs/assets/cae/blockstates/device_*.json pick the *_active model with it.
+const CAE_DEV_ACTIVE = Java.loadClass('net.minecraft.world.level.block.state.properties.BooleanProperty').create('active')
 
 StartupEvents.registry('item', event => {
     // metals Thermal Foundation provided that no 1.21.1 mod does. Nuggets / ingots / dusts / plates; blocks are below.
@@ -87,42 +94,51 @@ StartupEvents.registry('block', event => {
     })
 
     // Arboreal Extractor: stands next to a tree trunk, fills a 8000 mB tank (DeviceTreeExtractorTile: new FluidStorageCoFH(8000)) with the
-    // tree's sap / resin. Right click with a bucket; right click with bone meal stocks the boost (server script).
+    // tree's sap / resin. Right click with a bucket; the boost item (bone meal or compost) goes into its 1 slot input (the tile's
+    // inputSlot) by right click, hopper or pipe (server script). The slot only takes '#cae:tree_extractor_boost' (a tag, since item ids
+    // don't resolve yet when blocks register).
     // The recipes (which tree gives what) and the tick logic are in server_scripts/thermalReplacements.js; the tick runs every 20 ticks and
     // its CAE_TREE_STEP there must stay equal to this number (the cycle is 500+ ticks long, see the server script).
-    event.create('cae:device_tree_extractor')
+    // Like Thermal's TileBlockActive4Way: a horizontal `facing` (the front faces the player who placed it) and `active` (the server
+    // script sets it while the extractor stands at a valid tree). Models: kubejs/assets/cae/{blockstates,models/block}/device_tree_extractor*.
+    // 1211 substitute: Thermal drew the tree's fluid behind the windows of the active front and top (UnderlayBakedModel, renderFluid);
+    // a block model can't know the fluid, so the windows always show Thermal's resin texture (most trees give resin).
+    event.create('cae:device_tree_extractor', 'cardinal')
         .displayName('Arboreal Extractor')
         .hardness(3.0).resistance(6.0).requiresTool(true).soundType('metal')
+        .property(CAE_DEV_ACTIVE)
+        .defaultState(s => s.set(CAE_DEV_ACTIVE, false))
         .textures({
             particle: 'cae:block/device_tree_extractor_side',
-            down: 'cae:block/device_tree_extractor_bottom',
-            up: 'cae:block/device_tree_extractor_top',
-            north: 'cae:block/device_tree_extractor',
-            south: 'cae:block/device_tree_extractor_side',
-            east: 'cae:block/device_tree_extractor_side',
-            west: 'cae:block/device_tree_extractor_side'
+            bottom: 'cae:block/device_tree_extractor_bottom',
+            top: 'cae:block/device_tree_extractor_top',
+            front: 'cae:block/device_tree_extractor',
+            side: 'cae:block/device_tree_extractor_side'
         })
         .blockEntity(info => {
             info.serverTicking()
             info.tickFrequency(20)
             info.fluidTank('tank', [], 8000)
+            info.inventory('boost', [], 1, 1, '#cae:tree_extractor_boost')
             info.rightClickFillsTank('tank')
         })
 
     // Rock Generator (Thermal's Igneous Extruder): needs a lava source next to it plus the water / ice of the mapping and the block
     // underneath it (the mapping table is in the server script); one item per 20 ticks into a 1 slot output like the tile's single output
-    // slot (hoppers / pipes can pull from it, right click opens it).
-    event.create('cae:device_rock_gen')
+    // slot (hoppers / pipes can pull from it, right click opens it). Facing and `active` like the extractor above.
+    // 1211 substitute: Thermal's block gave light 14 while active (BlockHelper.lightValue(ACTIVE, 14)); a KubeJS block has one light
+    // level for all its states, so it gives none.
+    event.create('cae:device_rock_gen', 'cardinal')
         .displayName('Rock Generator')
         .hardness(3.0).resistance(6.0).requiresTool(true).soundType('metal')
+        .property(CAE_DEV_ACTIVE)
+        .defaultState(s => s.set(CAE_DEV_ACTIVE, false))
         .textures({
             particle: 'cae:block/device_rock_gen_side',
-            down: 'cae:block/device_rock_gen_bottom',
-            up: 'cae:block/device_rock_gen_top',
-            north: 'cae:block/device_rock_gen',
-            south: 'cae:block/device_rock_gen_side',
-            east: 'cae:block/device_rock_gen_side',
-            west: 'cae:block/device_rock_gen_side'
+            bottom: 'cae:block/device_rock_gen_bottom',
+            top: 'cae:block/device_rock_gen_top',
+            front: 'cae:block/device_rock_gen',
+            side: 'cae:block/device_rock_gen_side'
         })
         .blockEntity(info => {
             info.serverTicking()

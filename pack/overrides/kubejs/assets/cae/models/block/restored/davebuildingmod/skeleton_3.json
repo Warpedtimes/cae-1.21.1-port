@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/skeleton3",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/skeleton",
+    "particle": "cae:block/restored/davebuildingmod/skeleton",
+    "0": "cae:block/restored/davebuildingmod/skeleton"
+  },
+  "render_type": "minecraft:cutout"
+}

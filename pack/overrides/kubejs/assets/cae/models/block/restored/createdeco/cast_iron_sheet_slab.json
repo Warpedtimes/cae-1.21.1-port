@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "cae:block/restored/createdeco/palettes/sheet_metal/cast_iron_sheet_metal",
+    "bottom": "cae:block/restored/createdeco/palettes/sheet_metal/cast_iron_sheet_metal",
+    "top": "cae:block/restored/createdeco/palettes/sheet_metal/cast_iron_sheet_metal"
+  }
+}

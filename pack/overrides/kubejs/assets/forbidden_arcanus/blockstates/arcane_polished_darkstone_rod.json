@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "axis=x,type=single": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,type=single": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod"
+    },
+    "axis=z,type=single": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,type=top": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_top",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,type=top": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_top"
+    },
+    "axis=z,type=top": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_top",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,type=middle": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_middle",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,type=middle": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_middle"
+    },
+    "axis=z,type=middle": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_middle",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,type=bottom": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,type=bottom": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_bottom"
+    },
+    "axis=z,type=bottom": {
+      "model": "cae:block/restored/forbidden_arcanus/arcane_polished_darkstone_rod_bottom",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

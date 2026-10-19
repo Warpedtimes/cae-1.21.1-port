@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/steel_pillar_top",
+    "up": "cae:block/restored/davebuildingmod/steel_pillar_top",
+    "north": "cae:block/restored/davebuildingmod/steel_pillar_side",
+    "east": "cae:block/restored/davebuildingmod/steel_pillar_side",
+    "south": "cae:block/restored/davebuildingmod/steel_pillar_side",
+    "west": "cae:block/restored/davebuildingmod/steel_pillar_side",
+    "particle": "cae:block/restored/davebuildingmod/steel_pillar_top"
+  }
+}

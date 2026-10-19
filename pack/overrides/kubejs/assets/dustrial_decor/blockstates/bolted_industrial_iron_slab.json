@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cae:block/restored/dustrial_decor/bolted_industrial_iron_slab"
+    },
+    "type=top": {
+      "model": "cae:block/restored/dustrial_decor/bolted_industrial_iron_slab_top"
+    },
+    "type=double": {
+      "model": "cae:block/restored/dustrial_decor/bolted_industrial_iron_block"
+    }
+  }
+}

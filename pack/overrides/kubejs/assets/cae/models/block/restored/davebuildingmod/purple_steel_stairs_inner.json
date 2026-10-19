@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "cae:block/restored/davebuildingmod/purple_steel",
+    "top": "cae:block/restored/davebuildingmod/purple_steel",
+    "side": "cae:block/restored/davebuildingmod/purple_steel"
+  }
+}

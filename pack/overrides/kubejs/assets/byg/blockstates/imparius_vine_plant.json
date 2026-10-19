@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "cae:block/restored/byg/imparius_vine_plant"
+      },
+      {
+        "model": "cae:block/restored/byg/imparius_vine_plant2"
+      }
+    ]
+  }
+}

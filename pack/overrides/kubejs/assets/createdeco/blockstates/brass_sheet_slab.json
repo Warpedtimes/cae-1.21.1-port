@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "cae:block/restored/createdeco/brass_sheet_slab_top"
+    },
+    "type=bottom": {
+      "model": "cae:block/restored/createdeco/brass_sheet_slab"
+    },
+    "type=double": {
+      "model": "cae:block/restored/createdeco/brass_sheet_metal"
+    }
+  }
+}

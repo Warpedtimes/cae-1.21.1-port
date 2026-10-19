@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_0"
+    },
+    "level=1": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_1"
+    },
+    "level=2": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_2"
+    },
+    "level=3": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_3"
+    },
+    "level=4": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_4"
+    },
+    "level=5": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_5"
+    },
+    "level=6": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_6"
+    },
+    "level=7": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_7"
+    },
+    "level=8": {
+      "model": "cae:block/restored/tconstruct/scorched_ingot_tank_8"
+    }
+  }
+}

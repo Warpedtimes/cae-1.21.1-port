@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/steel_seemless",
+    "up": "cae:block/restored/davebuildingmod/steel_seemless",
+    "north": "cae:block/restored/davebuildingmod/steel_seemless",
+    "east": "cae:block/restored/davebuildingmod/steel_seemless",
+    "south": "cae:block/restored/davebuildingmod/steel_seemless",
+    "west": "cae:block/restored/davebuildingmod/steel_seemless",
+    "particle": "cae:block/restored/davebuildingmod/steel_seemless"
+  }
+}

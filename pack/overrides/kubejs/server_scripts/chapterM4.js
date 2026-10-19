@@ -131,9 +131,10 @@ EntityEvents.beforeHurt(event =>{
             }
         }
 })
-// port: Dave's Building Extended skeleton decor is gone; now a Soul on a skeleton skull
+// 1211: Dave's Building Extended is gone; its skeletons are restored blocks under their old IDs (startup_scripts/restoredBlocks.js)
 BlockEvents.rightClicked(event =>{
-    if (event.item.id == "forbidden_arcanus:soul" && String(event.block.id) == 'minecraft:skeleton_skull') {
+    let id = String(event.block.id)
+    if (event.item.id == "forbidden_arcanus:soul" && id.includes('davebuildingmod') && id.includes('skeleton')) {
        event.item.setCount(event.item.getCount()-1)
        event.block.set('minecraft:air')
        event.server.runCommandSilent(`playsound cae:skeleton_convert hostile @e[type=player] ${event.block.x} ${event.block.y} ${event.block.z}`)

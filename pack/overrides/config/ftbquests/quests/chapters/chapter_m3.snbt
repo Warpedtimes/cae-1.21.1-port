@@ -464,7 +464,7 @@
 			}]
 		}
 		{
-			icon: { id: "minecraft:barrier" }
+			icon: { id: "davebuildingmod:alarm_sign" }
 			x: -3.0d
 			y: 3.0d
 			shape: "square"

@@ -49,6 +49,12 @@
   "status": "identical",
   "cf_project": 485681
  },
+ "Concurrent Chunk Management Engine (NeoForge)": {
+  "file": "c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar",
+  "modrinth_slug": "c2me-neoforge",
+  "cf": null,
+  "status": "no CurseForge project found"
+ },
  "Construction Wand - KOTS": {
   "file": "constructionwand-kots-1.21.1-2.16.12.jar",
   "modrinth_slug": "construction-wand-kots",
@@ -149,6 +155,12 @@
   "status": "identical",
   "cf_project": 1327768
  },
+ "Distant Horizons": {
+  "file": "DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar",
+  "modrinth_slug": "distanthorizons",
+  "cf": null,
+  "status": "no CurseForge project found"
+ },
  "Forgified Fabric API": {
   "file": "forgified-fabric-api-0.116.15+2.3.6+1.21.1.jar",
   "modrinth_slug": "forgified-fabric-api",
@@ -198,6 +210,16 @@
   ],
   "status": "identical",
   "cf_project": 1173950
+ },
+ "ImmediatelyFast": {
+  "file": "ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar",
+  "modrinth_slug": "immediatelyfast",
+  "cf": [
+   686911,
+   9165518
+  ],
+  "status": "identical",
+  "cf_project": 686911
  },
  "Immersive Weathering: Renewed": {
   "file": "Immersive-weathering-V1.0.4-neoforge-beta.jar",
@@ -284,6 +306,16 @@
   ],
   "status": "same file name, different bytes",
   "cf_project": 351264
+ },
+ "Lithium": {
+  "file": "lithium-neoforge-0.15.4+mc1.21.1.jar",
+  "modrinth_slug": "lithium",
+  "cf": [
+   360438,
+   8330365
+  ],
+  "status": "identical",
+  "cf_project": 360438
  },
  "Lithostitched": {
   "file": "lithostitched-1.8.1-neoforge-21.1.jar",
@@ -375,6 +407,13 @@
   "status": "identical",
   "cf_project": 1104057
  },
+ "Noisium": {
+  "file": "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
+  "modrinth_slug": "noisium",
+  "cf": null,
+  "status": "no identical file",
+  "cf_project": 930207
+ },
  "Oh The Biomes We've Gone": {
   "file": "Oh-The-Biomes-Weve-Gone-NeoForge-2.6.3.jar",
   "modrinth_slug": "oh-the-biomes-weve-gone",
@@ -454,6 +493,12 @@
   ],
   "status": "identical",
   "cf_project": 394468
+ },
+ "Sparse Structures": {
+  "file": "sparsestructures-neoforge-1.21.1-3.0.jar",
+  "modrinth_slug": "sparsestructures",
+  "cf": null,
+  "status": "no CurseForge project found"
  },
  "Steam 'n' Rails Neoforge": {
   "file": "railways-0.3.0-beta.2+neoforge-mc1.21.1.jar",

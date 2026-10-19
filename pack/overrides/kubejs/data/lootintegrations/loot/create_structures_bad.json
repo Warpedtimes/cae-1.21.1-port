@@ -1,0 +1,12 @@
+{
+  "loot_table": "loot:chests/create/bad",
+  "max_result_itemcount": 18,
+  "integrated_loot_tables": {
+    "minecraft:chests/simple_dungeon": 2,
+    "minecraft:chests/shipwreck_treasure": 2,
+    "minecraft:chests/pillager_outpost": 2,
+    "minecraft:chests/stronghold_library": 1,
+    "minecraft:chests/village/village_weaponsmith": 1,
+    "minecraft:chests/village/village_armorer": 1
+  }
+}

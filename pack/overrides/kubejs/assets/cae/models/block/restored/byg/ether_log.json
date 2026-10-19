@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cae:block/restored/byg/ether_log_top",
+    "side": "cae:block/restored/byg/ether_log"
+  }
+}

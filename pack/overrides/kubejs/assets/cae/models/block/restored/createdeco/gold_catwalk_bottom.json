@@ -1,0 +1,8 @@
+{
+  "parent": "cae:block/restored/createdeco/catwalk_bottom",
+  "textures": {
+    "2": "cae:block/restored/createdeco/gold_catwalk",
+    "particle": "cae:block/restored/createdeco/gold_catwalk"
+  },
+  "render_type": "minecraft:cutout"
+}

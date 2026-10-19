@@ -5,8 +5,12 @@
 //   cae:device_nullifier        Nullifier            (DeviceNullifierTile: voids items and fluids put into it)
 // Not built (see the notes): thermal:device_soil_infuser (it only charges Thermal's Phyto-Soil blocks, which are not in the
 // pack) and thermal:tinker_bench (it augments Thermal tools / armor, which are not in the pack).
-// Textures are copied from Thermal 11, kubejs/assets/cae/textures/block/device_*.png. The active
-// (animated) variants are not used: a KubeJS block has no active state.
+// Textures and models are copied from Thermal 9.2.2.58 (kubejs/assets/cae/blockstates, models/block, textures/block: device_*). Both
+// blocks are TileBlockActive4Way in Thermal: a horizontal `facing` (front towards the player who placed it) and `active`.
+// Item sides of the diffuser's boost slot: startup_scripts/thermalDevicesA.js, "Item sides".
+
+// Thermal's ACTIVE blockstate property (BlockStatePropertiesCoFH.ACTIVE); the server script sets it while the diffuser works
+const CAEB_ACTIVE = Java.loadClass('net.minecraft.world.level.block.state.properties.BooleanProperty').create('active')
 
 StartupEvents.registry('block', event => {
     // Decoctive Diffuser: 8000 mB tank that only takes potion fluid (DevicePotionDiffuserTile: FluidStorageCoFH(8000, hasPotionTag)),
@@ -14,17 +18,19 @@ StartupEvents.registry('block', event => {
     // 1211 substitute: Thermal's potion fluid is Create's create:potion here (the potion is its data component, minecraft:potion_contents);
     // the tank is filtered to that fluid. The boost slot filter is the two boost items of the 1.18.2 recipes (data/thermal/recipes/devices/
     // potion_diffuser): #forge:dusts/glowstone and #forge:dusts/redstone.
-    event.create('cae:device_potion_diffuser')
+    // 1211 substitute: Thermal drew the tank's potion behind the little windows of the active faces (UnderlayBakedModel); a block
+    // model can't know the potion, so the windows stay dark.
+    event.create('cae:device_potion_diffuser', 'cardinal')
         .displayName('Decoctive Diffuser')
         .hardness(3.0).resistance(6.0).requiresTool(true).soundType('metal')
+        .property(CAEB_ACTIVE)
+        .defaultState(s => s.set(CAEB_ACTIVE, false))
         .textures({
             particle: 'cae:block/device_potion_diffuser_side',
-            down: 'cae:block/device_potion_diffuser_bottom',
-            up: 'cae:block/device_potion_diffuser_top',
-            north: 'cae:block/device_potion_diffuser',
-            south: 'cae:block/device_potion_diffuser_side',
-            east: 'cae:block/device_potion_diffuser_side',
-            west: 'cae:block/device_potion_diffuser_side'
+            bottom: 'cae:block/device_potion_diffuser_bottom',
+            top: 'cae:block/device_potion_diffuser_top',
+            front: 'cae:block/device_potion_diffuser',
+            side: 'cae:block/device_potion_diffuser_side'
         })
         .blockEntity(info => {
             info.serverTicking()
@@ -63,17 +69,19 @@ StartupEvents.registry('block', event => {
     // a 9 slot item buffer and a 64000 mB tank, so hoppers / pipes see an ordinary container that never fills up. The Thermal filter
     // (an augment, not a slot) and the 9 slot GUI bin with its "Destroy Items" button are replaced by: right click with an item to
     // destroy the held stack (server script).
-    event.create('cae:device_nullifier')
+    // Thermal's nullifier is always active once placed (isValid() is never false and redstone control defaults to "ignored"), so
+    // its blockstate file shows the active (swirling) front on every facing, and it gives the active light, 7
+    // (BlockHelper.lightValue(ACTIVE, 7)); lightLevel is a fraction of 15 (0.467 * 15 = 7). The item keeps the plain model.
+    event.create('cae:device_nullifier', 'cardinal')
         .displayName('Nullifier')
         .hardness(3.0).resistance(6.0).requiresTool(true).soundType('metal')
+        .lightLevel(0.467)
         .textures({
             particle: 'cae:block/device_nullifier_side',
-            down: 'cae:block/device_nullifier_bottom',
-            up: 'cae:block/device_nullifier_top',
-            north: 'cae:block/device_nullifier',
-            south: 'cae:block/device_nullifier_side',
-            east: 'cae:block/device_nullifier_side',
-            west: 'cae:block/device_nullifier_side'
+            bottom: 'cae:block/device_nullifier_bottom',
+            top: 'cae:block/device_nullifier_top',
+            front: 'cae:block/device_nullifier',
+            side: 'cae:block/device_nullifier_side'
         })
         .blockEntity(info => {
             info.serverTicking()

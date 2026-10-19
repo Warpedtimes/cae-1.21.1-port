@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/vantablack",
+    "up": "cae:block/restored/davebuildingmod/vantablack",
+    "north": "cae:block/restored/davebuildingmod/vantablack",
+    "east": "cae:block/restored/davebuildingmod/vantablack",
+    "south": "cae:block/restored/davebuildingmod/vantablack",
+    "west": "cae:block/restored/davebuildingmod/vantablack",
+    "particle": "cae:block/restored/davebuildingmod/vantablack"
+  }
+}

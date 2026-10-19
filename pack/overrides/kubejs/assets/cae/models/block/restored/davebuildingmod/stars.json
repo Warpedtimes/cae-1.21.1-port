@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/stars",
+    "up": "cae:block/restored/davebuildingmod/stars",
+    "north": "cae:block/restored/davebuildingmod/stars",
+    "east": "cae:block/restored/davebuildingmod/stars",
+    "south": "cae:block/restored/davebuildingmod/stars",
+    "west": "cae:block/restored/davebuildingmod/stars",
+    "particle": "cae:block/restored/davebuildingmod/stars"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/vent_tpiece",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/steel_seemless",
+    "particle": "cae:block/restored/davebuildingmod/steel_seemless",
+    "0": "cae:block/restored/davebuildingmod/steel_plating",
+    "1": "cae:block/restored/davebuildingmod/steel_seemless",
+    "missing": "cae:block/restored/davebuildingmod/steel_seemless"
+  }
+}

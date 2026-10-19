@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_pillar"
+    },
+    "axis=z": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_pillar",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_pillar",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

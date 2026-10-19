@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cae:block/restored/davebuildingmod/items/alarm_sign"
+  }
+}

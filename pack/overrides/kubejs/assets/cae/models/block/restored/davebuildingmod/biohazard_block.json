@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/biohazard_block",
+    "up": "cae:block/restored/davebuildingmod/biohazard_block",
+    "north": "cae:block/restored/davebuildingmod/biohazard_block",
+    "east": "cae:block/restored/davebuildingmod/biohazard_block",
+    "south": "cae:block/restored/davebuildingmod/biohazard_block",
+    "west": "cae:block/restored/davebuildingmod/biohazard_block",
+    "particle": "cae:block/restored/davebuildingmod/biohazard_block"
+  }
+}

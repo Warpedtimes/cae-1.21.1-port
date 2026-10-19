@@ -204,10 +204,11 @@ ServerEvents.recipes(event => {
     event.recipes.create.sequenced_assembly([
         'kubejs:source_candy_rock',
       ], 'ars_nouveau:source_gem', [
-        // port: chipped's numbered variants (moss_block_1, amethyst_block_30) are gone in 1.20.1; using the plain blocks they were variants of
-        event.recipes.create.deploying(t, [t, 'minecraft:moss_block']),
+        // 1211: chipped's numbered variants are named now: moss_block_1 is blue_moss_block, amethyst_block_30 is
+        // loded_amethyst_block (same textures; what the juices make, startup_scripts/spoutRecipes.js)
+        event.recipes.create.deploying(t, [t, 'chipped:blue_moss_block']),
         event.recipes.create.deploying(t, [t, 'minecraft:rooted_dirt']),
-        event.recipes.create.deploying(t, [t, 'minecraft:amethyst_block']),
+        event.recipes.create.deploying(t, [t, 'chipped:loded_amethyst_block']),
         event.recipes.create.deploying(t, [t, 'minecraft:netherrack'])
       ]).transitionalItem(t).loops(8)
 

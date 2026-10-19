@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/createdeco/ladder",
+  "textures": {
+    "0": "cae:block/restored/createdeco/palettes/ladders/ladder_gold_hoop",
+    "1": "cae:block/restored/createdeco/palettes/ladders/ladder_gold",
+    "particle": "cae:block/restored/createdeco/palettes/ladders/ladder_gold"
+  },
+  "render_type": "minecraft:cutout"
+}

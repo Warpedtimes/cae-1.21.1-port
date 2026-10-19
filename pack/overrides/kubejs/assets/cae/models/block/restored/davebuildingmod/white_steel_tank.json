@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/white_steel_tank_top",
+    "up": "cae:block/restored/davebuildingmod/white_steel_tank_top",
+    "north": "cae:block/restored/davebuildingmod/white_steel_tank",
+    "east": "cae:block/restored/davebuildingmod/white_steel_tank",
+    "south": "cae:block/restored/davebuildingmod/white_steel_tank",
+    "west": "cae:block/restored/davebuildingmod/white_steel_tank",
+    "particle": "cae:block/restored/davebuildingmod/white_steel_tank_top"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cae:block/restored/dustrial_decor/item/large_gold_chain"
+  }
+}

@@ -26,10 +26,40 @@ const GDA_Cardinal = Java.loadClass('dev.latvian.mods.kubejs.block.custom.Cardin
 
 // the horizontal step the block faces (the tile's FACING_HORIZONTAL; the front texture is on this side)
 // (Direction.getStepX() is renamed for scripts by KubeJS' @RemapForJS and threw every tick: a table by name instead)
+// The state is read from the level: the block entity's event.block keeps the state it first saw (KubeBlockEntity caches its
+// LevelBlock), which is stale once the device has turned active or been turned with a wrench.
 const GDA_STEPS = { north: [0, -1], south: [0, 1], west: [-1, 0], east: [1, 0] }
 function gdaFacing(block) {
-    let s = GDA_STEPS[String(block.blockState.getValue(GDA_Cardinal.FACING))] || [0, -1]
+    let s = GDA_STEPS[String(block.level.getBlockState(block.pos).getValue(GDA_Cardinal.FACING))] || [0, -1]
     return { dx: s[0], dz: s[1] }
+}
+
+// The working look: Thermal's tiles set their ACTIVE blockstate property (and the composter its compost `level`) whenever isActive
+// changes; the models switch on it (kubejs/assets/cae/blockstates/device_*.json). `values` maps a property name to the wanted value
+// ('true' / 'false' / a number); one setBlock (flags 3, like Thermal's) when anything changed. StateHolder.cycle steps to the next value,
+// so no JS value has to become a Java Comparable for setValue. Same helper as caeDevLook (thermalReplacements.js) and caebLook
+// (thermalDevicesB.js); each file has its own copy.
+let gdaLookWarned = false
+function gdaLook(block, values) {
+    try {
+        let level = block.level
+        let pos = block.pos
+        let orig = level.getBlockState(pos)
+        let state = orig
+        let def = state.getBlock().getStateDefinition()
+        let names = Object.keys(values)
+        for (let i = 0; i < names.length; i++) {
+            let prop = def.getProperty(names[i])
+            if (prop == null) { continue }
+            let want = String(values[names[i]])
+            for (let n = 0; n < 16 && String(state.getValue(prop)) != want; n++) { state = state.cycle(prop) }
+            if (String(state.getValue(prop)) != want) { state = orig; break }
+        }
+        if (String(state) != String(orig)) { level.setBlock(pos, state, 3) } // 1211: Rhino hides equals(); a state prints all its properties
+    } catch (err) {
+        if (!gdaLookWarned) { console.warn('thermalDevicesA.js: device look not set: ' + err) }
+        gdaLookWarned = true
+    }
 }
 
 // Fluids.WATER.equals(fluidState.getType()): a water SOURCE only (flowing water is Fluids.FLOWING_WATER)
@@ -148,6 +178,8 @@ BlockEvents.blockEntityTick('cae:device_fisher', event => {
     let wasValid = data.contains('valid') ? data.getBoolean('valid') : false
     let process = data.contains('process') ? data.getInt('process') : GDA_FISH_TIME / 2
     data.putBoolean('valid', valid)
+    // isActive = valid (redstone control is "ignored", Thermal's default)
+    gdaLook(block, { active: valid })
     if (!wasValid && valid) {
         process = Math.max(GDA_FISH_MIN, gdaRandInt(gdaFisherTimeConstant(level, block, f, hasBait)))
     }
@@ -228,6 +260,8 @@ BlockEvents.blockEntityTick('cae:device_hive_extractor', event => {
     let level = block.level
     let pos = new GDA_BlockPos(block.x, block.y + 1, block.z)
     let state = level.getBlockState(pos)
+    // isValid(): the block above has a honey level, whatever the level is; that is when Thermal's hive hopper looks active
+    gdaLook(block, { active: state.hasProperty(GDA_HONEY) })
     if (!state.hasProperty(GDA_HONEY)) { return }
     if (Number(state.getValue(GDA_HONEY)) < 5) { return }
     let inv = entity.attachments.get('out')
@@ -268,6 +302,7 @@ BlockEvents.rightClicked('cae:device_hive_extractor', event => {
 // =====================================================================================================================================
 const GDA_COMPOST_TIME = 120
 const GDA_COMPOST_LEVEL_MAX = 7.0
+const GDA_COMPOST_CAPACITY = 64
 
 BlockEvents.blockEntityTick('cae:device_composter', event => {
     let block = event.block
@@ -281,6 +316,10 @@ BlockEvents.blockEntityTick('cae:device_composter', event => {
     for (let s = 0; s < inv.getSlots(); s++) {
         if (!inv.getStackInSlot(s).isEmpty()) { hasInputs = true }
     }
+    // the look: active while an input slot holds something (isValid = hasInputsCache); the compost inside the box rises with the
+    // output slot, level = 8 * count / capacity (updateTrackers; the slot's capacity is 64)
+    let fill = Math.max(0, Math.min(8, Math.floor(8 * out.getStackInSlot(0).count / GDA_COMPOST_CAPACITY)))
+    gdaLook(block, { active: hasInputs, level: fill })
     if (!hasInputs) {
         // onInventoryChanged: no inputs left -> the timer is back at processMax
         if (data.getInt('process') != GDA_COMPOST_TIME) { data.putInt('process', GDA_COMPOST_TIME); entity.save() }

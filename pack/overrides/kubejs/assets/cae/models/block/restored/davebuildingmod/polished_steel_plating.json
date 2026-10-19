@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "up": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "north": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "east": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "south": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "west": "cae:block/restored/davebuildingmod/polished_steel_plating",
+    "particle": "cae:block/restored/davebuildingmod/polished_steel_plating"
+  }
+}

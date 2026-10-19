@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "cae:block/restored/davebuildingmod/steel_seemless",
+    "particle": "cae:block/restored/davebuildingmod/steel_seemless"
+  }
+}

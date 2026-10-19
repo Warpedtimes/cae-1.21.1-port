@@ -1,0 +1,7 @@
+{
+  "loot_table": "loot:chests/create/normal",
+  "max_result_itemcount": 20,
+  "integrated_loot_tables": {
+    "minecraft:chests/bastion_treasure": 3
+  }
+}

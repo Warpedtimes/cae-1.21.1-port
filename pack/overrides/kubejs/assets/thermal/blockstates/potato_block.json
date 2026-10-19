@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "cae:block/restored/thermal/potato_block"
+      },
+      {
+        "model": "cae:block/restored/thermal/potato_block",
+        "y": 90
+      },
+      {
+        "model": "cae:block/restored/thermal/potato_block",
+        "y": 180
+      },
+      {
+        "model": "cae:block/restored/thermal/potato_block",
+        "y": 270
+      }
+    ]
+  }
+}

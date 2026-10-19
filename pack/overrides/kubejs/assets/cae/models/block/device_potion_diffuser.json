@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cae:block/device_potion_diffuser_side",
+    "down": "cae:block/device_potion_diffuser_bottom",
+    "up": "cae:block/device_potion_diffuser_top",
+    "north": "cae:block/device_potion_diffuser",
+    "south": "cae:block/device_potion_diffuser_side",
+    "east": "cae:block/device_potion_diffuser_side",
+    "west": "cae:block/device_potion_diffuser_side"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "textures": {
+    "pane": "cae:block/restored/chipped/white_stained_glass/white_stained_glass_8"
+  },
+  "render_type": "minecraft:translucent"
+}

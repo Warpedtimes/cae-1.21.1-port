@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cae:block/restored/dustrial_decor/large_chain",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cae:block/restored/dustrial_decor/large_chain"
+    },
+    "axis=z": {
+      "model": "cae:block/restored/dustrial_decor/large_chain",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minecraft:block/oak_planks",
+    "side": "cae:block/restored/chipped/bookshelf/bookshelf_8"
+  }
+}

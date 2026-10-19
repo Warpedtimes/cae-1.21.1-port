@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cae:block/restored/dustrial_decor/wrapped_gold_chains_top",
+    "side": "cae:block/restored/dustrial_decor/wrapped_gold_chains"
+  }
+}

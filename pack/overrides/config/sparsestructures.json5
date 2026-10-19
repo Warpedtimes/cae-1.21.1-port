@@ -1,0 +1,113 @@
+// CAE 1.21.1: Sparse Structures. Multiplies the spacing and separation of every structure set.
+// Playtesters: "Structures are INCREDIBLY common". About 40 structure mods share one world, so the
+// global factor is 3 (a structure set gets about nine times fewer placements); sets listed below use their own factor
+// instead (1 = untouched). Needs a restart; existing chunks keep what they already have.
+{
+  "spreadFactor": 3,
+  "idBasedSalt": true,
+  "customSpreadFactors": [
+    // Pack structures and the resources the quests send you to find: untouched
+    { "structure": "cae:arcane_temple", "factor": 1 },     // quest target, 2000/1000 already
+    { "structure": "cae:geodes", "factor": 1 },            // the four catalyst geodes
+    { "structure": "cae:oil", "factor": 1 },               // oil fields
+    { "structure": "cae:true_shit", "factor": 1 },
+    { "structure": "cae:koro_shrine", "factor": 1 },
+    { "structure": "cae:workhouse", "factor": 1.5 },       // the pack's cottages, towers and factories (40/30 -> 60/45)
+    { "structure": "ae2:meteorite", "factor": 1 },         // skystone: quests rely on finding meteorites
+    { "structure": "integrated_stronghold:stronghold", "factor": 1 }, // End portal, 85/50 already
+    { "structure": "minecraft:strongholds", "factor": 1 },
+    { "structure": "minecraft:end_cities", "factor": 1.5 },
+    { "structure": "minecraft:nether_complexes", "factor": 1.5 },
+    { "structure": "betterfortresses:fortress", "factor": 1.5 }, // blaze rods
+    { "structure": "minecraft:ocean_monuments", "factor": 1.5 },
+    { "structure": "betteroceanmonuments:ocean_monument", "factor": 1.5 },
+    { "structure": "minecraft:woodland_mansions", "factor": 2 },
+    { "structure": "minecraft:buried_treasures", "factor": 1.5 },
+
+    // Already sparse (or underground and rare)
+    { "structure": "tlc:structure_lost_castle_set", "factor": 1 },
+    { "structure": "bettermineshafts:mineshafts", "factor": 1 },
+    { "structure": "minecraft:mineshafts", "factor": 1 },
+    { "structure": "samurai_dynasty:torii", "factor": 1 },
+    { "structure": "samurai_dynasty:spirit_stone_boulders", "factor": 1 }, // scenery, not a building
+
+    // Scenery landforms of Oh The Biomes We've Gone (arches, plateaus, lakes, fossils): not buildings, keep
+    { "structure": "biomeswevegone:dripstone_arches", "factor": 1 },
+    { "structure": "biomeswevegone:ironwood_gour_plateau", "factor": 1 },
+    { "structure": "biomeswevegone:large_cold_lake", "factor": 1 },
+    { "structure": "biomeswevegone:lush_arch", "factor": 1 },
+    { "structure": "biomeswevegone:red_rock_arches", "factor": 1 },
+    { "structure": "biomeswevegone:rugged_fossils", "factor": 1 },
+    { "structure": "biomeswevegone:sharpened_rocks", "factor": 1 },
+
+    // Create: Structures Arise: 90-200 chunks apart per set but 28 sets; factor 2
+    { "structure": "create_structures_arise:chocolate_pit", "factor": 2 },
+    { "structure": "create_structures_arise:createairdrop", "factor": 2 },
+    { "structure": "create_structures_arise:createcontainer", "factor": 2 },
+    { "structure": "create_structures_arise:createcushercrane", "factor": 2 },
+    { "structure": "create_structures_arise:createdesertwell", "factor": 2 },
+    { "structure": "create_structures_arise:createfluidtank", "factor": 2 },
+    { "structure": "create_structures_arise:createhouse", "factor": 2 },
+    { "structure": "create_structures_arise:createlittleman", "factor": 2 },
+    { "structure": "create_structures_arise:createlosttrainstation", "factor": 2 },
+    { "structure": "create_structures_arise:createminiskyvillage", "factor": 2 },
+    { "structure": "create_structures_arise:createmonsterroom", "factor": 2 },
+    { "structure": "create_structures_arise:createoldruine", "factor": 2 },
+    { "structure": "create_structures_arise:createpickaxestatue", "factor": 2 },
+    { "structure": "create_structures_arise:createwitchhut", "factor": 2 },
+    { "structure": "create_structures_arise:create_bastion", "factor": 2 },
+    { "structure": "create_structures_arise:create_copper_statue", "factor": 2 },
+    { "structure": "create_structures_arise:create_dungeon_base", "factor": 2 },
+    { "structure": "create_structures_arise:create_ruined_castle", "factor": 2 },
+    { "structure": "create_structures_arise:crimsite_tower", "factor": 2 },
+    { "structure": "create_structures_arise:darkcastle", "factor": 2 },
+    { "structure": "create_structures_arise:honey_pit", "factor": 2 },
+    { "structure": "create_structures_arise:minetrain", "factor": 2 },
+    { "structure": "create_structures_arise:pillagersteampunkairship", "factor": 2 },
+    { "structure": "create_structures_arise:pillager_boat", "factor": 2 },
+    { "structure": "create_structures_arise:towerofochrum", "factor": 2 },
+    { "structure": "create_structures_arise:windmill", "factor": 2 },
+    // the two denser ones get the global 3: deadlordshouse (50/15) and obsidiantemple (60/15)
+
+    // Moog's Soaring Structures: 53-158 chunks apart already
+    { "structure": "mss:diorite_house", "factor": 1.5 },
+    { "structure": "mss:desert_pyramid", "factor": 1.5 },
+    { "structure": "mss:nether_portal", "factor": 1.5 },
+    { "structure": "mss:desert_well", "factor": 2 },
+    { "structure": "mss:castle_tower", "factor": 1.5 },
+    { "structure": "mss:birch_river", "factor": 1.5 },
+    { "structure": "mss:castle_ruin", "factor": 1.5 },
+    { "structure": "mss:small_pond", "factor": 2 },
+    { "structure": "mss:red_sand", "factor": 1.5 },
+    { "structure": "mss:frozen_pond", "factor": 1.5 },
+    { "structure": "mss:trees", "factor": 2 },
+    { "structure": "mss:volcano", "factor": 1.5 },
+    { "structure": "mss:muddy_water_hole", "factor": 1.5 },
+    { "structure": "mss:mangrove", "factor": 2 },
+    { "structure": "mss:mushroom", "factor": 1.5 },
+    { "structure": "mss:palm_island", "factor": 1.5 },
+    { "structure": "mss:leaf_hollow", "factor": 1.5 },
+    { "structure": "mss:taiga", "factor": 1.5 },
+    { "structure": "mss:large_tower", "factor": 1.5 },
+    { "structure": "mss:small_tower", "factor": 1.5 },
+    { "structure": "mss:white_house", "factor": 1.5 },
+    { "structure": "mss:small_oak_house", "factor": 1.5 },
+    { "structure": "mss:calcite_house", "factor": 2 },
+    { "structure": "mss:spruce_huts", "factor": 1.5 },
+    { "structure": "mss:small_deepslate_house", "factor": 1.5 },
+    { "structure": "mss:cherry_river", "factor": 2 },
+    { "structure": "mss:jungle", "factor": 2 },
+    { "structure": "mss:arena", "factor": 1.5 },
+
+    // Moog's Nether Structures: the big, already-rare ones
+    { "structure": "mns:mega_fortress", "factor": 1.5 },
+    { "structure": "mns:mega_arenas", "factor": 1.5 },
+    { "structure": "mns:nether_tower", "factor": 1.5 },
+    { "structure": "mns:bridge_1", "factor": 1.5 },
+    { "structure": "mns:bridge_2", "factor": 1.5 },
+    { "structure": "mns:bridge_3", "factor": 1.5 },
+    { "structure": "mns:bridge_4", "factor": 1.5 },
+    { "structure": "mns:bridge_5", "factor": 1.5 },
+    { "structure": "mns:bridge_6", "factor": 1.5 }
+  ]
+}

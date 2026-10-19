@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "cae:block/restored/dustrial_decor/hook"
+      },
+      {
+        "model": "cae:block/restored/dustrial_decor/hook",
+        "y": 180
+      }
+    ]
+  }
+}

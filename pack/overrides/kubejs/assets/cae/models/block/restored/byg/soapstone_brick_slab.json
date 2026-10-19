@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "cae:block/restored/byg/soapstone_bricks",
+    "top": "cae:block/restored/byg/soapstone_bricks",
+    "side": "cae:block/restored/byg/soapstone_bricks"
+  }
+}

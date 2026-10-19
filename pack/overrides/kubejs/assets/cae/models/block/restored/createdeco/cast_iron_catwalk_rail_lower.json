@@ -1,0 +1,8 @@
+{
+  "parent": "cae:block/restored/createdeco/catwalk_rail_lower",
+  "textures": {
+    "3": "cae:block/restored/createdeco/cast_iron_catwalk_rail",
+    "particle": "cae:block/restored/createdeco/cast_iron_catwalk_rail"
+  },
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cae:block/restored/createdeco/gold_ladder"
+    },
+    "facing=south": {
+      "model": "cae:block/restored/createdeco/gold_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cae:block/restored/createdeco/gold_ladder",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cae:block/restored/createdeco/gold_ladder",
+      "y": 90
+    }
+  }
+}

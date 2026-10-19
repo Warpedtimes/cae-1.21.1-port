@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cae:block/restored/davebuildingmod/steel_frame",
+    "up": "cae:block/restored/davebuildingmod/steel_frame",
+    "north": "cae:block/restored/davebuildingmod/steel_frame",
+    "east": "cae:block/restored/davebuildingmod/steel_frame",
+    "south": "cae:block/restored/davebuildingmod/steel_frame",
+    "west": "cae:block/restored/davebuildingmod/steel_frame",
+    "particle": "cae:block/restored/davebuildingmod/steel_frame"
+  },
+  "render_type": "minecraft:cutout"
+}

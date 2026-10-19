@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "cae:block/restored/createdeco/worn_brick_tiles_slab_top"
+    },
+    "type=bottom": {
+      "model": "cae:block/restored/createdeco/worn_brick_tiles_slab"
+    },
+    "type=double": {
+      "model": "cae:block/restored/createdeco/worn_brick_tiles"
+    }
+  }
+}

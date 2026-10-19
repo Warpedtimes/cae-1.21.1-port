@@ -9,8 +9,10 @@
 // The item is a plain item, not a block item, like Ars' FluidBlockItem behaved: clicking a block never placed it (useOn
 // returned PASS); using it ray-traced through any fluid and set the lily on top of the first fluid or block hit, if that
 // spot was air. The server script does that.
-// 1211 substitute: Ars' BushBlock dropped the lily when its support went (canSurvive); this block stays put. Ars' Volcanic
-// Sourcelink also grew lilies on uncovered lava next to it; Ars 5's sourcelink doesn't, and that is not rebuilt.
+// Ars' BushBlock dropped the lily when its support went (canSurvive); KubeJS blocks have no such hook, so the core mod does
+// it (com.caeport.cae.compat.LavaLilySupport), with the self-drop loot table in kubejs/data/cae/loot_table/blocks.
+// 1211 substitute: Ars' Volcanic Sourcelink also grew lilies on uncovered lava next to it; Ars 5's sourcelink doesn't, and
+// that is not rebuilt.
 
 const CAE_LILY_LOC = Java.loadClass('net.minecraft.world.level.block.state.properties.IntegerProperty').create('loc', 0, 2)
 const CAE_HOT_FLOOR = Java.loadClass('net.minecraft.world.damagesource.DamageTypes').HOT_FLOOR

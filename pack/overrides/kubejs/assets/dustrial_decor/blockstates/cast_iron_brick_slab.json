@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_brick_slab"
+    },
+    "type=top": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_brick_slab_top"
+    },
+    "type=double": {
+      "model": "cae:block/restored/dustrial_decor/cast_iron_bricks"
+    }
+  }
+}

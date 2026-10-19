@@ -1,9 +1,10 @@
 // 1211: AE2's crystal seeds (ae2:certus_crystal_seed / ae2:fluix_crystal_seed, AE2 11.7.6 on 1.18.2) are gone in AE2 1.21, so
-// the pack carries its own under cae:. Textures are AE2 1.18's (stage 1: crystal_seed_certus / crystal_seed_fluix).
+// the pack carries its own under cae:. Textures are AE2 1.18's (crystal_seed_certus / _certus2 / _certus3, and fluix).
 // The growth logic (24000 ticks in water, Crystal Growth Accelerators) is in server_scripts/aeSeeds.js.
-// 1211 substitute: AE2 1.18 swapped the model to a bigger crystal at 1/3 and 2/3 growth through an item model predicate
-// ("ae2:growth"); 1.21 has no such predicate for custom data, so the seed keeps its first texture. The progress shows in the
-// tooltip of the original; here it can be read with /data or the sweep (stack custom_data {p: ticks}).
+// AE2 1.18 swapped the model to a bigger crystal at 1/3 and 2/3 growth through an item model predicate ("ae2:growth"); here
+// the server script sets minecraft:custom_model_data 1 / 2 at those points and the item models in kubejs/assets/cae pick
+// the bigger crystal with the vanilla custom_model_data predicate. 1211 substitute: the original showed the progress in the
+// tooltip; here it can be read with /data (stack custom_data {p: ticks}).
 StartupEvents.registry('item', event => {
     event.create('cae:certus_crystal_seed')
         .displayName('Certus Quartz Seed')

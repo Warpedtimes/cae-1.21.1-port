@@ -515,7 +515,7 @@
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "ars_nouveau:magebloom_fiber",
+          "name": "ars_nouveau:end_fiber",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -526,7 +526,7 @@
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "ars_nouveau:magebloom_fiber",
+          "name": "ars_nouveau:blaze_fiber",
           "functions": [
             {
               "function": "minecraft:set_count",

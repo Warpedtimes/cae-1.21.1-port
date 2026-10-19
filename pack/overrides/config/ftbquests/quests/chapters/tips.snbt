@@ -31,7 +31,7 @@
 			width: 1.0d
 			height: 1.0d
 			rotation: 0.0d
-			image: "ftbquests:textures/gui/arrow_right.png"
+			image: "davebuildingmod:textures/blocks/arrow_right_sign.png"
 			hover: [ ]
 			click: ""
 			dev: false
@@ -43,7 +43,7 @@
 			width: 1.0d
 			height: 1.0d
 			rotation: 0.0d
-			image: "ftbquests:textures/gui/arrow_left.png"
+			image: "davebuildingmod:textures/blocks/arrow_left_sign.png"
 			hover: [ ]
 			click: ""
 			dev: false
@@ -55,7 +55,7 @@
 			width: 1.0d
 			height: 1.0d
 			rotation: 0.0d
-			image: "ftbquests:textures/gui/arrow_expanded.png"
+			image: "davebuildingmod:textures/blocks/arrow_down_sign.png"
 			hover: [ ]
 			click: ""
 			dev: false

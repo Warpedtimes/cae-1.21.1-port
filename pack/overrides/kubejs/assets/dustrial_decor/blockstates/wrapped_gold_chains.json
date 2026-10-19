@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "cae:block/restored/dustrial_decor/wrapped_gold_chains"
+    },
+    "axis=z": {
+      "model": "cae:block/restored/dustrial_decor/wrapped_gold_chains",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "cae:block/restored/dustrial_decor/wrapped_gold_chains",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
