@@ -26,7 +26,7 @@ Original pack: <https://www.curseforge.com/minecraft/modpacks/create-arcane-engi
   See [Added mods](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Added-Mods).
 - **Honest list of differences.** See [Known differences](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Known-Differences).
 
-The full overview is in [Changes from 1.18.2](Changes-from-1.18.2.md).
+The full overview is in [Changes from 1.18.2](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Changes-from-1.18.2).
 
 ## Requirements
 
@@ -86,7 +86,7 @@ authors and links, is on the [Credits](https://github.com/Warpedtimes/cae-1.21.1
 ## Pages
 
 - [Install](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Install)
-- [Changes from 1.18.2](Changes-from-1.18.2.md)
+- [Changes from 1.18.2](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Changes-from-1.18.2)
 - [Thermal to Mekanism](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Thermal-to-Mekanism)
 - [Tinkers to Metallurgy](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Tinkers-to-Metallurgy)
 - [Removed and Remapped](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Removed-and-Remapped)
