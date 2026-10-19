@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "biomesoplenty:cold_desert",
+  "replacement": "biomesoplenty:tundra",
+  "parameters": {
+    "cae:biome_thin_2": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

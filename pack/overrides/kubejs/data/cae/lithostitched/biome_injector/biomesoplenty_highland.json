@@ -1,0 +1,12 @@
+{
+    "type":  "lithostitched:replace_partially",
+    "dimension":  "minecraft:overworld",
+    "targets":  "biomesoplenty:highland",
+    "replacement":  "terralith:temperate_highlands",
+    "parameters":  {
+                       "cae:biome_thin_1":  {
+                                                "min_inclusive":  0,
+                                                "max_inclusive":  1
+                                            }
+                   }
+}

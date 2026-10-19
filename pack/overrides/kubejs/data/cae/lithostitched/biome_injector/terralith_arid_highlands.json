@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "terralith:arid_highlands",
+  "replacement": "terralith:brushland",
+  "parameters": {
+    "cae:biome_thin_3": {
+      "min_inclusive": 0.0,
+      "max_inclusive": 1.0
+    }
+  }
+}

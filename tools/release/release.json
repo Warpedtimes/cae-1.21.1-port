@@ -1,0 +1,12 @@
+{
+  "name": "Create: Arcane Engineering (1.21.1 Port)",
+  "version": "1.0.0",
+  "slug": "cae-1.21.1-port",
+  "minecraft": "1.21.1",
+  "loader": "neoforge",
+  "loader_version": "21.1.262",
+  "java": 21,
+  "recommended_memory_mb": 8192,
+  "original_author": "FortnitePro420Xx",
+  "original_pack": "https://www.curseforge.com/minecraft/modpacks/create-arcane-engineering"
+}

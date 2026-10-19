@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "terralith:bryce_canyon",
+  "replacement": "terralith:shrubland",
+  "parameters": {
+    "cae:biome_thin_6": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

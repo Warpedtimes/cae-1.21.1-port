@@ -1,0 +1,76 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 4,
+          "value": "loot:coin_or_task"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "kubejs:lootbag_create_andesite"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 5,
+        "max": 7
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 4,
+          "value": "loot:create/basic/create_food"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 8,
+          "value": "loot:create/basic/create_junk"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 2,
+          "value": "loot:create/basic/create_basics"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "value": "loot:create/basic/advanced_basics"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 2,
+          "value": "loot:create/basic/andesite_encased"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 3,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "loot:create/andesite/make_brass"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    }
+  ]
+}

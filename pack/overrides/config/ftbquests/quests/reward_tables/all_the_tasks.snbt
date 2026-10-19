@@ -1,0 +1,58 @@
+{
+	id: "39BE274FBC94994D"
+	order_index: 1
+	title: "All the Tasks"
+	icon: { id: "quests:task" }
+	loot_size: 1
+	rewards: [
+		{
+			title: "Mining Task"
+			icon: { id: "quests:mining_task" }
+			command: "/loot give @p loot quests:mining_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Farming Task"
+			icon: { id: "quests:farming_task" }
+			command: "/loot give @p loot quests:farming_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Collecting Task"
+			icon: { id: "quests:collecting_task" }
+			command: "/loot give @p loot quests:collecting_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Deforesting Task"
+			icon: { id: "quests:deforesting_task" }
+			command: "/loot give @p loot quests:deforesting_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Fishing Task"
+			icon: { id: "quests:fishing_task" }
+			command: "/loot give @p loot quests:fishing_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Hunting Task"
+			icon: { id: "quests:hunting_task" }
+			command: "/loot give @p loot quests:hunting_task"
+			type: "command"
+			permission_level: 2
+		}
+		{
+			title: "Slaying Task"
+			icon: { id: "quests:slaying_task" }
+			command: "/loot give @p loot quests:slaying_task"
+			type: "command"
+			permission_level: 2
+		}
+	]
+}

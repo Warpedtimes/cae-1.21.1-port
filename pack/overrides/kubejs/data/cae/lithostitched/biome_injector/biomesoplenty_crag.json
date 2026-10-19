@@ -1,0 +1,12 @@
+{
+    "type":  "lithostitched:replace_partially",
+    "dimension":  "minecraft:overworld",
+    "targets":  "biomesoplenty:crag",
+    "replacement":  "terralith:alpine_highlands",
+    "parameters":  {
+                       "cae:biome_thin_7":  {
+                                                "min_inclusive":  0,
+                                                "max_inclusive":  1
+                                            }
+                   }
+}

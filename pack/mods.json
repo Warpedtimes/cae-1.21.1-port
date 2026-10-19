@@ -1,0 +1,2156 @@
+{
+ "minecraft": "1.21.1",
+ "neoforge": "21.1.262",
+ "dropped": {
+  "'Dustrial Decor": "no 1.21.1 build; its blocks in the pack's structures are remapped",
+  "Canary": "no 1.21.1 build; performance only",
+  "CoFH Core": "Thermal's library; Thermal is gone",
+  "Compressed Creativity": "no 1.21.1 build",
+  "Construction Wand": "no 1.21.1 build on this project; a fork carries it on",
+  "CookieCore": "no 1.21.1 build; library",
+  "Create: Steam 'n' Rails": "1.21.1 is a separate NeoForge project",
+  "Decorative Blocks": "no 1.21.1 build on this project; Decorative Blocks Reborn carries it on",
+  "Embeddium": "Iris on NeoForge needs Sodium, which replaces Embeddium",
+  "Fastload": "no 1.21.1 build; performance only",
+  "Game Stages": "no 1.21.1 build; KubeJS 7 has stages built in",
+  "Glassential": "no 1.21.1 build on this project; Glassential Renewed carries it on",
+  "Immersive Weathering [FORGE]": "no 1.21.1 build on this project; Immersive Weathering: Renewed carries it on",
+  "Item Filters": "no 1.21.1 build; FTB Quests 2101 uses FTB Filter System",
+  "KubeJS Thermal": "Thermal is gone",
+  "Magic Feather": "no 1.21.1 build",
+  "Mantle": "Tinkers' library; Tinkers is gone",
+  "Oculus": "Forge-only Iris port; NeoForge has Iris itself (with Sodium)",
+  "Smooth Boot (Reloaded)": "no 1.21.1 build; performance only",
+  "TerraBlender (Forge)": "1.21.1 is a separate NeoForge project",
+  "The Sound of Rain": "no 1.21.1 build; client sounds only",
+  "Thermal Expansion": "no 1.21.1 build; replaced by Mekanism",
+  "Thermal Foundation": "no 1.21.1 build; the pack uses Mekanism + Mekanism Generators instead",
+  "Thermal Innovation": "no 1.21.1 build; replaced by Mekanism",
+  "Thermal Integration": "no 1.21.1 build; replaced by Mekanism",
+  "Thermal Locomotion": "no 1.21.1 build; replaced by Mekanism",
+  "Tinkers Construct": "no 1.21.1 build; the pack uses Create: Metallurgy for melting and casting",
+  "Structure Expansion": "its structure-block mixins crash the client together with Integrated API (needed by IDAS/IDA); Integrated API raises the same limits to 512",
+  "Infernal Expansion": "no 1.21.1 build (only the fan remake Infernal Expansion Redux, other ids); the pack used it for one Lychee recipe (gunpowder in glow fire -> glowstone dust), glowstone is still obtainable",
+  "Spirit": "no 1.21.1 build; spirit:broken_spawner remapped",
+  "Dave's Building Extended": "no 1.21.1 build; its few items and structure blocks remapped to vanilla",
+  "Decorative Blocks Compat": "no 1.21.1 build",
+  "Create: Extended Cogwheels": "no build past Create 0.5; decorative, only used by recipes the pack added for it",
+  "Create Chunkloading": "no build past Create 0.5; one tip quest; FTB Chunks force-loading does the job",
+  "Time in a Bottle": "no 1.21.1 build; reimplemented in the core mod under the tiab namespace",
+  "Create: Arcane Engineering Core": "rewritten as the pack's own mod (pack/local/cae-3.0.0.jar, core/)",
+  "Multiblocked": "replaced by Multiblocked2 (machines rebuilt)",
+  "Custom Machinery": "replaced by Multiblocked2 (one machine)",
+  "KubeJS Tinkers Construct": "Tinkers replaced by Create: Metallurgy",
+  "AutoRegLib": "not needed (Quark uses Zeta)",
+  "Effective": "client effects; no NeoForge 1.21.1 build",
+  "AntiGhost": "client; no NeoForge 1.21.1 build",
+  "Auudio": "FancyMenu 3 has audio built in",
+  "FancyMenu Video Extension": "no 1.21.1 build (FancyMenu 3)",
+  "FancyMenu Audio Extension": "FancyMenu 3 has audio built in",
+  "FancyVideo-API": "no 1.21.1 build",
+  "LazyDFU": "performance; not needed on 1.21.1 (ModernFix)",
+  "Lightspeed": "performance; ModernFix covers it",
+  "ForgetMeChunk": "performance; no 1.21.1 build",
+  "Entity Collision FPS Fix": "performance; no 1.21.1 build",
+  "Entangled Fix": "bug fix for 1.18 Entangled; not needed",
+  "Rubidium": "replaced by Sodium (with Iris for shaders)",
+  "Starlight": "the vanilla light engine took its ideas",
+  "Redirector": "ModernFix flags it as harmful"
+ },
+ "mods": [
+  {
+   "name": " Integrated Dungeons and Structures",
+   "mr": [
+    "Z8OZShAU",
+    "bpMwZSKf"
+   ],
+   "file": "idas-1.13.7+1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/Z8OZShAU/versions/bpMwZSKf/idas-1.13.7%2B1.21.1-neoforge.jar",
+   "sha1": "154f275823f5f949ed492ac6ce078a80fc3c759a",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Advancement Plaques [Forge]",
+   "cf": [
+    499826,
+    5905995
+   ],
+   "file": "AdvancementPlaques-1.21.1-neoforge-1.6.8.jar",
+   "side": "both"
+  },
+  {
+   "name": "AI Improvements",
+   "cf": [
+    233019,
+    5426792
+   ],
+   "file": "AI-Improvements-1.21-0.5.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Akashic Tome",
+   "cf": [
+    250577,
+    7773841
+   ],
+   "file": "AkashicTome-1.8-30.jar",
+   "side": "both"
+  },
+  {
+   "name": "Almost Unified",
+   "cf": [
+    633823,
+    8127603
+   ],
+   "file": "almostunified-neoforge-1.21.1-1.4.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Alternate Current",
+   "cf": [
+    548115,
+    5665477
+   ],
+   "file": "alternate_current-mc1.21-1.9.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Amendments",
+   "mr": [
+    "6iTJugQR",
+    "83ntBcVk"
+   ],
+   "file": "amendments-1.21-2.1.11-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/6iTJugQR/versions/83ntBcVk/amendments-1.21-2.1.11-neoforge.jar",
+   "sha1": "3d1ba6f88621e4f7f4264d262eb20a2d98bf1f59",
+   "side": "both",
+   "why": "Supplementaries 1.20 moved wall lanterns, skull piles/candles, ceiling pots and banners here; the original had them on"
+  },
+  {
+   "name": "Amplified Nether",
+   "cf": [
+    552176,
+    8425271
+   ],
+   "file": "Amplified_Nether_26.2_v1.2.16.jar",
+   "side": "both"
+  },
+  {
+   "name": "Antique Atlas",
+   "cf": [
+    227795,
+    6849155
+   ],
+   "file": "Antique Atlas-1.21.1-8.0.1-NeoForge.jar",
+   "side": "both"
+  },
+  {
+   "name": "AppleSkin",
+   "cf": [
+    248787,
+    7854442
+   ],
+   "file": "appleskin-neoforge-mc1.21-3.0.9.jar",
+   "side": "both"
+  },
+  {
+   "name": "Applied Energistics 2",
+   "cf": [
+    223794,
+    8992605
+   ],
+   "file": "appliedenergistics2-19.2.18.jar",
+   "side": "both"
+  },
+  {
+   "name": "Architect's Palette",
+   "cf": [
+    433862,
+    6861008
+   ],
+   "file": "architects_palette-neoforge-1.21.1-1.4.0-beta.5.jar",
+   "side": "both"
+  },
+  {
+   "name": "Architectury API (Fabric/Forge)",
+   "cf": [
+    419699,
+    8492726
+   ],
+   "file": "architectury-13.0.11-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Ars Creo",
+   "cf": [
+    575698,
+    8139067
+   ],
+   "file": "ars_creo-1.21.1-5.4.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Ars Elemental",
+   "cf": [
+    561470,
+    9057244
+   ],
+   "file": "ars_elemental-1.21.1-0.7.10.4.jar",
+   "side": "both"
+  },
+  {
+   "name": "Ars Nouveau",
+   "cf": [
+    401955,
+    9052154
+   ],
+   "file": "ars_nouveau-1.21.1-5.13.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Artifacts",
+   "cf": [
+    312353,
+    8791899
+   ],
+   "file": "artifacts-neoforge-13.2.5.jar",
+   "side": "both"
+  },
+  {
+   "name": "Athena",
+   "mr": [
+    "b1ZV3DIJ",
+    "dJgL278E"
+   ],
+   "file": "athena-neoforge-1.21.1-4.0.6.jar",
+   "url": "https://cdn.modrinth.com/data/b1ZV3DIJ/versions/dJgL278E/athena-neoforge-1.21.1-4.0.6.jar",
+   "sha1": "4bcbdf388bd5e387beca7c627224aac33584b55b",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "AzureLib",
+   "mr": [
+    "7zlUOZvb",
+    "1FFQKAFq"
+   ],
+   "file": "azurelib-neo-1.21.1-3.1.23-alpha.2.jar",
+   "url": "https://cdn.modrinth.com/data/7zlUOZvb/versions/1FFQKAFq/azurelib-neo-1.21.1-3.1.23-alpha.2.jar",
+   "sha1": "6151497f0889cda7f88120020a015c97e8dc86f8",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Bad Wither No Cookie - Reloaded",
+   "cf": [
+    261251,
+    8135209
+   ],
+   "file": "bwncr-neoforge-1.21.1-3.20.4.jar",
+   "side": "client"
+  },
+  {
+   "name": "Balm (Forge Edition)",
+   "cf": [
+    531761,
+    8969738
+   ],
+   "file": "balm-neoforge-1.21.1-21.0.66.jar",
+   "side": "both"
+  },
+  {
+   "name": "Better Biome Blend",
+   "cf": [
+    446253,
+    8397016
+   ],
+   "file": "betterbiomeblend-neoforge-1.21.1-1.4.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "Biomes O' Plenty",
+   "cf": [
+    220318,
+    8288121
+   ],
+   "file": "BiomesOPlenty-neoforge-1.21.1-21.1.0.14.jar",
+   "side": "both"
+  },
+  {
+   "name": "Bookshelf",
+   "cf": [
+    228525,
+    7606240
+   ],
+   "file": "bookshelf-neoforge-1.21.1-21.1.81.jar",
+   "side": "both"
+  },
+  {
+   "name": "Chipped",
+   "cf": [
+    456956,
+    5813117
+   ],
+   "file": "chipped-neoforge-1.21.1-4.0.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Chunk Sending[Forge/Fabric]",
+   "cf": [
+    831663,
+    9051336
+   ],
+   "file": "chunksending-1.21-4.1.jar",
+   "side": "server"
+  },
+  {
+   "name": "Chunky",
+   "mr": [
+    "fALzjamp",
+    "LuFhm4eU"
+   ],
+   "file": "Chunky-NeoForge-1.4.23.jar",
+   "url": "https://cdn.modrinth.com/data/fALzjamp/versions/LuFhm4eU/Chunky-NeoForge-1.4.23.jar",
+   "sha1": "ab0c74743a653020fe2dfc4986b43e893947f3e9",
+   "side": "server",
+   "why": "Server-side world pregeneration tool"
+  },
+  {
+   "name": "Chunky McChunkFace",
+   "cf": [
+    863330,
+    6470268
+   ],
+   "file": "ChunkyMcChunkFace-1.21.1-0.4.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Cloth Config API (Fabric/Forge)",
+   "cf": [
+    348521,
+    5729127
+   ],
+   "file": "cloth-config-15.0.140-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Clumps",
+   "cf": [
+    256717,
+    5623731
+   ],
+   "file": "Clumps-neoforge-1.21.1-19.0.0.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Collective",
+   "cf": [
+    342584,
+    9221943
+   ],
+   "file": "collective-1.21.1-8.57.jar",
+   "side": "both"
+  },
+  {
+   "name": "Comforts (Fabric/Forge/Quilt)",
+   "cf": [
+    276951,
+    7515858
+   ],
+   "file": "comforts-neoforge-9.0.5+1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Common Capabilities",
+   "cf": [
+    247007,
+    8859298
+   ],
+   "file": "commoncapabilities-1.21.1-neoforge-2.11.6.jar",
+   "side": "both"
+  },
+  {
+   "name": "Configured",
+   "cf": [
+    457570,
+    7276577
+   ],
+   "file": "configured-neoforge-1.21.1-2.6.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "ConnectedTexturesMod",
+   "cf": [
+    267602,
+    5587515
+   ],
+   "file": "CTM-1.21-1.2.1+3.jar",
+   "side": "client"
+  },
+  {
+   "name": "Connectivity[Forge/Fabric]",
+   "cf": [
+    470193,
+    9008904
+   ],
+   "file": "connectivity-1.21.1-7.7.jar",
+   "side": "both"
+  },
+  {
+   "name": "Construction Wand - KOTS",
+   "mr": [
+    "76H3XX6b",
+    "cFpoCw3t"
+   ],
+   "file": "constructionwand-kots-1.21.1-2.16.12.jar",
+   "url": "https://cdn.modrinth.com/data/76H3XX6b/versions/cFpoCw3t/constructionwand-kots-1.21.1-2.16.12.jar",
+   "sha1": "25a0c436f6dd081987c9c24deb63644899c3c0d9",
+   "side": "both",
+   "why": "Construction Wand's maintained 1.21.1 fork"
+  },
+  {
+   "name": "Controlling",
+   "cf": [
+    250398,
+    6368976
+   ],
+   "file": "Controlling-neoforge-1.21.1-19.0.5.jar",
+   "side": "both"
+  },
+  {
+   "name": "CorgiLib",
+   "mr": [
+    "ziOp6EO8",
+    "Za7PInLk"
+   ],
+   "file": "Corgilib-NeoForge-1.21.1-5.0.0.10.jar",
+   "url": "https://cdn.modrinth.com/data/ziOp6EO8/versions/Za7PInLk/Corgilib-NeoForge-1.21.1-5.0.0.10.jar",
+   "sha1": "78a1b2f0b4e2b816aeffb0e6a2cc0062aa343e46",
+   "side": "both",
+   "why": "needed by Oh The Biomes We've Gone"
+  },
+  {
+   "name": "Corpse",
+   "cf": [
+    316582,
+    9188333
+   ],
+   "file": "corpse-neoforge-1.21.1-1.1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Cosmetic Armor Reworked",
+   "cf": [
+    237307,
+    5610814
+   ],
+   "file": "cosmeticarmorreworked-1.21.1-v1-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "CraterLib",
+   "mr": [
+    "Nn8Wasaq",
+    "e962b1SA"
+   ],
+   "file": "CraterLib-Neoforge-1.21-3.1.3.jar",
+   "url": "https://cdn.modrinth.com/data/Nn8Wasaq/versions/e962b1SA/CraterLib-Neoforge-1.21-3.1.3.jar",
+   "sha1": "b20a3a2ada7f1dbd6e6413e6a287a12f1b53ff66",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Create",
+   "cf": [
+    328085,
+    7963363
+   ],
+   "file": "create-1.21.1-6.0.10.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create Crafts & Additions",
+   "cf": [
+    439890,
+    9029800
+   ],
+   "file": "createaddition-1.7.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create Deco",
+   "cf": [
+    509285,
+    7943181
+   ],
+   "file": "createdeco-2.1.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create Encased",
+   "cf": [
+    829380,
+    8549840
+   ],
+   "file": "Create Encased-1.21.1-1.9.0-ht3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create Ore Excavation",
+   "cf": [
+    649832,
+    7199305
+   ],
+   "file": "createoreexcavation-1.21-1.6.8.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create Stuff & Additions",
+   "cf": [
+    466792,
+    8664066
+   ],
+   "file": "create-stuff-additions1.21.1_v2.1.4b.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create: Alloyed",
+   "cf": [
+    564792,
+    8951273
+   ],
+   "file": "alloyed-3.0.12+1.21.1-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Create: Easy Structures",
+   "mr": [
+    "z69Pxatv",
+    "ECkmsrG4"
+   ],
+   "file": "create_easy_structures-0.2a-neoforge-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/z69Pxatv/versions/ECkmsrG4/create_easy_structures-0.2a-neoforge-1.21.1.jar",
+   "sha1": "5878bdf8facd954cce7da3a55ab1d5274fe4ef6d",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Create: Let The Adventure Begin",
+   "mr": [
+    "fUa6OtBG",
+    "dQQazoxf"
+   ],
+   "file": "create_ltab-4.1.0.jar",
+   "url": "https://cdn.modrinth.com/data/fUa6OtBG/versions/dQQazoxf/create_ltab-4.1.0.jar",
+   "sha1": "c5725961ba8585693a84cf06becb21e8f4b13f11",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Create: Metallurgy",
+   "mr": [
+    "Soft45xC",
+    "4RhIMmaJ"
+   ],
+   "file": "createmetallurgy-1.0.3-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/Soft45xC/versions/4RhIMmaJ/createmetallurgy-1.0.3-1.21.1.jar",
+   "sha1": "ece75dfa1eb907bce3ace729c0144df0b2451673",
+   "side": "both",
+   "why": "Replaces Tinkers' smeltery and casting (Tinkers has no 1.21.1 build)"
+  },
+  {
+   "name": "Create: Prismatic Shine",
+   "mr": [
+    "udEtt0b2",
+    "gKqw2akx"
+   ],
+   "file": "createprism-1.2.2.jar",
+   "url": "https://cdn.modrinth.com/data/udEtt0b2/versions/gKqw2akx/createprism-1.2.2.jar",
+   "sha1": "2c911b9b9abaac0572f0935ccfc9ae91c02eb4c7",
+   "side": "both",
+   "why": "replaces Create: Crystal Clear (Create 6 remake)"
+  },
+  {
+   "name": "Create: Structures Arise",
+   "mr": [
+    "9enMEvoc",
+    "bSLlGvYn"
+   ],
+   "file": "Create-Structures-Arise-1.21.1-NeoForge-176.49.49.jar",
+   "url": "https://cdn.modrinth.com/data/9enMEvoc/versions/bSLlGvYn/Create-Structures-Arise-1.21.1-NeoForge-176.49.49.jar",
+   "sha1": "05d47e5f723456ebe2058f39dd6baab1f9516f87",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "CreativeCore",
+   "cf": [
+    257814,
+    9108041
+   ],
+   "file": "CreativeCore_NEOFORGE_v2.13.51_mc1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Cristel Lib",
+   "cf": [
+    856996,
+    8241767
+   ],
+   "file": "cristellib-neoforge-1.21.1-3.1.7.jar",
+   "side": "both"
+  },
+  {
+   "name": "Cupboard",
+   "cf": [
+    326652,
+    8889050
+   ],
+   "file": "cupboard-1.21.1-4.2.jar",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Curios API (Forge)",
+   "cf": [
+    309927,
+    6529130
+   ],
+   "file": "curios-neoforge-9.5.1+1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Custom Window Title",
+   "mr": [
+    "RGH5gtzF",
+    "Pqn8PDBd"
+   ],
+   "file": "CustomWindowTitle-1.21.4+v1.4.1.jar",
+   "url": "https://cdn.modrinth.com/data/RGH5gtzF/versions/Pqn8PDBd/CustomWindowTitle-1.21.4%2Bv1.4.1.jar",
+   "sha1": "db89df2f80e8842b4ad0ed634d59f35b53f5061b",
+   "side": "client",
+   "why": "In the 1.18.2 pack (window title); restored for the port"
+  },
+  {
+   "name": "Cyclops Core",
+   "cf": [
+    232758,
+    8859263
+   ],
+   "file": "cyclopscore-1.21.1-neoforge-1.30.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Decorative Blocks Reborn",
+   "mr": [
+    "hNxmWV9g",
+    "NZT1mU70"
+   ],
+   "file": "DecorativeBlocks-Reborn-neoforge-1.21.1-6.0.2.jar",
+   "url": "https://cdn.modrinth.com/data/hNxmWV9g/versions/NZT1mU70/DecorativeBlocks-Reborn-neoforge-1.21.1-6.0.2.jar",
+   "sha1": "d5f8afffd14aa5b32ae607967f04c772a763267b",
+   "side": "both",
+   "why": "Decorative Blocks' 1.21.1 continuation"
+  },
+  {
+   "name": "Default Options",
+   "cf": [
+    232131,
+    8498229
+   ],
+   "file": "defaultoptions-neoforge-1.21.1-21.1.8.jar",
+   "side": "both"
+  },
+  {
+   "name": "Do a Barrel Roll",
+   "cf": [
+    663658,
+    6189476
+   ],
+   "file": "do_a_barrel_roll-neoforge-3.7.3+1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Dramatic Doors",
+   "cf": [
+    380617,
+    6479044
+   ],
+   "file": "DramaticDoors-NeoQuiFab-1.21.1-3.3.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Drippy Loading Screen [Forge]",
+   "cf": [
+    511770,
+    8552907
+   ],
+   "file": "drippyloadingscreen_neoforge_3.1.5_MC_1.21.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "Dungeon Crawl",
+   "cf": [
+    324973,
+    7887320
+   ],
+   "file": "DungeonCrawl-NeoForge-1.21-2.3.17.jar",
+   "side": "server"
+  },
+  {
+   "name": "Entangled",
+   "cf": [
+    301034,
+    7783144
+   ],
+   "file": "entangled-1.3.21-neoforge-mc1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Entity Culling Fabric/Forge",
+   "cf": [
+    448233,
+    9100286
+   ],
+   "file": "entityculling-neoforge-1.11.3-mc1.21.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "Epic Samurai's",
+   "cf": [
+    848381,
+    8156710
+   ],
+   "file": "samurai_dynasty-0.1.8-1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "ExpandAbility",
+   "cf": [
+    465066,
+    5428824
+   ],
+   "file": "expandability-12.0.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Explorer's Compass",
+   "cf": [
+    491794,
+    7892943
+   ],
+   "file": "ExplorersCompass-1.21.1-3.4.0-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Extreme sound muffler (Forge)",
+   "cf": [
+    363363,
+    9039351
+   ],
+   "file": "ExtremeSoundMuffler-3.57_NeoForge-1.21.jar",
+   "side": "client"
+  },
+  {
+   "name": "FancyMenu [Forge]",
+   "cf": [
+    367706,
+    9002957
+   ],
+   "file": "fancymenu_neoforge_3.9.14_MC_1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Farmer's Delight",
+   "cf": [
+    398521,
+    8765184
+   ],
+   "file": "FarmersDelight-1.21.1-1.3.4.jar",
+   "side": "both"
+  },
+  {
+   "name": "Farsight [Forge]",
+   "cf": [
+    495693,
+    8874976
+   ],
+   "file": "farsight-1.21.1-5.5.jar",
+   "side": "client"
+  },
+  {
+   "name": "Fast Leaf Decay",
+   "cf": [
+    230976,
+    5849090
+   ],
+   "file": "fastleafdecay-35.jar",
+   "side": "server"
+  },
+  {
+   "name": "FerriteCore (Forge)",
+   "cf": [
+    429235,
+    7524151
+   ],
+   "file": "ferritecore-7.0.3-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "FindMe",
+   "cf": [
+    291936,
+    7069312
+   ],
+   "file": "findme-3.3.4-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "fix GPU memory leak[Forge/Fabric]",
+   "cf": [
+    882495,
+    5513549
+   ],
+   "file": "gpumemleakfix-1.21-1.8.jar",
+   "side": "client"
+  },
+  {
+   "name": "Forbidden and Arcanus",
+   "cf": [
+    309858,
+    6875895
+   ],
+   "file": "forbidden_arcanus-2.6.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "ForgeEndertech",
+   "cf": [
+    244844,
+    8980655
+   ],
+   "file": "ForgeEndertech-1.21.1-12.1.4.0-NeoForge-build.1161.jar",
+   "side": "both"
+  },
+  {
+   "name": "Forgified Fabric API",
+   "mr": [
+    "Aqlf1Shp",
+    "C4eskNuR"
+   ],
+   "file": "forgified-fabric-api-0.116.15+2.3.6+1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/Aqlf1Shp/versions/C4eskNuR/forgified-fabric-api-0.116.15%2B2.3.6%2B1.21.1.jar",
+   "sha1": "1fe1ca9f440cd30c86186e42505694b70ececc11",
+   "side": "both",
+   "why": "Fabric API on NeoForge; Do a Barrel Roll's NeoForge build needs it"
+  },
+  {
+   "name": "FPS Reducer",
+   "cf": [
+    280294,
+    5561051
+   ],
+   "file": "FpsReducer2-neoforge-1.21-2.10.jar",
+   "side": "both"
+  },
+  {
+   "name": "FramedBlocks",
+   "cf": [
+    441647,
+    9137677
+   ],
+   "file": "FramedBlocks-10.6.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Framework",
+   "cf": [
+    549225,
+    7530361
+   ],
+   "file": "framework-neoforge-1.21.1-0.13.11.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB Backups 2",
+   "cf": [
+    622737,
+    5501351
+   ],
+   "file": "ftbbackups2-neoforge-1.21-1.0.28.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB Chunks (Forge)",
+   "cf": [
+    314906,
+    8791113
+   ],
+   "file": "ftb-chunks-neoforge-2101.1.22.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB Filter System",
+   "cf": [
+    943925,
+    7429011
+   ],
+   "file": "ftb-filter-system-neoforge-21.1.4.jar",
+   "side": "both",
+   "why": "FTB Quests 2101's item filters (replaces Item Filters; 17 quest tasks)"
+  },
+  {
+   "name": "FTB Library (Forge)",
+   "cf": [
+    404465,
+    9008089
+   ],
+   "file": "ftb-library-neoforge-2101.1.37.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB Quests (Forge)",
+   "cf": [
+    289412,
+    8885017
+   ],
+   "file": "ftb-quests-neoforge-2101.1.36.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB Teams (Forge)",
+   "cf": [
+    404468,
+    8724782
+   ],
+   "file": "ftb-teams-neoforge-2101.1.11.jar",
+   "side": "both"
+  },
+  {
+   "name": "FTB XMod Compat",
+   "cf": [
+    889915,
+    8909889
+   ],
+   "file": "ftb-xmod-compat-neoforge-21.1.12.jar",
+   "side": "both",
+   "why": "FTB Quests' bridge to KubeJS and FTB Filter System (100 custom tasks, the filter tasks)"
+  },
+  {
+   "name": "Full Brightness Toggle",
+   "mr": [
+    "aEK1KhsC",
+    "AkppfeC1"
+   ],
+   "file": "fullbrightnesstoggle-1.21.1-4.9.jar",
+   "url": "https://cdn.modrinth.com/data/aEK1KhsC/versions/AkppfeC1/fullbrightnesstoggle-1.21.1-4.9.jar",
+   "sha1": "9c753d508389b7077a1b4658d3521275b7db13d6",
+   "side": "client",
+   "why": "Client QoL: fullbright toggle key"
+  },
+  {
+   "name": "Functional Storage",
+   "cf": [
+    556861,
+    8459097
+   ],
+   "file": "functionalstorage-1.21.1-1.5.8.jar",
+   "side": "both"
+  },
+  {
+   "name": "Fusion (Connected Textures)",
+   "cf": [
+    854949,
+    9070353
+   ],
+   "file": "fusion-1.3.16-neoforge-mc1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "GeckoLib",
+   "cf": [
+    388172,
+    8893490
+   ],
+   "file": "geckolib-neoforge-1.21.1-4.9.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Glassential Renewed",
+   "mr": [
+    "kc9FSsYx",
+    "knYwchce"
+   ],
+   "file": "Glassential-renewed-1.21.1-3.4.7.jar",
+   "url": "https://cdn.modrinth.com/data/kc9FSsYx/versions/knYwchce/Glassential-renewed-1.21.1-3.4.7.jar",
+   "sha1": "ec55e7198dedf12105430a602180a6fbcb226451",
+   "side": "both",
+   "why": "Glassential's 1.21.1 continuation"
+  },
+  {
+   "name": "GlitchCore",
+   "mr": [
+    "s3dmwKy5",
+    "S2TfWrZR"
+   ],
+   "file": "GlitchCore-neoforge-1.21.1-2.1.0.2.jar",
+   "url": "https://cdn.modrinth.com/data/s3dmwKy5/versions/S2TfWrZR/GlitchCore-neoforge-1.21.1-2.1.0.2.jar",
+   "sha1": "e3d4bb80a06f619be989ab529d0cd4e33e076943",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "GuideME",
+   "mr": [
+    "Ck4E7v7R",
+    "hFpGwC6q"
+   ],
+   "file": "guideme-21.1.19.jar",
+   "url": "https://cdn.modrinth.com/data/Ck4E7v7R/versions/hFpGwC6q/guideme-21.1.19.jar",
+   "sha1": "e85cd4c266f974dd360c46e8dad7ecf4c7ee96c6",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Iceberg [Forge]",
+   "cf": [
+    520110,
+    6423863
+   ],
+   "file": "Iceberg-1.21.1-neoforge-1.3.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Immersive Weathering: Renewed",
+   "mr": [
+    "AtjxBimt",
+    "n3NgrJOg"
+   ],
+   "file": "Immersive-weathering-V1.0.4-neoforge-beta.jar",
+   "url": "https://cdn.modrinth.com/data/AtjxBimt/versions/n3NgrJOg/Immersive-weathering-V1.0.4-neoforge-beta.jar",
+   "sha1": "011571c9eca3613ca2f4275da922eb3ec12061e1",
+   "side": "both",
+   "why": "Immersive Weathering's 1.21.1 port"
+  },
+  {
+   "name": "Integrated API",
+   "mr": [
+    "V6fKbpBN",
+    "oddRiz2I"
+   ],
+   "file": "integrated_api-neoforge-1.21.1-1.9.1.jar",
+   "url": "https://cdn.modrinth.com/data/V6fKbpBN/versions/oddRiz2I/integrated_api-neoforge-1.21.1-1.9.1.jar",
+   "sha1": "64ecc8e8336c9478d1357b142d8829297f22b371",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Integrated Crafting",
+   "cf": [
+    287357,
+    9219633
+   ],
+   "file": "integratedcrafting-1.21.1-neoforge-1.8.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Integrated Dungeons Arise",
+   "mr": [
+    "uG4njWFR",
+    "j4MR65ap"
+   ],
+   "file": "IDA_v2.1.3-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/uG4njWFR/versions/j4MR65ap/IDA_v2.1.3-1.21.1.jar",
+   "sha1": "6312ae0d10f27554d2ebeaf3d711feff2c258487",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Integrated Dynamics",
+   "cf": [
+    236307,
+    9219622
+   ],
+   "file": "integrateddynamics-1.21.1-neoforge-1.38.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Integrated NBT",
+   "cf": [
+    380998,
+    8918368
+   ],
+   "file": "integratednbt-1.21.1-neoforge-1.6.3.jar",
+   "side": "both"
+  },
+  {
+   "name": "Integrated Patches",
+   "mr": [
+    "Yysh5NsL",
+    "IFnJrqmy"
+   ],
+   "file": "integrated_patches v1.2.0-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/Yysh5NsL/versions/IFnJrqmy/integrated_patches%20v1.2.0-1.21.1.jar",
+   "sha1": "b03b55f5532f992b2448810f1c23c1a45926a322",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Integrated Seven Seas",
+   "mr": [
+    "Xmx7meIV",
+    "rkThfF1I"
+   ],
+   "file": "ISS-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/Xmx7meIV/versions/rkThfF1I/ISS-1.21.1.jar",
+   "sha1": "dc824a92a51129ca3c8f0210dcb88d7f7e792c11",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Integrated Stronghold",
+   "mr": [
+    "KUJdfPQz",
+    "GkHH2Wqj"
+   ],
+   "file": "integrated_stronghold-1.1.4+1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/KUJdfPQz/versions/GkHH2Wqj/integrated_stronghold-1.1.4%2B1.21.1-neoforge.jar",
+   "sha1": "9c425610a04f04d81ce9491e886c6df3fc4feac8",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Integrated Terminals",
+   "cf": [
+    295910,
+    9220317
+   ],
+   "file": "integratedterminals-1.21.1-neoforge-1.11.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Integrated Tunnels",
+   "cf": [
+    251389,
+    9046753
+   ],
+   "file": "integratedtunnels-1.21.1-neoforge-1.13.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Iris & Oculus Flywheel Compat",
+   "cf": [
+    659897,
+    8047971
+   ],
+   "file": "iris-flywheel-compat-NeoForge-2.4.0.jar",
+   "side": "client"
+  },
+  {
+   "name": "Iris Shaders",
+   "mr": [
+    "YL57xq9U",
+    "KduFYu4t"
+   ],
+   "file": "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/KduFYu4t/iris-neoforge-1.8.14-beta.1%2Bmc1.21.1.jar",
+   "sha1": "1bd129cf7bce65d6b1c0543045f0620c98a0f885",
+   "side": "client",
+   "why": "shaders; replaces Oculus"
+  },
+  {
+   "name": "Jade Addons (Forge)",
+   "cf": [
+    583345,
+    9056575
+   ],
+   "file": "JadeAddons-1.21.1-NeoForge-6.1.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "Jade 🔍",
+   "cf": [
+    324717,
+    8591319
+   ],
+   "file": "Jade-1.21.1-NeoForge-15.10.6.jar",
+   "side": "both"
+  },
+  {
+   "name": "JER Integration",
+   "cf": [
+    506948,
+    6306205
+   ],
+   "file": "jerintegration-6.5.0.jar",
+   "side": "client"
+  },
+  {
+   "name": "Just Enough Items (JEI)",
+   "cf": [
+    238222,
+    9205121
+   ],
+   "file": "jei-1.21.1-neoforge-19.64.0.455.jar",
+   "side": "both"
+  },
+  {
+   "name": "Just Enough Resources (JER)",
+   "cf": [
+    240630,
+    6174588
+   ],
+   "file": "JustEnoughResources-NeoForge-1.21.1-1.6.0.12.jar",
+   "side": "both"
+  },
+  {
+   "name": "KilaGraph",
+   "mr": [
+    "zZO0N3W6",
+    "KwiKbOzM"
+   ],
+   "file": "kilagraph-neoforge-1.21.1-21.1.0.16.jar",
+   "url": "https://cdn.modrinth.com/data/zZO0N3W6/versions/KwiKbOzM/kilagraph-neoforge-1.21.1-21.1.0.16.jar",
+   "sha1": "6585e0bd09c5936f9e063583ebd2a34522b0acc3",
+   "side": "both",
+   "why": "library needed by Multiblocked2 21.1"
+  },
+  {
+   "name": "Kiwi 🥝 (Forge)",
+   "cf": [
+    303657,
+    8423062
+   ],
+   "file": "Kiwi-1.21.1-NeoForge-15.8.7.jar",
+   "side": "both"
+  },
+  {
+   "name": "KleeSlabs",
+   "cf": [
+    241895,
+    8163148
+   ],
+   "file": "kleeslabs-neoforge-1.21.1-21.1.11.jar",
+   "side": "both"
+  },
+  {
+   "name": "Konkrete [Forge]",
+   "cf": [
+    410295,
+    5453385
+   ],
+   "file": "konkrete_neoforge_1.9.9_MC_1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Kotlin for Forge",
+   "mr": [
+    "ordsPcFz",
+    "uhJhCT7X"
+   ],
+   "file": "kotlinforforge-5.12.0-all.jar",
+   "url": "https://cdn.modrinth.com/data/ordsPcFz/versions/uhJhCT7X/kotlinforforge-5.12.0-all.jar",
+   "sha1": "d10d062caf1aad9aec82d7852f2fee1781735c1f",
+   "side": "both",
+   "why": "Required by Xaero's Maps: Multiplayer+"
+  },
+  {
+   "name": "KubeJS",
+   "cf": [
+    238086,
+    8843626
+   ],
+   "file": "kubejs-neoforge-2101.7.2-build.377.jar",
+   "side": "both"
+  },
+  {
+   "name": "KubeJS Additions",
+   "cf": [
+    594387,
+    8290338
+   ],
+   "file": "kubejsadditions-neoforge-1.21.1-6.0.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "KubeJS Create",
+   "cf": [
+    429371,
+    7213667
+   ],
+   "file": "kubejs-create-neoforge-2101.3.1-build.18.jar",
+   "side": "both"
+  },
+  {
+   "name": "Large Ore Deposits",
+   "cf": [
+    318833,
+    8595420
+   ],
+   "file": "AdLods-1.21.1-9.1.7.0-NeoForge-build.1080.jar",
+   "side": "server"
+  },
+  {
+   "name": "LDLib",
+   "cf": [
+    626676,
+    9059591
+   ],
+   "file": "ldlib2-neoforge-1.21.1-2.2.42-all.jar",
+   "side": "both"
+  },
+  {
+   "name": "Legendary Tooltips [Forge]",
+   "cf": [
+    532127,
+    6400660
+   ],
+   "file": "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
+   "side": "client"
+  },
+  {
+   "name": "Lithostitched",
+   "mr": [
+    "XaDC71GB",
+    "cZu4cHY3"
+   ],
+   "file": "lithostitched-1.8.1-neoforge-21.1.jar",
+   "url": "https://cdn.modrinth.com/data/XaDC71GB/versions/cZu4cHY3/lithostitched-1.8.1-neoforge-21.1.jar",
+   "sha1": "88cdded5b617e19b4d2676948b5550699de23578",
+   "side": "both",
+   "why": "library needed by Terralith 2.6"
+  },
+  {
+   "name": "Login Protection[Forge/Fabric]",
+   "cf": [
+    358304,
+    8824987
+   ],
+   "file": "logprot-1.21.1-3.6.jar",
+   "side": "server"
+  },
+  {
+   "name": "Loot Integrations[Forge/Fabric]",
+   "cf": [
+    580689,
+    6640970
+   ],
+   "file": "lootintegrations-1.21.1-4.7.jar",
+   "side": "server"
+  },
+  {
+   "name": "LootJS: KubeJS Addon",
+   "cf": [
+    570630,
+    8009262
+   ],
+   "file": "lootjs-neoforge-1.21.1-3.7.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Lootr (Forge)",
+   "cf": [
+    361276,
+    8968561
+   ],
+   "file": "lootr-neoforge-1.21.1-1.11.38.127.jar",
+   "side": "both"
+  },
+  {
+   "name": "Lychee (Forge)",
+   "cf": [
+    567403,
+    9225058
+   ],
+   "file": "Lychee-1.21.1-NeoForge-6.7.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Magnesium/Rubidium Extras",
+   "cf": [
+    558905,
+    6394141
+   ],
+   "file": "sodiumextras-neoforge-1.0.8-1.21.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "Mekanism",
+   "mr": [
+    "Ce6I4WUE",
+    "5KzzycBT"
+   ],
+   "file": "Mekanism-1.21.1-10.7.19.85.jar",
+   "url": "https://cdn.modrinth.com/data/Ce6I4WUE/versions/5KzzycBT/Mekanism-1.21.1-10.7.19.85.jar",
+   "sha1": "b78945c40cfe7640408f3fd1e44da385a8c8b805",
+   "side": "both",
+   "why": "Replaces Thermal's machines (no 1.21.1 build)"
+  },
+  {
+   "name": "Mekanism Generators",
+   "mr": [
+    "OFVYKsAk",
+    "a6gl7srE"
+   ],
+   "file": "MekanismGenerators-1.21.1-10.7.19.85.jar",
+   "url": "https://cdn.modrinth.com/data/OFVYKsAk/versions/a6gl7srE/MekanismGenerators-1.21.1-10.7.19.85.jar",
+   "sha1": "44c4d8006597580ff7e4101b5a22f7b426cdcaf6",
+   "side": "both",
+   "why": "Replaces Thermal's dynamos (no 1.21.1 build)"
+  },
+  {
+   "name": "Melody",
+   "mr": [
+    "CVT4pFB2",
+    "efcdRVZP"
+   ],
+   "file": "melody_neoforge_1.0.10_MC_1.21.jar",
+   "url": "https://cdn.modrinth.com/data/CVT4pFB2/versions/efcdRVZP/melody_neoforge_1.0.10_MC_1.21.jar",
+   "sha1": "e83052a92c4ca0016bcfe7f0207273983dc84698",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "MNS - Moog's Nether Structures",
+   "mr": [
+    "nGUXvjTa",
+    "OLTqXnsN"
+   ],
+   "file": "MoogsNetherStructures-universal-1.21-3.1.1.jar",
+   "url": "https://cdn.modrinth.com/data/nGUXvjTa/versions/OLTqXnsN/MoogsNetherStructures-universal-1.21-3.1.1.jar",
+   "sha1": "78845cb7bccaa7812bacce4efdd5481b81b8c347",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Modern Train Parts",
+   "mr": [
+    "YlOA6mdQ",
+    "l2cuppxH"
+   ],
+   "file": "moderntrainparts-0.2.5-neoforge-mc1.21.1-cr6.0.10.jar",
+   "url": "https://cdn.modrinth.com/data/YlOA6mdQ/versions/l2cuppxH/moderntrainparts-0.2.5-neoforge-mc1.21.1-cr6.0.10.jar",
+   "sha1": "c9ef5ef4ea311bbffbb4939d9a23c10455dfe8cd",
+   "side": "both",
+   "why": "In the 1.18.2 pack; dropped in 1.20.1 only because its Create 6 build needed Java 21; restored for the port"
+  },
+  {
+   "name": "ModernFix",
+   "cf": [
+    790626,
+    9101836
+   ],
+   "file": "modernfix-neoforge-5.27.26+mc1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Moog's Structure Lib (moogs_structures)",
+   "mr": [
+    "1oUDhxuy",
+    "wcg4mE4e"
+   ],
+   "file": "MoogsStructureLib-neoforge-1.21.1-3.4.2.jar",
+   "url": "https://cdn.modrinth.com/data/1oUDhxuy/versions/wcg4mE4e/MoogsStructureLib-neoforge-1.21.1-3.4.2.jar",
+   "sha1": "c379b8d5dc1a4b1e8987da1052d6b4de81354d72",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Moonlight Lib",
+   "cf": [
+    499980,
+    9122548
+   ],
+   "file": "moonlight-1.21.1-3.7.2-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "MoreJS",
+   "cf": [
+    666198,
+    7103440
+   ],
+   "file": "morejs-neoforge-1.21.1-0.16.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Mouse Tweaks",
+   "cf": [
+    60089,
+    5637846
+   ],
+   "file": "MouseTweaks-neoforge-mc1.21-2.26.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "MSS - Moog's Soaring Structures",
+   "mr": [
+    "RJCLIx7k",
+    "O20bIWkj"
+   ],
+   "file": "MoogsSoaringStructures-universal-1.21-2.2.0.jar",
+   "url": "https://cdn.modrinth.com/data/RJCLIx7k/versions/O20bIWkj/MoogsSoaringStructures-universal-1.21-2.2.0.jar",
+   "sha1": "1284c673b46a50b0557c2c018f677323484665f6",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Multiblocked2",
+   "mr": [
+    "R2gjKEpa",
+    "XlQ10omv"
+   ],
+   "file": "Multiblocked2-1.21-1.21.1-21.1.2-all.jar",
+   "url": "https://cdn.modrinth.com/data/R2gjKEpa/versions/XlQ10omv/Multiblocked2-1.21-1.21.1-21.1.2-all.jar",
+   "sha1": "3bf0de0e2a6529b0a889c724bf167c82010473b8",
+   "side": "both",
+   "why": "replaces Multiblocked and Custom Machinery; pinned: 1.0.40's KubeJS plugin loads a client class on dedicated servers"
+  },
+  {
+   "name": "Nature's Compass",
+   "cf": [
+    252848,
+    7892954
+   ],
+   "file": "NaturesCompass-1.21.1-3.4.0-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Oh The Biomes We've Gone",
+   "mr": [
+    "NTi7d3Xc",
+    "gAxM0bHs"
+   ],
+   "file": "Oh-The-Biomes-Weve-Gone-NeoForge-2.6.3.jar",
+   "url": "https://cdn.modrinth.com/data/NTi7d3Xc/versions/gAxM0bHs/Oh-The-Biomes-Weve-Gone-NeoForge-2.6.3.jar",
+   "sha1": "693292b80590ea4cf3b4d3e180a6532eac71f546",
+   "side": "both",
+   "why": "replaces Oh The Biomes You'll Go"
+  },
+  {
+   "name": "Oh The Trees You'll Grow",
+   "mr": [
+    "g8NOG5OR",
+    "ZTJAJGUE"
+   ],
+   "file": "Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.5.jar",
+   "url": "https://cdn.modrinth.com/data/g8NOG5OR/versions/ZTJAJGUE/Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.5.jar",
+   "sha1": "19e8cf3c1bd7abbcbb9f6e5152e2824723fa25ce",
+   "side": "both",
+   "why": "needed by Oh The Biomes We've Gone"
+  },
+  {
+   "name": "Ok Zoomer - It's Zoom!",
+   "mr": [
+    "aXf2OSFU",
+    "AkPuuAgJ"
+   ],
+   "file": "ok_zoomer-neo-10.0.0-beta.13.jar",
+   "url": "https://cdn.modrinth.com/data/aXf2OSFU/versions/AkPuuAgJ/ok_zoomer-neo-10.0.0-beta.13.jar",
+   "sha1": "bf38fe686628eca79cc1b33c6e60a1eb765c6b39",
+   "side": "client",
+   "why": "Client QoL: zoom key"
+  },
+  {
+   "name": "Particle Rain",
+   "mr": [
+    "nrikgvxm",
+    "RxfaR4ud"
+   ],
+   "file": "particlerain-4.0.2+1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/nrikgvxm/versions/RxfaR4ud/particlerain-4.0.2%2B1.21.1-neoforge.jar",
+   "sha1": "444c6f221e57cca8e433702b18c4643faa82545a",
+   "side": "client",
+   "why": "Client QoL: rain and snow as particles"
+  },
+  {
+   "name": "Patchouli",
+   "cf": [
+    306770,
+    7730942
+   ],
+   "file": "Patchouli-1.21.1-93-NEOFORGE.jar",
+   "side": "both"
+  },
+  {
+   "name": "Placebo",
+   "cf": [
+    283644,
+    9153039
+   ],
+   "file": "Placebo-1.21.1-9.9.4.jar",
+   "side": "both"
+  },
+  {
+   "name": "PneumaticCraft: Repressurized",
+   "cf": [
+    281849,
+    8519226
+   ],
+   "file": "pneumaticcraft-repressurized-8.2.23+mc1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "PolyLib",
+   "cf": [
+    576589,
+    7140477
+   ],
+   "file": "polylib-2100.1.0-build.183-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Polymorph (Fabric/Forge/Quilt)",
+   "cf": [
+    388800,
+    8849478
+   ],
+   "file": "polymorph-neoforge-1.2.0+1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Ponder for KubeJS",
+   "cf": [
+    622888,
+    7436813
+   ],
+   "file": "ponderjs-neoforge-1.21.1-2.4.0.jar",
+   "side": "both"
+  },
+  {
+   "name": "Prism [Forge]",
+   "cf": [
+    638111,
+    6372979
+   ],
+   "file": "Prism-1.21.1-neoforge-1.0.11.jar",
+   "side": "client"
+  },
+  {
+   "name": "ProbeJS",
+   "cf": [
+    585406,
+    8304356
+   ],
+   "file": "ProbeJS-8.0.3.jar",
+   "side": "client"
+  },
+  {
+   "name": "Quark",
+   "cf": [
+    243121,
+    9074160
+   ],
+   "file": "Quark-4.1-487.jar",
+   "side": "both"
+  },
+  {
+   "name": "Quickstack",
+   "cf": [
+    354522,
+    8244917
+   ],
+   "file": "quickstack-neoforge-1.21.1-1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Randomium Ore",
+   "cf": [
+    523013,
+    9198305
+   ],
+   "file": "randomium-1.21-1.33.4-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Rechiseled",
+   "cf": [
+    558998,
+    8875899
+   ],
+   "file": "rechiseled-1.2.6-neoforge-mc1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Regions Unexplored",
+   "mr": [
+    "Tkikq67H",
+    "5A8LFnXX"
+   ],
+   "file": "regions-unexplored-0.6.2-neoforge-21.1.jar",
+   "url": "https://cdn.modrinth.com/data/Tkikq67H/versions/5A8LFnXX/regions-unexplored-0.6.2-neoforge-21.1.jar",
+   "sha1": "122586c147f0aa1efdc655792b6ef24aebbbba84",
+   "side": "both",
+   "why": "Worldgen: ~64 new biomes"
+  },
+  {
+   "name": "Reliquary Reincarnations",
+   "cf": [
+    241319,
+    9229057
+   ],
+   "file": "reliquary-1.21.1-2.0.81.1579.jar",
+   "side": "both"
+  },
+  {
+   "name": "Resourceful Lib",
+   "mr": [
+    "G1hIVOrD",
+    "x99nCLTm"
+   ],
+   "file": "resourcefullib-neoforge-1.21-3.0.12.jar",
+   "url": "https://cdn.modrinth.com/data/G1hIVOrD/versions/x99nCLTm/resourcefullib-neoforge-1.21-3.0.12.jar",
+   "sha1": "24389c8e48ff0e8594e4686b750c494c66a5f8df",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Rhino",
+   "cf": [
+    416294,
+    8463898
+   ],
+   "file": "rhino-2101.2.8-build.91.jar",
+   "side": "both"
+  },
+  {
+   "name": "Searchables",
+   "mr": [
+    "fuuu3xnx",
+    "iEE85X0w"
+   ],
+   "file": "Searchables-neoforge-1.21.1-1.0.2.jar",
+   "url": "https://cdn.modrinth.com/data/fuuu3xnx/versions/iEE85X0w/Searchables-neoforge-1.21.1-1.0.2.jar",
+   "sha1": "5b8a0b43a474c066371b2e16f9bfb88622552a74",
+   "side": "both",
+   "why": "library needed by another mod"
+  },
+  {
+   "name": "Server Performance - Smooth Chunk Save[Forge/Fabric]",
+   "cf": [
+    582327,
+    6296628
+   ],
+   "file": "smoothchunk-1.21-4.1.jar",
+   "side": "server"
+  },
+  {
+   "name": "ServerCore",
+   "cf": [
+    550579,
+    8312220
+   ],
+   "file": "servercore-neoforge-1.5.19+1.21.1.jar",
+   "side": "both"
+  },
+  {
+   "name": "Simple Discord RPC [Forge/Fabric/Quilt]",
+   "cf": [
+    411816,
+    8489200
+   ],
+   "file": "SimpleRPC-4.1.4.jar",
+   "side": "both"
+  },
+  {
+   "name": "Sodium",
+   "mr": [
+    "AANobbMI",
+    "uMOpc5uV"
+   ],
+   "file": "sodium-neoforge-0.8.13+mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/AANobbMI/versions/uMOpc5uV/sodium-neoforge-0.8.13%2Bmc1.21.1.jar",
+   "sha1": "1757289be21ed18db5b0d90703fa3db1b2de5693",
+   "side": "client",
+   "why": "renderer Iris needs on NeoForge; replaces Embeddium"
+  },
+  {
+   "name": "Sophisticated Backpacks",
+   "cf": [
+    422301,
+    9154769
+   ],
+   "file": "sophisticatedbackpacks-1.21.1-3.26.12.2208.jar",
+   "side": "both"
+  },
+  {
+   "name": "Sophisticated Core",
+   "cf": [
+    618298,
+    9229216
+   ],
+   "file": "sophisticatedcore-1.21.1-1.5.14.2413.jar",
+   "side": "both"
+  },
+  {
+   "name": "Sophisticated Storage",
+   "cf": [
+    619320,
+    9201424
+   ],
+   "file": "sophisticatedstorage-1.21.1-1.6.7.2184.jar",
+   "side": "both"
+  },
+  {
+   "name": "spark",
+   "cf": [
+    361579,
+    6225208
+   ],
+   "file": "spark-1.10.124-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Steam 'n' Rails Neoforge",
+   "mr": [
+    "L3Jv0QZI",
+    "czVeSmZo"
+   ],
+   "file": "railways-0.3.0-beta.2+neoforge-mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/L3Jv0QZI/versions/czVeSmZo/railways-0.3.0-beta.2%2Bneoforge-mc1.21.1.jar",
+   "sha1": "82a28ce51fdbc583477d7ae7c4c94cc6d23ec2b4",
+   "side": "both",
+   "why": "Steam 'n' Rails on 1.21.1 (unofficial port, 2.5M downloads)"
+  },
+  {
+   "name": "Structory: Towers",
+   "mr": [
+    "j3FONRYr",
+    "oOvJd4xF"
+   ],
+   "file": "Structory_Towers_1.21.x_v1.0.10.jar",
+   "url": "https://cdn.modrinth.com/data/j3FONRYr/versions/oOvJd4xF/Structory_Towers_1.21.x_v1.0.10.jar",
+   "sha1": "fafc4c7a423843fa0bc81cba34b4368a4dcb3ac5",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures; pinned because the newer files are for MC 1.21.2+/26.x"
+  },
+  {
+   "name": "SuperMartijn642's Config Lib",
+   "cf": [
+    438332,
+    5546996
+   ],
+   "file": "supermartijn642configlib-1.1.8-neoforge-mc1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "SuperMartijn642's Core Lib",
+   "cf": [
+    454372,
+    9083552
+   ],
+   "file": "supermartijn642corelib-1.1.25-neoforge-mc1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Supplementaries",
+   "cf": [
+    412082,
+    9211734
+   ],
+   "file": "supplementaries-1.21.1-4.0.2-neoforge.jar",
+   "side": "both"
+  },
+  {
+   "name": "Swing Through Grass",
+   "mr": [
+    "2UJdja33",
+    "5TneGG4x"
+   ],
+   "file": "swingthroughgrass-neoforge-1.21.1-1.1.0.jar",
+   "url": "https://cdn.modrinth.com/data/2UJdja33/versions/5TneGG4x/swingthroughgrass-neoforge-1.21.1-1.1.0.jar",
+   "sha1": "15f48ed3ab02b9e8763284279487a9d95b206337",
+   "side": "client",
+   "why": "In the 1.18.2 pack; restored for the port"
+  },
+  {
+   "name": "Tectonic",
+   "mr": [
+    "lWDHr9jE",
+    "n4iyW7aB"
+   ],
+   "file": "tectonic-3.0.28-neoforge-21.1.jar",
+   "url": "https://cdn.modrinth.com/data/lWDHr9jE/versions/n4iyW7aB/tectonic-3.0.28-neoforge-21.1.jar",
+   "sha1": "db15156eec4320c2997c4dd4948119472de01224",
+   "side": "both",
+   "why": "Worldgen: more interesting terrain; Terralith compat overlay"
+  },
+  {
+   "name": "TerraBlender",
+   "mr": [
+    "kkmrDlKT",
+    "6e8GCrLb"
+   ],
+   "file": "TerraBlender-neoforge-1.21.1-4.1.0.8.jar",
+   "url": "https://cdn.modrinth.com/data/kkmrDlKT/versions/6e8GCrLb/TerraBlender-neoforge-1.21.1-4.1.0.8.jar",
+   "sha1": "744394d979b422be560babf9df7a6800ede9ac5b",
+   "side": "both",
+   "why": "TerraBlender's NeoForge project"
+  },
+  {
+   "name": "Terralith",
+   "cf": [
+    513688,
+    8222737
+   ],
+   "file": "Terralith_1.21.x_v2.6.2.jar",
+   "side": "both"
+  },
+  {
+   "name": "The Lost Castle",
+   "mr": [
+    "FGlHZl7X",
+    "1SIEERGM"
+   ],
+   "file": "tlc-neoforge-1.21.1-2.1.0.jar",
+   "url": "https://cdn.modrinth.com/data/FGlHZl7X/versions/1SIEERGM/tlc-neoforge-1.21.1-2.1.0.jar",
+   "sha1": "419b6f9c19da9dac1602b98dc8a93ce4d02d9eda",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Titanium",
+   "cf": [
+    287342,
+    9129904
+   ],
+   "file": "titanium-1.21-4.0.51.jar",
+   "side": "both"
+  },
+  {
+   "name": "Toast Control",
+   "cf": [
+    271740,
+    6751464
+   ],
+   "file": "ToastControl-1.21.1-9.0.1.jar",
+   "side": "client"
+  },
+  {
+   "name": "Too Fast",
+   "cf": [
+    550678,
+    6819714
+   ],
+   "file": "toofast-1.21.0-0.4.3.6.jar",
+   "side": "both"
+  },
+  {
+   "name": "Torchmaster",
+   "cf": [
+    254268,
+    8949981
+   ],
+   "file": "torchmaster-neoforge-1.21.1-21.1.13.jar",
+   "side": "both"
+  },
+  {
+   "name": "Towns and Towers",
+   "mr": [
+    "DjLobEOy",
+    "DZxwgj6V"
+   ],
+   "file": "t_and_t-fabric-neoforge-1.13.11.jar",
+   "url": "https://cdn.modrinth.com/data/DjLobEOy/versions/DZxwgj6V/t_and_t-fabric-neoforge-1.13.11.jar",
+   "sha1": "8f00e36a11568c0b66bbdf5c0e9ee492e511b303",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "UnionLib",
+   "mr": [
+    "EkkPwdCY",
+    "apj1lnco"
+   ],
+   "file": "UnionLib-1.21.1-12.0.18-NeoForge-all.jar",
+   "url": "https://cdn.modrinth.com/data/EkkPwdCY/versions/apj1lnco/UnionLib-1.21.1-12.0.18-NeoForge-all.jar",
+   "sha1": "12e93a3df3383a67a4df7101beb4cc70ff287960",
+   "side": "both",
+   "why": "library needed by Antique Atlas (pinned to its 12.0.x range)"
+  },
+  {
+   "name": "Valhelsia Core",
+   "cf": [
+    416935,
+    6296775
+   ],
+   "file": "valhelsia_core-neoforge-1.21.1-1.1.5.jar",
+   "side": "both"
+  },
+  {
+   "name": "Vein Mining (Fabric/Forge/Quilt)",
+   "cf": [
+    431611,
+    5579900
+   ],
+   "file": "veinmining-neoforge-5.0.0-beta.2+1.21.jar",
+   "side": "both"
+  },
+  {
+   "name": "Waystones",
+   "cf": [
+    245755,
+    8969751
+   ],
+   "file": "waystones-neoforge-1.21.1-21.1.46.jar",
+   "side": "both"
+  },
+  {
+   "name": "Xaero's Maps: Multiplayer+",
+   "mr": [
+    "stTaMuWa",
+    "uKcnI7GC"
+   ],
+   "file": "xmmp-1.2.2+1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/stTaMuWa/versions/uKcnI7GC/xmmp-1.2.2%2B1.21.1-neoforge.jar",
+   "sha1": "32e25dd45a678af2460b5fb2012e16fcb7f123ac",
+   "side": "both",
+   "why": "XMMP: shares the explored Xaero world map between players through the server"
+  },
+  {
+   "name": "Xaero's Minimap",
+   "mr": [
+    "1bokaNcj",
+    "irjR7dHk"
+   ],
+   "file": "xaerominimap-neoforge-1.21.1-26.6.0.jar",
+   "url": "https://cdn.modrinth.com/data/1bokaNcj/versions/irjR7dHk/xaerominimap-neoforge-1.21.1-26.6.0.jar",
+   "sha1": "551e8e2aa3498b506cc949a74606cdc0380e5e00",
+   "side": "both",
+   "why": "Popular map mod; on a server it enables player tracking on the map"
+  },
+  {
+   "name": "Xaero's World Map",
+   "mr": [
+    "NcUtCpym",
+    "SnQ4SoDe"
+   ],
+   "file": "xaeroworldmap-neoforge-1.21.1-1.47.0.jar",
+   "url": "https://cdn.modrinth.com/data/NcUtCpym/versions/SnQ4SoDe/xaeroworldmap-neoforge-1.21.1-1.47.0.jar",
+   "sha1": "2936c9cb9dfbdab145fe6f1e8ae2c68915246a5f",
+   "side": "both",
+   "why": "Popular map mod; XMMP syncs its explored map between players"
+  },
+  {
+   "name": "YetAnotherConfigLib (YACL)",
+   "mr": [
+    "1eAoo2KR",
+    "7TVdVtxF"
+   ],
+   "file": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/1eAoo2KR/versions/7TVdVtxF/yet_another_config_lib_v3-3.8.2%2B1.21.1-neoforge.jar",
+   "sha1": "fe270c9f6e0a8142cf316944087f5109cef08bbb",
+   "side": "both",
+   "why": "Required by Xaero's Maps: Multiplayer+"
+  },
+  {
+   "name": "YUNG's API",
+   "mr": [
+    "Ua7DFN59",
+    "2prKITKh"
+   ],
+   "file": "YungsApi-1.21.1-NeoForge-5.1.9.jar",
+   "url": "https://cdn.modrinth.com/data/Ua7DFN59/versions/2prKITKh/YungsApi-1.21.1-NeoForge-5.1.9.jar",
+   "sha1": "2c4b740c8ad27bbcb2a21b85b64f011b809aed91",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Desert Temples",
+   "mr": [
+    "XNlO7sBv",
+    "GQ9iNWkI"
+   ],
+   "file": "YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
+   "url": "https://cdn.modrinth.com/data/XNlO7sBv/versions/GQ9iNWkI/YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
+   "sha1": "90529257dbd92558998c65178294bc7b2fd16a64",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Dungeons",
+   "mr": [
+    "o1C1Dkj5",
+    "D6aZn0Em"
+   ],
+   "file": "YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
+   "url": "https://cdn.modrinth.com/data/o1C1Dkj5/versions/D6aZn0Em/YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
+   "sha1": "73a660c13063450e555e5e2c015ae24d606b32b4",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Jungle Temples",
+   "mr": [
+    "z9Ve58Ih",
+    "P00i2hJn"
+   ],
+   "file": "YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
+   "url": "https://cdn.modrinth.com/data/z9Ve58Ih/versions/P00i2hJn/YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
+   "sha1": "d6b7ce6cf351b09cbd23147ff166c35cfdc572e8",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Mineshafts",
+   "mr": [
+    "HjmxVlSr",
+    "Go3nbneL"
+   ],
+   "file": "YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
+   "url": "https://cdn.modrinth.com/data/HjmxVlSr/versions/Go3nbneL/YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
+   "sha1": "6a14e1d8201f068ca87ef8333e471c5378955906",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Nether Fortresses",
+   "mr": [
+    "Z2mXHnxP",
+    "iopJiJQp"
+   ],
+   "file": "YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
+   "url": "https://cdn.modrinth.com/data/Z2mXHnxP/versions/iopJiJQp/YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
+   "sha1": "4061ece2141475227646649046fc14c2da505922",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Ocean Monuments",
+   "mr": [
+    "3dT9sgt4",
+    "yFjEcj2g"
+   ],
+   "file": "YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
+   "url": "https://cdn.modrinth.com/data/3dT9sgt4/versions/yFjEcj2g/YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
+   "sha1": "fba629defdb92ad99ec4f411895afb6e19555a18",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "YUNG's Better Witch Huts",
+   "mr": [
+    "t5FRdP87",
+    "AvedwcIe"
+   ],
+   "file": "YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
+   "url": "https://cdn.modrinth.com/data/t5FRdP87/versions/AvedwcIe/YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
+   "sha1": "bbf6c91f4a2829c58bc024eaaab821986bc93de6",
+   "side": "both",
+   "why": "Worldgen: adds more and bigger structures"
+  },
+  {
+   "name": "Zeta",
+   "mr": [
+    "MVARlG2f",
+    "9GjNW2Gf"
+   ],
+   "file": "Zeta-1.1-40.jar",
+   "url": "https://cdn.modrinth.com/data/MVARlG2f/versions/9GjNW2Gf/Zeta-1.1-40.jar",
+   "sha1": "72f6efe421cfc0547c774ae8241d727b7d996754",
+   "side": "both",
+   "why": "library needed by another mod"
+  }
+ ]
+}

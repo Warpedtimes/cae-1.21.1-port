@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "biomeswevegone:mojave_desert",
+  "replacement": "biomeswevegone:amaranth_grassland",
+  "parameters": {
+    "cae:biome_thin_0": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

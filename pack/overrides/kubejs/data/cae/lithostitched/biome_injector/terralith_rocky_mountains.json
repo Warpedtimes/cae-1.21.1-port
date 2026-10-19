@@ -1,0 +1,12 @@
+{
+    "type":  "lithostitched:replace_partially",
+    "dimension":  "minecraft:overworld",
+    "targets":  "terralith:rocky_mountains",
+    "replacement":  "terralith:forested_highlands",
+    "parameters":  {
+                       "cae:biome_thin_5":  {
+                                                "min_inclusive":  -0.15,
+                                                "max_inclusive":  1
+                                            }
+                   }
+}

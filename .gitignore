@@ -1,0 +1,21 @@
+# Build output and local runs
+build/
+.gradle/
+run/
+out/
+bin/
+.idea/
+.vscode/
+*.iml
+__pycache__/
+*.pyc
+
+# Jars and archives are release assets, not source (the Gradle wrapper jar is the one exception)
+*.jar
+*.zip
+!core/gradle/wrapper/gradle-wrapper.jar
+!pack/overrides-client/shaderpacks/*.zip
+
+# Logs and local env files
+*.log
+.env

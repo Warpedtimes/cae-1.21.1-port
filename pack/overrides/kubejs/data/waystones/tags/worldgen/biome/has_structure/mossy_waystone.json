@@ -1,0 +1,4 @@
+{
+  "replace": false,
+  "values": ["#c:is_jungle", "#c:is_swamp", "#c:is_mushroom"]
+}

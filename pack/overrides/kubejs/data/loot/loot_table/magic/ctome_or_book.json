@@ -1,0 +1,170 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "ars_nouveau:caster_tome",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:custom_name": "{\"text\":\"PigTurtles Freedom on Benefits\",\"italic\":true,\"color\":\"dark_purple\"}",
+                "ars_nouveau:tome_caster": {
+                  "current_slot": 0,
+                  "max_slots": 1,
+                  "flavor_text": "Flying is quite dangerous you know",
+                  "is_hidden": false,
+                  "spells": {
+                    "0": {
+                      "name": "",
+                      "color": {
+                        "id": "ars_nouveau:constant",
+                        "r": 0,
+                        "g": 255,
+                        "b": 255
+                      },
+                      "sound": {
+                        "sound": {
+                          "id": "ars_nouveau:fire_family"
+                        }
+                      },
+                      "recipe": [
+                        "ars_nouveau:glyph_self",
+                        "ars_nouveau:glyph_glide",
+                        "ars_nouveau:glyph_extend_time",
+                        "ars_nouveau:glyph_extend_time",
+                        "ars_nouveau:glyph_harm",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_harm",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_harm"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "ars_nouveau:caster_tome",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:custom_name": "{\"text\":\"FortnitePros Audition\",\"italic\":true,\"color\":\"dark_purple\"}",
+                "ars_nouveau:tome_caster": {
+                  "current_slot": 0,
+                  "max_slots": 1,
+                  "flavor_text": "Make everyone a Star",
+                  "is_hidden": false,
+                  "spells": {
+                    "0": {
+                      "name": "",
+                      "color": {
+                        "id": "ars_nouveau:constant",
+                        "r": 255,
+                        "g": 0,
+                        "b": 255
+                      },
+                      "sound": {
+                        "sound": {
+                          "id": "ars_nouveau:fire_family"
+                        }
+                      },
+                      "recipe": [
+                        "ars_nouveau:glyph_projectile",
+                        "ars_nouveau:glyph_fangs",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_launch",
+                        "ars_nouveau:glyph_amplify",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_launch",
+                        "ars_nouveau:glyph_amplify",
+                        "ars_nouveau:glyph_firework",
+                        "ars_nouveau:glyph_amplify"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "ars_nouveau:caster_tome",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:custom_name": "{\"text\":\"Imoderns Protection\",\"italic\":true,\"color\":\"dark_purple\"}",
+                "ars_nouveau:tome_caster": {
+                  "current_slot": 0,
+                  "max_slots": 1,
+                  "flavor_text": "Receive a Second Chance at Life",
+                  "is_hidden": false,
+                  "spells": {
+                    "0": {
+                      "name": "",
+                      "color": {
+                        "id": "ars_nouveau:constant",
+                        "r": 255,
+                        "g": 0,
+                        "b": 255
+                      },
+                      "sound": {
+                        "sound": {
+                          "id": "ars_nouveau:fire_family"
+                        }
+                      },
+                      "recipe": [
+                        "ars_nouveau:glyph_self",
+                        "ars_nouveau:glyph_slowfall",
+                        "ars_elemental:glyph_watery_grave",
+                        "ars_nouveau:glyph_summon_vex",
+                        "ars_nouveau:glyph_leap",
+                        "ars_nouveau:glyph_gust",
+                        "ars_nouveau:glyph_bounce",
+                        "ars_nouveau:glyph_gravity",
+                        "ars_nouveau:glyph_amplify",
+                        "ars_nouveau:glyph_amplify"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "min": 30,
+                "max": 40
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:enchanted_book"
+        }
+      ]
+    }
+  ]
+}

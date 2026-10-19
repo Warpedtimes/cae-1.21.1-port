@@ -1,0 +1,55 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:caster_tome",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:custom_name": "{\"text\":\"Freedom\",\"italic\":true,\"color\":\"dark_purple\"}",
+                "ars_nouveau:tome_caster": {
+                  "current_slot": 0,
+                  "max_slots": 1,
+                  "flavor_text": "Flying is quite dangerous you know",
+                  "is_hidden": false,
+                  "spells": {
+                    "0": {
+                      "name": "",
+                      "color": {
+                        "id": "ars_nouveau:constant",
+                        "r": 0,
+                        "g": 255,
+                        "b": 255
+                      },
+                      "sound": {
+                        "sound": {
+                          "id": "ars_nouveau:fire_family"
+                        }
+                      },
+                      "recipe": [
+                        "ars_nouveau:glyph_self",
+                        "ars_nouveau:glyph_glide",
+                        "ars_nouveau:glyph_extend_time",
+                        "ars_nouveau:glyph_extend_time",
+                        "ars_nouveau:glyph_harm",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_harm",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_delay",
+                        "ars_nouveau:glyph_harm"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

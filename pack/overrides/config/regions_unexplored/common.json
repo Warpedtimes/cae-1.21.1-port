@@ -1,0 +1,679 @@
+{
+  "biome_placements": {
+    "placements": {
+      "regions_unexplored:mycotoxic_undergrowth": {
+        "weight": 60,
+        "can_replace": [
+          "minecraft:nether_wastes"
+        ],
+        "dimension": "minecraft:the_nether",
+        "enabled": true
+      },
+      "regions_unexplored:joshua_desert": {
+        "weight": 30,
+        "can_replace": [
+          "minecraft:desert"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:bamboo_forest": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:bamboo_jungle"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:outback": {
+        "can_replace": [
+          "minecraft:desert"
+        ],
+        "parameters": {
+          "erosion": {
+            "max": 0.15
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:sparse_redwoods": {
+        "can_replace": [
+          "minecraft:old_growth_pine_taiga"
+        ],
+        "group": "pine_and_redwood_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:towering_cliffs": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:windswept_savanna"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:dry_bushland": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:savanna",
+          "minecraft:savanna_plateau"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:alpha_grove": {
+        "weight": 20,
+        "can_replace": [
+          "minecraft:mushroom_fields"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:blackstone_basin": {
+        "weight": 60,
+        "can_replace": [
+          "minecraft:crimson_forest"
+        ],
+        "dimension": "minecraft:the_nether",
+        "enabled": true
+      },
+      "regions_unexplored:icy_heights": {
+        "can_replace": [
+          "minecraft:ice_spikes",
+          "minecraft:snowy_plains",
+          "minecraft:snowy_taiga"
+        ],
+        "parameters": {
+          "weirdness": {
+            "min": 0.0
+          },
+          "continentalness": {
+            "max": 0.03
+          },
+          "erosion": {
+            "min": 0.45,
+            "max": 0.55
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:rocky_reef": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:warm_ocean"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:wisteria_grove": {
+        "weight": 30,
+        "can_replace": [
+          "minecraft:meadow"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:ancient_delta": {
+        "can_replace": [
+          "minecraft:dripstone_caves"
+        ],
+        "parameters": {
+          "humidity": {
+            "max": -0.4
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:inferno": {
+        "special_enabled": true
+      },
+      "regions_unexplored:old_growth_golden_boreal_taiga": {
+        "can_replace": [
+          "minecraft:old_growth_pine_taiga"
+        ],
+        "group": "boreal_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:redstone_caves": {
+        "special_enabled": true
+      },
+      "regions_unexplored:old_growth_boreal_taiga": {
+        "can_replace": [
+          "minecraft:old_growth_spruce_taiga"
+        ],
+        "group": "boreal_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:autumnal_maple_forest": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:birch_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:redwoods": {
+        "can_replace": [
+          "minecraft:old_growth_spruce_taiga"
+        ],
+        "group": "pine_and_redwood_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:highland_fields": {
+        "weight": 70,
+        "can_replace": [
+          "minecraft:meadow"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:frozen_pine_taiga": {
+        "can_replace": [
+          "minecraft:snowy_taiga"
+        ],
+        "group": "pine_and_redwood_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:old_growth_bayou": {
+        "can_replace": [
+          "minecraft:swamp"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.1,
+            "max": 0.2
+          },
+          "humidity": {
+            "min": 3.0
+          }
+        },
+        "group": "swamps",
+        "enabled": true
+      },
+      "regions_unexplored:blackwood_taiga": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:dark_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:orchard": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:sunflower_plains",
+          "minecraft:flower_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:tropics": {
+        "weight": 20,
+        "can_replace": [
+          "minecraft:mushroom_fields"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:bayou": {
+        "can_replace": [
+          "minecraft:swamp"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.1,
+            "max": 0.2
+          },
+          "humidity": {
+            "max": 3.0
+          }
+        },
+        "group": "swamps",
+        "enabled": true
+      },
+      "regions_unexplored:cold_river": {
+        "can_replace": [
+          "minecraft:river"
+        ],
+        "parameters": {
+          "temperature": {
+            "max": -0.1
+          }
+        },
+        "group": "rivers",
+        "enabled": true
+      },
+      "regions_unexplored:grassy_beach": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:beach"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:maple_forest": {
+        "can_replace": [
+          "minecraft:forest"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.1,
+            "max": 0.2
+          }
+        },
+        "group": "forests",
+        "enabled": true
+      },
+      "regions_unexplored:grassland": {
+        "can_replace": [
+          "minecraft:plains"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": 0.2
+          }
+        },
+        "group": "plains",
+        "enabled": true
+      },
+      "regions_unexplored:tropical_river": {
+        "can_replace": [
+          "minecraft:river"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": 0.55
+          },
+          "humidity": {
+            "min": 0.3
+          },
+          "erosion": {
+            "min": 0.15
+          }
+        },
+        "group": "rivers",
+        "enabled": true
+      },
+      "regions_unexplored:pine_slopes": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:grove"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.45
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:poppy_fields": {
+        "weight": 70,
+        "can_replace": [
+          "minecraft:sunflower_plains",
+          "minecraft:flower_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:prairie": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:savanna",
+          "minecraft:savanna_plateau"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:infernal_holt": {
+        "weight": 60,
+        "can_replace": [
+          "minecraft:basalt_deltas"
+        ],
+        "dimension": "minecraft:the_nether",
+        "enabled": true
+      },
+      "regions_unexplored:sparse_rainforest": {
+        "can_replace": [
+          "minecraft:sparse_jungle"
+        ],
+        "group": "jungles",
+        "enabled": true
+      },
+      "regions_unexplored:ashen_woodland": {
+        "weight": 20,
+        "can_replace": [
+          "minecraft:mushroom_fields"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:rainforest": {
+        "can_replace": [
+          "minecraft:jungle"
+        ],
+        "group": "jungles",
+        "enabled": true
+      },
+      "regions_unexplored:pine_taiga": {
+        "can_replace": [
+          "minecraft:taiga"
+        ],
+        "group": "pine_and_redwood_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:prismachasm": {
+        "special_enabled": true
+      },
+      "regions_unexplored:magnolia_woodland": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:cherry_grove"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:muddy_river": {
+        "can_replace": [
+          "minecraft:river"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.1,
+            "max": 0.55
+          }
+        },
+        "group": "rivers",
+        "enabled": true
+      },
+      "regions_unexplored:willow_forest": {
+        "can_replace": [
+          "minecraft:forest"
+        ],
+        "parameters": {
+          "temperature": {
+            "max": -0.1
+          }
+        },
+        "group": "forests",
+        "enabled": true
+      },
+      "regions_unexplored:eucalyptus_forest": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:wooded_badlands"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:gravel_beach": {
+        "weight": 30,
+        "can_replace": [
+          "minecraft:beach"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:baobab_savanna": {
+        "can_replace": [
+          "minecraft:savanna",
+          "minecraft:savanna_plateau"
+        ],
+        "parameters": {
+          "humidity": {
+            "max": -0.35
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:silver_birch_forest": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:old_growth_birch_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:fungal_fen": {
+        "can_replace": [
+          "minecraft:swamp"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.45,
+            "max": -0.1
+          },
+          "humidity": {
+            "max": -0.35
+          }
+        },
+        "group": "swamps",
+        "enabled": true
+      },
+      "regions_unexplored:chalk_cliffs": {
+        "special_enabled": true
+      },
+      "regions_unexplored:boreal_taiga": {
+        "can_replace": [
+          "minecraft:taiga"
+        ],
+        "group": "boreal_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:saguaro_desert": {
+        "weight": 30,
+        "can_replace": [
+          "minecraft:desert"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:old_growth_forest": {
+        "can_replace": [
+          "minecraft:forest"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": 0.2
+          }
+        },
+        "group": "forests",
+        "enabled": true
+      },
+      "regions_unexplored:shrubland": {
+        "can_replace": [
+          "minecraft:plains"
+        ],
+        "parameters": {
+          "temperature": {
+            "max": -0.1
+          }
+        },
+        "group": "plains",
+        "enabled": true
+      },
+      "regions_unexplored:glistering_meadow": {
+        "weight": 60,
+        "can_replace": [
+          "minecraft:soul_sand_valley"
+        ],
+        "dimension": "minecraft:the_nether",
+        "enabled": true
+      },
+      "regions_unexplored:windswept_maple_forest": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:windswept_forest"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:tundra": {
+        "weight": 100,
+        "can_replace": [
+          "minecraft:snowy_plains"
+        ],
+        "parameters": {
+          "humidity": {
+            "max": -0.1
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:marsh": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:swamp"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:fen": {
+        "can_replace": [
+          "minecraft:swamp"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.45,
+            "max": -0.1
+          },
+          "humidity": {
+            "min": -0.35
+          }
+        },
+        "group": "swamps",
+        "enabled": true
+      },
+      "regions_unexplored:cold_boreal_taiga": {
+        "can_replace": [
+          "minecraft:snowy_taiga"
+        ],
+        "group": "boreal_taigas",
+        "enabled": true
+      },
+      "regions_unexplored:hyacinth_deeps": {
+        "weight": 50,
+        "can_replace": [
+          "minecraft:deep_frozen_ocean"
+        ],
+        "enabled": true
+      },
+      "regions_unexplored:clover_plains": {
+        "can_replace": [
+          "minecraft:plains"
+        ],
+        "parameters": {
+          "temperature": {
+            "min": -0.1,
+            "max": 0.2
+          }
+        },
+        "group": "plains",
+        "enabled": true
+      },
+      "regions_unexplored:bioshroom_caves": {
+        "can_replace": [
+          "minecraft:lush_caves"
+        ],
+        "parameters": {
+          "erosion": {
+            "min": 0.3
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:spires": {
+        "can_replace": [
+          "minecraft:frozen_river",
+          "minecraft:ice_spikes",
+          "minecraft:snowy_plains",
+          "minecraft:snowy_taiga",
+          "minecraft:taiga"
+        ],
+        "parameters": {
+          "erosion": {
+            "min": 0.6
+          },
+          "temperature": {
+            "max": -0.45
+          }
+        },
+        "enabled": true
+      },
+      "regions_unexplored:flower_fields": {
+        "weight": 30,
+        "can_replace": [
+          "minecraft:sunflower_plains",
+          "minecraft:flower_forest"
+        ],
+        "enabled": true
+      }
+    },
+    "weight_multiplier": 1.25
+  },
+  "misc": {
+    "branch_mode": "place_branches",
+    "custom_dirts": true,
+    "small_oak_trees": false,
+    "painted_planks": false
+  },
+  "vanilla_changes": {
+    "plains_bushes": true,
+    "swamp_willow_trees": true,
+    "birch_aspen_trees": true,
+    "badlands_saguaros": true,
+    "desert_sandy_grass": true,
+    "savanna_bushes": true,
+    "jungle_hibiscuses": true,
+    "snowy_frozen_grass": true,
+    "jungle_bamboo_trees": true,
+    "jungle_elephant_ears": true,
+    "oak_taller_trees": true,
+    "taiga_purple_coneflowers": true,
+    "forest_fancy_oaks": true,
+    "mangrove_flowering_lilies": true,
+    "beach_palm_trees": true,
+    "common_grass_sprouts": true,
+    "forest_flowers": true,
+    "taiga_pine_trees": true,
+    "common_shrubs": true,
+    "basalt_deltas_ash_vents": true,
+    "badlands_steppe_grass": true,
+    "birch_orange_coneflowers": true,
+    "swamp_cattails": true
+  },
+  "config_version": 1,
+  "biome_groups": {
+    "rivers": {
+      "weight": 60,
+      "can_replace": [
+        "minecraft:river"
+      ],
+      "enabled": true
+    },
+    "swamps": {
+      "weight": 100,
+      "can_replace": [
+        "minecraft:swamp"
+      ],
+      "enabled": true
+    },
+    "boreal_taigas": {
+      "weight": 75,
+      "can_replace": [
+        "minecraft:taiga",
+        "minecraft:old_growth_pine_taiga",
+        "minecraft:old_growth_spruce_taiga",
+        "minecraft:snowy_taiga"
+      ],
+      "enabled": true
+    },
+    "pine_and_redwood_taigas": {
+      "weight": 75,
+      "can_replace": [
+        "minecraft:taiga",
+        "minecraft:old_growth_pine_taiga",
+        "minecraft:old_growth_spruce_taiga",
+        "minecraft:snowy_taiga"
+      ],
+      "enabled": true
+    },
+    "plains": {
+      "weight": 100,
+      "can_replace": [
+        "minecraft:plains"
+      ],
+      "enabled": true
+    },
+    "jungles": {
+      "weight": 50,
+      "can_replace": [
+        "minecraft:jungle",
+        "minecraft:sparse_jungle"
+      ],
+      "enabled": true
+    },
+    "forests": {
+      "weight": 50,
+      "can_replace": [
+        "minecraft:forest"
+      ],
+      "enabled": true
+    }
+  }
+}

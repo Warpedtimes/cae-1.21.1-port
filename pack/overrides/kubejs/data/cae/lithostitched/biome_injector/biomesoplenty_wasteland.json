@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "biomesoplenty:wasteland",
+  "replacement": "biomesoplenty:shrubland",
+  "parameters": {
+    "cae:biome_thin_0": {
+      "min_inclusive": -0.3,
+      "max_inclusive": 1.0
+    }
+  }
+}

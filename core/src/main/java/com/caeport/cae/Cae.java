@@ -1,0 +1,40 @@
+package com.caeport.cae;
+
+import com.caeport.cae.compat.DeorumTools;
+import com.caeport.cae.entity.CaeEntities;
+import com.caeport.cae.kinetics.CaeKinetics;
+import com.caeport.cae.tiab.Tiab;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+
+/**
+ * Core mod of Create: Arcane Engineering, rewritten for 1.21.1 NeoForge. Keeps the 1.18.2 mod's IDs ({@code cae:...})
+ * so the pack's scripts and quests still find everything.
+ */
+@Mod(Cae.ID)
+public class Cae {
+    public static final String ID = "cae";
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID);
+
+    public Cae(IEventBus modBus) {
+        REGISTRATE.registerEventListeners(modBus);
+        // Registrate's items go in our tab; CaeCreativeTab lists everything else, so nothing is added twice.
+        REGISTRATE.defaultCreativeTab(CaeCreativeTab.MAIN.getKey());
+        CaeKinetics.register();
+        CaeBlocks.BLOCKS.register(modBus);
+        CaeBlocks.ITEMS.register(modBus);
+        CaeBlocks.BLOCK_ENTITIES.register(modBus);
+        CaeEntities.ENTITIES.register(modBus);
+        CaeSounds.SOUNDS.register(modBus);
+        CaeCreativeTab.TABS.register(modBus);
+        CaeProperties.ATTACHMENTS.register(modBus);
+        Tiab.register(modBus);
+        DeorumTools.register(modBus);
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(ID, path);
+    }
+}

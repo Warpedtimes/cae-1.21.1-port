@@ -1,0 +1,33 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:reinforced_deorum_blacksmith_gavel"
+        }
+      ]
+    }
+  ]
+}

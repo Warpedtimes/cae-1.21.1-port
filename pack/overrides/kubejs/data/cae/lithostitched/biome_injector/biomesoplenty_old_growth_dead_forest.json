@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "biomesoplenty:old_growth_dead_forest",
+  "replacement": "biomesoplenty:old_growth_woodland",
+  "parameters": {
+    "cae:biome_thin_5": {
+      "min_inclusive": 0.0,
+      "max_inclusive": 1.0
+    }
+  }
+}

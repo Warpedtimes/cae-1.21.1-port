@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = neo_version
+}
+
+repositories {
+    maven { url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }     // GeckoLib
+    maven { url = 'https://maven.blamejared.com/' }                                 // Ars Nouveau
+}
+
+// Everything is compile-only: the pack supplies these mods at runtime. The jars below are the exact files the pack
+// ships (run/agent-cache/core/); GeckoLib and Ars Nouveau resolve from their mavens, the others (AE2 19.2.18, MBD2,
+// LDLib2, and Create's embedded Registrate/Ponder/Flywheel) come from CurseForge/Modrinth or from inside Create's jar.
+def cache = rootProject.file('../run/agent-cache/core')
+
+dependencies {
+    compileOnly files(
+            "$cache/create-1.21.1-6.0.10-281.jar",
+            "$cache/ponder-neoforge-1.0.82+mc1.21.1.jar",       // includes net.createmod.catnip
+            "$cache/flywheel-neoforge-1.21.1-1.0.6.jar",
+            "$cache/Registrate-MC1.21-1.3.0+67.jar",
+            "$cache/ae2-19.2.18.jar",
+            "$cache/Multiblocked2-1.21-1.21.1-21.1.2.jar",
+            "$cache/ldlib2.jar",
+            "$cache/../mbd2-gui/taffy-1.1.5.jar",               // jar-in-jar of LDLib2 (META-INF/jarjar)
+            "$cache/../mbd2-gui/yoga-1.0.0.jar")
+    compileOnly "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version}"
+    compileOnly "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${ars_version}"
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version_range: minecraft_version_range, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range, mod_id: mod_id, mod_name: mod_name, mod_license: mod_license,
+            mod_version: mod_version, mod_authors: mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_id,
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'MixinConfigs'          : 'cae.mixins.json',
+        ])
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

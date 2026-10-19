@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "terralith:desert_canyon",
+  "replacement": "terralith:hot_shrubland",
+  "parameters": {
+    "cae:biome_thin_7": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:sorcerer_hood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:sorcerer_robes"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:sorcerer_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:sorcerer_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "ars_nouveau:magebloom_fiber",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3,
+                "max": {
+                  "type": "minecraft:uniform",
+                  "min": 4,
+                  "max": 7
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "ars_nouveau:magebloom_fiber",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "forbidden_arcanus:mortem_helmet"
+        }
+      ]
+    }
+  ]
+}

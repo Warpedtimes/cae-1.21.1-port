@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "terralith:granite_cliffs",
+  "replacement": "terralith:highlands",
+  "parameters": {
+    "cae:biome_thin_1": {
+      "min_inclusive": 0.0,
+      "max_inclusive": 1.0
+    }
+  }
+}

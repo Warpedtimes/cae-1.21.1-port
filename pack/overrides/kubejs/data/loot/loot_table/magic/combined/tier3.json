@@ -1,0 +1,77 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "loot:magic/artifacts_and_reliquary"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 9,
+        "max": 11
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 20,
+          "value": "loot:magic/magic_basic"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "value": "loot:magic/arcane_gold_tools"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "value": "loot:magic/ars_armor"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "value": "loot:magic/ars_trinkets"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 10,
+          "value": "loot:magic/mob_items"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 2,
+          "value": "loot:magic/random_reliquary"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 2,
+          "value": "loot:magic/ctome_or_book"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "min": 20,
+                "max": 40
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

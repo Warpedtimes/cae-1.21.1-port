@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "biomesoplenty:wasteland_steppe",
+  "replacement": "biomesoplenty:prairie",
+  "parameters": {
+    "cae:biome_thin_1": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

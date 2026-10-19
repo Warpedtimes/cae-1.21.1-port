@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.caeport.cae.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MeteoritePlacerMixin",
+    "MbdMekanismInitMixin",
+    "RecipeAdvancementFilterMixin",
+    "FtbBackupsHandlerMixin",
+    "FtbBackupsFileUtilsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

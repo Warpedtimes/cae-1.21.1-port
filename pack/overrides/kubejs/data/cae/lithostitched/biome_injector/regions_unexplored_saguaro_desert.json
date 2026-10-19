@@ -1,0 +1,12 @@
+{
+  "type": "lithostitched:replace_partially",
+  "dimension": "minecraft:overworld",
+  "targets": "regions_unexplored:saguaro_desert",
+  "replacement": "regions_unexplored:dry_bushland",
+  "parameters": {
+    "cae:biome_thin_5": {
+      "min_inclusive": -0.15,
+      "max_inclusive": 1.0
+    }
+  }
+}

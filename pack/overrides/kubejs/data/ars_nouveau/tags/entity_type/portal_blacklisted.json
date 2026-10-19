@@ -1,0 +1,66 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:item",
+    {
+      "id": "create:carriage_contraption",
+      "required": false
+    },
+    {
+      "id": "create:contraption",
+      "required": false
+    },
+    {
+      "id": "ars_nouveau:spell_proj",
+      "required": false
+    },
+    {
+      "id": "ars_nouveau:starbuncle",
+      "required": false
+    },
+    "minecraft:minecart",
+    {
+      "id": "create:stationary_contraption",
+      "required": false
+    },
+    "minecraft:hopper_minecart",
+    "minecraft:chest_minecart",
+    "minecraft:furnace_minecart",
+    {
+      "id": "supplementaries:dispenser_minecart",
+      "required": false
+    },
+    {
+      "id": "ars_nouveau:starbuncle",
+      "required": false
+    },
+    {
+      "id": "lootr:lootr_minecart",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:drone",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:amadrone",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:logistics_drone",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:collector_drone",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:harvesting_drone",
+      "required": false
+    },
+    {
+      "id": "pneumaticcraft:guard_drone",
+      "required": false
+    }
+  ]
+}
