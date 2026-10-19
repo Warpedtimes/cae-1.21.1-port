@@ -19,9 +19,8 @@ Written for the 1.21.1 port:
 
 ## 2. The original pack's content: not open source
 
-**Create: Arcane Engineering** is by **FortnitePro420Xx** (All Rights Reserved). Its content is shared here with the
-author's permission; that permission is not an open-source licence, so you may not reuse it elsewhere without asking
-them. This covers:
+**Create: Arcane Engineering** is by **FortnitePro420Xx** (All Rights Reserved). This port is unofficial and not
+endorsed by them; their content is not open source and stays theirs. This covers:
 
 - the quests (`pack/overrides/config/ftbquests/`)
 - every other KubeJS script, data file and asset in `pack/overrides/kubejs/` (ported from the original pack's scripts,

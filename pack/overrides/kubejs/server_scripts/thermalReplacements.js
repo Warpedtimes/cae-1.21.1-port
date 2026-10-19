@@ -340,7 +340,16 @@ const CAE_TREE_ROWS = [
     ['biomesoplenty:umbran_log', 'biomesoplenty:umbran_leaves', 'R'],
     ['biomesoplenty:willow_log', 'biomesoplenty:willow_leaves', 'R'],
     // not in the 1.18.2 pack (mangroves came in 1.19): resin like the other vanilla trees (easy to change)
-    ['minecraft:mangrove_log', 'minecraft:mangrove_leaves', 'R']
+    ['minecraft:mangrove_log', 'minecraft:mangrove_leaves', 'R'],
+    // 1211: leaf variants the 1.18.2 table left out, so those trees never worked (found by growing every tree in the table):
+    // BWG's plain and flowering jacaranda (only the indigo one was listed), silver maple, flowering skyris, Quark's orange
+    // blossom (added after the original pack), and Forbidden & Arcanus' nuggety aurum leaves (aurum leaves turn into them).
+    ['biomeswevegone:jacaranda_log', 'biomeswevegone:jacaranda_leaves', 'R'],
+    ['biomeswevegone:jacaranda_log', 'biomeswevegone:flowering_jacaranda_leaves', 'R'],
+    ['biomeswevegone:maple_log', 'biomeswevegone:silver_maple_leaves', 'S'],
+    ['biomeswevegone:skyris_log', 'biomeswevegone:flowering_skyris_leaves', 'R'],
+    ['quark:blossom_log', 'quark:orange_blossom_leaves', 'R'],
+    ['forbidden_arcanus:aurum_log', 'forbidden_arcanus:nuggety_aurum_leaves', 'R']
 ]
 const CAE_SAP_FLUID = { R: 'cae:resin', S: 'cae:sap' }
 // trunk id -> list of [leaves id, fluid id, mB]
@@ -359,9 +368,11 @@ const CAE_TREE_NUM_LEAVES = 3
 
 // DeviceTreeExtractorTile.isTrunkBase checks Material.GRASS / DIRT / STONE under the trunk. 1211 substitute: Materials are gone in
 // 1.21.1, so the same idea is a handful of block tags (dirt incl. grass / podzol / mycelium, the base stones, nylium, the c: stone groups).
+// 1211: sand too (palms grow on beaches; Thermal's Material.SAND wasn't GRASS / DIRT / STONE, so they failed in 1.18.2 as well).
 function caeTreeGround(b) {
     return b.hasTag('minecraft:dirt') || b.hasTag('minecraft:base_stone_overworld') || b.hasTag('minecraft:base_stone_nether') ||
-        b.hasTag('minecraft:nylium') || b.hasTag('c:stones') || b.hasTag('c:cobblestones') || b.hasTag('c:netherracks') || b.hasTag('c:end_stones')
+        b.hasTag('minecraft:nylium') || b.hasTag('c:stones') || b.hasTag('c:cobblestones') || b.hasTag('c:netherracks') || b.hasTag('c:end_stones') ||
+        b.hasTag('minecraft:sand') || b.hasTag('c:sands')
 }
 
 // isTrunkBase(pos): ground under pos, and pos, pos + 1 and pos + 2 are all trunk blocks (validTrunk)
@@ -385,6 +396,55 @@ function caeTreeTrunkFor(b) {
     return null
 }
 
+// Leaning trunks. 1211: BWG palms grow two logs straight up and then step sideways every two blocks, so no column holds the
+// three logs Thermal's isTrunkBase wants, and their fronds hang beside the top, out of the 3x3 above the extractor. When the
+// normal check fails, caeTreeFindLeaning follows the trunk up from a log on the ground (each step the log straight above, else
+// one diagonally above) and, if it climbs at least three logs, looks for the leaves around the top of the climb instead.
+function caeTreeClimb(b, max) {
+    let chain = [b]
+    let cur = b
+    while (chain.length < max) {
+        let next = null
+        if (CAE_TREES_BY_TRUNK[cur.offset(0, 1, 0).id]) {
+            next = cur.offset(0, 1, 0)
+        } else {
+            for (let dx = -1; dx <= 1 && next == null; dx++) {
+                for (let dz = -1; dz <= 1 && next == null; dz++) {
+                    if ((dx != 0 || dz != 0) && CAE_TREES_BY_TRUNK[cur.offset(dx, 1, dz).id]) { next = cur.offset(dx, 1, dz) }
+                }
+            }
+        }
+        if (next == null) { break }
+        chain.push(next)
+        cur = next
+    }
+    return chain
+}
+
+function caeTreeFindLeaning(block) {
+    let sides = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    for (let s = 0; s < sides.length; s++) {
+        let base = block.offset(sides[s][0], 0, sides[s][1])
+        if (!CAE_TREES_BY_TRUNK[base.id] || !caeTreeGround(base.offset(0, -1, 0))) { continue }
+        let chain = caeTreeClimb(base, 40)
+        if (chain.length < 3) { continue }
+        let topLog = chain[chain.length - 1]
+        let leafRows = {}
+        CAE_TREES_BY_TRUNK[base.id].forEach(c => { leafRows[c[0]] = c })
+        let hits = []
+        for (let dy = -3; dy <= 4 && hits.length < CAE_TREE_NUM_LEAVES; dy++) {
+            for (let dx = -2; dx <= 2 && hits.length < CAE_TREE_NUM_LEAVES; dx++) {
+                for (let dz = -2; dz <= 2 && hits.length < CAE_TREE_NUM_LEAVES; dz++) {
+                    let lb = topLog.offset(dx, dy, dz)
+                    if (leafRows[lb.id]) { hits.push(lb) }
+                }
+            }
+        }
+        if (hits.length >= CAE_TREE_NUM_LEAVES) { return { trunk: base, pick: leafRows[hits[0].id] } }
+    }
+    return null
+}
+
 // updateValidity(): trunk = the first of west / east / north / south that isTrunkBase; the first 3 leaf blocks (in BlockPos iteration order:
 // x fastest, then y, then z) of the 3x3 columns around the extractor, from its own height up to 40 blocks, that belong to the trunk;
 // the trunk column up to the first leaf holds no ground block, and no other extractor stands above in the extractor's column.
@@ -392,6 +452,15 @@ function caeTreeTrunkFor(b) {
 // 1211 substitute: Thermal keyed the fluid on the trunk alone (the last mapping loaded won); here it follows the first matched leaf block
 // so that the per-leaf rows of CAE_TREE_ROWS (e.g. oak trunk with red maple leaves = sap) keep working.
 function caeTreeFind(block) {
+    let found = caeTreeFindStraight(block)
+    if (found.pick == null) {
+        let lean = caeTreeFindLeaning(block)
+        if (lean != null) { return lean }
+    }
+    return found
+}
+
+function caeTreeFindStraight(block) {
     let sides = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     let trunk = null
     for (let s = 0; s < sides.length; s++) {

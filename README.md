@@ -4,7 +4,7 @@ Version 1.0.0
 
 This is an **unofficial community port** of **Create: Arcane Engineering**, a Minecraft modpack made by
 **FortnitePro420Xx**. The original runs on Minecraft 1.18.2 with Forge. This port runs on **Minecraft 1.21.1 with
-NeoForge**. It is shared with the original author's permission.
+NeoForge**. It is not affiliated with or endorsed by the original author; all credit for the pack goes to them.
 
 It keeps the original's quests, progression, machines, structures and look. It is not made or supported by the
 original author. Please do not ask them for help with this port.
@@ -76,7 +76,8 @@ authors and links, is on the [Credits](https://github.com/Warpedtimes/cae-1.21.1
 ## Licence
 
 - The **content of the original pack** (quests, scripts, ideas, textures and so on) belongs to its author,
-  FortnitePro420Xx. It is shared here with their permission. This does not give you the right to reuse it elsewhere.
+  FortnitePro420Xx, and they keep all rights to it. This port is not affiliated with or endorsed by them. If you are the
+  author and want this taken down or changed, please open an issue.
 - **Each mod** belongs to its own authors and keeps its own licence. See [Credits](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Credits).
 - The port's **own work** (the core mod's code, the build tools, the KubeJS scripts written for the port, and these
   docs) is open source under the **MIT licence**: see [LICENSE](https://github.com/Warpedtimes/cae-1.21.1-port/blob/main/LICENSE). [NOTICE.md](https://github.com/Warpedtimes/cae-1.21.1-port/blob/main/NOTICE.md) lists exactly which

@@ -281,7 +281,8 @@ def license_text(rel, plan, embed_all, side_filter):
          "licence; this list says what that licence is and whether the jar is inside the download or fetched from its "
          "source (never re-uploaded when the licence does not allow it).\n",
          "Source code for the GPL/LGPL/MPL mods is at the project links below (and in each project's source repository). "
-         "`cae-3.0.0.jar` (Create: Arcane Engineering core) is covered by the original author's permission.\n",
+         "`cae-3.0.0.jar` is this unofficial port's rewrite of the Create: Arcane Engineering core mod (code MIT, original "
+         "assets by FortnitePro420Xx).\n",
          "| mod | licence | in this download | project |", "|---|---|---|---|"]
     for it in plan.items:
         if not side_filter(it["mod"]):
@@ -295,7 +296,7 @@ def license_text(rel, plan, embed_all, side_filter):
         if it["verdict"] == "unclear" and it["verdict"] == r["verdict"]:
             lic = "see project (custom or conflicting licence; not re-uploaded): " + r["reason"]
         L.append(f"| {it['mod']['name'].strip()} | {lic} | {where} | {link} |")
-    L.append("| Create: Arcane Engineering core (cae-3.0.0.jar) | by the pack author's permission | bundled | |")
+    L.append("| Create: Arcane Engineering core (cae-3.0.0.jar) | port code MIT; original assets by FortnitePro420Xx | bundled | |")
     return "\n".join(L) + "\n"
 
 
