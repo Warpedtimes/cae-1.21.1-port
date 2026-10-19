@@ -289,6 +289,9 @@ const CAE_TREE_ROWS = [
     ['biomeswevegone:zelkova_log', 'biomeswevegone:zelkova_leaves', 'R'],
     ['forbidden_arcanus:aurum_log', 'forbidden_arcanus:aurum_leaves', 'R'],
     ['integrateddynamics:menril_log', 'integrateddynamics:menril_leaves', 'integrateddynamics:menril_resin'],
+    // 1211: Integrated Dynamics grows menril trunks with about 1 in 11 logs "filled"; the 1.18.2 recipe named only the plain
+    // log, so a tree with a filled log in its bottom three was rejected (in 1.18.2 too). Filled logs count as trunk here.
+    ['integrateddynamics:menril_log_filled', 'integrateddynamics:menril_leaves', 'integrateddynamics:menril_resin'],
     ['minecraft:birch_log', 'biomeswevegone:brown_birch_leaves', 'R'],
     ['minecraft:birch_log', 'biomeswevegone:orange_birch_leaves', 'R'],
     ['minecraft:birch_log', 'biomeswevegone:red_birch_leaves', 'R'],
@@ -367,6 +370,21 @@ function caeTreeTrunkBase(b) {
     return !!CAE_TREES_BY_TRUNK[b.id] && !!CAE_TREES_BY_TRUNK[b.offset(0, 1, 0).id] && !!CAE_TREES_BY_TRUNK[b.offset(0, 2, 0).id]
 }
 
+// The trunk an extractor next to b works on: b itself when it is a trunk base, or, when b is a one-block "root" log on the
+// ground, the trunk base next to it. 1211: Integrated Dynamics' menril trees stand on a plus of one-high root logs that
+// covers all four sides of the trunk at ground level, so with Thermal's rule alone (the extractor must touch a trunk base)
+// nothing could tap a natural menril tree, in 1.18.2 either, unless a root was broken first.
+function caeTreeTrunkFor(b) {
+    if (caeTreeTrunkBase(b)) { return b }
+    if (!CAE_TREES_BY_TRUNK[b.id] || !caeTreeGround(b.offset(0, -1, 0))) { return null }
+    let sides = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    for (let s = 0; s < sides.length; s++) {
+        let n = b.offset(sides[s][0], 0, sides[s][1])
+        if (caeTreeTrunkBase(n)) { return n }
+    }
+    return null
+}
+
 // updateValidity(): trunk = the first of west / east / north / south that isTrunkBase; the first 3 leaf blocks (in BlockPos iteration order:
 // x fastest, then y, then z) of the 3x3 columns around the extractor, from its own height up to 40 blocks, that belong to the trunk;
 // the trunk column up to the first leaf holds no ground block, and no other extractor stands above in the extractor's column.
@@ -377,8 +395,8 @@ function caeTreeFind(block) {
     let sides = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     let trunk = null
     for (let s = 0; s < sides.length; s++) {
-        let t = block.offset(sides[s][0], 0, sides[s][1])
-        if (caeTreeTrunkBase(t)) { trunk = t; break }
+        let t = caeTreeTrunkFor(block.offset(sides[s][0], 0, sides[s][1]))
+        if (t != null) { trunk = t; break }
     }
     if (trunk == null) { return { trunk: null, pick: null } }
     let leafRows = {}
