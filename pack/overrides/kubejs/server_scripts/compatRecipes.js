@@ -957,8 +957,17 @@ ServerEvents.recipes(event => {
     event.replaceInput({}, '#c:plates/iron', "create:iron_sheet")
     event.replaceInput({}, '#c:plates/gold', "create:golden_sheet")
 
-    // 1211: no bronze in this pack: drop Mekanism's bronze recipes (they are hidden in JEI by client_scripts/jeiHideItems.js)
-    ;['ingot_bronze', 'nugget_bronze', 'block_bronze', 'dust_bronze'].forEach(b => event.remove({ output: 'mekanism:' + b }))
+    // 1211: no bronze in this pack: drop every recipe that makes bronze (Mekanism's, Alloyed's ingot, sheet, blocks, casing
+    // and bell, Create: Metallurgy's molten bronze) before bronze inputs become copper below. Otherwise a copper ingot in a
+    // press also matched Alloyed's bronze sheet recipe, and copper made bronze blocks, casings and molten bronze.
+    // Mekanism's are hidden in JEI by client_scripts/jeiHideItems.js.
+    event.remove({ output: /bronze/ })
+    ;['alloying/bronze', 'bulk_melting/bronze/block', 'bulk_melting/bronze/raw_block', 'casting_in_basin/bronze/block',
+        'casting_in_table/bronze/gear', 'casting_in_table/bronze/ingot', 'casting_in_table/bronze/nugget',
+        'casting_in_table/bronze/plate', 'casting_in_table/bronze/rod', 'melting/bronze/coin', 'melting/bronze/dirty_dust',
+        'melting/bronze/dust', 'melting/bronze/gear', 'melting/bronze/ingot', 'melting/bronze/nugget', 'melting/bronze/plate',
+        'melting/bronze/raw_material', 'melting/bronze/rod', 'melting/bronze/wire'
+    ].forEach(id => event.remove({ id: 'createmetallurgy:' + id }))
     event.replaceInput({}, '#c:ingots/bronze', "minecraft:copper_ingot")
     event.replaceInput({}, '#c:nuggets/bronze', "create:copper_nugget")
     if (CAE_THERMAL) { // 1211: thermal
