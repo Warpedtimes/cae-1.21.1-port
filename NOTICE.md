@@ -43,9 +43,8 @@ endorsed by them; their content is not open source and stays theirs. This covers
   - Magic Feather (`core/src/main/resources/assets/magicfeather/`) and Compressed Creativity's heater
     (`core/src/main/resources/assets/compressedcreativity/`): their textures, models and language lines
   - Tinkers' Construct: the Blood Slime Ball and blood fluid textures (`pack/overrides/kubejs/assets/tconstruct/`)
-  - the crystal seed textures (Applied Energistics 2), the Lava Lily models and textures and the 1.18.2 ritual brazier
-    and relay collector looks (Ars Nouveau), and any other textures in `kubejs/assets/` taken from a mod (the restored
-    structure blocks and the 1.18.2 looks of Create, Supplementaries, Immersive Weathering and others)
+  - the crystal seed textures (Applied Energistics 2), the Lava Lily models and textures (Ars Nouveau), and any other
+    textures in `kubejs/assets/` taken from a mod (the restored structure blocks of mods that are gone)
 
   The core mod's code was written for the port; the other mods' classes were only read for their numbers.
 - **The shader pack** in `pack/overrides-client/shaderpacks/` (Complementary Reimagined) is under its own licence.
