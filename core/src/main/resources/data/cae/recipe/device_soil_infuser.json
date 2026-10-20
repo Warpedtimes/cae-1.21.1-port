@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IXI",
+    "GCG",
+    "IPI"
+  ],
+  "key": {
+    "I": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "tag": "c:ingots/lumium"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "C": {
+      "item": "cae:phytogro"
+    },
+    "P": {
+      "item": "mekanismgenerators:electromagnetic_coil"
+    }
+  },
+  "result": {
+    "id": "cae:device_soil_infuser",
+    "count": 1
+  }
+}

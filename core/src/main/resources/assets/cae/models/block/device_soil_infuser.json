@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cae:block/device_soil_infuser_side",
+    "down": "cae:block/device_soil_infuser_bottom",
+    "up": "cae:block/device_soil_infuser_top",
+    "north": "cae:block/device_soil_infuser",
+    "south": "cae:block/device_soil_infuser_side",
+    "east": "cae:block/device_soil_infuser_side",
+    "west": "cae:block/device_soil_infuser_side"
+  }
+}

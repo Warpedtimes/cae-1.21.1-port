@@ -1,0 +1,5 @@
+{
+  "item.magicfeather.magicfeather": "Magic Feather",
+  "item.magicfeather.magicfeather.tooltip.description": "Grants flight abilities when near a beacon",
+  "item.magicfeather.magicfeather.tooltip.requires_curios": "Place in Charm slot"
+}

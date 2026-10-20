@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/mossy_template_wall_post",
+  "textures": {
+    "wall": "cae:block/restored_look/immersive_weathering/block/mossy_bricks",
+    "overlay": "cae:block/restored_look/minecraft/block/brick_moss"
+  }
+}

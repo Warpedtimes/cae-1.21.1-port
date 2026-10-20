@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cae:block/device_soil_infuser_side",
+    "down": "cae:block/device_soil_infuser_bottom",
+    "up": "cae:block/device_soil_infuser_top_active",
+    "north": "cae:block/device_soil_infuser_active",
+    "south": "cae:block/device_soil_infuser_side_active",
+    "east": "cae:block/device_soil_infuser_side_active",
+    "west": "cae:block/device_soil_infuser_side_active"
+  }
+}

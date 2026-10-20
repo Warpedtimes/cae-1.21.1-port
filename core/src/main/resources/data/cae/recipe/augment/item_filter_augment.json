@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " t ",
+    "tSt",
+    " t "
+  ],
+  "key": {
+    "t": {
+      "tag": "c:nuggets/tin"
+    },
+    "S": {
+      "item": "create:filter"
+    }
+  },
+  "result": {
+    "id": "cae:item_filter_augment",
+    "count": 1
+  }
+}

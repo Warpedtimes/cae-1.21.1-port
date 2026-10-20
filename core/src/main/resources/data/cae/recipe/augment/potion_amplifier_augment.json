@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "IXI",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "tag": "c:plates/signalum"
+    },
+    "I": {
+      "tag": "c:ingots/bronze"
+    },
+    "X": {
+      "tag": "cae:glass/hardened"
+    }
+  },
+  "result": {
+    "id": "cae:potion_amplifier_augment",
+    "count": 1
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "variants": {
+    "charged=0": [
+      {
+        "model": "cae:block/phytosoil"
+      },
+      {
+        "model": "cae:block/phytosoil",
+        "y": 90
+      },
+      {
+        "model": "cae:block/phytosoil",
+        "y": 180
+      },
+      {
+        "model": "cae:block/phytosoil",
+        "y": 270
+      }
+    ],
+    "charged=1": [
+      {
+        "model": "cae:block/phytosoil_charged"
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 90
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 180
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 270
+      }
+    ],
+    "charged=2": [
+      {
+        "model": "cae:block/phytosoil_charged"
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 90
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 180
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 270
+      }
+    ],
+    "charged=3": [
+      {
+        "model": "cae:block/phytosoil_charged"
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 90
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 180
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 270
+      }
+    ],
+    "charged=4": [
+      {
+        "model": "cae:block/phytosoil_charged"
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 90
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 180
+      },
+      {
+        "model": "cae:block/phytosoil_charged",
+        "y": 270
+      }
+    ]
+  }
+}

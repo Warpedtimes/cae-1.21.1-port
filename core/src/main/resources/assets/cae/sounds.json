@@ -46,5 +46,11 @@
     "sounds": [
       "cae:skeleton_convert"
     ]
+  },
+  "tinker": {
+    "subtitle": "sounds.cae.tinker",
+    "sounds": [
+      "cae:tinker"
+    ]
   }
 }

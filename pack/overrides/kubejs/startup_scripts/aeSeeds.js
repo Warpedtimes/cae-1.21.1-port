@@ -3,15 +3,13 @@
 // The growth logic (24000 ticks in water, Crystal Growth Accelerators) is in server_scripts/aeSeeds.js.
 // AE2 1.18 swapped the model to a bigger crystal at 1/3 and 2/3 growth through an item model predicate ("ae2:growth"); here
 // the server script sets minecraft:custom_model_data 1 / 2 at those points and the item models in kubejs/assets/cae pick
-// the bigger crystal with the vanilla custom_model_data predicate. 1211 substitute: the original showed the progress in the
-// tooltip; here it can be read with /data (stack custom_data {p: ticks}).
+// the bigger crystal with the vanilla custom_model_data predicate. The tooltip shows the progress as AE2 1.18's did
+// ("This item won't de-spawn." and the growth percentage): client_scripts/gaps2Content.js reads the stack's custom_data {p: ticks}.
 StartupEvents.registry('item', event => {
     event.create('cae:certus_crystal_seed')
         .displayName('Certus Quartz Seed')
         .texture('cae:item/crystal_seed_certus')
-        .tooltip('Grows into a Certus Quartz Crystal in water (20 minutes, faster next to powered Crystal Growth Accelerators).')
     event.create('cae:fluix_crystal_seed')
         .displayName('Fluix Seed')
         .texture('cae:item/crystal_seed_fluix')
-        .tooltip('Grows into a Fluix Crystal in water (20 minutes, faster next to powered Crystal Growth Accelerators).')
 })

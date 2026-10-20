@@ -81,25 +81,17 @@ Ponder.registry((event) => {
             scene.world.modifyBlock([2, 2, 2], "integrateddynamics:menril_log", true);
             scene.idleSeconds(3)
             scene.text(60, "Finally place a Arboreal Extractor directly on the center trunk", [2.0, 1.5, 1]).placeNearTarget().attachKeyFrame();
-            scene.world.setBlock([2, 1, 1], "cae:device_tree_extractor", true);
-        /*
-        // 1211: modifyTileNBT is scene.world.modifyBlockEntityNBT(selection, nbt => ...) in PonderJS 2.4.0
-        scene.world.modifyTileNBT([2, 1, 1], (nbt) => {
-             nbt.Active = [
-                {
-                    Active: 1,
-                }
-            ];
-        });
-        scene.world.modifyTileNBT([2, 1, 1], (nbt) => {
-            nbt.RenderFluid = [
-                {
-                    Amount: 25,
-                    FluidName: "integrateddynamics:menril_resin",
-                }
-            ];
-        });
-        */
+            // 1211: the extractor is a real block entity now (core mod, cae.device): the active state shows the windows, and its
+            // render fluid (what the windows show) is set through the block entity's NBT: "RenderFluid" is a saved FluidStack.
+            scene.world.setBlock([2, 1, 1], "cae:device_tree_extractor[active=true]", true);
+            try {
+                scene.world.modifyBlockEntityNBT([2, 1, 1], (nbt) => {
+                    nbt.putBoolean("Active", true);
+                    nbt.put("RenderFluid", NBT.compoundTag({ id: "integrateddynamics:menril_resin", amount: 25 }));
+                });
+            } catch (err) {
+                console.warn("ponder.js: the extractor's window fluid was not set (" + err + ")");
+            }
     });
 });
 Ponder.registry((event) => {

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "cae:block/lightning_tnt_bottom",
+    "top": "cae:block/lightning_tnt_top",
+    "side": "cae:block/lightning_tnt_side"
+  }
+}

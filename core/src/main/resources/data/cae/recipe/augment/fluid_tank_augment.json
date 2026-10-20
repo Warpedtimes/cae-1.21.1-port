@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RIR",
+    "IXI",
+    "RIR"
+  ],
+  "key": {
+    "R": {
+      "item": "cae:cured_rubber"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "X": {
+      "tag": "cae:glass/hardened"
+    }
+  },
+  "result": {
+    "id": "cae:fluid_tank_augment",
+    "count": 1
+  }
+}

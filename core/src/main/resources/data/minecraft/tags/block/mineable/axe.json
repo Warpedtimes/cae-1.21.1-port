@@ -16,6 +16,12 @@
     "cae:enderium_encased_large_cogwheel",
     "cae:supercritical_encased_shaft",
     "cae:supercritical_encased_cogwheel",
-    "cae:supercritical_encased_large_cogwheel"
+    "cae:supercritical_encased_large_cogwheel",
+    "cae:device_hive_extractor",
+    "cae:device_tree_extractor",
+    "cae:device_fisher",
+    "cae:device_composter",
+    "cae:device_soil_infuser",
+    "cae:tinker_bench"
   ]
 }

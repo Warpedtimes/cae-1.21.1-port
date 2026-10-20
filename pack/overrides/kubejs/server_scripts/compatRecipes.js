@@ -98,9 +98,11 @@ let dumbshitarray = [
     "16x pneumaticcraft:pressure_tube",
     "4x pneumaticcraft:manual_compressor",
     "pneumaticcraft:charging_station",
-    "pneumaticcraft:omnidirectional_hopper",
+    "cae:device_collector", // 1211: Thermal's Vacuumulator (the original listed thermal:device_collector here)
     "cae:device_rock_gen",
-    // 1211: the Thermal devices rebuilt on 19 Oct (thermalDevicesA.js / thermalDevicesB.js)
+    // 1211: the other Thermal devices, real blocks of the core mod (the original listed all of them)
+    "cae:device_soil_infuser",
+    "cae:tinker_bench",
     "cae:device_composter",
     "cae:device_fisher",
     "cae:device_hive_extractor",
@@ -682,8 +684,9 @@ ServerEvents.recipes(event => {
         ["minecraft:iron_bars", 'create:item_drain'],
         ["mekanismgenerators:electromagnetic_coil", 'mekanismgenerators:heat_generator'], // 1211: thermal
         ["minecraft:bucket", 'mekanism:electric_pump'], // 1211: thermal
-        // 1211: Thermal's Batch Composter, Aquatic Entangler and Hive Hopper, rebuilt (startup_scripts/thermalDevicesA.js);
-        // the Tinker's Workbench (crafting table) stays gone: nothing in the pack could use it
+        // 1211: Thermal's Batch Composter, Aquatic Entangler, Hive Hopper and Tinker's Workbench, real blocks of the core mod
+        // (com.caeport.cae.device); the original had all four on these casings (copper_smithing)
+        ["minecraft:crafting_table", 'cae:tinker_bench'],
         ["minecraft:composter", 'cae:device_composter'],
         ["minecraft:fishing_rod", 'cae:device_fisher'],
         ["minecraft:shears", 'cae:device_hive_extractor'],
@@ -734,8 +737,8 @@ ServerEvents.recipes(event => {
         ['create:copper_casing', 'compressedcreativity:air_blower'],
         ['compressedcreativity:engine_rotor', 'compressedcreativity:compressed_air_engine'],
         ['create:brass_casing', 'compressedcreativity:rotational_compressor'],
-        ['minecraft:glass_bottle', 'cae:device_potion_diffuser'], // 1211: Thermal's Decoctive Diffuser, rebuilt (thermalDevicesB.js)
-        ['minecraft:ender_pearl', 'pneumaticcraft:omnidirectional_hopper'], // 1211: thermal
+        ['minecraft:glass_bottle', 'cae:device_potion_diffuser'], // 1211: Thermal's Decoctive Diffuser, a real block of the core mod
+        ['minecraft:ender_pearl', 'cae:device_collector'], // 1211: Thermal's Vacuumulator (thermal:device_collector), rebuilt in the core mod
         ['minecraft:piston', 'cae:device_rock_gen'], // 1211: thermal
         ['minecraft:redstone', 'mekanism:elite_tier_installer'], // 1211: thermal
         ['create:gantry_carriage', 'pneumaticcraft:elevator_base'],
@@ -790,7 +793,7 @@ ServerEvents.recipes(event => {
         ["minecraft:brewing_stand", "mekanism:chemical_infuser"], // 1211: thermal
         ["minecraft:dirt", "mekanism:combiner"], // 1211: thermal
         ["minecraft:quartz", "mekanism:chemical_crystallizer"], // 1211: thermal
-        ['minecraft:cactus', 'cae:device_nullifier'], // 1211: Thermal's Nullifier, rebuilt (thermalDevicesB.js)
+        ['minecraft:cactus', 'cae:device_nullifier'], // 1211: Thermal's Nullifier, a real block of the core mod
         ['#functionalstorage:drawer', "functionalstorage:controller_extension"],
         ["create:mechanical_press", "mekanism:osmium_compressor"], // 1211: thermal
         ["minecraft:crafting_table", "mekanism:formulaic_assemblicator"], // 1211: thermal

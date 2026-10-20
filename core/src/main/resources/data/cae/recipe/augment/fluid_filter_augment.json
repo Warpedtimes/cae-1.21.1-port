@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " c ",
+    "cSc",
+    " c "
+  ],
+  "key": {
+    "c": {
+      "tag": "c:nuggets/bronze"
+    },
+    "S": {
+      "item": "create:filter"
+    }
+  },
+  "result": {
+    "id": "cae:fluid_filter_augment",
+    "count": 1
+  }
+}

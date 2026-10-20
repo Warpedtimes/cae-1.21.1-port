@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cae:block/device_collector_side",
+    "down": "cae:block/device_collector_bottom",
+    "up": "cae:block/device_collector_top",
+    "north": "cae:block/device_collector",
+    "south": "cae:block/device_collector_side",
+    "east": "cae:block/device_collector_side",
+    "west": "cae:block/device_collector_side"
+  }
+}

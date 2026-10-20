@@ -5,11 +5,8 @@
 // Architect's Palette (in the 1.18.2 pack too) turns them into withered bones first, and does so here as well; the
 // necrotic bone comes from haunting a bone (tinkersReplacements.js).
 
-// PneumaticCraft's Creative Compressed Iron Block (creative only): opening its screen crashes the client in this pack, so
-// a right click does nothing instead. Its temperature can still be set with /data (the block entity's targetTemperature).
-BlockEvents.rightClicked('pneumaticcraft:creative_compressed_iron_block', event => {
-    event.cancel()
-})
+// (PneumaticCraft's Creative Compressed Iron Block used to be blocked here because its screen crashed the client; the
+// core mod's PncMenuBlockEntityMixin fixes that, so a right click opens the screen again.)
 
 ServerEvents.recipes(event => {
     // Ars Nouveau 2.9.0 (data/ars_nouveau/recipes/blaze_fiber.json, end_fiber.json)

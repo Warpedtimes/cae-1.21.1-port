@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cae:block/device_rock_gen_side",
+    "down": "cae:block/device_rock_gen_bottom",
+    "up": "cae:block/device_rock_gen_top",
+    "north": "cae:block/device_rock_gen_active",
+    "south": "cae:block/device_rock_gen_side_active",
+    "east": "cae:block/device_rock_gen_side_active",
+    "west": "cae:block/device_rock_gen_side_active"
+  }
+}

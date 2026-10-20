@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "cae:block/ice_tnt_bottom",
+    "top": "cae:block/ice_tnt_top",
+    "side": "cae:block/ice_tnt_side"
+  }
+}

@@ -396,7 +396,6 @@
 			x: 18.0d
 			y: 4.0d
 			dependencies: ["5FB305FE4095D986"]
-			optional: true
 			id: "31F408FB942B0947"
 		}
 		{

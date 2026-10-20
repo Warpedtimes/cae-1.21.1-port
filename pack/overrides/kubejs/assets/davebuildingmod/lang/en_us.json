@@ -1,0 +1,22 @@
+{
+  "block.davebuildingmod.alarm_sign": "Warning",
+  "block.davebuildingmod.book_1": "Books",
+  "block.davebuildingmod.book_2": "Stacked Books",
+  "block.davebuildingmod.copper_boiler": "Copper Boiler",
+  "block.davebuildingmod.create_boiler": "Andesite Boiler",
+  "block.davebuildingmod.exit_sign": "Exit Sign",
+  "block.davebuildingmod.helms": "Helms Wheel",
+  "block.davebuildingmod.log_pile_1_bottom": "Log Pile Bottom",
+  "block.davebuildingmod.log_pile_2_bottom": "Log Pile Bottom",
+  "block.davebuildingmod.log_pile_chair": "Log Chair",
+  "block.davebuildingmod.pc_setup": "Computer",
+  "block.davebuildingmod.skeleton_1": "Sitting Skeleton",
+  "block.davebuildingmod.skeleton_2": "Sitting Skeleton",
+  "block.davebuildingmod.skeleton_3": "Laying Skeleton",
+  "block.davebuildingmod.skeleton_4": "Laying Skeleton",
+  "block.davebuildingmod.skeleton_5": "Dismembered Skeleton",
+  "block.davebuildingmod.skeleton_6": "Decapitated Skeleton",
+  "block.davebuildingmod.vent_straight": "Vent Straight",
+  "block.davebuildingmod.vent_t": "Vent T-Piece",
+  "block.davebuildingmod.vent_t_up": "Vent T-Piece Horizontal"
+}

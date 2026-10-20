@@ -35,7 +35,13 @@ dependencies {
             "$cache/ae2-19.2.18.jar",
             "$cache/Multiblocked2-1.21-1.21.1-21.1.2.jar",
             "$cache/ldlib2.jar",
-            "$cache/../mbd2-gui/taffy-1.1.5.jar",               // jar-in-jar of LDLib2 (META-INF/jarjar)
+            "$cache/curios.jar",                                // Curios 9.5.1 (Magic Feather's charm slot)
+            "$cache/pneumaticcraft.jar",                        // PneumaticCraft 8.2.23 (the Compressed Creativity heater)
+            "$cache/ftb-quests.jar",                            // FTB Quests 2101.1.36 (+ its library, teams, architectury)
+            "$cache/ftb-library.jar",
+            "$cache/ftb-teams.jar",
+            "$cache/architectury.jar",
+            "$cache/../mbd2-gui/taffy-1.1.5.jar",              // jar-in-jar of LDLib2 (META-INF/jarjar)
             "$cache/../mbd2-gui/yoga-1.0.0.jar")
     compileOnly "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version}"
     compileOnly "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${ars_version}"

@@ -16,6 +16,11 @@
     "cae:enderium_encased_large_cogwheel",
     "cae:supercritical_encased_shaft",
     "cae:supercritical_encased_cogwheel",
-    "cae:supercritical_encased_large_cogwheel"
+    "cae:supercritical_encased_large_cogwheel",
+    "compressedcreativity:heater",
+    "cae:device_rock_gen",
+    "cae:device_collector",
+    "cae:device_nullifier",
+    "cae:device_potion_diffuser"
   ]
 }

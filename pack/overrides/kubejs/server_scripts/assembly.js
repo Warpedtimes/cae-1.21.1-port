@@ -185,12 +185,12 @@ event.recipes.create.sequenced_assembly([
 
 event.recipes.create.mixing('architects_palette:ancient_plating_slab',[Ingredient.of('#c:sands'),"forbidden_arcanus:soul","minecraft:red_dye","minecraft:obsidian","minecraft:stone","kubejs:runic_tablet","create:cinder_flour"])
 t = 'minecraft:stone'
-// ichor slime ball stand-in: magma cream
+// 1211: Tinkers' blood slime ball is back under its 1.18.2 ID (startup_scripts/gaps2Content.js)
 let netherrackSteps = [
   event.recipes.create.deploying(t, [t, 'minecraft:emerald']),
   event.recipes.create.deploying(t, [t, 'minecraft:slime_ball'])
 ]
-netherrackSteps.push(event.recipes.create.deploying(t, [t, 'minecraft:magma_cream']))
+netherrackSteps.push(event.recipes.create.deploying(t, [t, 'tconstruct:blood_slime_ball']))
 netherrackSteps.push(
   event.recipes.create.deploying(t, [t, 'minecraft:pink_terracotta']),
   event.recipes.create.deploying(t, [t, 'minecraft:nether_bricks']),

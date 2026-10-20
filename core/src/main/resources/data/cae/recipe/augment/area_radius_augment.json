@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "IXI",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "create:iron_sheet"
+    },
+    "I": {
+      "tag": "c:ingots/tin"
+    },
+    "X": {
+      "item": "create:electron_tube"
+    }
+  },
+  "result": {
+    "id": "cae:area_radius_augment",
+    "count": 1
+  }
+}

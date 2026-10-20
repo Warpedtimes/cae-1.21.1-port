@@ -10,7 +10,15 @@
     "FtbBackupsHandlerMixin",
     "FtbBackupsFileUtilsMixin",
     "DhChunkyAccessorMixin",
-    "BwgPalmSaplingMixin"
+    "BwgPalmSaplingMixin",
+    "BeaconBlockEntityAccessor",
+    "VolcanicSourcelinkLilyMixin",
+    "FtbQuestsTasklessMixin",
+    "PncMenuBlockEntityMixin",
+    "FaPermafrostBucketMixin"
+  ],
+  "client": [
+    "PncCreativeIronScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

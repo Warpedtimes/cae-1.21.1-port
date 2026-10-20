@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,active=false": { "model": "cae:block/device_fisher" },
+    "facing=south,active=false": { "model": "cae:block/device_fisher", "y": 180 },
+    "facing=west,active=false": { "model": "cae:block/device_fisher", "y": 270 },
+    "facing=east,active=false": { "model": "cae:block/device_fisher", "y": 90 },
+    "facing=north,active=true": { "model": "cae:block/device_fisher_active" },
+    "facing=south,active=true": { "model": "cae:block/device_fisher_active", "y": 180 },
+    "facing=west,active=true": { "model": "cae:block/device_fisher_active", "y": 270 },
+    "facing=east,active=true": { "model": "cae:block/device_fisher_active", "y": 90 }
+  }
+}

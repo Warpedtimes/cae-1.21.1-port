@@ -377,7 +377,7 @@
 			tasks: [{
 				id: "4FD18470D3FC9859"
 				type: "item"
-				item: "minecraft:elytra"
+				item: "magicfeather:magicfeather"
 			}]
 		}
 		{
@@ -646,12 +646,12 @@
 		{
 			x: 13.0d
 			y: -6.0d
-			description: ["You can heat Create Steam Engines with Pneumaticcraft! Put a Heat Pipe directly under the Fluid Tank and feed it PneumaticCraft heat: 100 C is passive heat, 200 C kindled, 300 C seething (a Blaze Burner's levels). The hotter it runs, the more heat it uses."]
+			description: ["You can heat Create Steam Engines with Pneumaticcraft!"]
 			id: "41474C57E044994B"
 			tasks: [{
 				id: "63EC1E041F8BFE36"
 				type: "item"
-				item: "pneumaticcraft:heat_pipe"
+				item: "compressedcreativity:heater"
 			}]
 		}
 		{

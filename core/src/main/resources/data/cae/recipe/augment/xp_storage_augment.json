@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " i ",
+    "iCi",
+    " i "
+  ],
+  "key": {
+    "i": {
+      "tag": "c:nuggets/gold"
+    },
+    "C": {
+      "item": "cae:xp_crystal"
+    }
+  },
+  "result": {
+    "id": "cae:xp_storage_augment",
+    "count": 1
+  }
+}

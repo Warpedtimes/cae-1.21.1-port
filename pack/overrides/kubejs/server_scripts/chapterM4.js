@@ -157,9 +157,11 @@ LevelEvents.tick(event => {
             pos.popItem('forbidden_arcanus:stellarite_piece')
         }
         // port: the original used event.entity here, which a level tick doesn't have
-        let glow = pos.createEntity("minecraft:tnt") // 1211: a vanilla primed TNT tagged cae_glow; thermalReplacements.js applies the glowstone effect
+        // 1211: a vanilla primed TNT tagged cae_glow, drawn as the Radiant Explosive; startup_scripts/gaps2Explosives.js applies the
+        // glowstone effect. The 1.18.2 entity was created with ThermalTNTEntity's default fuse, 80 ticks (it was 60 here before).
+        let glow = pos.createEntity("minecraft:tnt")
         glow.addTag('cae_glow')
-        glow.mergeNbt({fuse: 60})
+        glow.mergeNbt({fuse: 80, block_state: {Name: 'cae:glowstone_tnt'}})
         glow.setPosition(Orb.x, Orb.y, Orb.z)
         glow.spawn()
 

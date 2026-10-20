@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cae:block/tinker_bench_top",
+    "down": "cae:block/tinker_bench_bottom",
+    "up": "cae:block/tinker_bench_top",
+    "north": "cae:block/tinker_bench_n",
+    "east": "cae:block/tinker_bench_ew",
+    "south": "cae:block/tinker_bench_s",
+    "west": "cae:block/tinker_bench_ew"
+  }
+}

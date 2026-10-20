@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/mossy_template_wall_side_tall",
+  "textures": {
+    "wall": "minecraft:block/mossy_cobblestone",
+    "overlay": "cae:block/restored_look/minecraft/block/cobblestone_moss"
+  }
+}

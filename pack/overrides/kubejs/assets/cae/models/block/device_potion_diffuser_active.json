@@ -1,9 +1,0 @@
-{
-  "parent": "cae:block/device_potion_diffuser",
-  "textures": {
-    "north": "cae:block/device_potion_diffuser_active",
-    "south": "cae:block/device_potion_diffuser_side_active",
-    "east": "cae:block/device_potion_diffuser_side_active",
-    "west": "cae:block/device_potion_diffuser_side_active"
-  }
-}

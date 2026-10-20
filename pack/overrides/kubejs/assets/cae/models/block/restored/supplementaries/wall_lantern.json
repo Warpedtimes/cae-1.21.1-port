@@ -1,0 +1,243 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "1": "cae:block/restored/supplementaries/wall_lanterns/wall_lantern",
+    "particle": "cae:block/restored/supplementaries/wall_lanterns/wall_lantern",
+    "lantern": "cae:block/restored/chipped/soul_lantern/soul_lantern_1"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        13,
+        6
+      ],
+      "to": [
+        9,
+        15,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          13.75,
+          8.25
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            14,
+            2,
+            16,
+            4
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            8,
+            0,
+            16,
+            2
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            8,
+            0,
+            16,
+            2
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            8,
+            0,
+            16,
+            2
+          ],
+          "rotation": 270,
+          "texture": "#1"
+        },
+        "down": {
+          "uv": [
+            8,
+            0,
+            16,
+            2
+          ],
+          "rotation": 90,
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        11,
+        14
+      ],
+      "to": [
+        10,
+        16,
+        16
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          13.75,
+          8.25
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            12,
+            11,
+            16,
+            16
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            10,
+            11,
+            12,
+            16
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            12,
+            11,
+            16,
+            16
+          ],
+          "texture": "#1",
+          "cullface": "south"
+        },
+        "west": {
+          "uv": [
+            10,
+            11,
+            12,
+            16
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            12,
+            9,
+            16,
+            11
+          ],
+          "rotation": 180,
+          "texture": "#1"
+        },
+        "down": {
+          "uv": [
+            12,
+            9,
+            16,
+            11
+          ],
+          "rotation": 180,
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "from": [
+        -4,
+        2,
+        13
+      ],
+      "to": [
+        4,
+        13,
+        13
+      ],
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          0,
+          2,
+          2
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            5,
+            16,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "south": {
+          "uv": [
+            8,
+            5,
+            16,
+            16
+          ],
+          "texture": "#lantern"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        9
+      ],
+      "to": [
+        0,
+        13,
+        17
+      ],
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          0,
+          2,
+          2
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            8,
+            5,
+            16,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "west": {
+          "uv": [
+            8,
+            5,
+            16,
+            16
+          ],
+          "texture": "#lantern"
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

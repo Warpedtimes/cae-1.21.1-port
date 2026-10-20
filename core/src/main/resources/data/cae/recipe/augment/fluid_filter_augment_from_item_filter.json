@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cae:item_filter_augment"
+    }
+  ],
+  "result": {
+    "id": "cae:fluid_filter_augment",
+    "count": 1
+  }
+}

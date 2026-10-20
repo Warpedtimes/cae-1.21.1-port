@@ -1,0 +1,455 @@
+{
+ "comment": "Trunk, leaves, fluid and mB per cycle of every tree the Arboreal Extractor taps. First 42 rows: the pack kubejs/data/thermal/recipe/tree_extractor; the rest Thermal Expansion 9.2.2 / Thermal Integration 9.2.1 and port additions.",
+ "rows": [
+  {
+   "trunk": "architects_palette:twisted_log",
+   "leaves": "architects_palette:twisted_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "ars_nouveau:green_archwood_log",
+   "leaves": "ars_nouveau:green_archwood_leaves",
+   "fluid": "kubejs:flourishing_juice",
+   "amount": 25
+  },
+  {
+   "trunk": "ars_nouveau:purple_archwood_log",
+   "leaves": "ars_nouveau:purple_archwood_leaves",
+   "fluid": "kubejs:vexing_juice",
+   "amount": 25
+  },
+  {
+   "trunk": "ars_nouveau:red_archwood_log",
+   "leaves": "ars_nouveau:red_archwood_leaves",
+   "fluid": "minecraft:lava",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:dead_log",
+   "leaves": "biomesoplenty:dead_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:palm_log",
+   "leaves": "biomesoplenty:palm_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:blue_enchanted_log",
+   "leaves": "biomeswevegone:blue_enchanted_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:fir_log",
+   "leaves": "biomeswevegone:fir_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:green_enchanted_log",
+   "leaves": "biomeswevegone:green_enchanted_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:holly_log",
+   "leaves": "biomeswevegone:holly_berry_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:holly_log",
+   "leaves": "biomeswevegone:holly_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:jacaranda_log",
+   "leaves": "biomeswevegone:flowering_indigo_jacaranda_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:jacaranda_log",
+   "leaves": "biomeswevegone:indigo_jacaranda_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:maple_log",
+   "leaves": "biomeswevegone:maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:maple_log",
+   "leaves": "biomeswevegone:red_maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:palm_log",
+   "leaves": "biomeswevegone:palm_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:pine_log",
+   "leaves": "biomeswevegone:araucaria_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:pine_log",
+   "leaves": "biomeswevegone:pine_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:rainbow_eucalyptus_log",
+   "leaves": "biomeswevegone:rainbow_eucalyptus_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:skyris_log",
+   "leaves": "biomeswevegone:green_apple_skyris_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:skyris_log",
+   "leaves": "biomeswevegone:skyris_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:zelkova_log",
+   "leaves": "biomeswevegone:brown_zelkova_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:zelkova_log",
+   "leaves": "biomeswevegone:zelkova_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "forbidden_arcanus:aurum_log",
+   "leaves": "forbidden_arcanus:aurum_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "integrateddynamics:menril_log",
+   "leaves": "integrateddynamics:menril_leaves",
+   "fluid": "integrateddynamics:menril_resin",
+   "amount": 25
+  },
+  {
+   "trunk": "integrateddynamics:menril_log_filled",
+   "leaves": "integrateddynamics:menril_leaves",
+   "fluid": "integrateddynamics:menril_resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomeswevegone:brown_birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomeswevegone:orange_birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomeswevegone:red_birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomeswevegone:yellow_birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:dark_oak_log",
+   "leaves": "biomesoplenty:orange_maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomeswevegone:brown_oak_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomeswevegone:orange_oak_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomeswevegone:orchard_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomeswevegone:red_oak_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:spruce_log",
+   "leaves": "biomeswevegone:blue_spruce_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:spruce_log",
+   "leaves": "biomeswevegone:orange_spruce_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:spruce_log",
+   "leaves": "biomeswevegone:red_spruce_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:spruce_log",
+   "leaves": "biomeswevegone:yellow_spruce_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "quark:blossom_log",
+   "leaves": "quark:blue_blossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "quark:blossom_log",
+   "leaves": "quark:lavender_blossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "quark:blossom_log",
+   "leaves": "quark:red_blossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "quark:blossom_log",
+   "leaves": "quark:yellow_blossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "minecraft:oak_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "minecraft:birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:spruce_log",
+   "leaves": "minecraft:spruce_leaves",
+   "fluid": "cae:resin",
+   "amount": 50
+  },
+  {
+   "trunk": "minecraft:acacia_log",
+   "leaves": "minecraft:acacia_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:dark_oak_log",
+   "leaves": "minecraft:dark_oak_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:fir_log",
+   "leaves": "biomesoplenty:fir_leaves",
+   "fluid": "cae:resin",
+   "amount": 50
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomesoplenty:flowering_oak_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:hellbark_log",
+   "leaves": "biomesoplenty:hellbark_leaves",
+   "fluid": "minecraft:lava",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:jacaranda_log",
+   "leaves": "biomesoplenty:jacaranda_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:magic_log",
+   "leaves": "biomesoplenty:magic_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:mahogany_log",
+   "leaves": "biomesoplenty:mahogany_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomesoplenty:red_maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:maple_log",
+   "leaves": "biomesoplenty:red_maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomesoplenty:orange_maple_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:maple_log",
+   "leaves": "biomesoplenty:orange_maple_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomesoplenty:yellow_maple_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:maple_log",
+   "leaves": "biomesoplenty:yellow_maple_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:oak_log",
+   "leaves": "biomesoplenty:origin_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:palm_log",
+   "leaves": "biomesoplenty:palm_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:cherry_log",
+   "leaves": "minecraft:cherry_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:cherry_log",
+   "leaves": "biomesoplenty:snowblossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:birch_log",
+   "leaves": "biomesoplenty:rainbow_birch_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:redwood_log",
+   "leaves": "biomesoplenty:redwood_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:umbran_log",
+   "leaves": "biomesoplenty:umbran_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomesoplenty:willow_log",
+   "leaves": "biomesoplenty:willow_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "minecraft:mangrove_log",
+   "leaves": "minecraft:mangrove_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:jacaranda_log",
+   "leaves": "biomeswevegone:jacaranda_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:jacaranda_log",
+   "leaves": "biomeswevegone:flowering_jacaranda_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:maple_log",
+   "leaves": "biomeswevegone:silver_maple_leaves",
+   "fluid": "cae:sap",
+   "amount": 25
+  },
+  {
+   "trunk": "biomeswevegone:skyris_log",
+   "leaves": "biomeswevegone:flowering_skyris_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "quark:blossom_log",
+   "leaves": "quark:orange_blossom_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  },
+  {
+   "trunk": "forbidden_arcanus:aurum_log",
+   "leaves": "forbidden_arcanus:nuggety_aurum_leaves",
+   "fluid": "cae:resin",
+   "amount": 25
+  }
+ ]
+}

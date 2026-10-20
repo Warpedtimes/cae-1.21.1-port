@@ -1,0 +1,7 @@
+{
+  "parent": "cae:block/device_fisher",
+  "textures": {
+    "up": "cae:block/device_fisher_top_active",
+    "north": "cae:block/device_fisher_active"
+  }
+}

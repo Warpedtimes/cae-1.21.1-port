@@ -1,0 +1,57 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "forbidden_arcanus:edelwood_bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "forbidden_arcanus:edelwood_lava_bucket",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "options": "forbidden_arcanus:permafrost"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 43
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "forbidden_arcanus:bat_wing",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 2.0
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 30
+        }
+      ]
+    }
+  ]
+}

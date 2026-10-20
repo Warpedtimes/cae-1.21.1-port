@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "particle": "cae:block/phytosoil",
+    "dirt": "cae:block/phytosoil",
+    "top": "cae:block/phytosoil_tilled"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/boiler",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/copper_boiler",
+    "particle": "cae:block/restored/davebuildingmod/fluid_tank",
+    "cover": "cae:block/restored/davebuildingmod/copper_boiler"
+  },
+  "render_type": "minecraft:cutout"
+}

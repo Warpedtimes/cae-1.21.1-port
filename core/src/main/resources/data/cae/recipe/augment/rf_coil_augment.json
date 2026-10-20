@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "SXS",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "S": {
+      "tag": "c:ingots/iron"
+    },
+    "X": {
+      "item": "mekanismgenerators:electromagnetic_coil"
+    }
+  },
+  "result": {
+    "id": "cae:rf_coil_augment",
+    "count": 1
+  }
+}

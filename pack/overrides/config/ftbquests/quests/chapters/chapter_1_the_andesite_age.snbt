@@ -827,7 +827,6 @@
 			y: 0.0d
 			shape: "diamond"
 			dependencies: ["424889E3B5E01EBB"]
-			optional: true
 			id: "4E6D567989DB1215"
 		}
 		{

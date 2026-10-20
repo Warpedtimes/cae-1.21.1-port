@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "cae:phytosoil",
+    "cae:phytosoil_tilled"
+  ]
+}

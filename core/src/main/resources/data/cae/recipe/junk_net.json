@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "n#n",
+    "#S#",
+    "n#n"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:strings"
+    },
+    "n": {
+      "tag": "c:nuggets/iron"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "cae:junk_net",
+    "count": 1
+  }
+}

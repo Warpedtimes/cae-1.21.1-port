@@ -26,7 +26,9 @@ public final class CaeCreativeTab {
                         .map(e -> (Item) e.get()).collect(Collectors.toSet());
                 BuiltInRegistries.ITEM.entrySet().stream()
                         .filter(e -> e.getKey().location().getNamespace().equals(Cae.ID)
-                                || e.getKey().location().getNamespace().equals(Tiab.NAMESPACE))
+                                || e.getKey().location().getNamespace().equals(Tiab.NAMESPACE)
+                                || e.getKey().location().getNamespace().equals(com.caeport.cae.feather.MagicFeather.NAMESPACE)
+                                || e.getKey().location().getNamespace().equals(com.caeport.cae.heater.HeaterRegistry.NAMESPACE))
                         .filter(e -> !registrate.contains(e.getValue()))
                         .sorted((a, b) -> a.getKey().location().compareTo(b.getKey().location()))
                         .forEach(e -> output.accept(e.getValue()));

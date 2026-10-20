@@ -8,12 +8,14 @@
 //          cardinal, ladder (cardinal + thin box + climbable tag), vslab (cardinal + slab type + half box), slab, stairs,
 //          wall, fence, carpet, trapdoor, door, button, decor / decor_block (furniture-like models such as Dave's
 //          skeletons and books: turned (cardinal) or not, without collision); vanilla classes through createCustom: pane
-//          (StainedGlassPaneBlock), chain (ChainBlock)
+//          (StainedGlassPaneBlock), chain (ChainBlock); shaped: the core mod's RestoredShapeBlock (Facing4, Facing6, AxisBlock,
+//          FaceFacing, Plain) with the boxes, hardness, light and collision the 1.18.2 class gave it (tools/restore_blocks.py SHAPED)
 //   base   the vanilla block whose properties are copied (hardness, blast resistance, sound, light, map colour, whether
 //          it needs a tool; KubeJSBlockProperties copies every field); its tool tags are added in server_scripts/restoredBlocks.js
 //   render solid | cutout | cutout_mipped | translucent (from the textures; the models carry it as render_type too,
 //          anything but solid also turns occlusion off)
-//   extra  tint ('foliage' / 'grass' / '#rrggbb'), color (a pane's dye colour), box (a vertical slab's box facing north)
+//   extra  tint ('foliage' / 'grass' / '#rrggbb'), color (a pane's dye colour), box (a vertical slab's box facing north; a plant's
+//          outline), light (a plant's light level), age (a plant with an age 0..3 state), cls + spec (shaped), noitem
 // Assets: kubejs/assets/<ns>/{blockstates,models/item} and kubejs/assets/cae/{models,textures}/block/restored/<ns>.
 // Tags and recipes (Chipped variants: stonecutter from and back to the base block, as the Chipped workbench allowed;
 // the others: their 1.18.2 recipe): server_scripts/restoredBlocks.js. Every row is guarded: a failing row is logged
@@ -50,9 +52,9 @@ const CAE_RESTORED = [
     ["chipped:andesite_67", "basic", "minecraft:andesite", "Rocky Andesite", "solid"],
     ["davebuildingmod:light_gray_steel_slab", "slab", "minecraft:iron_block", "Light Gray Steel Slab", "solid"],
     ["davebuildingmod:steel_pillar", "pillar", "minecraft:iron_block", "Steel Pillar", "solid"],
-    ["byg:ether_bulbs_block", "plant", "minecraft:shroomlight", "Ether Bulbs Block", "cutout"],
+    ["byg:ether_bulbs_block", "plant", "minecraft:shroomlight", "Ether Bulbs Block", "cutout", {"box": [4, 9, 4, 12, 16, 12], "light": 15, "age": 3}],
     ["byg:warped_soul_soil", "basic", "minecraft:soul_soil", "Warped Soul Soil", "solid"],
-    ["byg:weeping_roots_plant", "plant", "minecraft:hanging_roots", "Weeping Roots Plant", "cutout"],
+    ["byg:weeping_roots_plant", "plant", "minecraft:hanging_roots", "Weeping Roots Plant", "cutout", {"box": [1, 0, 1, 15, 16, 15]}],
     ["davebuildingmod:steel_seemless", "basic", "minecraft:iron_block", "Seamless Steel", "solid"],
     ["infernalexp:soul_slate", "basic", "minecraft:deepslate", "Soul Slate", "solid"],
     ["chipped:quartz_block_4", "basic", "minecraft:quartz_block", "Centered Quartz Block", "solid"],
@@ -61,7 +63,7 @@ const CAE_RESTORED = [
     ["dustrial_decor:sheet_metal_plating", "basic", "minecraft:iron_block", "Sheet Metal Plating", "solid"],
     ["forbidden_arcanus:petrified_root", "decor_block", "minecraft:mangrove_roots", "Petrified Root", "solid"],
     ["davebuildingmod:full_log_pile", "pillar", "minecraft:oak_log", "Log Pile", "solid"],
-    ["byg:weeping_roots", "plant", "minecraft:hanging_roots", "Weeping Roots", "cutout"],
+    ["byg:weeping_roots", "plant", "minecraft:hanging_roots", "Weeping Roots", "cutout", {"box": [4, 9, 4, 12, 16, 12], "light": 14}],
     ["chipped:stripped_spruce_log_13", "pillar", "minecraft:stripped_spruce_log", "Stripped Spruce Log", "solid"],
     ["chipped:spruce_log_6", "pillar", "minecraft:spruce_log", "Flowering Spruce Log", "solid"],
     ["chipped:green_terracotta_52", "basic", "minecraft:green_terracotta", "Vertical Green Terracotta Bricks", "solid"],
@@ -76,10 +78,11 @@ const CAE_RESTORED = [
     ["dustrial_decor:cast_iron_balustrade", "pane", "minecraft:iron_bars", "Cast Iron Balustrade", "cutout", {"color": "white"}],
     ["chipped:light_gray_terracotta_54", "basic", "minecraft:light_gray_terracotta", "Light Gray Terracotta Bricks", "solid"],
     ["infernalexp:soul_slate_brick_stairs", "stairs", "minecraft:deepslate_brick_stairs", "Soul Slate Brick Stairs", "solid"],
-    ["dustrial_decor:large_chain", "chain", "minecraft:chain", "Large Chain", "cutout"],
-    ["byg:imparius_vine_plant", "plant", "minecraft:twisting_vines_plant", "Imparius Vine Plant", "cutout"],
+    ["dustrial_decor:large_chain", "shaped", "minecraft:chain", "Large Chain", "cutout", {"cls": "AxisBlock", "spec": {"props": {}, "shapes": {"x": {"add": [[0, 4.5, 4.5, 16, 11.5, 11.5]]}, "z": {"add": [[4.5, 4.5, 0, 11.5, 11.5, 16]]}, "y": {"add": [[4.5, 0, 4.5, 11.5, 16, 11.5]]}}}}],
+    ["byg:imparius_vine_plant", "plant", "minecraft:twisting_vines_plant", "Imparius Vine Plant", "cutout", {"box": [1, 0, 1, 15, 16, 15]}],
     ["dustrial_decor:chain_trapdoor", "trapdoor", "minecraft:iron_trapdoor", "Chain Link Trapdoor", "cutout"],
     ["chipped:white_terracotta_59", "basic", "minecraft:white_terracotta", "Mixed White Terracotta Bricks", "solid"],
+    ["davebuildingmod:vent_straight", "shaped", "minecraft:iron_block", "Vent Straight", "solid", {"cls": "Facing6", "spec": {"props": {"hardness": 3, "resistance": 6, "tool": true, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 2, 0, 14, 14, 16]]}, "south": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 2, 0, 14, 14, 16]]}, "east": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 2, 16, 14, 14]]}, "west": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 2, 16, 14, 14]]}, "up": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 14, 16, 14]]}, "down": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 14, 16, 14]]}}}}],
     ["infernalexp:soul_soil_slab", "slab", "minecraft:soul_soil", "Soul Soil Slab", "solid"],
     ["davebuildingmod:polished_steel_plating", "basic", "minecraft:iron_block", "Polished Steel Plating", "solid"],
     ["tconstruct:soul_glass_pane", "pane", "minecraft:brown_stained_glass_pane", "Soul Glass Pane", "translucent", {"color": "brown"}],
@@ -93,10 +96,10 @@ const CAE_RESTORED = [
     ["davebuildingmod:steel_mesh_trapdoor", "trapdoor", "minecraft:iron_block", "Steel Mesh Trapdoor", "cutout"],
     ["dustrial_decor:sheet_metal_treading", "basic", "minecraft:iron_block", "Sheet Metal Treading", "solid"],
     ["byg:raw_quartz_block", "basic", "minecraft:quartz_block", "Raw Quartz Block", "solid"],
-    ["dustrial_decor:large_gold_chain", "chain", "minecraft:chain", "Large Gold Chain", "cutout"],
+    ["dustrial_decor:large_gold_chain", "shaped", "minecraft:chain", "Large Gold Chain", "cutout", {"cls": "AxisBlock", "spec": {"props": {}, "shapes": {"x": {"add": [[0, 4.5, 4.5, 16, 11.5, 11.5]]}, "z": {"add": [[4.5, 4.5, 0, 11.5, 11.5, 16]]}, "y": {"add": [[4.5, 0, 4.5, 11.5, 16, 11.5]]}}}}],
     ["createdeco:cracked_red_brick_tiles_slab_vert", "vslab", "minecraft:bricks", "Cracked Red Brick Tiles Vertical Slab", "solid", {"box": [0, 0, 0, 16, 16, 8]}],
     ["davebuildingmod:purple_steel_slab", "slab", "minecraft:iron_block", "Purple Steel Slab", "solid"],
-    ["davebuildingmod:log_pile_2_bottom", "decor", "minecraft:oak_log", "Log Pile Bottom", "cutout"],
+    ["davebuildingmod:log_pile_2_bottom", "shaped", "minecraft:oak_log", "Log Pile Bottom", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 0, 16, 7, 16]]}, "east": {"add": [[0, 0, 0, 16, 7, 16]]}, "south": {"add": [[0, 0, 0, 16, 7, 16]]}, "west": {"add": [[0, 0, 0, 16, 7, 16]]}}}}],
     ["davebuildingmod:steel_plating", "basic", "minecraft:iron_block", "Steel Plating", "solid"],
     ["createdeco:cast_iron_sheet_slab_vert", "vslab", "minecraft:iron_block", "Cast Iron Sheet Slab Vert", "solid", {"box": [0, 0, 0, 16, 16, 8]}],
     ["chipped:green_terracotta_30", "basic", "minecraft:green_terracotta", "Vertical Green Terracotta Tiles", "solid"],
@@ -107,17 +110,17 @@ const CAE_RESTORED = [
     ["infernalexp:soul_slate_brick_slab", "slab", "minecraft:deepslate_brick_slab", "Soul Slate Brick Slab", "solid"],
     ["createdeco:worn_long_bricks", "basic", "minecraft:stone_bricks", "Worn Long Bricks", "solid"],
     ["chipped:glass_89", "glass", "minecraft:glass", "Glass", "cutout"],
-    ["byg:imparius_vine", "plant", "minecraft:twisting_vines", "Imparius Vine", "cutout"],
-    ["davebuildingmod:log_pile_chair", "decor", "minecraft:oak_log", "Log Chair", "cutout"],
+    ["byg:imparius_vine", "plant", "minecraft:twisting_vines", "Imparius Vine", "cutout", {"box": [4, 9, 4, 12, 16, 12]}],
+    ["davebuildingmod:log_pile_chair", "shaped", "minecraft:oak_log", "Log Chair", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 0, 16, 7, 16]]}, "east": {"add": [[0, 0, 0, 16, 7, 16]]}, "south": {"add": [[0, 0, 0, 16, 7, 16]]}, "west": {"add": [[0, 0, 0, 16, 7, 16]]}}}}],
     ["createdeco:red_bricks_slab_vert", "vslab", "minecraft:bricks", "Red Bricks Vertical Slab", "solid", {"box": [0, 0, 0, 16, 16, 8]}],
     ["byg:embur_bookshelf", "basic", "minecraft:bookshelf", "Embur Bookshelf", "solid"],
     ["byg:embur_planks", "basic", "minecraft:crimson_planks", "Embur Planks", "solid"],
     ["chipped:stripped_dark_oak_log_6", "pillar", "minecraft:stripped_dark_oak_log", "Stripped Dark Oak Log", "solid"],
-    ["davebuildingmod:log_pile_1_bottom", "decor", "minecraft:oak_log", "Log Pile Bottom", "cutout"],
+    ["davebuildingmod:log_pile_1_bottom", "shaped", "minecraft:oak_log", "Log Pile Bottom", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 0, 16, 7, 16]]}, "east": {"add": [[0, 0, 0, 16, 7, 16]]}, "south": {"add": [[0, 0, 0, 16, 7, 16]]}, "west": {"add": [[0, 0, 0, 16, 7, 16]]}}}}],
     ["chipped:bookshelf_1", "basic", "minecraft:bookshelf", "Messy Bookshelf", "solid"],
     ["davebuildingmod:white_steel_trapdoor", "trapdoor", "minecraft:iron_block", "White Steel Trapdoor", "solid"],
     ["chipped:white_terracotta_58", "basic", "minecraft:white_terracotta", "Tiny White Terracotta Bricks", "solid"],
-    ["davebuildingmod:alarm_sign", "decor", "minecraft:iron_block", "Warning", "cutout"],
+    ["davebuildingmod:alarm_sign", "shaped", "minecraft:iron_block", "Warning", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 0, "resistance": 0, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 15, 16, 16, 16]]}, "east": {"add": [[0, 0, 0, 1, 16, 16]]}, "west": {"add": [[15, 0, 0, 16, 16, 16]]}, "south": {"add": [[0, 0, 0, 16, 16, 1]]}}}}],
     ["chipped:stripped_dark_oak_log_8", "pillar", "minecraft:stripped_dark_oak_log", "Stripped Dark Oak Log", "solid"],
     ["chipped:stripped_dark_oak_log_10", "pillar", "minecraft:stripped_dark_oak_log", "Stripped Dark Oak Log", "solid"],
     ["chipped:stripped_dark_oak_log_3", "pillar", "minecraft:stripped_dark_oak_log", "Stripped Dark Oak Log", "solid"],
@@ -128,7 +131,8 @@ const CAE_RESTORED = [
     ["davebuildingmod:white_steel_tank", "pillar", "minecraft:iron_block", "White Steel Tank", "solid"],
     ["createdeco:copper_sheet_stairs", "stairs", "minecraft:copper_block", "Copper Sheet Stairs", "solid"],
     ["createdeco:cast_iron_sheet_stairs", "stairs", "minecraft:iron_block", "Cast Iron Sheet Stairs", "solid"],
-    ["davebuildingmod:skeleton_1", "decor", "minecraft:bone_block", "Sitting Skeleton", "cutout"],
+    ["davebuildingmod:copper_boiler", "shaped", "minecraft:copper_block", "Copper Boiler", "cutout", {"cls": "AxisBlock", "spec": {"props": {"hardness": 3, "resistance": 6, "tool": true}, "shapes": {"x": {"add": [[0, 0, -8, 16, 16, 24], [0, -8, 0, 16, 24, 16]]}, "y": {"add": [[-8, 0, 0, 24, 16, 16], [0, 0, -8, 16, 16, 24]]}, "z": {"add": [[-8, 0, 0, 24, 16, 16], [0, -8, 0, 16, 24, 16]]}}}}],
+    ["davebuildingmod:skeleton_1", "shaped", "minecraft:bone_block", "Sitting Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}],
     ["davebuildingmod:steel_wall", "wall", "minecraft:iron_block", "Steel Wall", "solid"],
     ["davebuildingmod:biohazard_block", "cardinal", "minecraft:yellow_concrete", "\"Biohazard\" Sign", "solid"],
     ["chipped:bookshelf_2", "basic", "minecraft:bookshelf", "Scholar's Bookshelf", "solid"],
@@ -136,41 +140,45 @@ const CAE_RESTORED = [
     ["davebuildingmod:gray_steel_trapdoor", "trapdoor", "minecraft:iron_block", "Gray Steel Trapdoor", "solid"],
     ["chipped:stripped_spruce_log_14", "pillar", "minecraft:stripped_spruce_log", "Stripped Spruce Log", "solid"],
     ["createdeco:worn_long_bricks_stairs", "stairs", "minecraft:stone_bricks", "Worn Long Bricks Stairs", "solid"],
-    ["dustrial_decor:hook", "decor_block", "minecraft:chain", "Hook", "cutout"],
+    ["dustrial_decor:hook", "shaped", "minecraft:chain", "Hook", "cutout", {"cls": "Plain", "spec": {"props": {}, "shapes": {"*": {"add": [[4.5, 0, 4.5, 11.5, 16, 11.5]]}}}}],
     ["dustrial_decor:gold_chain", "chain", "minecraft:chain", "Gold Chain", "cutout"],
-    ["davebuildingmod:pc_setup", "decor", "minecraft:iron_block", "Computer", "solid"],
+    ["davebuildingmod:pc_setup", "shaped", "minecraft:iron_block", "Computer", "solid", {"cls": "Facing4", "spec": {"props": {"hardness": 1, "resistance": 1, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[2, 0, 2, 14, 5, 14]]}, "east": {"add": [[2, 0, 2, 14, 5, 14]]}, "south": {"add": [[2, 0, 2, 14, 5, 14]]}, "west": {"add": [[2, 0, 2, 14, 5, 14]]}}}}],
     ["davebuildingmod:steel_tiles", "basic", "minecraft:iron_block", "Cut Steel", "solid"],
     ["thermal:potato_block", "basic", "minecraft:oak_planks", "Crate of Potatoes", "solid"],
-    ["davebuildingmod:book_1", "decor", "minecraft:bookshelf", "Books", "cutout"],
+    ["davebuildingmod:book_1", "shaped", "minecraft:bookshelf", "Books", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 0, "resistance": 0, "tool": false, "nocol": true}, "shapes": {"north": {"add": [[4, 0, 4, 12, 5, 12]]}, "east": {"add": [[4, 0, 4, 12, 5, 12]]}, "south": {"add": [[4, 0, 4, 12, 5, 12]]}, "west": {"add": [[4, 0, 4, 12, 5, 12]]}}}}],
     ["chipped:bookshelf_7", "basic", "minecraft:bookshelf", "Explorer's Bookshelf", "solid"],
     ["chipped:stripped_dark_oak_log_7", "pillar", "minecraft:stripped_dark_oak_log", "Stripped Dark Oak Log", "solid"],
+    ["supplementaries:wall_lantern", "shaped", "minecraft:lantern", "Wall Lantern", "cutout", {"cls": "Facing4", "spec": {"props": {"light": 10, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[5, 2, 6, 11, 15.99, 16]]}, "south": {"add": [[5, 2, 0, 11, 15.99, 10]]}, "east": {"add": [[0, 2, 5, 10, 15.99, 11]]}, "west": {"add": [[6, 2, 5, 16, 15.99, 11]]}}}, "noitem": true}],
     ["chipped:glass_pane_10", "pane", "minecraft:glass_pane", "Glass Pane", "cutout", {"color": "white"}],
     ["dustrial_decor:bolted_industrial_iron_slab", "slab", "minecraft:iron_block", "Bolted Industrial Iron Slab", "solid"],
     ["dustrial_decor:rusty_sheet_metal_plating_stairs", "stairs", "minecraft:iron_block", "Rusty Sheet Metal Plating Stairs", "solid"],
     ["createdeco:worn_brick_tiles_slab", "slab", "minecraft:stone_bricks", "Worn Brick Tiles Slab", "solid"],
     ["chipped:red_stained_glass_pane_5", "pane", "minecraft:red_stained_glass_pane", "Raster Red Stained Glass Pane", "translucent", {"color": "red"}],
-    ["byg:thereal_bellflower", "plant", "minecraft:blue_orchid", "Thereal Bellflower", "cutout"],
+    ["davebuildingmod:create_boiler", "shaped", "minecraft:iron_block", "Andesite Boiler", "cutout", {"cls": "AxisBlock", "spec": {"props": {"hardness": 1.5, "resistance": 6, "tool": true}, "shapes": {"x": {"add": [[0, 0, -8, 16, 16, 24], [0, -8, 0, 16, 24, 16]]}, "y": {"add": [[-8, 0, 0, 24, 16, 16], [0, 0, -8, 16, 16, 24]]}, "z": {"add": [[-8, 0, 0, 24, 16, 16], [0, -8, 0, 16, 24, 16]]}}}}],
+    ["byg:thereal_bellflower", "plant", "minecraft:blue_orchid", "Thereal Bellflower", "cutout", {"box": [5, 0, 5, 11, 10, 11]}],
     ["chipped:bookshelf_4", "basic", "minecraft:bookshelf", "Dusty Bookshelf", "solid"],
-    ["davebuildingmod:exit_sign", "decor", "minecraft:iron_block", "Exit Sign", "cutout"],
+    ["davebuildingmod:exit_sign", "shaped", "minecraft:iron_block", "Exit Sign", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 1, "resistance": 1, "tool": false, "nocol": true, "light": 3}, "shapes": {"north": {"add": [[0, 4, 15, 16, 11, 16]]}, "east": {"add": [[0, 4, 0, 1, 11, 16]]}, "west": {"add": [[15, 4, 0, 16, 11, 16]]}, "south": {"add": [[0, 4, 0, 16, 11, 1]]}}}}],
     ["chipped:carved_pumpkin_12", "cardinal", "minecraft:carved_pumpkin", "Carved Pumpkin", "solid"],
-    ["davebuildingmod:vent_t", "decor", "minecraft:iron_bars", "Vent T-Piece", "solid"],
-    ["davebuildingmod:book_2", "decor", "minecraft:bookshelf", "Stacked Books", "cutout"],
+    ["davebuildingmod:vent_t_up", "shaped", "minecraft:iron_block", "Vent T-Piece Horizontal", "solid", {"cls": "FaceFacing", "spec": {"props": {"hardness": 3, "resistance": 6, "tool": true, "nocol": false}, "shapes": {"floor:north": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 14, 16, 16]]}, "wall:north": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 2, 0, 14, 16, 16]]}, "ceiling:north": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 14, 16, 16]]}, "floor:east": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 0, 2, 14, 16, 14]]}, "wall:east": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 2, 16, 16, 14]]}, "ceiling:east": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 0, 2, 14, 16, 14]]}, "floor:west": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 16, 16, 14]]}, "wall:west": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 2, 16, 16, 14]]}, "ceiling:west": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 2, 16, 16, 14]]}, "floor:south": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 0, 14, 16, 14]]}, "wall:south": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 2, 0, 14, 16, 16]]}, "ceiling:south": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 0, 0, 14, 16, 14]]}}}}],
+    ["davebuildingmod:vent_t", "shaped", "minecraft:iron_block", "Vent T-Piece", "solid", {"cls": "Facing4", "spec": {"props": {"hardness": 3, "resistance": 6, "tool": true, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 2, 16, 14, 16]]}, "east": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 0, 14, 14, 16]]}, "west": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[2, 2, 0, 16, 14, 16]]}, "south": {"add": [[0, 0, 0, 16, 16, 16]], "sub": [[0, 2, 0, 16, 14, 14]]}}}}],
+    ["davebuildingmod:book_2", "shaped", "minecraft:bookshelf", "Stacked Books", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 0, "resistance": 0, "tool": false, "nocol": true}, "shapes": {"north": {"add": [[4, 0, 4, 12, 6, 12]]}, "east": {"add": [[4, 0, 4, 12, 6, 12]]}, "south": {"add": [[4, 0, 4, 12, 6, 12]]}, "west": {"add": [[4, 0, 4, 12, 6, 12]]}}}}],
     ["byg:overgrown_crimson_blackstone", "basic", "minecraft:blackstone", "Overgrown Crimson Blackstone", "solid"],
     ["chipped:blackstone_67", "basic", "minecraft:blackstone", "Rocky Blackstone", "solid"],
     ["chipped:bookshelf_3", "basic", "minecraft:bookshelf", "Mage's Bookshelf", "solid"],
     ["chipped:bookshelf_8", "basic", "minecraft:bookshelf", "Organized Bookshelf", "solid"],
     ["createdeco:brass_sheet_slab", "slab", "minecraft:iron_block", "Brass Sheet Slab", "solid"],
-    ["davebuildingmod:skeleton_6", "decor", "minecraft:bone_block", "Decapitated Skeleton", "cutout"],
-    ["davebuildingmod:skeleton_5", "decor", "minecraft:bone_block", "Dismembered Skeleton", "cutout"],
-    ["davebuildingmod:skeleton_2", "decor", "minecraft:bone_block", "Sitting Skeleton", "cutout"],
+    ["davebuildingmod:skeleton_6", "shaped", "minecraft:bone_block", "Decapitated Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}],
+    ["davebuildingmod:skeleton_5", "shaped", "minecraft:bone_block", "Dismembered Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}],
+    ["davebuildingmod:skeleton_2", "shaped", "minecraft:bone_block", "Sitting Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}],
     ["chipped:terracotta_1", "basic", "minecraft:terracotta", "Terracotta Tiles", "solid"],
     ["chipped:bookshelf_14", "basic", "minecraft:bookshelf", "Biologist's Bookshelf", "solid"],
     ["chipped:bookshelf_6", "basic", "minecraft:bookshelf", "Creepy Bookshelf", "solid"],
     ["createdeco:cracked_worn_long_bricks_stairs", "stairs", "minecraft:stone_bricks", "Cracked Worn Long Bricks Stairs", "solid"],
     ["dustrial_decor:industrial_iron_trapdoor", "trapdoor", "minecraft:iron_trapdoor", "Industrial Iron Trapdoor", "solid"],
     ["createdeco:cracked_worn_brick_tiles_stairs", "stairs", "minecraft:stone_bricks", "Cracked Worn Brick Tiles Stairs", "solid"],
-    ["davebuildingmod:skeleton_3", "decor", "minecraft:bone_block", "Laying Skeleton", "cutout"],
-    ["davebuildingmod:skeleton_4", "decor", "minecraft:bone_block", "Laying Skeleton", "cutout"]
+    ["davebuildingmod:helms", "shaped", "minecraft:iron_block", "Helms Wheel", "cutout", {"cls": "Facing6", "spec": {"props": {"hardness": 3, "resistance": 6, "tool": false, "nocol": false}, "shapes": {"north": {"add": [[0, 0, 12, 16, 16, 16]]}, "east": {"add": [[0, 0, 0, 4, 16, 16]]}, "west": {"add": [[12, 0, 0, 16, 16, 16]]}, "up": {"add": [[0, 0, 0, 16, 4, 16]]}, "down": {"add": [[0, 12, 0, 16, 16, 16]]}, "south": {"add": [[0, 0, 0, 16, 16, 4]]}}}}],
+    ["davebuildingmod:skeleton_3", "shaped", "minecraft:bone_block", "Laying Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}],
+    ["davebuildingmod:skeleton_4", "shaped", "minecraft:bone_block", "Laying Skeleton", "cutout", {"cls": "Facing4", "spec": {"props": {"hardness": 2, "resistance": 2, "tool": true, "nocol": true}, "shapes": {"north": {"add": [[0, 0, 0, 16, 4, 16]]}, "east": {"add": [[0, 0, 0, 16, 4, 16]]}, "south": {"add": [[0, 0, 0, 16, 4, 16]]}, "west": {"add": [[0, 0, 0, 16, 4, 16]]}}}}]
 ]
 // ---- END GENERATED
 
@@ -214,6 +222,13 @@ StartupEvents.registry('block', event => {
                 event.createCustom(id, () => new PaneBlock(color, Props.ofFullCopy(base)))
                 return
             }
+            if (type == 'shaped') {
+                // the core mod's RestoredShapeBlock: the outline/collision, hardness, light... the 1.18.2 class gave each state
+                let Shaped = Java.loadClass('com.caeport.cae.block.RestoredShapeBlock$' + extra.cls)
+                let spec = JSON.stringify(extra.spec)
+                event.createCustom(id, () => new Shaped(Props.ofFullCopy(base), spec))
+                return
+            }
             if (type == 'chain') {
                 let ChainBlock = Java.loadClass('net.minecraft.world.level.block.ChainBlock')
                 event.createCustom(id, () => new ChainBlock(Props.ofFullCopy(base)))
@@ -230,9 +245,18 @@ StartupEvents.registry('block', event => {
                 b.renderType(render)
             }
             if (type == 'glass' || type == 'tc_glass') { b.transparent(true) }
-            if (type == 'plant' || type == 'decor' || type == 'decor_block') {
+            if (type == 'plant' || type == 'decor') {
                 b.noCollision()
                 b.notSolid()
+            }
+            // a custom model with a full-block shape (Forbidden Arcanus' petrified root: noOcclusion, full collision)
+            if (type == 'decor_block') { b.notSolid() }
+            if (type == 'plant' && extra.box) { b.box(extra.box[0], extra.box[1], extra.box[2], extra.box[3], extra.box[4], extra.box[5]) }
+            if (extra.light) { b.lightLevel((extra.light + 0.01) / 15) }
+            if (extra.age) {
+                let Age = Java.loadClass('net.minecraft.world.level.block.state.properties.BlockStateProperties').AGE_3
+                b.property(Age)
+                b.defaultState(s => s.set(Age, 0))
             }
             if (type == 'ladder') { b.box(CAE_RST_LADDER_BOX[0], CAE_RST_LADDER_BOX[1], CAE_RST_LADDER_BOX[2], CAE_RST_LADDER_BOX[3], CAE_RST_LADDER_BOX[4], CAE_RST_LADDER_BOX[5]) }
             if (type == 'vslab') {
@@ -256,7 +280,8 @@ StartupEvents.registry('item', event => {
     let Registry = Java.loadClass('net.minecraft.core.registries.BuiltInRegistries')
     let RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
     CAE_RESTORED.forEach(r => {
-        if (r[1] != 'pane' && r[1] != 'chain') { return }
+        if (r[1] != 'pane' && r[1] != 'chain' && r[1] != 'shaped') { return }
+        if (r[5] && r[5].noitem) { return }
         try {
             let id = r[0]
             event.createCustom(id, () => new BlockItem(Registry.BLOCK.getOptional(RL.parse(id)).get(), new ItemProps()))

@@ -1,0 +1,9 @@
+{
+  "parent": "cae:block/restored/davebuildingmod/custom/helms",
+  "textures": {
+    "all": "cae:block/restored/davebuildingmod/helms",
+    "particle": "cae:block/restored/davebuildingmod/helms",
+    "1_2": "cae:block/restored/davebuildingmod/helms"
+  },
+  "render_type": "minecraft:cutout"
+}
