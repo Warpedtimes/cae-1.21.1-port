@@ -180,8 +180,11 @@ let structF = 300;
 LevelEvents.tick(event => {
 
     if (String(event.level.dimension) == 'cae:arcane'){
-        event.level.getBlock(8117,114,10073).set("cae:stc")
-        if (event.level.getBlock(8117,115,10073).id == 'minecraft:barrel') caeStcHatches(event.level)
+        // 1211: once a second, not every tick
+        if (event.level.time % 20 == 0) {
+            event.level.getBlock(8117,114,10073).set("cae:stc")
+            if (event.level.getBlock(8117,115,10073).id == 'minecraft:barrel') caeStcHatches(event.level)
+        }
         if(structF >=1){
             event.server.runCommandSilent(`execute in cae:clearlag run forceload add 6 -8 -3 2`)
             structF--

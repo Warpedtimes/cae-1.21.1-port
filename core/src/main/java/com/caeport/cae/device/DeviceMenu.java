@@ -31,6 +31,8 @@ public class DeviceMenu extends AbstractContainerMenu {
     public static final int BTN_CLEAR_TANK = 10;
     public static final int BTN_CLAIM_XP = 20;
     public static final int BTN_FILTER = 30;
+    public static final int BTN_AUGMENTS_SHOWN = 40;
+    public static final int BTN_AUGMENTS_HIDDEN = 41;
 
     /** where the three augment slots sit while the augment tab is open (Thermal's AugmentPanel at 176, 4 with its slot grid) */
     public static final int[][] AUGMENT_POS = {{209, 37}, {227, 37}, {218, 55}};
@@ -173,6 +175,10 @@ public class DeviceMenu extends AbstractContainerMenu {
         }
         if (id == BTN_FILTER && player instanceof ServerPlayer sp) {
             be.openFilterMenu(sp);
+            return false;
+        }
+        if (id == BTN_AUGMENTS_SHOWN || id == BTN_AUGMENTS_HIDDEN) {
+            augmentsVisible = id == BTN_AUGMENTS_SHOWN;
             return false;
         }
         if (id >= 100) {

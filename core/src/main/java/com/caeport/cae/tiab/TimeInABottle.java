@@ -7,12 +7,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
@@ -51,17 +53,26 @@ public class TimeInABottle extends Item {
         if (level.isClientSide) {
             return;
         }
+        // Only one bottle per player fills, the first one in slot order (main inventory, offhand, armour); the others
+        // keep their time. TIAB emptied the smaller one every 10 s instead, which let bottles with equal time all fill.
+        if (holder instanceof Player player && firstBottle(player) != stack) {
+            return;
+        }
         if (level.getGameTime() % 20 == 0 && stored(stack) < MAX_STORED) {
             setStored(stack, stored(stack) + 20);
         }
-        // Only one bottle per inventory fills: a second one is emptied, so time can't be duplicated.
-        if (level.getGameTime() % 200 == 0 && holder instanceof Player player) {
-            for (ItemStack other : player.getInventory().items) {
-                if (other != stack && other.getItem() == this && stored(stack) < stored(other)) {
-                    setStored(stack, 0);
+    }
+
+    private ItemStack firstBottle(Player player) {
+        Inventory inv = player.getInventory();
+        for (List<ItemStack> part : List.of(inv.items, inv.offhand, inv.armor)) {
+            for (ItemStack s : part) {
+                if (s.getItem() == this) {
+                    return s;
                 }
             }
         }
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -72,7 +83,9 @@ public class TimeInABottle extends Item {
         }
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
-        if (level.getBlockEntity(pos) == null && !state.isRandomlyTicking()) {
+        // only something the accelerator can tick (a chest or sign would take the time and do nothing)
+        BlockEntity target = level.getBlockEntity(pos);
+        if ((target == null || state.getTicker(level, target.getType()) == null) && !state.isRandomlyTicking()) {
             return InteractionResult.FAIL;
         }
         ItemStack stack = context.getItemInHand();

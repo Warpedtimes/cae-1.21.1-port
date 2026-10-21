@@ -93,7 +93,7 @@ public class DeviceScreen extends AbstractContainerScreen<DeviceMenu> {
                 p.h = p.maxH;
             }
         }
-        menu.augmentsVisible = panels.stream().anyMatch(p -> p instanceof AugmentPanel && p.full);
+        setAugmentsVisible(panels.stream().anyMatch(p -> p instanceof AugmentPanel && p.full));
         menu.forceSync();
     }
 
@@ -163,7 +163,19 @@ public class DeviceScreen extends AbstractContainerScreen<DeviceMenu> {
                 yr += p.h;
             }
         }
-        menu.augmentsVisible = panels.stream().anyMatch(p -> p instanceof AugmentPanel && p.full);
+        setAugmentsVisible(panels.stream().anyMatch(p -> p instanceof AugmentPanel && p.full));
+    }
+
+    // the server needs the augment tab's state too, or a shift-click into the augment slots shows a ghost item
+    private void setAugmentsVisible(boolean visible) {
+        if (menu.augmentsVisible == visible) {
+            return;
+        }
+        menu.augmentsVisible = visible;
+        if (minecraft != null && minecraft.gameMode != null) {
+            minecraft.gameMode.handleInventoryButtonClick(menu.containerId,
+                    visible ? DeviceMenu.BTN_AUGMENTS_SHOWN : DeviceMenu.BTN_AUGMENTS_HIDDEN);
+        }
     }
 
     @Override

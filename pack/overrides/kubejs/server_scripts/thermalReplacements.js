@@ -226,7 +226,8 @@ ServerEvents.recipes(event => {
             ;['_corundum_cluster', '_corundum'].forEach(suffix => {
                 const id = 'quark:' + c + suffix
                 if (!Item.exists(id)) { return }
-                event.recipes.create.mixing('2x ' + id, [id, Fluid.of('minecraft:water', 1000)]).id(R('dupe_' + c + suffix))
+                // 1211 substitute: superheated; the 1.18.2 crystallizer was a radiant-tier machine that took power
+                event.recipes.create.mixing('2x ' + id, [id, Fluid.of('minecraft:water', 1000)]).superheated().id(R('dupe_' + c + suffix))
             })
         })
     })
@@ -245,7 +246,8 @@ ServerEvents.recipes(event => {
         flowers.forEach(f => {
             let id = 'minecraft:' + f
             if (!Item.exists(id)) { return }
-            event.recipes.create.mixing('2x ' + id, [id, Fluid.of('minecraft:water', 250)]).id(R('flower_' + f))
+            // 1211 substitute: heated; the insolator took power (radiant tier in 1.18.2), a free copy was too cheap
+            event.recipes.create.mixing('2x ' + id, [id, Fluid.of('minecraft:water', 250)]).heated().id(R('flower_' + f))
         })
     })
 })

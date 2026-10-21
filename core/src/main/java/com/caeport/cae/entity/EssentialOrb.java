@@ -122,8 +122,16 @@ public class EssentialOrb extends Animal implements GeoEntity {
         if (stage == 3) {
             for (ItemEntity item : level().getEntitiesOfClass(ItemEntity.class, new AABB(at).inflate(0.5))) {
                 if (cashout < 7 && SINGULARITY.equals(BuiltInRegistries.ITEM.getKey(item.getItem().getItem()))) {
-                    cashout += item.getItem().getCount();
-                    item.kill();
+                    // take only what the orb still needs (7), not the whole dropped stack
+                    ItemStack s = item.getItem();
+                    int take = Math.min(7 - cashout, s.getCount());
+                    cashout += take;
+                    s.shrink(take);
+                    if (s.isEmpty()) {
+                        item.kill();
+                    } else {
+                        item.setItem(s.copy());
+                    }
                 }
             }
         }

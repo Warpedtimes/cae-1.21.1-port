@@ -6,6 +6,7 @@
 let seededRandom
 let cachedSeed
 let questLists = (global.questLists !== undefined) ? global.questLists : []
+let caeTasksReady = questLists.length > 0
 // not cleared when the scripts load: the level-loaded event fills it once, then the script-triggered `reload` must still see
 // it. The level-loaded event empties it first: the startup global outlives a singleplayer world, so the next world opened in
 // the same game got a second set of lists (the 1.18.2 script reset it there too)
@@ -362,6 +363,12 @@ ItemEvents.rightClicked(event =>{
 	// getCustomData() (KubeJS ComponentFunctions) returns a copy of it, an empty compound when the stack has none.
 	let stackTag = event.item.getCustomData()
 	if (stackTag.isEmpty()) {
+		// the task loot tables only exist after the reload that follows the world load (this script then loads with the
+		// lists already filled)
+		if (!caeTasksReady) {
+			event.player.setStatusMessage("§7The task board is still being written, try again in a moment")
+			return
+		}
 		let itemId = event.item.id
 		if (!event.player.isCreative()) {event.item.count--}
 		event.server.runCommandSilent(`/loot give ${event.player.name.string} loot ${itemId}`)

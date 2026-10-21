@@ -146,8 +146,15 @@ BlockEvents.rightClicked(event =>{
 		event.server.runCommandSilent(`playsound cae:developer player @e[type=player] ${event.player.x} ${event.player.y} ${event.player.z}`)
 	}
     if (event.block.id == 'cae:skystone_catalyst' && event.item.id == "minecraft:wooden_axe") {
-        event.block.set('air')
-        event.block.offset(0,10,0).set('cae:skystone_catalyst')
+        // 1211: only into a free spot inside the world (it overwrote whatever was 10 up, and above the build limit the
+        // catalyst was simply gone); water still counts as free, the point is lifting it out of an ocean
+        let up = event.block.offset(0,10,0)
+        if (up.y < event.level.getMaxBuildHeight() && up.blockState.canBeReplaced()) {
+            event.block.set('air')
+            up.set('cae:skystone_catalyst')
+        } else {
+            event.player.setStatusMessage(Text.red('The catalyst needs free space 10 blocks above it'))
+        }
     }
 	 if (event.block.id == 'minecraft:cartography_table' && event.item.id == "kubejs:portal_actuation_fluid_bucket") {
         // 1211: arcane temples only generate in the Overworld (elsewhere the map came out blank and the table was gone),

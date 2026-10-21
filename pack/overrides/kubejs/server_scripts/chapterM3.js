@@ -92,20 +92,17 @@ BlockEvents.rightClicked(event =>{
       event.block.popItemFromFace("forbidden_arcanus:soul", "up")
   }
 })
-let tick20 = 0
+// port: no '@e[type=...]' selector in KubeJS 6; filter level.entities. 1211: every dimension, once a second each: the
+// 1.18.2 handler ticked in the overworld, but its position-less selector found wraiths in every dimension (they spawn in
+// soul sand valleys). The sand under the wraith counts too, not only the block at its feet.
 LevelEvents.tick(event =>{
-  if (String(event.level.dimension) != 'minecraft:overworld') {return}
-  tick20++
-  if (tick20 == 20) {
-      tick20 = 0
-      //event.server.tell("5 Seconds have passed!")
-      // port: no '@e[type=...]' selector in KubeJS 6; filter level.entities
-      event.level.entities.forEach(Wraith =>{
-        if (String(Wraith.type) != 'quark:wraith') return
-        if (Wraith.block.id == 'forbidden_arcanus:soulless_sand'){
-          Wraith.block.set('minecraft:soul_sand')
-          event.server.runCommandSilent(`playsound cae:wraith_soulconvert block @e[type=player] ${Wraith.block.x} ${Wraith.block.y} ${Wraith.block.z}`)
-      }
-      })
-  }
+  if (event.level.time % 20 != 0) {return}
+  event.level.entities.forEach(Wraith =>{
+    if (String(Wraith.type) != 'quark:wraith') return
+    let sand = Wraith.block.id == 'forbidden_arcanus:soulless_sand' ? Wraith.block : Wraith.block.down
+    if (sand.id == 'forbidden_arcanus:soulless_sand'){
+      sand.set('minecraft:soul_sand')
+      event.server.runCommandSilent(`execute in ${event.level.dimension} run playsound cae:wraith_soulconvert block @a ${sand.x} ${sand.y} ${sand.z}`)
+    }
+  })
 })

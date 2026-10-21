@@ -39,6 +39,15 @@ public class CatalystBlock extends Block {
 
     private static final Map<ResourceKey<Level>, Map<BlockPos, Pending>> PENDING = new HashMap<>();
 
+    /** In singleplayer the map outlives a world: stone queued in one world must not appear in the next one opened. */
+    @net.neoforged.fml.common.EventBusSubscriber(modid = com.caeport.cae.Cae.ID)
+    public static final class PendingReset {
+        @net.neoforged.bus.api.SubscribeEvent
+        public static void onServerStopped(net.neoforged.neoforge.event.server.ServerStoppedEvent event) {
+            PENDING.clear();
+        }
+    }
+
     private final ResourceLocation stone;
 
     public CatalystBlock(Properties properties, ResourceLocation stone) {

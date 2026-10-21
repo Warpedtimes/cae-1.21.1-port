@@ -77,6 +77,9 @@ public class TimeAccelerator extends Entity {
             return;
         }
         for (int i = 0; i < rate(); i++) {
+            if (be != null && (be.isRemoved() || server.getBlockEntity(target) != be)) {
+                break;
+            }
             if (ticker != null) {
                 ticker.tick(server, target, state, be);
             } else if (random.nextInt(TimeInABottle.RANDOM_TICK_ODDS) == 0) {

@@ -142,11 +142,12 @@ public class HeaterBlockEntity extends BlockEntity implements IHaveGoggleInforma
         tooltip.add(Component.literal("    ").append(Component.translatable("compressedcreativity.tooltip.temperature").withStyle(ChatFormatting.GRAY)));
         tooltip.add(Component.literal("     ").append(Component.literal(String.format("%.1f", heatExchanger.getTemperature() - 273.0))
                 .append(Component.translatable("compressedcreativity.unit.temp")).withStyle(ChatFormatting.AQUA)));
-        tooltip.add(Component.literal("    [DEV] Debug info"));
-        tooltip.add(Component.literal(String.format("    Cooling speed: %f heat/tick", getCoolingSpeed())));
-        tooltip.add(Component.literal(String.format("    Heat level: %s", heatLevel)));
-        tooltip.add(Component.literal(String.format("    Thermal capacity: %f", heatExchanger.getThermalCapacity())));
-        tooltip.add(Component.literal(String.format("    Thermal resistance: %f", heatExchanger.getThermalResistance())));
+        if (isPlayerSneaking) { // the mod's debug lines, only while sneaking
+            tooltip.add(Component.literal(String.format("    Cooling speed: %f heat/tick", getCoolingSpeed())));
+            tooltip.add(Component.literal(String.format("    Heat level: %s", heatLevel)));
+            tooltip.add(Component.literal(String.format("    Thermal capacity: %f", heatExchanger.getThermalCapacity())));
+            tooltip.add(Component.literal(String.format("    Thermal resistance: %f", heatExchanger.getThermalResistance())));
+        }
         return true;
     }
 }

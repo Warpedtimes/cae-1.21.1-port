@@ -114,6 +114,10 @@ public class MagicFeatherItem extends Item {
         Data(Player player) {
             this.player = player;
             this.beaconInRange = player.getAbilities().mayfly;
+            // a player who logs in still able to fly (saved by vanilla) had it from the feather: let the first tick take
+            // it away if the feather or beacon is gone, unless the pack's Orb of Temporary Flight is still running
+            this.wasGrantedFlight = player.getAbilities().mayfly && !player.isCreative() && !player.isSpectator()
+                    && player.getPersistentData().getInt("caeOrbFlight") <= 0;
         }
 
         void tick() {
