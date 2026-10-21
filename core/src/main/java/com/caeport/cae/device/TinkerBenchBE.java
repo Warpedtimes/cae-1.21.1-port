@@ -51,7 +51,8 @@ public class TinkerBenchBE extends DeviceBE {
         super(CaeDevices.TINKER_BENCH_BE.get(), pos, state);
         energy = new DeviceEnergy(BASE_CAPACITY, BASE_XFER, this::setChanged);
         slotTinker = inv.getSlots();
-        inv.add(DeviceInventory.Group.INTERNAL, s -> TinkerBenchBE.isAugmentable(s) || hasEnergy(s) || hasFluid(s));
+        // one item, like Thermal's: augments, energy and fluid are written onto the whole stack in this slot
+        inv.add(DeviceInventory.Group.INTERNAL, s -> TinkerBenchBE.isAugmentable(s) || hasEnergy(s) || hasFluid(s)).limit = 1;
         slotCharge = inv.getSlots();
         inv.add(DeviceInventory.Group.INTERNAL, TinkerBenchBE::hasEnergy);
         slotTank = inv.getSlots();

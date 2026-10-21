@@ -4,7 +4,9 @@
 // source), so the server-run command never blocked anything. The team's flag is set directly (it saves and syncs itself).
 let CaeQuestFile = Java.loadClass('dev.ftb.mods.ftbquests.quest.ServerQuestFile')
 function caeBlockRewards(player, blocked) {
-    try { CaeQuestFile.INSTANCE.getOrCreateTeamData(player.uuid).setRewardsBlocked(blocked) } catch (e) { console.warn('structure.js: block rewards: ' + e) }
+    // the Entity overload finds the player's FTB team (a party's own id); the UUID one takes a team id, which is only the
+    // player's uuid while they play solo
+    try { CaeQuestFile.INSTANCE.getOrCreateTeamData(player).setRewardsBlocked(blocked) } catch (e) { console.warn('structure.js: block rewards: ' + e) }
 }
 // 1211: /setblock fails on a chunk that isn't loaded, and the rooms are placed right after a teleport. Load the chunks a room
 // covers (templates are at most 62 blocks wide) before its structure block is set; the void's chunks are empty, so this is cheap.
@@ -159,11 +161,27 @@ PlayerEvents.advancement(event => {
 
 })
 
+// port (1.21.1): the old STC took its fluids from five PneumaticCraft huge tanks and put its output in a barrel; MBD2
+// only does IO through its own hatches, so those six temple blocks become hatches (also in a temple placed before this)
+let CAE_STC_HATCHES = [
+    [8117, 115, 10073, 'cae:item_output_hatch'],
+    [8118, 115, 10071, 'cae:huge_fluid_input_hatch'], [8118, 115, 10075, 'cae:huge_fluid_input_hatch'],
+    [8120, 115, 10070, 'cae:huge_fluid_input_hatch'], [8120, 115, 10076, 'cae:huge_fluid_input_hatch'],
+    [8123, 115, 10073, 'cae:huge_fluid_input_hatch']
+]
+function caeStcHatches(level) {
+    CAE_STC_HATCHES.forEach(h => {
+        let b = level.getBlock(h[0], h[1], h[2])
+        if (b.id == 'minecraft:barrel' || b.id == 'pneumaticcraft:huge_tank') b.set(h[3])
+    })
+}
+
 let structF = 300;
 LevelEvents.tick(event => {
 
     if (String(event.level.dimension) == 'cae:arcane'){
         event.level.getBlock(8117,114,10073).set("cae:stc")
+        if (event.level.getBlock(8117,115,10073).id == 'minecraft:barrel') caeStcHatches(event.level)
         if(structF >=1){
             event.server.runCommandSilent(`execute in cae:clearlag run forceload add 6 -8 -3 2`)
             structF--

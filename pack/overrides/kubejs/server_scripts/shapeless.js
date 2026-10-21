@@ -12,6 +12,9 @@ ServerEvents.recipes(event => {
 
   // port: moved above the andesite alloy recipes below, so the removal can't catch them
   event.remove({output: "create:andesite_alloy"})
+  // 1211: Create: Metallurgy casts a whole andesite alloy block from 90 mB of molten iron/zinc + 1 andesite (9 alloys)
+  event.remove({id: "createmetallurgy:casting_in_basin/andesite_alloy_from_iron"})
+  event.remove({id: "createmetallurgy:casting_in_basin/andesite_alloy_from_zinc"})
   event.shapeless("create:andesite_alloy", ["minecraft:diorite", "minecraft:andesite"]).id('cae:coolrecipe_manual_only')
   event.recipes.create.mixing("4x create:andesite_alloy", ["integrateddynamics:crystalized_menril_chunk", "minecraft:andesite"])
   event.shapeless("2x create:andesite_alloy", ["integrateddynamics:crystalized_menril_chunk", "minecraft:andesite"]).id('cae:supa_coolrecipe_manual_only')

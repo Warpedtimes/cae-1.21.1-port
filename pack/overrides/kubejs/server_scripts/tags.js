@@ -45,7 +45,8 @@ ServerEvents.tags('item', event => {
 
     event.add('cae:skystone', 'ae2:sky_stone_block')
     event.add('cae:skystone', 'cae:sky_stone')
-    event.add("randomium:blacklist", [
+    // 1211: Randomium 1.21 reads randomium:randomium_blacklist (1.18.2: randomium:blacklist)
+    event.add("randomium:randomium_blacklist", [
         /dev/,
         /creative/,
         /test/,

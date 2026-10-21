@@ -6,7 +6,9 @@
 let seededRandom
 let cachedSeed
 let questLists = (global.questLists !== undefined) ? global.questLists : []
-// not cleared on purpose: the level-loaded event fills it once, then the script-triggered `reload` must still see it
+// not cleared when the scripts load: the level-loaded event fills it once, then the script-triggered `reload` must still see
+// it. The level-loaded event empties it first: the startup global outlives a singleplayer world, so the next world opened in
+// the same game got a second set of lists (the 1.18.2 script reset it there too)
 
 console.log(questLists)
 
@@ -203,6 +205,7 @@ LevelEvents.loaded(event => {
 	// port: new java("java.util.Random")(...) -> Java.loadClass
 	let JRandom = Java.loadClass('java.util.Random')
 	seededRandom = new JRandom(cachedSeed)
+	questLists.splice(0, questLists.length)
 
 	//quest types
 	assign(mining, values, seededRandom, "quests:mining_task")

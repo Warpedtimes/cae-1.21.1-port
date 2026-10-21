@@ -22,9 +22,10 @@
 //               (Endermen and Endermites: Enderference for 300 ticks and 4 damage).
 //     explosive Level.explode(power 1.9, no fire, breaks blocks) at the entity.
 //     nuke      DetonateUtils.nuke (see caeNuke).
-//   The 1.18.2 pack's own chapter6.js ran on top of Thermal's ice and fire TNT in the overworld: at fuse <= 6 it replaced
-//   magma blocks within 3 (ice) / stone within 3 (fire) and removed the TNT, so Thermal's own action never ran there. In
-//   every other dimension Thermal's actions ran. This file keeps both.
+//   The 1.18.2 pack's own chapter6.js ran on top of Thermal's ice and fire TNT: at fuse <= 6 it replaced magma blocks
+//   within 3 (ice) / stone within 3 (fire) and removed the TNT, so Thermal's own action never ran for primed TNT. Its
+//   handler ticked in the overworld only, but its '@e[type=...]' selector has no position, so it searched every
+//   dimension (the void's ice room is built for it). Grenades and the other kinds keep Thermal's actions.
 // 1211 substitutes: the primed TNT / grenade entities are vanilla (PrimedTnt, Snowball carrying the grenade item) with a tag
 //   (cae_ice, cae_fire, cae_glow, cae_ender, cae_nuke; cae_glow_small, cae_boom, cae_nuke_small for the grenades); a vanilla
 //   explosion that comes from a tagged TNT is cancelled and replaced by the action. Particles: CoFH's frost / blast wave
@@ -640,11 +641,10 @@ let caeSlimedHolder = null
 function caeDetonate(level, explosive, def, tag, pos) {
     let kind = def.kind
     let R = def.r
-    let overworld = caeDimKey(level) == 'minecraft:overworld'
     let silent = false
     if (kind == 'ice' || kind == 'fire') {
-        if (overworld && def.src == 'tnt') {
-            // the pack's chapter6.js (replaced Thermal's action in the overworld): radius 3 cube, one block type each
+        if (def.src == 'tnt') {
+            // the pack's chapter6.js (replaced Thermal's action in every dimension): radius 3 cube, one block type each
             let bp = explosive.blockPosition()
             let from = kind == 'ice' ? CAE_Blocks.MAGMA_BLOCK : CAE_Blocks.STONE
             let to = kind == 'ice' ? CAE_Blocks.BLUE_ICE.defaultBlockState() : CAE_Blocks.MAGMA_BLOCK.defaultBlockState()

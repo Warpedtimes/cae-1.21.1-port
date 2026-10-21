@@ -53,17 +53,24 @@ ServerEvents.recipes(event => {
         drilling.id(veinId + '_drilling')
     }
     // 1211: the 1.21 vein recipe (createoreexcavation:vein) has no weight field, only placement {spacing, separation, salt} and
-    // a priority, so the original weights (rare = W, mid = W * 0.05, epic = W * 0.4) are mapped onto spacing. One vein is placed
-    // per spacing x spacing grid cell, so density is 1 / spacing^2 and spacing = 128 * sqrt(1000 / weight) keeps the original
-    // relative rarity between veins and tiers (a weight of 1000 is the old 128-block spacing).
-    function spacingOf(weight) {
-        return Math.round(128 * Math.sqrt(1000 / weight))
+    // a priority, so the original weights (rare = W, mid = W * 0.05, epic = W * 0.4) are mapped onto spacing. COE 1.18 picked
+    // one recipe per chunk, weighted, from the veins whose biome tag the chunk had plus an empty entry of weight 5000
+    // (Config.generationChance), so a vein's odds per chunk were weight / (5000 + the weights competing in that biome). COE 1.21
+    // puts each vein on its own grid of spacing x spacing CHUNKS (a vanilla random-spread placement), one per cell, so
+    // spacing = sqrt((5000 + competing weights) / weight) keeps those odds: e.g. iron mid ~10 chunks, jungle iron rare 3.
+    const OVERWORLD_SUBTAGS = ['c:is_jungle', 'c:is_mountain', 'c:is_dry', 'c:is_rare']
+    let tagWeight = {}
+    let addWeight = (tag, w) => { tagWeight[tag] = (tagWeight[tag] || 0) + w }
+    VoidMine.forEach(e => { addWeight(e[6], e[2]); addWeight(e[7], e[2] * 0.05); addWeight(e[8], e[2] * 0.4) })
+    function spacingOf(weight, tag) {
+        let competing = tagWeight[tag] + (OVERWORLD_SUBTAGS.includes(tag) ? tagWeight['c:is_overworld'] : 0)
+        return Math.max(2, Math.round(Math.sqrt((5000 + competing) / weight)))
     }
     function BiomeRecource(Out,Text,Weight,Size1,Size2,Time,B1,B2,Dim,Stress,id)  {
-        Vein(Out,Text,id + '_rare',B1,Size1,Size2,spacingOf(Weight),Time,Stress,false,'createoreexcavation:netherite_drill',Fluid.of('minecraft:lava', 1000))
+        Vein(Out,Text,id + '_rare',B1,Size1,Size2,spacingOf(Weight, B1),Time,Stress,false,'createoreexcavation:netherite_drill',Fluid.of('minecraft:lava', 1000))
         // the original mid tier took the diamond or the netherite drill
-        Vein(Out,Text,id + '_mid',B2,Size1 * 0.3,Size2 * 0.3,spacingOf(Weight * 0.05),Time * 2,Stress * 2,true,['createoreexcavation:diamond_drill', 'createoreexcavation:netherite_drill'],null)
-        Vein(Out,Text,id + '_epic',Dim,Size1 * 0.18,Size2 * 0.18,spacingOf(Weight * 0.4),Time * 4,Stress * 3,true,'#createoreexcavation:drills',null)
+        Vein(Out,Text,id + '_mid',B2,Size1 * 0.3,Size2 * 0.3,spacingOf(Weight * 0.05, B2),Time * 2,Stress * 2,true,['createoreexcavation:diamond_drill', 'createoreexcavation:netherite_drill'],null)
+        Vein(Out,Text,id + '_epic',Dim,Size1 * 0.18,Size2 * 0.18,spacingOf(Weight * 0.4, Dim),Time * 4,Stress * 3,true,'#createoreexcavation:drills',null)
     }
     VoidMine.forEach(element => {
         BiomeRecource(element[0],element[1],element[2],element[3],element[4],element[5],element[6],element[7],element[8],element[9],element[10])

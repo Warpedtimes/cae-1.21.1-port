@@ -1,6 +1,6 @@
 # Create: Arcane Engineering (1.21.1 Port)
 
-Version 1.2.2
+Version 1.2.3
 
 This is an **unofficial community port** of **Create: Arcane Engineering** ported using **AI (CLAUDE)**, a Minecraft modpack made by
 **FortnitePro420Xx**. The original runs on Minecraft 1.18.2 with Forge. This port runs on **Minecraft 1.21.1 with

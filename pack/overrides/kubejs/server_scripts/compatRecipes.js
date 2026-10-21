@@ -615,6 +615,12 @@ ServerEvents.recipes(event => {
     };
 
 
+    // 1211: thermal:rf_coil became Mekanism's electromagnetic coil, whose own recipe needs an energy tablet (infused alloy,
+    // i.e. the radiant-tier metallurgic infuser), so the generator rows below were dead until then. The coil is used
+    // nowhere else, so it gets the RF Coil's recipe (thermal_foundation 1.18.2 rf_coil.json: 1 gold ingot, 2 redstone).
+    event.remove({ id: 'mekanismgenerators:electromagnetic_coil' })
+    event.shaped('mekanismgenerators:electromagnetic_coil', ['  R', ' I ', 'R  '], { I: '#c:ingots/gold', R: '#c:dusts/redstone' })
+        .id('cae:rf_coil')
     const andesite_smithing = [
         ["cae:drill_head", "create:mechanical_drill"], // 1211: thermal
         ["cae:saw_blade", "create:mechanical_saw"], // 1211: thermal
@@ -780,11 +786,12 @@ ServerEvents.recipes(event => {
         ["minecraft:chest", "ae2:chest"],
         ['integratedterminals:part_terminal_storage', 'ae2:terminal'],
         ["mekanismgenerators:electromagnetic_coil", "mekanismgenerators:gas_burning_generator"], // 1211: thermal
-        ["minecraft:nether_bricks", "createmetallurgy:industrial_crucible"], // 1211: thermal
+        // 1211: Thermal's Magma Crucible (nether bricks), Blast Chiller (packed ice) and Fluid Encapsulator (bucket) have no
+        // row: their stand-ins (Metallurgy's industrial crucible and casting table, Create's spout) are made earlier,
+        // the first two ungated like the Tinkers smeltery and casting table they also replace, the spout on the copper
+        // table. A radiant row would delete those recipes, and the spout's un-smithing would turn spouts into radiant machines.
         ["minecraft:bricks", "mekanism:energized_smelter"], // 1211: thermal
-        ["minecraft:packed_ice", "createmetallurgy:casting_table"], // 1211: thermal
         ["minecraft:blaze_rod", "mekanism:resistive_heater"], // 1211: thermal
-        ["minecraft:bucket", "create:spout"], // 1211: thermal
         ["minecraft:compass", "mekanism:isotopic_centrifuge"], // 1211: thermal
         ['#c:glass_blocks', "pneumaticcraft:refinery"], // 1211: thermal
         ["minecraft:flint", "mekanism:crusher"], // 1211: thermal
@@ -934,8 +941,8 @@ ServerEvents.recipes(event => {
 
     const supercriticalcutting = [
         '2x entangled:block',
-        // port: step 5 (Multiblocked2)
-        // Item.of('multiblocked:entity')
+        // port (1.21.1): the particle accelerator's entity part (was multiblocked:entity) is the MBD2 entity hatch
+        'cae:entity_output_hatch'
     ]
     multicut(supercriticalcutting, 'kubejs:supercritical_machine', true)
     const supercriticalmachining = [
@@ -1030,7 +1037,9 @@ ServerEvents.recipes(event => {
     }
     function bookgate(item, ingredients) {
         event.remove({ id: `ars_nouveau:${item}_spell_book` })
-        event.remove({ id: `ars_nouveau:${item}_spell_book_upgrade` })
+        // 1211: Ars Nouveau 5's ids: <tier>_book_upgrade (was <tier>_spell_book_upgrade) and a second novice recipe
+        event.remove({ id: `ars_nouveau:${item}_book_upgrade` })
+        if (item == 'novice') event.remove({ id: 'ars_nouveau:novice_spellbook_alt' })
         event.shapeless(`ars_nouveau:${item}_spell_book`, ingredients)
     }
     bookgate('novice', ['minecraft:book', 'kubejs:sourcegem_fragments'])

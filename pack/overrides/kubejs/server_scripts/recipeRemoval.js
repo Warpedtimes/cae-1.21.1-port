@@ -27,6 +27,10 @@ ServerEvents.recipes(event => {
     event.remove({id: 'minecraft:netherite_drill_smithing'})
     event.remove({id: 'create:crushing/tuff_recycling'})
     event.remove({type: 'createoreexcavation:drilling'})
+    // 1211: COE 1.21 keeps the veins apart from their drilling recipes, so removing the drilling left its 14 default ore
+    // veins generating (and showing on the Vein Finder) with nothing that can drill them. The water vein stays (extractor).
+    ;['coal', 'copper', 'diamond', 'emerald', 'glowstone', 'gold', 'hardened_diamond', 'iron', 'lapis', 'nether_gold',
+        'netherite', 'quartz', 'redstone', 'zinc'].forEach(v => event.remove({id: 'createoreexcavation:ore_vein_type/' + v}))
     event.remove({id: 'ars_nouveau:magebloom_fiber'})
     event.remove({id: 'glassential:glass_ghostly'})
     event.remove({output: 'ars_nouveau:source_gem'})

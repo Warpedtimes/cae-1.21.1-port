@@ -3,12 +3,30 @@ function distance(vector){
 	let x = vector.x * vector.x + vector.y * vector.y + vector.z * vector.z
 	return Math.floor(Math.sqrt(x))
 }
+// 1211: Forbidden Arcanus' orb (gone from FA 2.6) used itself up on right-click and gave 6000 ticks of creative flight
+// (FA config items.orb_of_temporary_flight.time); cae:orb_of_temporary_flight is a plain item, so this does both.
+// Without the shrink every right-click handed out another spawner core shell.
 ItemEvents.rightClicked(event =>{
 	if (event.item.id == 'cae:orb_of_temporary_flight'){
 		if (!event.player.isCreative()) {
+			event.item.shrink(1)
 			event.player.give('pneumaticcraft:spawner_core_shell')
 		}
+		event.player.persistentData.putInt('caeOrbFlight', 6000)
+		caeOrbFlight(event.player, true)
 	}
+})
+function caeOrbFlight(player, on) {
+	if (player.isCreative() || player.isSpectator()) return
+	player.abilities.mayfly = on
+	if (!on) player.abilities.flying = false
+	player.onUpdateAbilities()
+}
+PlayerEvents.tick(event => {
+	let t = event.player.persistentData.getInt('caeOrbFlight')
+	if (t <= 0) return
+	event.player.persistentData.putInt('caeOrbFlight', t - 1)
+	if (t == 1) caeOrbFlight(event.player, false)
 })
 let arcaneblox = ['forbidden_arcanus:arcane_polished_darkstone',"forbidden_arcanus:arcane_crystal_block"]
 let dontIDparts = ["integratedtunnels:part_importer_item","integratedtunnels:part_interface_item","integratedtunnels:part_exporter_item"]
@@ -132,8 +150,14 @@ BlockEvents.rightClicked(event =>{
         event.block.offset(0,10,0).set('cae:skystone_catalyst')
     }
 	 if (event.block.id == 'minecraft:cartography_table' && event.item.id == "kubejs:portal_actuation_fluid_bucket") {
-        event.block.set('air')
-        event.server.runCommandSilent(`execute in ${event.level.dimension} run loot spawn ${event.block.x} ${event.block.y} ${event.block.z} loot cae:temple`)
+        // 1211: arcane temples only generate in the Overworld (elsewhere the map came out blank and the table was gone),
+        // and the map now searches from the table, not from the server's command position (world spawn)
+        if (String(event.level.dimension) != 'minecraft:overworld') {
+            event.player.tell(Text.red('The Arcane Temple Map can only be drawn in the Overworld.'))
+        } else {
+            event.block.set('air')
+            event.server.runCommandSilent(`execute in ${event.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run loot spawn ~ ~ ~ loot cae:temple`)
+        }
     }
 	if (event.item.id == "pneumaticcraft:pneumatic_wrench" && String(event.block.id).startsWith("create:")) {
 		event.player.setStatusMessage('We\'ve prevented this item from interacting with Create components due to a possible Crash.')

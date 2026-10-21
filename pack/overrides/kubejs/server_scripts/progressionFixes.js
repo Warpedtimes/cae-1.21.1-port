@@ -55,4 +55,25 @@ ServerEvents.recipes(event => {
       chance('kubejs:source_time_crystal', 0.02)
     ]
   }).id('cae:progression/source_time_crystal_interaction')
+
+  // ---- Multiblocked2 hatches. The 1.18.2 patterns took items, fluids and energy from any block that had them (chests,
+  // smart chests, depots, tanks, batteries); MBD2 only from its own hatches, which had no recipe, so no machine could
+  // form. Each hatch is made from the kind of block the old pattern took. The entity hatch is the original's
+  // supercritical cutting product (compatRecipes.js); the stress input (cae:create_input) is left out like in 1.18.2:
+  // only the oil pump and tower use it, and they have no recipe.
+  event.shapeless('cae:item_input_hatch', ['create:andesite_casing', 'minecraft:chest', 'minecraft:hopper'])
+    .id('cae:progression/item_input_hatch')
+  event.shapeless('cae:item_output_hatch', ['create:andesite_casing', 'minecraft:chest', 'create:chute'])
+    .id('cae:progression/item_output_hatch')
+  event.shapeless('cae:fluid_input_hatch', ['create:copper_casing', 'create:fluid_tank', 'create:fluid_pipe'])
+    .id('cae:progression/fluid_input_hatch')
+  event.shapeless('cae:fluid_output_hatch', ['create:copper_casing', 'create:fluid_tank', 'create:fluid_valve'])
+    .id('cae:progression/fluid_output_hatch')
+  // the STC's five huge tanks (the sun temple's STC already has its hatches, see structure.js)
+  event.shapeless('cae:huge_fluid_input_hatch', ['cae:fluid_input_hatch', 'pneumaticcraft:huge_tank'])
+    .id('cae:progression/huge_fluid_input_hatch')
+  event.shapeless('cae:energy_input_hatch', ['create:brass_casing', 'integrateddynamics:energy_battery', 'minecraft:redstone'])
+    .id('cae:progression/energy_input_hatch')
+  event.shapeless('cae:energy_output_hatch', ['create:brass_casing', 'integrateddynamics:energy_battery', 'minecraft:redstone_torch'])
+    .id('cae:progression/energy_output_hatch')
 })

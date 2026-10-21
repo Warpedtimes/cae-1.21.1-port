@@ -6,7 +6,8 @@ ServerEvents.recipes(event => {
     event.recipes.create.haunting('forbidden_arcanus:dark_nether_star','minecraft:nether_star')
     // port (1.21.1): ItemStack.withChance() throws on 1.21; KubeJS Create's CreateItem.of(stack, chance) is the replacement
     event.recipes.create.haunting(CreateItem.of('cae:ender_tnt',0.65),'minecraft:tnt') // 1211: thermal
-    event.recipes.create.mixing([Fluid.of('kubejs:portal_actuation_fluid',1),'pneumaticcraft:spawner_core_shell'],[Fluid.of('pneumaticcraft:gasoline',1000),Fluid.of('pneumaticcraft:diesel',800), 'cae:orb_of_temporary_flight']).superheated()
+    // a full bucket per orb run (the quest: "you only have to craft this once"); the 1.18.2 script's amount of 1 was 1 mB
+    event.recipes.create.mixing([Fluid.of('kubejs:portal_actuation_fluid',1000),'pneumaticcraft:spawner_core_shell'],[Fluid.of('pneumaticcraft:gasoline',1000),Fluid.of('pneumaticcraft:diesel',800), 'cae:orb_of_temporary_flight']).superheated()
     event.shaped('pneumaticcraft:spawner_core_shell', [
         'NBN',
         'BSB',

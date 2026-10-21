@@ -47,6 +47,21 @@
       ]
     },
     {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "biomeswevegone:prairie_grass",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
       "rolls": 1,
       "entries": [
         {

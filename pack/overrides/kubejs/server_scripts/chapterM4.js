@@ -91,18 +91,30 @@ EntityEvents.death(event =>{
 
 // 1211: Ars Nouveau 5's whirlisprig and amethyst golem only take damage from players (SummonUtil.canSummonTakeDamage), so
 // Create's crushing wheels can never kill them and the death handler above never sees them. One held by a running crushing
-// wheel controller is crushed here instead: same loot at the same place, as the death would have given.
+// wheel controller is crushed here instead: same loot as the death would have given. discard() skips the death, so it would
+// lose the Charm (the quest promises "its Charm and an Amethyst Cluster"): the summon's own onDispel (the path Ars' dispel spell
+// takes) drops the Charm with its familiar data (plus a golem's held item, and only a tamed whirlisprig's charm) and removes it.
+// Both the Charm and the loot are put in the block below the controller (where Create's wheels put a crushed mob), not inside it,
+// or the controller would take the dropped cluster in and crush it into shards.
 var caeArsCrushLoot = { 'ars_nouveau:whirlisprig': 'cae:whirl', 'ars_nouveau:amethyst_golem': 'cae:golem' }
 LevelEvents.tick(event => {
     if (event.level.time % 10 != 0) return
-    event.level.entities.forEach(e => {
-        let loot = caeArsCrushLoot[String(e.type)]
-        if (!loot || String(e.block.id) != 'create:crushing_wheel_controller') return
-        let controller = e.block.entity
-        if (controller == null || controller.crushingspeed == 0) return
-        event.server.runCommandSilent(`execute in ${event.level.dimension} run loot spawn ${e.x} ${e.y} ${e.z} loot ${loot}`)
-        e.discard()
-    })
+    try {
+        event.level.entities.forEach(e => {
+            let loot = caeArsCrushLoot[String(e.type)]
+            if (!loot || String(e.block.id) != 'create:crushing_wheel_controller') return
+            let controller = e.block.entity
+            if (controller == null || controller.crushingspeed == 0) return
+            let ox = e.block.x + 0.5, oy = e.block.y - 0.75, oz = e.block.z + 0.5
+            e.setPos(ox, oy, oz)
+            try { e.onDispel(null) } catch (err) { console.warn('caeArsCrushLoot: onDispel failed: ' + err) }
+            // a wild whirlisprig's onDispel does nothing (only a tamed one drops its charm): it dies all the same
+            if (e.isAlive()) e.discard()
+            event.server.runCommandSilent(`execute in ${event.level.dimension} run loot spawn ${ox} ${oy} ${oz} loot ${loot}`)
+        })
+    } catch (err) {
+        console.warn('caeArsCrushLoot: ' + err)
+    }
 })
 
 

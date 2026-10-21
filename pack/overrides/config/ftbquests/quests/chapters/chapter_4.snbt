@@ -1080,7 +1080,7 @@
 			shape: "diamond"
 			subtitle: "How am I gonna get all of those Materials renewably? You might ask, well fear not. The Drilling Machine is here! Create a vast network of Trains to unify into your Factory."
 			description: ["Note: Make sure they always have somewhere to deposit too. Or else they will store to many items which will cause a lot of lag."]
-			dependencies: ["3CB202406B401D8B"]
+			dependencies: ["19232B8B77F86AF8"]
 			hide: true
 			id: "675C4C0F98A750CC"
 			tasks: [{

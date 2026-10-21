@@ -48,7 +48,7 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "loot:create/basics/andesite_encased"
+          "value": "loot:create/basic/andesite_encased"
         }
       ]
     },
@@ -69,7 +69,7 @@
         {
           "type": "minecraft:loot_table",
           "weight": 4,
-          "value": "loot:create/brass/brass_mechansim"
+          "value": "loot:create/brass/brass_mechanism"
         },
         {
           "type": "minecraft:loot_table",

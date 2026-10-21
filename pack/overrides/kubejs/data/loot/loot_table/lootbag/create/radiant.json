@@ -47,7 +47,7 @@
         {
           "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "loot:create/basic/create_advanced_basics"
+          "value": "loot:create/basic/advanced_basics"
         }
       ]
     },
@@ -63,7 +63,7 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "loot:create/basics/andesite_encased"
+          "value": "loot:create/basic/andesite_encased"
         }
       ]
     },
@@ -81,7 +81,7 @@
         {
           "type": "minecraft:loot_table",
           "weight": 4,
-          "value": "loot:create/radiant/radiant_mechansim"
+          "value": "loot:create/radiant/radiant_mechanism"
         },
         {
           "type": "minecraft:loot_table",

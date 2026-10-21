@@ -35,17 +35,19 @@ ServerEvents.generateData('after_mods', event => {
             results: [{ id: fluid, amount: amount }]
         })
     }
-    // wraiths and vexes -> liquid resent; Create contraptions -> inertia essence; bees -> honey
-    // Original amounts: 10 mB resent, 10 mB inertia essence, 25 mB honey. Original damage (tinkers.js): wraith/vex/contraptions 0, bee 2
+    // Create contraptions -> inertia essence; bees -> honey. (Wraiths and vexes -> liquid resent is NOT a recipe any more: see resentStream.js.)
+    // Original amounts: 10 mB inertia essence, 25 mB honey. Original damage (tinkers.js): contraptions 0, bee 2
     // (compatRecipes.js; Tinkers' default is 2).
-    // 1211 substitute: damage 1 (original 0) for wraith, vex and the contraptions. Metallurgy's crucible hurts the entity by `damage` every tick
+    // 1211 substitute: no wraith/vex entity_melting recipes. Metallurgy's crucible only pays out when the entity dies, which turned the
+    // 1.18.2 endless name-tagged-wraith stream into 10 mB per kill; resentStream.js adds the 10 mB every 20 ticks to a heated crucible
+    // while a living wraith/vex stands in it, without hurting it. No one-off death payout is kept: 1.18.2 had none, and a recipe makes
+    // the crucible hurt (and kill) the entity.
+    // 1211 substitute: damage 1 (original 0) for the contraptions. Metallurgy's crucible hurts the entity by `damage` every tick
     // and gives the fluid only when the entity dies (CrucibleBlockEntity), whereas Tinkers gives fluid per hit. With 0 the entity takes no damage from the
     // crucible and only dies if the fire it sets (15 ticks) kills it, and a contraption entity can never die that way. The codec accepts 0,
     // so it is valid, but it would not melt anything reliably. Whether a Create contraption entity can die from damage 1 is untested.
     // 1211 substitute: minHeatRequirement 2 for all (Tinkers entity melting had no temperature). 2 is Metallurgy's "heated" level (superheated
     // = 3; the mod's own mob recipes use 6 and 9, which need a big crucible full of burners).
-    entityMelt('wraith', 'quark:wraith', 1, 2, 'kubejs:liquid_resent', 10)
-    entityMelt('vex', 'minecraft:vex', 1, 2, 'kubejs:liquid_resent', 10)
     ;['create:carriage_contraption', 'create:contraption', 'create:gantry_contraption', 'create:stationary_contraption'].forEach(t => {
         entityMelt(t.replace(':', '_'), t, 1, 2, 'kubejs:inertia_essence', 10)
     })
