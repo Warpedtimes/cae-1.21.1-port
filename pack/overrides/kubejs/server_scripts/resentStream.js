@@ -15,6 +15,13 @@ var CAE_RESENT_TYPES = { 'quark:wraith': true, 'minecraft:vex': true }
 var CAE_RESENT_AMOUNT = 10 // mB per entity per pulse (the 1.18.2 recipe)
 var CAE_RESENT_PERIOD = 20 // ticks between pulses (the smeltery's entity interval)
 var CAE_RESENT_MIN_HEAT = 2 // Metallurgy's "heated"
+// 1211: this is the only source of liquid resent, so a crucible it can't read is logged (once) instead of paying nothing quietly
+var CAE_RESENT_WARNED = false
+function caeResentWarn(msg) {
+    if (CAE_RESENT_WARNED) return
+    CAE_RESENT_WARNED = true
+    console.warn('resentStream: ' + msg)
+}
 
 LevelEvents.tick(event => {
     if (event.level.time % CAE_RESENT_PERIOD != 0) return
@@ -23,9 +30,9 @@ LevelEvents.tick(event => {
             if (!CAE_RESENT_TYPES[String(e.type)] || !e.alive) return
             if (String(e.block.id) != 'createmetallurgy:industrial_crucible') return
             let be = e.block.entity
-            if (be == null) return
+            if (be == null) { caeResentWarn('a crucible at ' + e.block.pos + ' has no block entity'); return }
             let ctrl = be.isController() ? be : event.level.getBlockEntity(be.getController())
-            if (ctrl == null || ctrl.foundryData == null) return
+            if (ctrl == null || ctrl.foundryData == null) { caeResentWarn('no controller or foundryData for the crucible at ' + e.block.pos); return }
             if (ctrl.foundryData.getCurrentHeat() < CAE_RESENT_MIN_HEAT) return
             ctrl.getTank().fill(Fluid.of('kubejs:liquid_resent', CAE_RESENT_AMOUNT), CaeResentFluidAction.EXECUTE)
         })

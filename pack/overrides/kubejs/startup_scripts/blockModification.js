@@ -10,7 +10,9 @@
     event.modify('cae:portal_core', block => {
       block.destroySpeed = -1
       block.hasCollision = true
-      block.explosionResistance = -1
+      // 1211: was -1 (as in 1.18.2), which made it weaker than dirt against blasts (vanilla takes (res + 0.3) x 0.3 off the
+      // blast's power); it only exists in the arcane temple, so it resists like bedrock now
+      block.explosionResistance = 3600000
     })
     event.modify('cae:veridium_catalyst', block =>{
       block.destroySpeed = -1

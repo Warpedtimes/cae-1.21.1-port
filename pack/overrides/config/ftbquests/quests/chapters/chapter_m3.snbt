@@ -192,7 +192,7 @@
 		{
 			x: -3.0d
 			y: 1.5d
-			subtitle: "By deploying Arcane Dust onto a Dark Soul, one shall obtain a Corrupted Pixie"
+			subtitle: "By deploying Arcane Crystal Dust onto a Soul, one shall obtain a Corrupted Pixie"
 			dependencies: [
 				"343F18E9136A3324"
 				"3E7D072F1C7A0B14"
@@ -273,7 +273,7 @@
 			title: "Corrupted Pixie Jar"
 			x: 0.5d
 			y: 1.5d
-			subtitle: "Rightclick with a corrupted pixie onto a Utrem Jar. Also works with deployers."
+			subtitle: "The Corrupted Pixie is its own item in this version, no Utrem Jar is needed to hold it. Keep the one you made above and move on."
 			dependencies: [
 				"3D65558184A6EA1E"
 				"29085014F39D0AAD"
@@ -289,7 +289,7 @@
 			title: "Pixie Jar"
 			x: 0.5d
 			y: 3.0d
-			subtitle: "Washing a Corrupted Pixie Jar will purify it, leaving behind a jar with a normal pixie."
+			subtitle: "Washing a Corrupted Pixie (splashing with an Encased Fan and water) will purify it into a normal Pixie."
 			dependencies: ["3F0798A77108E733"]
 			id: "7614A2AE1D024BF4"
 			tasks: [{
@@ -407,7 +407,7 @@
 		{
 			x: 2.5d
 			y: 4.5d
-			subtitle: "By Draining a Pure Pixie Jar, you will obtain Aureal Essence"
+			subtitle: "By emptying a Pixie (Item Drain), you will obtain Aureal Essence"
 			dependencies: [
 				"783A2252E79DF746"
 				"7614A2AE1D024BF4"

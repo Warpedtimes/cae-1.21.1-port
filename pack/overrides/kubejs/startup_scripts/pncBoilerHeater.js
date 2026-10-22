@@ -28,7 +28,11 @@ var PNC_BOILER = {
   // 1211 (lead, 19 Oct): every tick, like the original. Draining 10 ticks' worth at once dropped a Heat Pipe (small
   // thermal capacity) by ~150 K per step, and the level read after it never reached kindled/seething in game.
   interval: 1,                               // ticks between drain steps (heat per step = interval x the per-tick amount)
-  running: {}
+  // key -> level.time of the loop's last step. 1211: it was a plain flag, and a startup global outlives the server: after a
+  // singleplayer save and quit the loop was gone but the flag stayed, so it never restarted. A loop whose last step is older
+  // than `stale` ticks is dead and is started again.
+  running: {},
+  stale: 40
 }
 
 function pncBoilerLevel(tempK) {
@@ -75,6 +79,7 @@ function pncBoilerStep(level, pos, key, last) {
     delete PNC_BOILER.running[key]
     return
   }
+  PNC_BOILER.running[key] = level.time
   let server = level.server
   server.scheduleInTicks(PNC_BOILER.interval, () => pncBoilerStep(level, pos, key, last))
 }
@@ -86,8 +91,9 @@ CreateEvents.boilerHeatHandler(event => {
     if (logic == null) return -1
     let heat = pncBoilerLevel(logic.getTemperature())
     let key = block.dimension + '|' + block.x + ',' + block.y + ',' + block.z
-    if (!PNC_BOILER.running[key] && !level.isClientSide()) {
-      PNC_BOILER.running[key] = true
+    let last = PNC_BOILER.running[key]
+    if ((last === undefined || Math.abs(level.time - last) > PNC_BOILER.stale) && !level.isClientSide()) {
+      PNC_BOILER.running[key] = level.time
       let pos = block.pos
       level.server.scheduleInTicks(PNC_BOILER.interval, () => pncBoilerStep(level, pos, key, heat))
     }

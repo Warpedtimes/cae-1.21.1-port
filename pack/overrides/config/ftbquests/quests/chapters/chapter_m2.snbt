@@ -142,7 +142,7 @@
 			x: 0.5d
 			y: -1.5d
 			shape: "diamond"
-			description: ["Cast Source into a gem cast to create Source Gems"]
+			description: ["Cast Source into a Runic Tablet (used up on each gem) to create Source Gems"]
 			dependencies: ["640F176B95D8B880"]
 			dependency_requirement: "one_started"
 			size: 1.2d

@@ -98,15 +98,15 @@ ServerEvents.recipes(event => {
             ]
 
     })
-    // port: Infernal Expansion is gone in 1.20.1 (infernalexp:glow_fire), recipe dropped
-    /*
+    // port: Infernal Expansion is gone in 1.20.1 (infernalexp:glow_fire, lit on its Shimmer Sand). 1211 substitute: soul fire, so
+    // glowstone stays renewable (the chromatic waste chain drains it); Create's bulk haunting through soul fire does the same
     event.custom({
         "type": "lychee:item_inside",
         "item_in": {
             "item": "gunpowder"
         },
         "block_in": {
-            "blocks": ["infernalexp:glow_fire"],
+            "blocks": ["minecraft:soul_fire"],
         },
         "post": [
             {
@@ -115,7 +115,7 @@ ServerEvents.recipes(event => {
             }
             ]
 
-    })
-    */
+    }).id('cae:lychee/glowstone_from_soul_fire')
+    event.recipes.create.haunting('minecraft:glowstone_dust', 'minecraft:gunpowder').id('cae:haunting/glowstone_dust')
 
 })

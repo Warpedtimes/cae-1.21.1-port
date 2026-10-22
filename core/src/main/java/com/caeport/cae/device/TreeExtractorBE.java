@@ -320,7 +320,7 @@ public class TreeExtractorBE extends DeviceBE {
             if (isActive && valid) {
                 if (boostCycles > 0) {
                     boostCycles--;
-                } else if (!inv.isEmpty(slotBoost)) {
+                } else if (!inv.isEmpty(slotBoost) && boosts().get(inv.getStackInSlot(slotBoost).getItem()) != null) { // 1211: null guard (legacy loads, /item)
                     float[] b = boosts().get(inv.getStackInSlot(slotBoost).getItem());
                     boostCycles = (int) b[1];
                     boostMax = boostCycles;

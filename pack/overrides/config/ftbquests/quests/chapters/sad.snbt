@@ -39,7 +39,7 @@
 			x: -1.5d
 			y: -6.0d
 			shape: "octagon"
-			subtitle: "Short tip, you can speedrun the majority of this chapter just by crafting rose quartz with quartz and redstone dust obtained from the world."
+			subtitle: "Short tip, you can speedrun the majority of this chapter just by filling Redstone Dust with 25mB of liquid redstone (a Spout) to make rose quartz, using redstone dust obtained from the world."
 			dependencies: ["6EFF8BCEBC2E2AF2"]
 			hide: true
 			size: 1.5d
@@ -418,7 +418,7 @@
 			x: 1.5d
 			y: -4.0d
 			shape: "square"
-			subtitle: "An Alien block, only found within Meteorites. Not much is known about this artifact, but what we have figured out, is that it is responsible for Transmuting everything up to 7 Blocks Away from it, when interacted with redstone dust, replacing it with Skystone, is this a form of alien allergy? Perhaps this is exploitable for infinite Skystone."
+			subtitle: "An Alien block, only found within Meteorites. Not much is known about this artifact, but what we have figured out, is that it is responsible for Transmuting everything 2 to 5 Blocks Away from it, when interacted with redstone dust, replacing it with Skystone, is this a form of alien allergy? Perhaps this is exploitable for infinite Skystone."
 			dependencies: ["44DC0A3FAA5645AB"]
 			id: "5D9D3025CB2DEEA4"
 			tasks: [{

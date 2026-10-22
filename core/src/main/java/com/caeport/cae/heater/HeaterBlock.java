@@ -88,7 +88,6 @@ public class HeaterBlock extends Block implements EntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.literal("[Work in progress!!!]"));
         super.appendHoverText(stack, context, tooltip, flag);
     }
 }

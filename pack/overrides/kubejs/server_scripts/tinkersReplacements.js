@@ -57,9 +57,9 @@ ServerEvents.generateData('after_mods', event => {
 ServerEvents.recipes(event => {
     if (!Platform.isLoaded('createmetallurgy')) { return }
     const CM = 'createmetallurgy:'
-    // 1211: thermal. The Thermal replacement for thermal:redstone is decided in the Thermal mapping pass; until that fluid exists the
-    // two redstone recipes are skipped. Change this constant to the replacement fluid id.
-    const REDSTONE_FLUID = 'thermal:redstone'
+    // 1211: thermal. thermal:redstone (Destabilized Redstone) became cae:redstone (thermalReplacements.js), the fluid the rose quartz
+    // filling and the heated-mixer melting use; this constant still named the Thermal id, so the foundry route was never built
+    const REDSTONE_FLUID = 'cae:redstone'
 
     let fl = (fluid, amount) => ({ type: 'neoforge:single', fluid: fluid, amount: amount })
     let melt = (id, ingredient, results, time, heat, extra) => {

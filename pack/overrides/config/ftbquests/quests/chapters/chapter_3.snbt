@@ -104,7 +104,7 @@
 			x: 6.0d
 			y: -9.0d
 			shape: "square"
-			subtitle: "2 nickel ingots"
+			subtitle: "288mb molten nickel"
 			dependencies: ["3A10D0D5E8548C54"]
 			hide: true
 			id: "2AADB6429BCA7866"
@@ -228,7 +228,11 @@
 			title: "Anthracene"
 			x: -1.0d
 			y: -10.0d
-			description: ["Fill a Vial with Anthracene"]
+			description: [
+				"Fill a Vial with Anthracene"
+				""
+				"You need an Empty Vial. Craft it from Ghostly Glass, which you make by deploying a Soul Bead onto Glass. Soul Beads need Liquid Resent, which comes from a Wraith or Vex in a heated Industrial Crucible. Chapter M3 walks through the whole chain."
+			]
 			dependencies: ["470D621EDE14E399"]
 			id: "5B6CFF917782AA41"
 			tasks: [{
@@ -264,7 +268,7 @@
 			title: "The glowstone reactor"
 			x: -4.5d
 			y: -7.0d
-			description: ["Create a Glow Fire by lighting a block of Shimmer Sand on fire\\nThen drop gunpowder into it to convert it."]
+			description: ["Light a block of Soul Sand or Soul Soil to make Soul Fire, then drop Gunpowder into it to convert it.\\nAn Encased Fan blowing through Soul Fire (Bulk Haunting) does the same."]
 			dependencies: ["24F10DF147EC0844"]
 			id: "78E3EDD6BCCA4E06"
 			tasks: [{
@@ -335,7 +339,6 @@
 				"Find Oil and automate it using a Hose Pulley to take from a source of more than 10,000 buckets. "
 				""
 				"You can do so by setting up a train link to one of the various crude oil deposits found in deserts, or by creating a deposit of your own at your base."
-				"cae:oil"
 			]
 			dependencies: ["3A10D0D5E8548C54"]
 			hide: true

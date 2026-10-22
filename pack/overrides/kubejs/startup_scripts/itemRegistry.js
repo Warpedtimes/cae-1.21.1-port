@@ -77,10 +77,11 @@ StartupEvents.registry('item', (event) => {
     let k = 'Unassembled PCB'
     event.create('incomplete_pcb_blueprint', 'create:sequenced_assembly').displayName('Incomplete PCB Blueprint').texture("create:item/empty_schematic")
     event.create('plastic_board').displayName('Plastic Board')
-    event.create('etched_board').displayName(k).tooltip("Next: Separate leftover residue inside a Centrifugal Separator")
+    // 1211: the Thermal centrifuge and induction smelter steps are Create mixing and a Mekanism metallurgic infuser now (thermalReplacements.js)
+    event.create('etched_board').displayName(k).tooltip("Next: Separate leftover residue in a Mixer")
     event.create('dryed_board').displayName(k).tooltip("Next: Package for legend processing")
     event.create('separated_board').displayName(k).tooltip("Next: Apply Solder mask")
-    event.create('masked_pcb').displayName(k).tooltip("Next: Let dry in an Induction Smelter")
+    event.create('masked_pcb').displayName(k).tooltip("Next: Let dry in a Metallurgic Infuser with Carbon")
     event.create('incomplete_masked_pcb', 'create:sequenced_assembly').displayName('Incomplete Unassembled PCB')
     event.create('pcb_assembly').displayName('PCB Assembly Package')
     event.create('incomplete_pcb_assembly', 'create:sequenced_assembly').displayName('Incomplete PCB assembly package').texture("pneumaticcraft:item/plastic")

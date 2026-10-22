@@ -8,8 +8,8 @@
 //  - fluid_mixer: both "fluid_output" and "item_output" are required keys ({} when empty);
 //  - assembly_drill / assembly_laser: "result" is {"id", "count"}, "input" is {"item", "count"}, "program" as before;
 //  - fluid tags: forge:crude_oil / forge:plantoil -> c:crude_oil / c:plantoil (PNC 8.2 defines those under data/c/tags/fluid).
-// Thermal / Tinkers ids are left as they were and guarded (// 1211: thermal, // 1211: tinkers); without Thermal there is no
-// refinery recipe for crude oil -> refined_oil (it needs two outputs and one is a Thermal fluid), see the notes.
+// Thermal / Tinkers ids are left as they were and guarded (// 1211: thermal, // 1211: tinkers). The refinery's heavy and light
+// oil are the cae: stand-ins for Thermal's fluids (CAE_THERMAL, functions.js), so crude oil -> refined_oil is made.
 ServerEvents.recipes(event => {
     if (CAE_THERMAL) { // 1211: thermal (cae:heavy_oil, cae:light_oil)
     event.custom({

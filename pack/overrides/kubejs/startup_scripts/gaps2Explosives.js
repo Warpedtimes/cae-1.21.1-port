@@ -459,7 +459,11 @@ function caeNuke(level, explosive, pos, R) {
     let ex = explosive.getX()
     let ey = explosive.getY()
     let ez = explosive.getZ()
-    for (let dx = -b; dx <= b; dx++) {
+    // 1211: not in the void trial (its rooms can't be rebuilt; the vanilla blast below still goes through structure.js's
+    // protection there), and never an unbreakable block (the geode catalysts, the portal core: resistance 1200 or less,
+    // location-bound, and this sets them to air with no drops)
+    let sweep = caeDimKey(level) != 'cae:void'
+    for (let dx = -b; dx <= b && sweep; dx++) {
         for (let dz = -b; dz <= b; dz++) {
             for (let dy = -Math.floor(b / 2); dy <= b; dy++) {
                 let p = new CAE_BlockPos(bp.getX() + dx, bp.getY() + dy, bp.getZ() + dz)
@@ -469,7 +473,7 @@ function caeNuke(level, explosive, pos, R) {
                 let dist = cx * cx + cy * cy + cz * cz
                 if (dist >= b2) continue
                 let st = level.getBlockState(p)
-                if (st.isAir()) continue
+                if (st.isAir() || st.getDestroySpeed(level, p) < 0) continue
                 if (st.getBlock().getExplosionResistance() < maxRes - maxRes * dist / b2) level.setBlock(p, air, 3)
             }
         }

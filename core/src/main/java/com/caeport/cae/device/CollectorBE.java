@@ -116,10 +116,15 @@ public class CollectorBE extends DeviceBE {
         }
         if (xpFeature) {
             for (ExperienceOrb orb : level.getEntitiesOfClass(ExperienceOrb.class, area(), EntitySelector.ENTITY_STILL_ALIVE)) {
-                int taken = receiveXp(orb.getValue());
-                orb.value -= taken;
-                if (orb.value <= 0) {
+                // 1211: merged orbs carry a count; the whole stack is worth value * count
+                int total = orb.value * Math.max(1, orb.count);
+                int taken = receiveXp(total);
+                int left = total - taken;
+                if (left <= 0) {
                     orb.discard();
+                } else if (taken > 0) {
+                    orb.count = 1;
+                    orb.value = left;
                 }
             }
         }

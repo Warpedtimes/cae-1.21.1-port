@@ -1045,6 +1045,10 @@
 			]
 			hide: true
 			size: 1.5d
+			description: [
+				"With all five Essences collected, pour them into the Singularity Tank Chamber (STC) in the Arcane dimension: 512 buckets of each. After a long run (100 seconds) it produces a bucket of God Actuation Fluid."
+				"Right-click the Void block (cae:void) with that bucket to open the portal to the Void."
+			]
 			id: "2022E1E6F13CCFCB"
 			tasks: [{
 				id: "4030C2CED9A95884"

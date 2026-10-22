@@ -32,14 +32,15 @@ ItemEvents.modifyTooltips(event => {
         ['minecraft:ancient_debris','Can be automated with the Source Time Catalyst'],
         ['forbidden_arcanus:arcane_crystal','Obtained by Simply Mining Arcane Crystal Ore. Or by Chapter M3'],
         ['kubejs:runic_tablet','Right-Click to Create Lightning'],
-        ['cae:corrupted_pixie','Right Click a Utrem Jar with a Corrupted Pixie to make.'],
-        ['cae:pixie','Wash a Corrupted Pixie Utrem Jar.'],
+        // 1211: the pixies are plain items now (no Utrem Jar step; chapterM3.js), Glow Fire (Infernal Expansion) is gone, and Ars
+        // Nouveau has no source bucket to craft this one into
+        ['cae:corrupted_pixie','Made by Deploying Arcane Crystal Dust onto a Soul.'],
+        ['cae:pixie','Wash a Corrupted Pixie with Bulk Washing. Empty it in a Basin for Aureal Essence.'],
         ['forbidden_arcanus:aureal_bottle','Made by Filling a Glass Vial with Aureal Essence'],
-        ['minecraft:glowstone_dust','Glow Fire is made by lighting Shimmer Sand on Fire'],
+        ['minecraft:glowstone_dust','Drop Gunpowder into Soul Fire, or blow it through Soul Fire with an Encased Fan'],
         ['kubejs:dichromic_acid_bucket','Drop Chrome in Water'],
         ['kubejs:sulfuric_acid_bucket','Drop Sulfur Dust in Water'],
-        ["kubejs:source_bucket","Shapeless Craft it into a Ars Nouveau Source Bucket, which then can be rightclicked onto sourcejars..."],
-        // port: dropped, ars_nouveau:bucket_of_source does not exist in Ars Nouveau 1.20.1
+        ["kubejs:source_bucket","Liquid Source, for Create recipes (see JEI). Ars Nouveau has no Source bucket to turn it into."],
         ["cae:skystone_catalyst", "An alien Artifact found at the heart of a Meteorite. Right-Click it with redstone to make it create Skystone In a Cloud around it."],
         ["cae:veridium_catalyst", "This Block can be found below Sea Level in a Geode. Rightclick it with a piece of Redstone Dust, and it will spew out blocks of its relatives into the surrounding, allowing them to be farmed"],
         ["cae:ochrum_catalyst", "This Block can be found below Sea Level in a Geode. Rightclick it with a piece of Redstone Dust, and it will spew out blocks of its relatives into the surrounding, allowing them to be farmed"],

@@ -110,6 +110,7 @@ public class MagicFeatherItem extends Item {
         private boolean slowFalling;
         private int checkTick;
         private boolean beaconInRange;
+        private int loginGrace = 100;
 
         Data(Player player) {
             this.player = player;
@@ -126,6 +127,14 @@ public class MagicFeatherItem extends Item {
             }
             Item feather = MagicFeather.ITEM.get();
             boolean mayFly = player.isCreative() || hasItem(player, feather) && beaconInRange();
+            if (loginGrace > 0) {
+                loginGrace--;
+                if (!mayFly && wasGrantedFlight) {
+                    // 1211: just logged in: the beacon's beam/levels or chunk may not be ready yet, so a negative result
+                    // does not count until the grace period is over (a later positive check ends the doubt)
+                    return;
+                }
+            }
             if (mayFly) {
                 setMayFly(player, true);
                 softLanding = false;

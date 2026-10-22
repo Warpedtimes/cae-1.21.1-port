@@ -80,8 +80,11 @@ public class TimeAccelerator extends Entity {
             if (be != null && (be.isRemoved() || server.getBlockEntity(target) != be)) {
                 break;
             }
+            state = server.getBlockState(target); // 1211: a random tick can change the block (crop stages), so look again
             if (ticker != null) {
                 ticker.tick(server, target, state, be);
+            } else if (!state.isRandomlyTicking()) {
+                break;
             } else if (random.nextInt(TimeInABottle.RANDOM_TICK_ODDS) == 0) {
                 state.randomTick(server, target, random);
             }

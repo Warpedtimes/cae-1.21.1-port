@@ -174,6 +174,20 @@ let dumbshitarray = [
 
 BlockEvents.rightClicked(event => {
     if (event.block.id == 'minecraft:diamond_block' && event.item.id == "minecraft:flint_and_steel") {
+        // 1211: only in the Overworld and the Nether (built in cae:arcane or cae:void it skipped the endgame), only where the 7x8
+        // frame around the block is free (the fills overwrote anything there, block entities too), and the click is cancelled so
+        // it doesn't light a fire as well
+        let dim = String(event.level.dimension)
+        if (dim != 'minecraft:overworld' && dim != 'minecraft:the_nether') { return }
+        let bx = event.block.x, by = event.block.y, bz = event.block.z
+        for (let dx = -3; dx <= 3; dx++) {
+            for (let dy = 0; dy <= 7; dy++) {
+                if ((dx != 0 || dy != 0) && !event.level.getBlock(bx + dx, by + dy, bz).blockState.canBeReplaced()) {
+                    event.player.setStatusMessage(Text.darkRed("The portal needs a free space 7 wide and 8 high around the block"))
+                    return
+                }
+            }
+        }
 
         event.server.runCommandSilent(`execute in ${event.block.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run fill ~-2 ~1 ~ ~2 ~4 ~ minecraft:nether_portal`)
         // 1211: sign lines are text components in SNBT now (plain strings are literal text); the JSON-in-a-string form would show the quotes.
@@ -183,7 +197,7 @@ BlockEvents.rightClicked(event => {
         event.server.runCommandSilent(`execute in ${event.block.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run fill ~-3 ~ ~ ~3 ~7 ~ minecraft:crying_obsidian`)
         event.server.runCommandSilent(`execute in ${event.block.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run fill ~ ~ ~ ~ ~ ~ minecraft:shroomlight`)
         event.server.runCommandSilent(`execute in ${event.block.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run fill ~-2 ~1 ~ ~2 ~6 ~ minecraft:nether_portal`)
-
+        event.cancel() // last: cancel() ends the handler
     }
 
 })
@@ -721,7 +735,7 @@ ServerEvents.recipes(event => {
         ['create:precision_mechanism', 'pneumaticcraft:refinery'],
         ['pneumaticcraft:drill_pipe', 'pneumaticcraft:gas_lift'],
         ['create:basin', 'pneumaticcraft:thermopneumatic_processing_plant'],
-        // 1211: Compressed Creativity has no 1.21.1 build; skipped by caeItemsKnown until it exists
+        // 1211: Compressed Creativity has no 1.21.1 build, but the core mod registers its heater under the old id, so this one is made
         ["create:blaze_burner", "compressedcreativity:heater"]
     ];
     const sturdy_cutting = [

@@ -1,17 +1,16 @@
-let cooldown = 0;
-ServerEvents.tick(event =>{
-	if(cooldown > 0){
-		cooldown--
-	}
-})
+// 1211: the cooldown was one for the whole server, so one player's scan put everyone's radar on cooldown; now each player has
+// their own (the server tick their radar works again)
+let cooldown = {};
 
 BlockEvents.rightClicked(event =>{
-    if (event.item == 'kubejs:alloy_radar' && cooldown != 0){
+	let who = String(event.player.uuid)
+	let left = (cooldown[who] || 0) - event.server.getTickCount()
+    if (event.item == 'kubejs:alloy_radar' && left > 0){
         event.player.tell(Text.red('Radar is on cooldown'))
-		event.player.tell(Text.green(cooldown/20 + " seconds left."))
+		event.player.tell(Text.green(left/20 + " seconds left."))
     }
-	if (event.item == 'kubejs:alloy_radar' && cooldown == 0){
-        cooldown = 60;
+	if (event.item == 'kubejs:alloy_radar' && left <= 0){
+        cooldown[who] = event.server.getTickCount() + 60;
 		let andesite = true;
 		let diorite = true;
 		for (let x = -8; x <= 9; x++) {
@@ -37,7 +36,7 @@ BlockEvents.rightClicked(event =>{
 			}
 		}
 		if (andesite && diorite){
-			event.player.tell(Text.yellow("Nothing found in Chunk"))
+			event.player.tell(Text.yellow("Nothing found nearby")) // 1211: the scan is 18x18 around the clicked block, not a chunk
 		}
 	}
 

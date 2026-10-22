@@ -99,7 +99,8 @@ public class TinkerMenu extends DeviceMenu {
     private void loadAugments() {
         loading = true;
         ItemStack t = tinkerSlot().getItem();
-        List<ItemStack> list = t.isEmpty() ? null : t.get(CaeDevices.AUGMENTS.get());
+        Augments comp = t.isEmpty() ? null : t.get(CaeDevices.AUGMENTS.get());
+        List<ItemStack> list = comp == null ? null : comp.stacks();
         for (int i = 0; i < augmentsOfItem.getContainerSize(); i++) {
             augmentsOfItem.setItem(i, list != null && i < list.size() ? list.get(i).copy() : ItemStack.EMPTY);
         }
@@ -126,7 +127,7 @@ public class TinkerMenu extends DeviceMenu {
         if (list.isEmpty()) {
             t.remove(CaeDevices.AUGMENTS.get());
         } else {
-            t.set(CaeDevices.AUGMENTS.get(), list);
+            t.set(CaeDevices.AUGMENTS.get(), new Augments(list));
         }
         bench.setPause(false);
         lastTinker = t.copy();

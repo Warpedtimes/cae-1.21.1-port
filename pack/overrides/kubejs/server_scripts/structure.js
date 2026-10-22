@@ -15,6 +15,89 @@ function caeRoomChunks(level, x, z) {
         for (let cz = z >> 4; cz <= (z + 64) >> 4; cz++) { level.getChunk(cx, cz) }
     }
 }
+// MinecraftServer.getLevel(string) is ambiguous to Rhino (KubeJS adds an overload), so the levels are walked
+function caeLevel(server, dim) {
+    let out = null
+    server.getAllLevels().forEach(l => { if (String(l.dimension) == dim) out = l })
+    return out
+}
+// 1211: FTB Quests blocks rewards per team, so one player entering the trial blocks the whole team. The server remembers who is in
+// the trial (player uuid -> team id) and unblocks a team only when the last of its members in the trial finishes it.
+function caeTrialTeam(player) {
+    try { return String(CaeQuestFile.INSTANCE.getOrCreateTeamData(player).getTeamId()) } catch (e) { return String(player.uuid) }
+}
+function caeTrialEnter(player) {
+    player.server.persistentData.putString('caeTrial_' + player.uuid, caeTrialTeam(player))
+    caeBlockRewards(player, true)
+}
+function caeTrialLeave(player) {
+    let pd = player.server.persistentData
+    let team = caeTrialTeam(player)
+    pd.remove('caeTrial_' + player.uuid)
+    let others = false
+    let it = pd.getAllKeys().iterator()
+    while (it.hasNext()) {
+        let k = String(it.next())
+        if (k.startsWith('caeTrial_') && String(pd.getString(k)) == team) { others = true }
+    }
+    if (!others) { caeBlockRewards(player, false) }
+}
+// 1211: the trial's delayed steps (building a room and moving the player in, 1-50 ticks after the advancement) die with the
+// server if it stops in between, and the advancement never fires again. The step stays in the player's persistentData until it
+// has run, and logging in runs it again.
+function caeTrialRoomStart(server, name) {
+    server.runCommandSilent(`execute in cae:void run setblock 10000 64 10000 minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:start",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
+    server.runCommandSilent(`execute in cae:void run setblock 10000 63 10000 minecraft:redstone_block`)
+    server.runCommandSilent(`execute in cae:void run fill 10000 64 10000 10000 63 10000 air`)//get rid of the structure and redstone block
+    server.runCommandSilent(`execute in cae:void run setblock 10026 69 10003 air`)
+    server.runCommandSilent(`execute in cae:void run setblock 10026 69 10003 cae:start`)
+}
+function caeTrialEnterStart(server, name) {
+    server.tell("<"+ name +">"+  " §4...Where am §k§m§dI?")
+    server.runCommandSilent(`execute in cae:void run tp ${name} 10026 70 10028`)
+    server.runCommandSilent(`execute in cae:void run tp ${name} 10026 70 10028`) //these numbers should be half the size of the structure, so the player and spawn ends up in the middle. will need tweaking for your structure.
+    server.runCommandSilent(`execute in cae:void run spawnpoint ${name} 10010 68 10140`)
+    caeTrialDone(server, name, 'verycool')
+}
+function caeTrialRoomEgg(server) {
+    caeRoomChunks(caeLevel(server, 'cae:void'), -31998, 32279)
+    server.runCommandSilent(`execute in cae:void run setblock -31998 92 32279 minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:eggroom",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
+    server.runCommandSilent(`execute in cae:void run setblock -31998 91 32279 minecraft:redstone_block`)
+    server.runCommandSilent(`execute in cae:void run fill -31998 92 32279 -31998 91 32279 air`)
+}
+function caeTrialEnterEgg(server, name) {
+    server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
+    server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`) //these numbers should be half the size of the structure, so the player and spawn ends up in the middle. will need tweaking for your structure.
+    server.runCommandSilent(`execute in cae:void run spawnpoint ${name} -31985 103 32293`)
+}
+// the egg room's mycelium floor under the spawn point; if it isn't there 20 ticks later, the room is placed again
+function caeTrialCheckEgg(server, name, tries) {
+    if (caeLevel(server, 'cae:void').getBlock(-31985, 94, 32293).id != 'minecraft:air') { caeTrialDone(server, name, 'start'); return }
+    if (tries <= 0) { console.warn('structure.js: the egg room did not appear for ' + name); return }
+    caeTrialRoomEgg(server)
+    caeTrialEnterEgg(server, name)
+    server.scheduleInTicks(20, () => caeTrialCheckEgg(server, name, tries - 1))
+}
+function caeTrialDone(server, name, step) {
+    let p = server.playerList.getPlayerByName(name)
+    if (p && String(p.persistentData.getString('caeTrialStep')) == step) { p.persistentData.remove('caeTrialStep') }
+}
+PlayerEvents.loggedIn(event => {
+    let step = String(event.player.persistentData.getString('caeTrialStep'))
+    if (step == '') { return }
+    let server = event.server, name = event.player.name.string
+    console.warn('structure.js: ' + name + ' logged in with the trial step ' + step + ' unfinished; running it again')
+    server.runCommandSilent(`effect give ${name} minecraft:slow_falling 30 100 true`)
+    if (step == 'verycool') {
+        server.runCommandSilent(`execute in cae:void run tp ${name} 10026 500 10028`)
+        server.scheduleInTicks(40, () => caeTrialRoomStart(server, name))
+        server.scheduleInTicks(50, () => caeTrialEnterStart(server, name))
+    } else if (step == 'start') {
+        caeTrialEnterEgg(server, name)
+        server.scheduleInTicks(1, () => { caeTrialRoomEgg(server); caeTrialEnterEgg(server, name) })
+        server.scheduleInTicks(21, () => caeTrialCheckEgg(server, name, 3))
+    }
+})
 function advRound (number, digits) {
     let multiplier = digits ? 10 ** digits : 100
     return Math.round(number*multiplier)/multiplier
@@ -25,7 +108,8 @@ PlayerEvents.advancement(event => {
     if (advId == "cae:end"){
         event.server.runCommandSilent(`execute in minecraft:overworld run tp ${event.player.name.string} 0 200 0`)
         event.server.runCommandSilent(`effect give ${event.player.name.string} minecraft:absorption 100 100 true`)
-        caeBlockRewards(event.player, false)
+        caeTrialLeave(event.player)
+        event.player.persistentData.remove('caeTrialStep')
         event.server.runCommandSilent(`gamemode survival ${event.player.name.string}`)
         let Time = event.player.stats.playTime
         let TimeString = advRound(Time) + "ticks"
@@ -46,26 +130,16 @@ PlayerEvents.advancement(event => {
             name: event.player.name.string
         }
         event.server.runCommandSilent(`execute in cae:void run gamemode adventure ${d.name}`)
-        caeBlockRewards(event.player, true) //block quest rewards
+        caeTrialEnter(event.player) //block quest rewards
+        event.player.persistentData.putString('caeTrialStep', 'verycool')
         event.server.runCommandSilent(`effect give ${d.name} minecraft:absorption 100 100 true`)
         event.server.runCommandSilent(`execute in cae:void run clear ${d.name}`)
         event.server.runCommandSilent(`execute in cae:void run curios clear ${d.name}`)
         event.server.runCommandSilent(`effect give ${d.name} minecraft:slow_falling 50 100 true`)
         event.server.runCommandSilent(`execute in cae:void run tp ${d.name} 10026 500 10028`)
-        event.server.scheduleInTicks(40, c =>{
-            event.server.runCommandSilent(`execute in cae:void run setblock ${d.x} ${d.y} ${d.z} minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:start",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
-            event.server.runCommandSilent(`execute in cae:void run setblock ${d.x} ${d.y - 1} ${d.z} minecraft:redstone_block`)
-            event.server.runCommandSilent(`execute in cae:void run fill ${d.x} ${d.y} ${d.z} ${d.x} ${d.y - 1} ${d.z} air`)//get rid of the structure and redstone block
-            event.server.runCommandSilent(`execute in cae:void run setblock 10026 69 10003 air`)
-            event.server.runCommandSilent(`execute in cae:void run setblock 10026 69 10003 cae:start`)
-        })
-        event.server.scheduleInTicks(50, c => { //make sure the chunks are loaded before trying to set the block
-            event.server.tell("<"+ d.name +">"+  " §4...Where am §k§m§dI?")
-
-            event.server.runCommandSilent(`execute in cae:void run tp ${d.name} ${10026} ${70} ${10028}`)
-            event.server.runCommandSilent(`execute in cae:void run tp ${d.name} ${10026} ${70} ${10028}`) //these numbers should be half the size of the structure, so the player and spawn ends up in the middle. will need tweaking for your structure.
-            event.server.runCommandSilent(`execute in cae:void run spawnpoint ${d.name} ${d.x + 10} ${d.y + 4} ${d.z + 140}`)
-        })
+        // the start room at d (10000 64 10000), then the player in it 10 ticks later (the chunks need to be loaded first)
+        event.server.scheduleInTicks(40, c => caeTrialRoomStart(event.server, d.name))
+        event.server.scheduleInTicks(50, c => caeTrialEnterStart(event.server, d.name))
 
         // As soon as player enters the Arcane Altar, let them see the recipes and items/fluids for automating Keystones
         // 1211: the titles went to "@p" from the server, i.e. whoever is nearest world spawn; now to the player who got here
@@ -88,25 +162,26 @@ PlayerEvents.advancement(event => {
 
         event.level.players.forEach(player => {
             if(String(player.level.dimension) != "cae:void"){return;}
-            event.server.runCommandSilent(`execute in cae:void run gamemode survival ${player.name.string}`)
-            event.server.runCommandSilent(`effect give ${player.name.string} minecraft:absorption 100 100 true`)
-            caeBlockRewards(player, true) //block quest rewards
-            event.server.runCommandSilent(`effect give ${player.name.string} minecraft:slow_falling 20 100 true`)
-            event.server.runCommandSilent(`execute in cae:void run tp ${player.name.string} -31985 103 32293`)
-            event.server.runCommandSilent(`execute in cae:void run tp ${player.name.string} -31985 103 32293`)
-            event.server.runCommandSilent(`tell ${player.name.string} §6 §l You are being Watched. Automate The Keystone. And once you have a stack. Rightclick it.`)
-            event.server.runCommandSilent(`execute in cae:void run spawnpoint ${player.name.string} -31985 103 32293`)
-            event.server.scheduleInTicks(2, c => { event.server.runCommandSilent(`execute in cae:void run tp ${player.name.string} -31985 103 32293`);})
+            let name = player.name.string
+            event.server.runCommandSilent(`execute in cae:void run gamemode survival ${name}`)
+            event.server.runCommandSilent(`effect give ${name} minecraft:absorption 100 100 true`)
+            caeTrialEnter(player) //block quest rewards
+            player.persistentData.putString('caeTrialStep', 'start')
+            event.server.runCommandSilent(`effect give ${name} minecraft:slow_falling 20 100 true`)
+            event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
+            event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
+            event.server.runCommandSilent(`tell ${name} §6 §l You are being Watched. Automate The Keystone. And once you have a stack. Rightclick it.`)
+            event.server.runCommandSilent(`execute in cae:void run spawnpoint ${name} -31985 103 32293`)
+            event.server.scheduleInTicks(2, c => { event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`);})
 
             event.server.scheduleInTicks(1, cb => {
-                event.server.runCommandSilent(`execute in cae:void run setblock -31998 92 32279 minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:eggroom",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
-                event.server.runCommandSilent(`execute in cae:void run setblock -31998 91 32279 minecraft:redstone_block`)
-                event.server.runCommandSilent(`execute in cae:void run fill -31998 92 32279 -31998 91 32279 air`)
-                event.server.runCommandSilent(`execute in cae:void run tp ${d.name} -31985 103 32293`)
-                event.server.runCommandSilent(`execute in cae:void run tp ${d.name} -31985 103 32293`) //these numbers should be half the size of the structure, so the player and spawn ends up in the middle. will need tweaking for your structure.
-                event.server.runCommandSilent(`execute in cae:void run spawnpoint ${d.name} -31985 103 32293`)
+                // 1211: the egg room's corner is a chunk away from the teleport target; caeTrialRoomEgg loads its chunks first
+                // (as the keystone handlers do), and caeTrialCheckEgg places it again if it still isn't there
+                caeTrialRoomEgg(event.server)
+                caeTrialEnterEgg(event.server, name)
                 event.server.runCommandSilent(`execute in cae:void run kill @e[type=item]`)
             })
+            event.server.scheduleInTicks(21, cb => caeTrialCheckEgg(event.server, name, 3))
         })
 
         // As soon as player enters the Arcane Dungeon, there's no going back, may as well see the zyzzium
@@ -186,7 +261,8 @@ LevelEvents.tick(event => {
             if (event.level.getBlock(8117,115,10073).id == 'minecraft:barrel') caeStcHatches(event.level)
         }
         if(structF >=1){
-            event.server.runCommandSilent(`execute in cae:clearlag run forceload add 6 -8 -3 2`)
+            // 1211: a forceload stays until removed; every 100 ticks of the countdown is enough (it ran every tick)
+            if (structF % 100 == 0) event.server.runCommandSilent(`execute in cae:clearlag run forceload add 6 -8 -3 2`)
             structF--
         } else if (event.level.getBlock(8150,24,10085).id != "minecraft:barrier"){
             let d = { //this defines the position the strucututre will spawn at.
@@ -219,14 +295,28 @@ LevelEvents.tick(event => {
 })
 
 
-let pressed = 8
+// 1211: the reset counter was one global count that every right-click lowered (opening the GUI too, and anyone's click), so
+// normal use deleted the controller and the recipe in progress. Now it counts sneak-clicks with an empty hand, per player, and
+// refuses while the machine is working.
+let pressed = {}
+let CaeMbdMachine = Java.loadClass('com.lowdragmc.mbd2.api.machine.IMachine')
+function caeStcWorking(level, pos) {
+    try {
+        let m = CaeMbdMachine.ofMachine(level, pos).orElse(null)
+        return m != null && m.getRecipeLogic().isWorking()
+    } catch (e) { return false }
+}
 BlockEvents.rightClicked(event => {
+    let who = String(event.player.uuid)
     if(event.block.id == "cae:stc"){
-        if(pressed != 0){event.player.tell("The STC might be bugged. rightclick onto it "+ pressed +" times more to replace it! If you wish to reset this counter, right-click any other block"); pressed--}
-        else{event.block.set("air"); pressed = 8}
-
+        if (event.player.isShiftKeyDown() && event.player.mainHandItem.empty && String(event.hand) == 'MAIN_HAND') {
+            if (pressed[who] === undefined) { pressed[who] = 8 }
+            if (caeStcWorking(event.level, event.block.pos)) { event.player.tell("The STC is working; it can't be replaced while it runs."); pressed[who] = 8 }
+            else if(pressed[who] != 0){event.player.tell("The STC might be bugged. Sneak-rightclick it with an empty hand "+ pressed[who] +" times more to replace it! If you wish to reset this counter, right-click any other block"); pressed[who]--}
+            else{event.block.set("air"); pressed[who] = 8}
+        }
     }
-    else{if(String(event.level.dimension) == "cae:arcane"){pressed = 8}}
+    else{if(String(event.level.dimension) == "cae:arcane"){delete pressed[who]}}
     if(event.item.id == 'kubejs:portal_actuation_fluid_bucket'&& event.block.id == "cae:portal_core"){
         let x = event.block.x
         let y = event.block.y
@@ -342,6 +432,9 @@ ItemEvents.rightClicked(event => { //generating new rooms
                 event.server.runCommandSilent(`execute in cae:void run setblock -32049 94 32105 minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:insanity",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
                 event.server.runCommandSilent(`execute in cae:void run setblock -32049 93 32105 minecraft:redstone_block`)
                 event.server.runCommandSilent(`execute in cae:void run fill -32049 94 32105 -32049 93 32105 air`)
+                // 1211: the room's pressurized spawner holds its only whirlisprig spawner core, which a player can take out and
+                // lose; a spare goes in the chest beside it (template chest 42 22 65, a free slot)
+                event.server.runCommandSilent(`execute in cae:void run item replace block -32007 117 32170 container.11 with pneumaticcraft:spawner_core[pneumaticcraft:spawner_core_stats={map:{"ars_nouveau:whirlisprig":100},unused:0}]`)
 
                 caeRoomChunks(event.level, -32058, 32188)
                 event.server.runCommandSilent(`execute in cae:void run setblock -32058 97 32188 minecraft:structure_block{ignoreEntities:1b,powered:0b,seed:0L,posX:0,mode:"LOAD",posY:1,sizeX:12,posZ:0,integrity:1.0f,showair:0b,name:"cae:sourceroom",id:"minecraft:structure_block",sizeY:10,sizeZ:12,showboundingbox:0b}`)
@@ -629,6 +722,13 @@ BlockEvents.broken(event => {
         event.player.setStatusMessage(Text.darkRed("Arcane Forces Protect this Block"))
         event.cancel()
     }
+})
+// 1211: explosions (the pack's TNT and grenades) still broke the protected blocks; they keep them now
+LevelEvents.afterExplosion(event => {
+    if (String(event.level.dimension) != 'cae:void') {return}
+    event.affectedBlocks.forEach(b => {
+        if (forbidden.includes(String(b.id)) || wrenchBlockCoords.includes(String(b.pos.toShortString()))) event.removeAffectedBlock(b)
+    })
 })
 
 let wrenchBlockCoords = [ //needs coordinates of every single create block

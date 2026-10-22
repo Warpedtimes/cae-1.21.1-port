@@ -41,7 +41,8 @@ dependencies {
             "$cache/ftb-library.jar",
             "$cache/ftb-teams.jar",
             "$cache/architectury.jar",
-            "$cache/../mbd2-gui/taffy-1.1.5.jar",              // jar-in-jar of LDLib2 (META-INF/jarjar)
+            "$cache/veinmining.jar",                            // Vein Mining 5.0.0-beta.2 (the toggle key)
+            "$cache/../mbd2-gui/taffy-1.1.5.jar",             // jar-in-jar of LDLib2 (META-INF/jarjar)
             "$cache/../mbd2-gui/yoga-1.0.0.jar")
     compileOnly "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version}"
     compileOnly "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${ars_version}"

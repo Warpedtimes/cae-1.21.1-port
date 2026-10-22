@@ -76,7 +76,7 @@ LevelEvents.tick(event => {
     }
     // 1211: the core mod's orb advances from stage 1 to 2 when a "thermal:ender_tnt" entity is next to it, and there is no
     // Thermal on 1.21.1 (cae:ender_tnt is a KubeJS item; thermalReplacements.js lights it as a vanilla primed TNT tagged
-    // cae_ender). The core mod cannot be changed, so do its stage-1 step here, through the orb's saved data (what
+    // cae_ender). The core mod keeps the 1.18.2 check (EssentialOrb.ENDER_TNT), so its stage-1 step is done here, through the orb's saved data (what
     // EssentialOrb.nextStage(250) does): same box as the core mod (block pos -2..+3 / -1..+2 / -2..+3), the TNT is removed.
     if (orbNbt.getInt('Stage') == 1) {
       let bx = Math.floor(Orb.x), by = Math.floor(Orb.y), bz = Math.floor(Orb.z)

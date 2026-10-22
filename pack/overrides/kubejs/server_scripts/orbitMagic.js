@@ -23,9 +23,8 @@ function doShit(entity) {
 
 LevelEvents.tick(event =>{
 	// 1211: was overworld only (as in 1.18.2), which made the Nether and End rewards below unreachable: a crystal solved
-	// there was used up for nothing
-	let dim = String(event.level.dimension)
-	if (dim != 'minecraft:overworld' && dim != 'minecraft:the_nether' && dim != 'minecraft:the_end') {return}
+	// there was used up for nothing. Every dimension now; the others (cae:arcane, cae:void, modded ones) get the default
+	// reward, ancient debris
 	entitiesOfType(event.level, 'minecraft:area_effect_cloud').forEach(spell => {
 		if (doShit(spell) == "IM ALIVE") {
 			let random2 = Math.random();

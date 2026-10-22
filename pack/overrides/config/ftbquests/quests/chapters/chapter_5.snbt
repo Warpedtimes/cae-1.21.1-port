@@ -90,7 +90,7 @@
 		{
 			x: 2.0d
 			y: -3.0d
-			description: ["Will void the spawner core if you dont give it enough energy :) Make sure you give it atleast 240k FE"]
+			description: ["Will void the spawner core if you dont give it enough energy :) Make sure you give it atleast 80k FE (it runs at 500 FE/t for 8 seconds)"]
 			dependencies: [
 				"5EB72FD510377EC9"
 				"01E55605761D5B94"
@@ -325,7 +325,7 @@
 		{
 			x: 3.0d
 			y: 1.5d
-			description: ["Blow up a Dark Rune to get Corrupti Dust"]
+			description: ["Blow up a Rune (PneumaticCraft explosion crafting) to get Corrupti Dust"]
 			dependencies: ["7CEECE13AD34B374"]
 			id: "0162D63ABBC042E4"
 			tasks: [{
@@ -420,8 +420,9 @@
 			x: 3.0d
 			y: 3.5d
 			description: [
-				"The Rune Cycle v2: Combining 2 Runes with Corrupti Dust will result in 2 Dark Runes... "
-				"You can then explode these Runes to get Corrupti dust back, and so the cycle continues."
+				"The Rune Cycle v2: Explode Runes with PneumaticCraft explosion crafting to get Corrupti Dust."
+				"You can also craft it from an Obsidiansteel Ingot, Blaze Powder, Nether Wart, Arcane Crystal Dust and an Ender Pearl Fragment."
+				"There are no Dark Runes in this version of the pack."
 			]
 			dependencies: [
 				"3299C0A48AC083BB"

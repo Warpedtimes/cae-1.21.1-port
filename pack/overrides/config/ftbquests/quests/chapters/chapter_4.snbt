@@ -61,6 +61,7 @@
 						"pneumaticcraft:uv_exposure": 100
 					}
 				}
+				match_components: "fuzzy"
 			}]
 		}
 		{
@@ -366,15 +367,20 @@
 			}]
 		}
 		{
-			title: "Centrifuge off Impurities"
+			title: "Mix off Impurities"
 			x: 3.5d
 			y: 13.0d
+			description: [
+				"Put an Etched Board in a Basin under a Mechanical Mixer. It comes out as a Separated Board, and the impurities drain off as 50mB of Chromatic Waste."
+				""
+				"No heat is needed for this step."
+			]
 			dependencies: ["62E308A788ABBC30"]
 			id: "21669356755554C4"
 			tasks: [{
 				id: "26E833599AA4D28F"
 				type: "item"
-				item: "mekanism:isotopic_centrifuge"
+				item: "create:mechanical_mixer"
 			}]
 		}
 		{
@@ -844,7 +850,7 @@
 			description: [
 				"You have various options to automate light blue dye:"
 				""
-				" - Automating Blue Orchids through a Mekanism Combiner"
+				" - Automating Blue Orchids through heated Create mixing (Blue Orchid + water)"
 				""
 				" - Automating White and Blue dye"
 				"     - White Dye through bonemeal or Corundum"
@@ -1149,15 +1155,19 @@
 			}]
 		}
 		{
+			title: "Superheated Mixing"
 			x: 13.0d
 			y: 11.5d
+			description: [
+				"Corundum is duplicated by superheated mixing: a Mechanical Mixer over a Basin with a Blaze Burner fed with Blaze Cake underneath, 1 corundum or cluster and 1000mB of water give 2."
+			]
 			dependencies: ["19232B8B77F86AF8"]
 			hide: true
 			id: "36BB722849B8DDBF"
 			tasks: [{
 				id: "2B0D49FC7159F47C"
 				type: "item"
-				item: "mekanism:chemical_crystallizer"
+				item: "create:mechanical_mixer"
 			}]
 		}
 		{
@@ -1184,15 +1194,19 @@
 			}]
 		}
 		{
+			title: "Heated Mixing"
 			x: 13.0d
 			y: 5.5d
+			description: [
+				"Flowers are duplicated by heated mixing: a Mechanical Mixer over a Basin with a Blaze Burner underneath, 1 flower and 250mB of water give 2 flowers."
+			]
 			dependencies: ["19232B8B77F86AF8"]
 			hide: true
 			id: "363579746995CF55"
 			tasks: [{
 				id: "64C2845B921903DE"
 				type: "item"
-				item: "mekanism:combiner"
+				item: "create:mechanical_mixer"
 			}]
 		}
 		{
@@ -1203,9 +1217,13 @@
 			subtitle: "Your PCB line is too slooooow? Well, Ive got something for you :)"
 			description: [
 				"The Advanced Assembler is a Multiblock that works faster than normal Assembly Tables."
-				"Note: If it doesnt work, try adding a Energy Battery with more Storage."
+				"The core needs a Final PCB from Chapter IX (Grand Aspirations), so this quest stays locked until then."
+				"Note: If it doesnt work, make sure an Energy Input Hatch is part of the structure. It is crafted from a Brass Casing, an Energy Battery and Redstone."
 			]
-			dependencies: ["19232B8B77F86AF8"]
+			dependencies: [
+				"19232B8B77F86AF8"
+				"0C8DFF850ECA18E1"
+			]
 			hide: true
 			id: "24D2EEF987DADF98"
 			tasks: [{

@@ -18,7 +18,8 @@
     "FaPermafrostBucketMixin"
   ],
   "client": [
-    "PncCreativeIronScreenMixin"
+    "PncCreativeIronScreenMixin",
+    "VeinMiningToggleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -537,7 +537,7 @@ public abstract class DeviceBE extends BlockEntity implements MenuProvider {
                 }
             }
             if (!list.isEmpty()) {
-                builder.set(CaeDevices.AUGMENTS.get(), list);
+                builder.set(CaeDevices.AUGMENTS.get(), new Augments(list));
             }
         }
         if (level != null) {
@@ -558,7 +558,8 @@ public abstract class DeviceBE extends BlockEntity implements MenuProvider {
     @Override
     protected void applyImplicitComponents(DataComponentInput input) {
         super.applyImplicitComponents(input);
-        List<ItemStack> augments = input.get(CaeDevices.AUGMENTS.get());
+        Augments augmentsComp = input.get(CaeDevices.AUGMENTS.get());
+        List<ItemStack> augments = augmentsComp == null ? null : augmentsComp.stacks();
         if (augments != null && augStart >= 0) {
             for (int i = 0; i < AUGMENT_SLOTS; i++) {
                 inv.slot(augStart + i).stack = i < augments.size() ? augments.get(i).copy() : ItemStack.EMPTY;

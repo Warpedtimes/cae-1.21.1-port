@@ -45,8 +45,8 @@ public final class CaeDevices {
     public static final DeferredRegister.DataComponents COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Cae.ID);
 
     /** the augments installed in a device, kept on the dropped device (Thermal: Blocks Retain Augments) */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<ItemStack>>> AUGMENTS = COMPONENTS.registerComponentType("augments",
-            b -> b.persistent(ItemStack.OPTIONAL_CODEC.listOf()).networkSynchronized(ItemStack.OPTIONAL_LIST_STREAM_CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Augments>> AUGMENTS = COMPONENTS.registerComponentType("augments",
+            b -> b.persistent(Augments.CODEC).networkSynchronized(Augments.STREAM_CODEC)); // 1211: Augments has value equality, same format as the list
     /** the redstone mode, the filter and the energy a dropped device keeps */
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CompoundTag>> SETTINGS = COMPONENTS.registerComponentType("device_settings",
             b -> b.persistent(CompoundTag.CODEC).networkSynchronized(ByteBufCodecs.COMPOUND_TAG));

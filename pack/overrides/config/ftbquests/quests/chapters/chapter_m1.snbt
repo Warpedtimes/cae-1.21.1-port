@@ -149,7 +149,7 @@
 				""
 				"Fill the spout with water and you'll see it actually spouting onto the block below! "
 				""
-				"Has to be below y20 for the Corundum to grow."
+				"Has to be below y24 for the Corundum to grow."
 			]
 			dependencies: ["3BAD2CEF1245F202"]
 			hide: true
@@ -270,7 +270,7 @@
 			x: 16.5d
 			y: 5.0d
 			shape: "diamond"
-			description: ["Compress a Violet Corundum Cluster 3 Rune Dust back into a Rune. You will end up with 2 extra Violet Clusters."]
+			description: ["Compress a Violet Corundum Cluster and 3 Rune Dust back into a Rune, with a heated Mechanical Press and Basin (a Blaze Burner under the basin). You will end up with 2 extra Violet Clusters."]
 			dependencies: [
 				"6321291501061632"
 				"17EF5048D1A08AFE"

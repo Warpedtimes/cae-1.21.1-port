@@ -17,7 +17,8 @@ ServerEvents.recipes(event => {
     // port: ...but cae:pixie / corrupted_pixie_utrem_jar are not registered items in FA 1.20.1
     // (the 1.20.1 item list has only pixie, corrupted_pixie and utrem_jar), so the emptying and splashing recipes
     // below were loaded as nothing. They now use the pixie items themselves (see the port's progression notes).
-    event.recipes.create.emptying([Fluid.of('kubejs:aureal_essence', 723), Item.of('forbidden_arcanus:utrem_jar')], Item.of('cae:pixie'))
+    // 1211: the original emptied a Pixie Utrem Jar and gave the jar back; with no jar going in, giving one out made Utrem Jars for free
+    event.recipes.create.emptying([Fluid.of('kubejs:aureal_essence', 723)], Item.of('cae:pixie'))
     event.recipes.create.emptying([Fluid.of('kubejs:aureal_essence', 333), Item.of('kubejs:empty_vial')], Item.of('forbidden_arcanus:aureal_bottle'))
     event.recipes.create.splashing(Item.of('cae:pixie'), Item.of('cae:corrupted_pixie'))
     event.recipes.create.crushing(Item.of('forbidden_arcanus:arcane_crystal_dust_speck', 50), 'forbidden_arcanus:arcane_crystal_obelisk')

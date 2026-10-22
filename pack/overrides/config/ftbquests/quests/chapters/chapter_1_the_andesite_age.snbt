@@ -567,6 +567,8 @@
 			description: [
 				"The Foundry Basin from Create: Metallurgy melts and alloys Molten Metals."
 				"It is heated by a Blaze Burner, so make one first."
+				""
+				"Note: the Foundry Basin is crafted from a Sealed Machine, which is Copper Age content. Until you have one, the usual route to Brass is a Blaze Burner under a Mechanical Mixer (see the quest Alloying with Create, blazes required!)."
 			]
 			dependencies: ["3BAD2CEF1245F202"]
 			hide: true
@@ -599,7 +601,7 @@
 			tasks: [{
 				id: "56B26958D30E9BD3"
 				type: "item"
-				title: "Deploy a Runic Tablet onto an empty Blaze Burner"
+				title: "Craft a Runic Tablet together with an empty Blaze Burner"
 				item: "kubejs:runic_tablet"
 			}]
 		}
@@ -706,7 +708,7 @@
 			tasks: [{
 				id: "7936866843DF148C"
 				type: "item"
-				item: "integrateddynamics:menril_log"
+				item: "integrateddynamics:menril_slab"
 			}]
 		}
 		{
@@ -720,7 +722,7 @@
 			tasks: [{
 				id: "3A15B5ED5C30B238"
 				type: "item"
-				item: "integrateddynamics:menril_log"
+				item: "integrateddynamics:menril_log_stripped"
 			}]
 		}
 		{
@@ -734,7 +736,7 @@
 			tasks: [{
 				id: "2909A20123949943"
 				type: "item"
-				item: "integrateddynamics:menril_log"
+				item: "integrateddynamics:menril_planks"
 			}]
 		}
 		{

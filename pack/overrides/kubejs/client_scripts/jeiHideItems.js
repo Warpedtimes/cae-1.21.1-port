@@ -22,9 +22,10 @@ RecipeViewerEvents.removeEntries('item', event => {
     hide('create_sa:hydraulic_engine')
     hide('create_sa:steam_engine')
     hide('create_sa:heat_engine')
-    event.remove(/cinnabar/)
-    event.remove(/niter/)
-    event.remove(/apatite/)
+    // 1211: Thermal's gems/dusts; anchored to its namespace so another mod's cinnabar or apatite isn't hidden too
+    event.remove(/^thermal:.*cinnabar/)
+    event.remove(/^thermal:.*niter/)
+    event.remove(/^thermal:.*apatite/)
     hide('ae2:facade') // port: was appliedenergistics2:facade with ignoreNBT
     hide('alloyed:bronze_sheet') // 1211: thermal
     hide('cae:bronze_coin') // 1211: thermal
@@ -42,19 +43,31 @@ RecipeViewerEvents.removeEntries('item', event => {
     // 1211: both items exist in 1.21.1 (item.txt), hides restored
     hide('integratedcrafting:part_interface_crafting')
     hide('integratedcrafting:part_crafting_writer')
-    hide('kubejs:god_actuation_fluid_bucket')
-    hide('kubejs:source_essence_bucket')
-    hide('kubejs:soul_essence_bucket')
-    hide('kubejs:dry_essence_bucket')
-    hide('kubejs:nature_essence_bucket')
-    hide('kubejs:ice_essence_bucket')
-    hide('cae:source_keystone')
-    hide('cae:soul_keystone')
-    hide('cae:dry_keystone')
-    hide('cae:nature_keystone')
-    hide('cae:ice_keystone')
-    hide('avaritia:zizz')
-    hide('avaritia:zyzzium_ingot')
+    // 1211: the stage items (gameStages.js shows them again when the server says a stage is reached). A /reload rebuilds this
+    // list, which hid them again until the next login; the player's stages (KubeJS syncs them to the client) are checked
+    // here, so the items of a reached stage stay visible
+    let reached = (stage) => {
+      try { return Client.player != null && Client.player.stages.has(stage) } catch (e) { return false }
+    }
+    if (!reached('arcane_crafting')) {
+      hide('kubejs:god_actuation_fluid_bucket')
+      hide('kubejs:source_essence_bucket')
+      hide('kubejs:soul_essence_bucket')
+      hide('kubejs:dry_essence_bucket')
+      hide('kubejs:nature_essence_bucket')
+      hide('kubejs:ice_essence_bucket')
+    }
+    if (!reached('keystone_crafting')) {
+      hide('cae:source_keystone')
+      hide('cae:soul_keystone')
+      hide('cae:dry_keystone')
+      hide('cae:nature_keystone')
+      hide('cae:ice_keystone')
+    }
+    if (!reached('zyzzium')) {
+      hide('avaritia:zizz')
+      hide('avaritia:zyzzium_ingot')
+    }
   })
   RecipeViewerEvents.removeEntries('fluid', event => {
     event.remove('kubejs:source_essence')

@@ -383,9 +383,9 @@
 				"Firstly, to find an Ore Deposit simply rightclick the ground with the Vein Finder. And it will tell you if you are near one. "
 				"But theres more to it, randomly rightclicking chunks will only get you so far. You see, Ore deposits werent lazily implemented. They have LORE. And here follows the Explanation:"
 				"Each Resource has 3 Tiers of Ore Deposits. "
-				"Tier 1: Found in the overworld. Iron Drills Suffice. These Veins are small in size, and not plentiful."
-				"Tier 2: Tier 2 is special. It is found in special biomes that fit the lore of the ore. E.g Gold in the Nether. most other deposits are in rare biomes like mushroom plains. Now, how does this vein work? Well its very commonly found in the special biomes, and more plentiful. These require Diamond Drills. But they still arent the best yet."
-				"Tier 3: The final frontier of Deposits. The Biomes of these Deposits are based on the places in the world, that have most of that Resource. These Veins are Infinite, but require Netherite Drills, and a Steady Supply of Lava to function. (this might be oil if I didnt forget to change it)"
+				"Tier 1: Found in the overworld. These Veins are small in size, finite, and not plentiful. They need a Diamond or Netherite Drill."
+				"Tier 2: Tier 2 is special. It is found in special places that fit the lore of the ore. E.g Gold in the Nether, Silver and Carbon in the End. Most other deposits are in rare biomes like mushroom plains. These Veins are small and finite, but any Drill will do, even an Iron one."
+				"Tier 3: The final frontier of Deposits. The Biomes of these Deposits are based on the places in the world, that have most of that Resource. These Veins are Infinite, but require Netherite Drills, and a Steady Supply of Lava to function."
 				" "
 				"Note: Make sure they always have somewhere to deposit too. Or else they will store to many items which will cause a lot of lag."
 			]

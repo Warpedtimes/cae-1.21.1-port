@@ -107,9 +107,9 @@ public class TinkerBenchBE extends DeviceBE {
     public static @Nullable Set<String> augmentTypes(net.minecraft.world.level.block.Block block) {
         synchronized (AUGMENT_TYPES) {
             Set<String> types = AUGMENT_TYPES.get(block);
-            if (types == null && block instanceof DeviceBlock db && db.newBlockEntity(BlockPos.ZERO, block.defaultBlockState()) instanceof DeviceBE dummy
-                    && !(dummy instanceof TinkerBenchBE)) {
-                types = dummy.allowedAugments();
+            if (types == null && block instanceof DeviceBlock db && db.newBlockEntity(BlockPos.ZERO, block.defaultBlockState()) instanceof DeviceBE dummy) {
+                // 1211: the bench itself takes no augments: cache an empty set instead of building a dummy every call
+                types = dummy instanceof TinkerBenchBE ? Set.of() : dummy.allowedAugments();
                 AUGMENT_TYPES.put(block, types);
             }
             return types;
@@ -121,7 +121,7 @@ public class TinkerBenchBE extends DeviceBE {
             return false;
         }
         Set<String> types = augmentTypes(bi.getBlock());
-        return types != null && a.fits(types, installed);
+        return types != null && !types.isEmpty() && a.fits(types, installed);
     }
 
     private static boolean hasEnergy(ItemStack s) {
