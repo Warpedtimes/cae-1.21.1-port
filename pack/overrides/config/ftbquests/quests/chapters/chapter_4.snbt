@@ -1218,7 +1218,7 @@
 			description: [
 				"The Advanced Assembler is a Multiblock that works faster than normal Assembly Tables."
 				"The core needs a Final PCB from Chapter IX (Grand Aspirations), so this quest stays locked until then."
-				"Note: If it doesnt work, make sure an Energy Input Hatch is part of the structure. It is crafted from a Brass Casing, an Energy Battery and Redstone."
+				"Note: If it doesnt work, make sure the structure has its three hatches: an Item Input Hatch, an Item Output Hatch and an Energy Input Hatch (the Energy Input Hatch is crafted from a Brass Casing, an Energy Battery and Redstone; JEI shows the others)."
 			]
 			dependencies: [
 				"19232B8B77F86AF8"

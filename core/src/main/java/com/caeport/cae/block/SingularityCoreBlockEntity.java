@@ -3,6 +3,8 @@ package com.caeport.cae.block;
 import com.caeport.cae.CaeBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,9 +27,25 @@ public class SingularityCoreBlockEntity extends BlockEntity {
         super(CaeBlocks.SINGULARITY_BE.get(), pos, state);
     }
 
+    // audit 4 S-9: saved, or every chunk load sprouted the six veins again over whatever had been built next to it
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putBoolean("Sprouted", sprouted);
+        tag.putInt("Cooldown", cooldown);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        sprouted = tag.getBoolean("Sprouted");
+        cooldown = tag.getInt("Cooldown");
+    }
+
     void tick(Level level, BlockPos pos) {
         if (!sprouted) {
             sprouted = true;
+            setChanged();
             for (Direction d : Direction.values()) {
                 level.setBlockAndUpdate(pos.relative(d), vein(d, 1));
             }

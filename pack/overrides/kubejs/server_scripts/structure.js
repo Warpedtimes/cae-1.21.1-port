@@ -30,17 +30,63 @@ function caeTrialEnter(player) {
     player.server.persistentData.putString('caeTrial_' + player.uuid, caeTrialTeam(player))
     caeBlockRewards(player, true)
 }
+let CaeUUID = Java.loadClass('java.util.UUID')
+// audit 4 S-3: unblock the team the player was in when they entered (stored in the key), not the one they are in now: a
+// player who left the party mid-trial used to unblock their own new team and leave the party blocked for good.
 function caeTrialLeave(player) {
     let pd = player.server.persistentData
-    let team = caeTrialTeam(player)
-    pd.remove('caeTrial_' + player.uuid)
+    let key = 'caeTrial_' + player.uuid
+    let team = String(pd.getString(key))
+    if (team == '') { team = caeTrialTeam(player) }
+    pd.remove(key)
     let others = false
+    let stale = []
     let it = pd.getAllKeys().iterator()
     while (it.hasNext()) {
         let k = String(it.next())
-        if (k.startsWith('caeTrial_') && String(pd.getString(k)) == team) { others = true }
+        if (!k.startsWith('caeTrial_') || String(pd.getString(k)) != team) { continue }
+        // a key whose player is online outside the void, with no trial step pending, is stale (an admin tp, or the key
+        // survived a crash): it doesn't keep the team blocked
+        let other = null
+        try { other = player.server.playerList.getPlayer(CaeUUID.fromString(k.substring(9))) } catch (e) { other = null }
+        if (other && String(other.level.dimension) != 'cae:void' && String(other.persistentData.getString('caeTrialStep')) == '') {
+            stale.push(k)
+            continue
+        }
+        others = true
     }
-    if (!others) { caeBlockRewards(player, false) }
+    // removed after the walk: removing from the compound while iterating its keys throws
+    stale.forEach(k => pd.remove(k))
+    if (others) { return }
+    try {
+        let data = CaeQuestFile.INSTANCE.getNullableTeamData(CaeUUID.fromString(team))
+        if (data) { data.setRewardsBlocked(false) } else { caeBlockRewards(player, false) }
+    } catch (e) { caeBlockRewards(player, false) }
+}
+// audit 4 S-3: only the trial blocks quest rewards, so a team that is blocked while no trial key names it was left blocked
+// by the old leave bug or a crash; it is unblocked when one of its members logs in outside the void
+function caeTrialUnblockStale(player) {
+    let team = caeTrialTeam(player)
+    let pd = player.server.persistentData
+    let it = pd.getAllKeys().iterator()
+    while (it.hasNext()) {
+        let k = String(it.next())
+        if (k.startsWith('caeTrial_') && String(pd.getString(k)) == team) { return }
+    }
+    try {
+        let data = CaeQuestFile.INSTANCE.getOrCreateTeamData(player)
+        if (data.areRewardsBlocked()) {
+            data.setRewardsBlocked(false)
+            console.warn('structure.js: unblocked the quest rewards of ' + player.name.string + "'s team (nobody of it is in the trial)")
+        }
+    } catch (e) { console.warn('structure.js: stale reward block check: ' + e) }
+}
+// audit 4 S-1: every trial room sets a forced respawn point in cae:void, and the finale never cleared it, so a finished
+// player's next death sent them back into the void with no way out. Clearing it resets the respawn point to world spawn.
+function caeClearVoidSpawn(player) {
+    try {
+        if (String(player.getRespawnDimension().location()) == 'cae:void') { player.setRespawnPosition(null, null, 0, false, false) }
+    } catch (e) { console.warn('structure.js: clear the void respawn point of ' + player.name.string + ': ' + e) }
 }
 // 1211: the trial's delayed steps (building a room and moving the player in, 1-50 ticks after the advancement) die with the
 // server if it stops in between, and the advancement never fires again. The step stays in the player's persistentData until it
@@ -84,6 +130,14 @@ function caeTrialDone(server, name, step) {
 }
 PlayerEvents.loggedIn(event => {
     let step = String(event.player.persistentData.getString('caeTrialStep'))
+    if (step == '' && String(event.player.level.dimension) != 'cae:void') {
+        // audit 4: a player outside the void with no trial step pending is not in the trial: drop a void respawn point left
+        // by an earlier finale (S-1) and a trial key left by a crash or an admin tp (S-3), so neither strands them
+        caeClearVoidSpawn(event.player)
+        if (String(event.server.persistentData.getString('caeTrial_' + event.player.uuid)) != '') { caeTrialLeave(event.player) }
+        caeTrialUnblockStale(event.player)
+        return
+    }
     if (step == '') { return }
     let server = event.server, name = event.player.name.string
     console.warn('structure.js: ' + name + ' logged in with the trial step ' + step + ' unfinished; running it again')
@@ -106,6 +160,7 @@ PlayerEvents.advancement(event => {
     // port (1.21.1): event.advancement is a vanilla AdvancementNode now; its id is `advancement.id` (KubeJS AdvancementNodeKJS)
     let advId = String(event.advancement.id)
     if (advId == "cae:end"){
+        caeClearVoidSpawn(event.player)
         event.server.runCommandSilent(`execute in minecraft:overworld run tp ${event.player.name.string} 0 200 0`)
         event.server.runCommandSilent(`effect give ${event.player.name.string} minecraft:absorption 100 100 true`)
         caeTrialLeave(event.player)
@@ -160,29 +215,36 @@ PlayerEvents.advancement(event => {
             name: event.player.name.string
         }
 
-        event.level.players.forEach(player => {
-            if(String(player.level.dimension) != "cae:void"){return;}
-            let name = player.name.string
-            event.server.runCommandSilent(`execute in cae:void run gamemode survival ${name}`)
-            event.server.runCommandSilent(`effect give ${name} minecraft:absorption 100 100 true`)
-            caeTrialEnter(player) //block quest rewards
-            player.persistentData.putString('caeTrialStep', 'start')
-            event.server.runCommandSilent(`effect give ${name} minecraft:slow_falling 20 100 true`)
-            event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
-            event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
-            event.server.runCommandSilent(`tell ${name} §6 §l You are being Watched. Automate The Keystone. And once you have a stack. Rightclick it.`)
-            event.server.runCommandSilent(`execute in cae:void run spawnpoint ${name} -31985 103 32293`)
-            event.server.scheduleInTicks(2, c => { event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`);})
-
-            event.server.scheduleInTicks(1, cb => {
-                // 1211: the egg room's corner is a chunk away from the teleport target; caeTrialRoomEgg loads its chunks first
-                // (as the keystone handlers do), and caeTrialCheckEgg places it again if it still isn't there
-                caeTrialRoomEgg(event.server)
-                caeTrialEnterEgg(event.server, name)
-                event.server.runCommandSilent(`execute in cae:void run kill @e[type=item]`)
-            })
-            event.server.scheduleInTicks(21, cb => caeTrialCheckEgg(event.server, name, 3))
+        // audit 4 S-2: this acted on everyone in the void, so a second player walking in pulled the first back to the egg room,
+        // reset their respawn point, rebuilt the room over their machines and deleted every dropped item in the dimension.
+        // Now it moves only the player who walked in, and rebuilds the room and clears items only if nobody else is in there.
+        let player = event.player
+        let name = player.name.string
+        let othersInVoid = false
+        event.server.playerList.players.forEach(p => {
+            if (String(p.uuid) != String(player.uuid) && String(p.level.dimension) == 'cae:void') othersInVoid = true
         })
+        event.server.runCommandSilent(`execute in cae:void run gamemode survival ${name}`)
+        event.server.runCommandSilent(`effect give ${name} minecraft:absorption 100 100 true`)
+        caeTrialEnter(player) //block quest rewards
+        player.persistentData.putString('caeTrialStep', 'start')
+        event.server.runCommandSilent(`effect give ${name} minecraft:slow_falling 20 100 true`)
+        event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
+        event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`)
+        event.server.runCommandSilent(`tell ${name} §6 §l You are being Watched. Automate The Keystone. And once you have a stack. Rightclick it.`)
+        event.server.runCommandSilent(`execute in cae:void run spawnpoint ${name} -31985 103 32293`)
+        event.server.scheduleInTicks(2, c => { event.server.runCommandSilent(`execute in cae:void run tp ${name} -31985 103 32293`);})
+
+        event.server.scheduleInTicks(1, cb => {
+            // 1211: the egg room's corner is a chunk away from the teleport target; caeTrialRoomEgg loads its chunks first
+            // (as the keystone handlers do), and caeTrialCheckEgg places it again if it still isn't there
+            if (!othersInVoid) {
+                caeTrialRoomEgg(event.server)
+                event.server.runCommandSilent(`execute in cae:void run kill @e[type=item]`)
+            }
+            caeTrialEnterEgg(event.server, name)
+        })
+        event.server.scheduleInTicks(21, cb => caeTrialCheckEgg(event.server, name, 3))
 
         // As soon as player enters the Arcane Dungeon, there's no going back, may as well see the zyzzium
         if (! event.player.stages.has('zyzzium')) {
@@ -222,14 +284,9 @@ PlayerEvents.advancement(event => {
             event.server.runCommandSilent(`execute in cae:arcane run setblock ${d.x} ${d.y+1} ${d.z} minecraft:air`)
             event.server.runCommandSilent(`execute in cae:arcane run tp ${d.name} ${d.x} ${d.y+1} ${d.z}`)
             event.server.runCommandSilent(`execute in cae:arcane run tp ${d.name} ${d.x} ${d.y+1} ${d.z}`)
-
-            if (event.server.getLevel('cae:arcane').getBlock(8090, 110, 10047) === 'create:creative_fluid_tank') {
-                event.server.runCommandSilent('execute in cae:arcane run fill 8096 105 10099 8094 105 10097 kubejs:dry_essence')
-                event.server.runCommandSilent('execute in cae:arcane run fill 8089 110 10046 8089 110 10047 kubejs:soul_essence replace')
-                event.server.runCommandSilent('execute in cae:arcane run setblock 8090 110 10047 create:fluid_tank{Window: 1b, Size: 1, Luminosity: 6, Boiler: {ActiveHeat: 0, Whistles: 0, Supply: 0.0f, PassiveHeat: 0b, Update: 1b, Engines: 0}, Height: 1, TankContent: {Fluid: {id: "kubejs:soul_essence", amount: 2000}}} replace') // port (1.21.1): fluid stacks are {id, amount} now, and a tank keeps its stack under Fluid (NeoForge FluidTank); dropped ForgeCaps/LastKnownPos/x/y/z/id (dead branch anyway, see the === above)
-                event.server.runCommandSilent('execute in cae:arcane run setblock 8145 109 10047 create:fluid_tank{Window: 1b, Size: 1, Luminosity: 6, Boiler: {ActiveHeat: 0, Whistles: 0, Supply: 0.0f, PassiveHeat: 0b, Update: 0b, Engines: 0}, Height: 1, TankContent: {Fluid: {id: "kubejs:ice_essence", amount: 4000}}} replace')
-                event.server.runCommandSilent('execute in cae:arcane run setblock 8146 114 10098 create:fluid_tank{Window: 1b, Size: 1, Luminosity: 6, Boiler: {ActiveHeat: 0, Whistles: 0, Supply: 0.0f, PassiveHeat: 0b, Update: 0b, Engines: 0}, Height: 1, TankContent: {Fluid: {id: "kubejs:nature_essence", amount: 4000}}} replace')
-            }
+            // audit 4 S-12: a branch here re-seeded the temple's essence tanks if a creative tank stood at 8090 110 10047. It
+            // compared a block object to a string with ===, so it never ran (in 1.18.2 either), and its
+            // server.getLevel('cae:arcane') call is ambiguous to Rhino. Removed; the temple keeps the tanks its template has.
         })
     }
 
@@ -278,13 +335,16 @@ LevelEvents.tick(event => {
             // the spot the old structure block put it (8040 24 9985). /place needs the whole area loaded, hence the
             // wider forceload (the temple reaches z 10185).
             event.server.runCommandSilent(`execute in cae:arcane run forceload add 8032 9968 8272 10192`)
+            // audit 4 S-11: the "temple is built" test is the barrier at 8150 24 10085, in piece 1_0_1. That piece goes last, so a
+            // server stop part-way through leaves no barrier and the whole temple is placed again on the next start.
             let piece = 0
-            ;[0, 1].forEach(px => [0, 1].forEach(py => [0, 1].forEach(pz => {
+            ;[[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,1,0], [1,1,1], [1,0,1]].forEach(p => {
+                let px = p[0], py = p[1], pz = p[2]
                 let x = 8040 + px * 110, y = 24 + py * 100, z = 9985 + pz * 100
                 event.server.scheduleInTicks(20 * ++piece, () => {
                     event.server.runCommandSilent(`execute in cae:arcane run place template cae:sun_temple/${px}_${py}_${pz} ${x} ${y} ${z}`)
                 })
-            })))
+            })
             event.server.scheduleInTicks(20 * (piece + 1), () => {
                 event.server.runCommandSilent(`execute in cae:arcane run setblock 8117 114 10073 cae:stc`)
             })

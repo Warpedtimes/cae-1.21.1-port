@@ -1109,13 +1109,13 @@
 			"Min Y Level" = 0
 			"Max Y Level" = 64
 			#Allowed values: [0,)
-			"Horizontal Size" = 36
+			"Horizontal Size" = 72
 			#Allowed values: [0,)
-			"Vertical Size" = 14
+			"Vertical Size" = 20
 			#Allowed values: [0,)
-			"Horizontal Variation" = 8
+			"Horizontal Variation" = 22
 			#Allowed values: [0,)
-			"Vertical Variation" = 6
+			"Vertical Variation" = 4
 
 			[world.corundum.generation_settings.dimensions]
 				"Is Blacklist" = false

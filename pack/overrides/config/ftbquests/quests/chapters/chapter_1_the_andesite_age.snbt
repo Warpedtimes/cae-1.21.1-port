@@ -567,6 +567,7 @@
 			description: [
 				"The Foundry Basin from Create: Metallurgy melts and alloys Molten Metals."
 				"It is heated by a Blaze Burner, so make one first."
+				"It needs something on top: a Foundry Lid to melt things, or a Foundry Mixer to alloy them."
 				""
 				"Note: the Foundry Basin is crafted from a Sealed Machine, which is Copper Age content. Until you have one, the usual route to Brass is a Blaze Burner under a Mechanical Mixer (see the quest Alloying with Create, blazes required!)."
 			]

@@ -152,6 +152,8 @@ public abstract class DeviceBE extends BlockEntity implements MenuProvider {
 
     protected void updateActiveState() {
         if (!cached && level != null && !level.isClientSide) {
+            // audit 4 S-10: the saved power can be stale after a chunk load (the signal changed while it was unloaded)
+            rs.power = level.getBestNeighborSignal(worldPosition);
             updateValidity();
         }
         boolean prev = isActive;

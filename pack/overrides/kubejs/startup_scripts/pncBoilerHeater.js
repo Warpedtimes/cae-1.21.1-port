@@ -91,6 +91,9 @@ CreateEvents.boilerHeatHandler(event => {
     if (logic == null) return -1
     let heat = pncBoilerLevel(logic.getTemperature())
     let key = block.dimension + '|' + block.x + ',' + block.y + ',' + block.z
+    // audit 4 S-7: a singleplayer world reopened in the same game is a new server whose game time carries on, so the old
+    // stamps looked fresh and the loop was never restarted. Stamps from another server object are dropped.
+    if (PNC_BOILER.server !== level.server) { PNC_BOILER.running = {}; PNC_BOILER.server = level.server }
     let last = PNC_BOILER.running[key]
     if ((last === undefined || Math.abs(level.time - last) > PNC_BOILER.stale) && !level.isClientSide()) {
       PNC_BOILER.running[key] = level.time

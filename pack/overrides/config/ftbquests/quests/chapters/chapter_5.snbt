@@ -90,7 +90,10 @@
 		{
 			x: 2.0d
 			y: -3.0d
-			description: ["Will void the spawner core if you dont give it enough energy :) Make sure you give it atleast 80k FE (it runs at 500 FE/t for 8 seconds)"]
+			description: [
+				"Will void the spawner core if you dont give it enough energy :) Make sure you give it atleast 80k FE (it runs at 500 FE/t for 8 seconds)"
+				"The structure takes its items through an Item Input Hatch and gives the spawned entity out through an Entity Output Hatch; JEI shows their recipes."
+			]
 			dependencies: [
 				"5EB72FD510377EC9"
 				"01E55605761D5B94"
@@ -127,6 +130,7 @@
 		{
 			x: 2.0d
 			y: -7.0d
+			description: ["The Arcane Reactor's structure needs an Item Input Hatch, a Fluid Output Hatch and an Energy Output Hatch; JEI shows their recipes."]
 			dependencies: [
 				"50780D00B26B68CE"
 				"0D72CD367F34E545"

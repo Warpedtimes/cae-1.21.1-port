@@ -355,12 +355,12 @@
 			}
 			x: 6.5d
 			y: -0.5d
-			subtitle: "Liquid metals and ore doubling"
+			subtitle: "Liquid metals and ore melting"
 			description: [
 				"Create: Metallurgy is a mod that revolves around foundry basins and liquid metals.\\n"
 				"It allows you to melt a variety of items and even entities into liquids. \\n"
 				"Casting tables and basins turn the liquids back into ingots and parts.\\n"
-				"It also allows you to double ores by melting their raw form.\\n"
+				"It also melts raw ores straight into liquid metal: one ingot's worth each, plus some slag.\\n"
 				"This mod gains importance in Chapter 2, making it worth exploring."
 			]
 			dependencies: ["10DADBB2E6B7B7B5"]

@@ -13,6 +13,7 @@ ItemEvents.rightClicked(event =>{
 			event.player.give('pneumaticcraft:spawner_core_shell')
 		}
 		event.player.persistentData.putInt('caeOrbFlight', 6000)
+		event.player.addTag('cae_orb_flight')
 		caeOrbFlight(event.player, true)
 	}
 })
@@ -22,11 +23,27 @@ function caeOrbFlight(player, on) {
 	if (!on) player.abilities.flying = false
 	player.onUpdateAbilities()
 }
+// audit 4 S-8/G-1: the entity tag cae_orb_flight marks a running orb for the core mod's Magic Feather, which can't read
+// KubeJS's persistentData (a separate tag from NeoForge's), so it no longer lands a player whose orb is still running
 PlayerEvents.tick(event => {
-	let t = event.player.persistentData.getInt('caeOrbFlight')
+	let player = event.player
+	let t = player.persistentData.getInt('caeOrbFlight')
 	if (t <= 0) return
-	event.player.persistentData.putInt('caeOrbFlight', t - 1)
-	if (t == 1) caeOrbFlight(event.player, false)
+	player.persistentData.putInt('caeOrbFlight', t - 1)
+	if (t == 1) {
+		player.removeTag('cae_orb_flight')
+		// audit 4: the flight used to end mid-air with nothing to break the fall
+		if (!player.onGround() && !player.isCreative() && !player.isSpectator()) {
+			event.server.runCommandSilent(`effect give ${player.name.string} minecraft:slow_falling 15 0 true`)
+		}
+		caeOrbFlight(player, false)
+		return
+	}
+	if (t == 200) player.tell(Text.gold('Your Orb of Temporary Flight wears off in 10 seconds.'))
+	if (!player.tags.contains('cae_orb_flight')) player.addTag('cae_orb_flight')
+	// audit 4 S-8: logging in (PlayerList.loadGameTypes) and respawning reset mayfly for survival players while the timer
+	// kept running, so the rest of the flight was lost; it is given back while the timer runs
+	if (!player.abilities.mayfly) caeOrbFlight(player, true)
 })
 let arcaneblox = ['forbidden_arcanus:arcane_polished_darkstone',"forbidden_arcanus:arcane_crystal_block"]
 let dontIDparts = ["integratedtunnels:part_importer_item","integratedtunnels:part_interface_item","integratedtunnels:part_exporter_item"]

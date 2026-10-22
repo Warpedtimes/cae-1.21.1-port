@@ -57,8 +57,10 @@ public final class CaeProperties {
         return tag;
     }
 
+    // Reads don't create the attachment (audit 4 S-4): orbitMagic.js reads every area effect cloud and spell projectile
+    // each tick, and get() would attach (and save) a compound on each of them.
     public static String getValue(Entity entity) {
-        return get(entity).getString(VALUE);
+        return entity.hasData(TYPE) ? get(entity).getString(VALUE) : "";
     }
 
     public static void setValue(Entity entity, String value) {
@@ -66,7 +68,7 @@ public final class CaeProperties {
     }
 
     public static int getCount(Entity entity) {
-        return get(entity).getInt(COUNT);
+        return entity.hasData(TYPE) ? get(entity).getInt(COUNT) : 5;
     }
 
     public static void setCount(Entity entity, int count) {

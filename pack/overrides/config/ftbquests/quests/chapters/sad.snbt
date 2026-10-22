@@ -685,7 +685,7 @@
 			x: -1.5d
 			y: -4.0d
 			subtitle: "As you can see, Redstone is quite Central! Click for more Info."
-			description: ["Redstone will have to go to The Catalyst to make more Skystone. Redstone will also have to go to a Foundry Basin to make Destabilized Redstone. Lastly, you win back Redstone by Smelting Redstone Clusters."]
+			description: ["Redstone will have to go to The Catalyst to make more Skystone. Redstone will also have to go to a Foundry Basin (with a Foundry Lid on top) to make Destabilized Redstone. Lastly, you win back Redstone by Smelting Redstone Clusters."]
 			dependencies: ["6EFF8BCEBC2E2AF2"]
 			hide: true
 			id: "44DC0A3FAA5645AB"

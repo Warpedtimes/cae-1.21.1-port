@@ -7,11 +7,16 @@ let delay = 1
 // 1211: KubeJS 7 renames Entity.setDeltaMovement to setMotion for scripts (@RemapForJS); the old name is "not a function"
 
 // port: KubeJS 6 has no level.getEntities('@e[type=...]'); filter level.entities by type instead
+// audit 4 S-4: that wrapped every entity in the level for JS (three times a tick, in every dimension). The type filter now
+// runs in Java (ServerLevel.getEntities(EntityTypeTest, Predicate)), so only the wanted entities reach the script.
+let CaeEntityType = Java.loadClass('net.minecraft.world.entity.EntityType')
+let CAE_ENTITY_TYPES = {}
 function entitiesOfType(level, type) {
+	let t = CAE_ENTITY_TYPES[type]
+	if (t === undefined) { t = CaeEntityType.byString(type).orElse(null); CAE_ENTITY_TYPES[type] = t }
 	let out = []
-	level.entities.forEach(e => {
-		if (String(e.type) == type) out.push(e)
-	})
+	if (t == null) return out
+	level.getEntities(t, e => true).forEach(e => out.push(e))
 	return out
 }
 // port (1.21.1): the core mod's cae:properties is a NeoForge data attachment now (com.caeport.cae.CaeProperties, see

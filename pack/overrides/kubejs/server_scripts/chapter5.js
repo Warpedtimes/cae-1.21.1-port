@@ -62,10 +62,15 @@ ServerEvents.recipes(event => {
       })
     event.recipes.create.crushing([CreateItem.of('ae2:singularity',0.30)],'create:crushing_wheel') // 1211: was '2x' (Create 0.5 ignored ingredient counts; Create 6 crushing takes exactly one ingredient)
 })
+// audit 4 S-4: the orb and TNT scans wrapped every entity in the level for JS each tick; the type filter runs in Java now
+// (ServerLevel.getEntities(EntityTypeTest, Predicate)), so only orbs (and, near a stage-1 orb, TNT) reach the script
+let CaeOrbEntityType = Java.loadClass('net.minecraft.world.entity.EntityType')
+let CAE_ORB_TYPE = CaeOrbEntityType.byString('cae:essentialorb').orElse(null)
+let CAE_TNT_TYPE = CaeOrbEntityType.TNT
 LevelEvents.tick(event => {
   // port: no '@e[type=...]' selector in KubeJS 6; filter level.entities
-  event.level.entities.forEach(Orb => {
-    if (String(Orb.type) != 'cae:essentialorb') return
+  if (CAE_ORB_TYPE == null) return
+  event.level.getEntities(CAE_ORB_TYPE, e => true).forEach(Orb => {
     // port: the core mod's orb saves "kubejsdoshit" as a boolean in its own NBT (EssentialOrb.addAdditionalSaveData). On 1.21.1
     // that is still the entity's own saved data, not the cae:properties attachment, so Entity.nbt (saveWithoutId) still has it.
     let orbNbt = Orb.nbt
@@ -81,8 +86,8 @@ LevelEvents.tick(event => {
     if (orbNbt.getInt('Stage') == 1) {
       let bx = Math.floor(Orb.x), by = Math.floor(Orb.y), bz = Math.floor(Orb.z)
       let hit = false
-      event.level.entities.forEach(tnt => {
-        if (hit || String(tnt.type) != 'minecraft:tnt' || !tnt.tags.contains('cae_ender')) return
+      event.level.getEntities(CAE_TNT_TYPE, e => true).forEach(tnt => {
+        if (hit || !tnt.tags.contains('cae_ender')) return
         if (tnt.x >= bx - 2 && tnt.x <= bx + 3 && tnt.y >= by - 1 && tnt.y <= by + 2 && tnt.z >= bz - 2 && tnt.z <= bz + 3) {
           hit = true
           tnt.discard()

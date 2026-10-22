@@ -14,7 +14,12 @@ var CaeResentFluidAction = Java.loadClass('net.neoforged.neoforge.fluids.capabil
 var CAE_RESENT_TYPES = { 'quark:wraith': true, 'minecraft:vex': true }
 var CAE_RESENT_AMOUNT = 10 // mB per entity per pulse (the 1.18.2 recipe)
 var CAE_RESENT_PERIOD = 20 // ticks between pulses (the smeltery's entity interval)
-var CAE_RESENT_MIN_HEAT = 2 // Metallurgy's "heated"
+// audit 4 N-2: was 2, which is a seething (superheated) burner: FoundryData sums Create's BoilerHeaters.findHeat, where a
+// kindled Blaze Burner gives 1 and a seething one 2. "Heated" (a lit burner, like the 1.18.2 smeltery's any fuel) is 1.
+var CAE_RESENT_MIN_HEAT = 1
+// audit 4 S-4 (same kind): only the two entity types are looked up (in Java), not every entity in the level
+var CaeResentEntityType = Java.loadClass('net.minecraft.world.entity.EntityType')
+var CAE_RESENT_ENTITY_TYPES = Object.keys(CAE_RESENT_TYPES).map(id => CaeResentEntityType.byString(id).orElse(null)).filter(t => t != null)
 // 1211: this is the only source of liquid resent, so a crucible it can't read is logged (once) instead of paying nothing quietly
 var CAE_RESENT_WARNED = false
 function caeResentWarn(msg) {
@@ -26,8 +31,8 @@ function caeResentWarn(msg) {
 LevelEvents.tick(event => {
     if (event.level.time % CAE_RESENT_PERIOD != 0) return
     try {
-        event.level.entities.forEach(e => {
-            if (!CAE_RESENT_TYPES[String(e.type)] || !e.alive) return
+        CAE_RESENT_ENTITY_TYPES.forEach(type => event.level.getEntities(type, x => true).forEach(e => {
+            if (!e.alive) return
             if (String(e.block.id) != 'createmetallurgy:industrial_crucible') return
             let be = e.block.entity
             if (be == null) { caeResentWarn('a crucible at ' + e.block.pos + ' has no block entity'); return }
@@ -35,7 +40,7 @@ LevelEvents.tick(event => {
             if (ctrl == null || ctrl.foundryData == null) { caeResentWarn('no controller or foundryData for the crucible at ' + e.block.pos); return }
             if (ctrl.foundryData.getCurrentHeat() < CAE_RESENT_MIN_HEAT) return
             ctrl.getTank().fill(Fluid.of('kubejs:liquid_resent', CAE_RESENT_AMOUNT), CaeResentFluidAction.EXECUTE)
-        })
+        }))
     } catch (err) {
         console.warn('resentStream: ' + err)
     }

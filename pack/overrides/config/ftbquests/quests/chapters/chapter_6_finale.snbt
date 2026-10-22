@@ -136,6 +136,7 @@
 		{
 			x: 0.0d
 			y: 7.0d
+			description: ["The Essence Extractor's structure takes and gives its fluids through a Fluid Input Hatch and a Fluid Output Hatch; JEI shows their recipes."]
 			dependencies: ["33B884E7D9E5A820"]
 			hide: true
 			id: "3C89DBE6B9F2B2CF"

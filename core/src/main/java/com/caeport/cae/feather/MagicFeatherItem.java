@@ -83,6 +83,11 @@ public class MagicFeatherItem extends Item {
         return false;
     }
 
+    /** The pack's Orb of Temporary Flight is running (itemRightclicked.js keeps this entity tag while its timer runs). */
+    private static boolean orbFlight(Player player) {
+        return player.getTags().contains("cae_orb_flight");
+    }
+
     private static void setMayFly(Player player, boolean mayFly) {
         if (player.getAbilities().mayfly != mayFly) {
             player.getAbilities().mayfly = mayFly;
@@ -100,11 +105,12 @@ public class MagicFeatherItem extends Item {
             data = new Data(player);
             DATA.put(player, data);
         }
-        data.tick();
+        data.tick(player);
     }
 
+    // audit 4 S-5: Data no longer keeps the player; holding it made the WeakHashMap key reachable from its own value, so
+    // no entry was ever dropped and every relog/respawn left a dead ServerPlayer on the heap
     private static final class Data {
-        private final Player player;
         private boolean softLanding;
         private boolean wasGrantedFlight;
         private boolean slowFalling;
@@ -113,20 +119,21 @@ public class MagicFeatherItem extends Item {
         private int loginGrace = 100;
 
         Data(Player player) {
-            this.player = player;
             this.beaconInRange = player.getAbilities().mayfly;
             // a player who logs in still able to fly (saved by vanilla) had it from the feather: let the first tick take
-            // it away if the feather or beacon is gone, unless the pack's Orb of Temporary Flight is still running
+            // it away if the feather or beacon is gone, unless the pack's Orb of Temporary Flight is running. (audit 4 G-1:
+            // this read the orb's timer from NeoForge's persistent data, but KubeJS 7 keeps player.persistentData in its own
+            // field, so it never saw it; itemRightclicked.js now marks a running orb with an entity tag.)
             this.wasGrantedFlight = player.getAbilities().mayfly && !player.isCreative() && !player.isSpectator()
-                    && player.getPersistentData().getInt("caeOrbFlight") <= 0;
+                    && !orbFlight(player);
         }
 
-        void tick() {
+        void tick(Player player) {
             if (player.isSpectator()) {
                 return;
             }
             Item feather = MagicFeather.ITEM.get();
-            boolean mayFly = player.isCreative() || hasItem(player, feather) && beaconInRange();
+            boolean mayFly = player.isCreative() || hasItem(player, feather) && beaconInRange(player);
             if (loginGrace > 0) {
                 loginGrace--;
                 if (!mayFly && wasGrantedFlight) {
@@ -141,13 +148,16 @@ public class MagicFeatherItem extends Item {
             } else if (wasGrantedFlight) {
                 softLanding = true;
             }
-            if (softLanding && softLand()) {
+            if (orbFlight(player)) {
+                softLanding = false; // the orb's flight is its own: leaving the beacon's range doesn't land the player
+            }
+            if (softLanding && softLand(player)) {
                 softLanding = false;
             }
             wasGrantedFlight = mayFly;
         }
 
-        private boolean beaconInRange() {
+        private boolean beaconInRange(Player player) {
             if (checkTick++ % 20 != 0) {
                 return beaconInRange;
             }
@@ -155,15 +165,15 @@ public class MagicFeatherItem extends Item {
             return beaconInRange;
         }
 
-        private boolean softLand() {
-            return MagicFeatherConfig.FALL_STYLE.get() == MagicFeatherConfig.FallStyle.SLOW_FALL ? slowFall() : negateFallDamage();
+        private boolean softLand(Player player) {
+            return MagicFeatherConfig.FALL_STYLE.get() == MagicFeatherConfig.FallStyle.SLOW_FALL ? slowFall(player) : negateFallDamage(player);
         }
 
-        private boolean onGround() {
+        private boolean onGround(Player player) {
             return player.onGround() && player.fallDistance < 1.0F;
         }
 
-        private boolean slowFall() {
+        private boolean slowFall(Player player) {
             Abilities abilities = player.getAbilities();
             if (abilities.flying) {
                 slowFalling = true;
@@ -171,7 +181,7 @@ public class MagicFeatherItem extends Item {
             }
             abilities.mayfly = false;
             player.onUpdateAbilities();
-            boolean ground = onGround();
+            boolean ground = onGround(player);
             if (ground) {
                 slowFalling = false;
             } else if (slowFalling && checkTick++ % 5 != 0) {
@@ -181,8 +191,8 @@ public class MagicFeatherItem extends Item {
         }
 
         // Vanilla skips fall damage while mayfly is set, so keeping it until the landing is what negates it.
-        private boolean negateFallDamage() {
-            if (onGround()) {
+        private boolean negateFallDamage(Player player) {
+            if (onGround(player)) {
                 setMayFly(player, false);
                 return true;
             }

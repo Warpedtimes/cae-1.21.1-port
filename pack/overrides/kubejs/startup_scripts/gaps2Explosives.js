@@ -225,13 +225,18 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.tick.LevelTickEvent$Post', ev
         for (let i = CAE_AIR_QUEUE.length - 1; i >= 0; i--) {
             let q = CAE_AIR_QUEUE[i]
             if (q.level !== level || now < q.expire) continue
-            CAE_AIR_QUEUE.splice(i, 1)
-            removed = true
+            // audit 4 S-6: blocks in unloaded chunks stay queued until their chunk loads (they used to be forgotten, so air
+            // left by a bomb thrown just before a restart or a walk away stayed for ever)
             let air = CAE_Blocks.AIR.defaultBlockState()
+            let left = []
             for (let j = 0; j < q.blocks.length; j++) {
                 let p = q.blocks[j]
-                if (level.hasChunkAt(p) && caeBlockId(level.getBlockState(p)) == q.block) level.setBlock(p, air, 3)
+                if (!level.hasChunkAt(p)) { left.push(p); continue }
+                if (caeBlockId(level.getBlockState(p)) == q.block) level.setBlock(p, air, 3)
             }
+            if (left.length == q.blocks.length) continue
+            removed = true
+            if (left.length > 0) { q.blocks = left } else { CAE_AIR_QUEUE.splice(i, 1) }
         }
         if (removed) caeAirSave(level.getServer())
         caeFieldsTick(level, now)

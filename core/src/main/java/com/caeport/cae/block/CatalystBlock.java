@@ -114,6 +114,9 @@ public class CatalystBlock extends Block {
                 if (--e.getValue().ticks > 0) {
                     continue;
                 }
+                if (!level.isLoaded(e.getKey())) {
+                    continue; // audit 4 S-13: kept until its chunk is loaded again (it was dropped, and the redstone lost)
+                }
                 it.remove();
                 if (level.isLoaded(e.getKey()) && level.isEmptyBlock(e.getKey())) {
                     level.setBlock(e.getKey(), e.getValue().state, Block.UPDATE_ALL);

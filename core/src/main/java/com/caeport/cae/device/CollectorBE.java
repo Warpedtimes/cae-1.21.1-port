@@ -123,8 +123,20 @@ public class CollectorBE extends DeviceBE {
                 if (left <= 0) {
                     orb.discard();
                 } else if (taken > 0) {
-                    orb.count = 1;
-                    orb.value = left;
+                    // audit 4 G-4: an orb's value is saved as a short, so the rest stays as whole orbs of the orb's own value
+                    // (it was one orb worth `left`, which wrapped above 32767); a remainder smaller than one orb goes in a new orb
+                    int value = Math.max(1, orb.value);
+                    int whole = left / value;
+                    int rest = left % value;
+                    if (whole > 0) {
+                        orb.count = whole;
+                        if (rest > 0) {
+                            level.addFreshEntity(new ExperienceOrb(level, orb.getX(), orb.getY(), orb.getZ(), rest));
+                        }
+                    } else {
+                        orb.count = 1;
+                        orb.value = rest;
+                    }
                 }
             }
         }

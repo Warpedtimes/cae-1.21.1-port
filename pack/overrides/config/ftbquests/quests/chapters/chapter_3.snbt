@@ -392,7 +392,7 @@
 		{
 			x: 0.5d
 			y: -10.0d
-			description: ["Use a Foundry Basin on a superheated Blaze Burner to melt Tar into Anthracene"]
+			description: ["Use a Foundry Basin with a Foundry Lid on top, on a superheated Blaze Burner, to melt Tar into Anthracene"]
 			dependencies: ["7192EEB9C99F0186"]
 			id: "470D621EDE14E399"
 			tasks: [{

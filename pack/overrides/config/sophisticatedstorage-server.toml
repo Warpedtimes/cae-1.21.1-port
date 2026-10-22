@@ -29,11 +29,11 @@
 		#Number of inventory slots in the storage
 		# Default: 45
 		# Range: 1 ~ 180
-		inventorySlotCount = 45
+		inventorySlotCount = 27
 		#Number of upgrade slots in the storage
 		# Default: 1
 		# Range: 0 ~ 10
-		upgradeSlotCount = 1
+		upgradeSlotCount = 0
 
 	#Iron Barrel Settings
 	[server.IronBarrel]
@@ -359,11 +359,11 @@
 		#Number of inventory slots in the storage
 		# Default: 45
 		# Range: 1 ~ 180
-		inventorySlotCount = 45
+		inventorySlotCount = 27
 		#Number of upgrade slots in the storage
 		# Default: 1
 		# Range: 0 ~ 10
-		upgradeSlotCount = 1
+		upgradeSlotCount = 0
 
 	#Iron Chest Settings
 	[server.IronChest]
@@ -425,11 +425,11 @@
 		#Number of inventory slots in the storage
 		# Default: 45
 		# Range: 1 ~ 180
-		inventorySlotCount = 45
+		inventorySlotCount = 27
 		#Number of upgrade slots in the storage
 		# Default: 1
 		# Range: 0 ~ 10
-		upgradeSlotCount = 1
+		upgradeSlotCount = 0
 
 	#Iron Shulker Box Settings
 	[server.IronShulkerBox]

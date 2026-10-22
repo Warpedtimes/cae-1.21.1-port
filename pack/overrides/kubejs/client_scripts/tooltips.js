@@ -35,7 +35,7 @@ ItemEvents.modifyTooltips(event => {
         // 1211: the pixies are plain items now (no Utrem Jar step; chapterM3.js), Glow Fire (Infernal Expansion) is gone, and Ars
         // Nouveau has no source bucket to craft this one into
         ['cae:corrupted_pixie','Made by Deploying Arcane Crystal Dust onto a Soul.'],
-        ['cae:pixie','Wash a Corrupted Pixie with Bulk Washing. Empty it in a Basin for Aureal Essence.'],
+        ['cae:pixie','Wash a Corrupted Pixie with Bulk Washing. Empty it in an Item Drain for Aureal Essence.'],
         ['forbidden_arcanus:aureal_bottle','Made by Filling a Glass Vial with Aureal Essence'],
         ['minecraft:glowstone_dust','Drop Gunpowder into Soul Fire, or blow it through Soul Fire with an Encased Fan'],
         ['kubejs:dichromic_acid_bucket','Drop Chrome in Water'],
