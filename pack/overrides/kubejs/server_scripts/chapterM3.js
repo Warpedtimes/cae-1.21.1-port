@@ -1,6 +1,9 @@
 // port: Forbidden Arcanus 1.20.1 renamed arcane_gold_* to deorum_* and dark_soul to soul
 ServerEvents.recipes(event => {
     event.remove({id: 'create:haunting/soul_sand'})
+    // audit 5 E-3: Mekanism crushes soul soil into soul sand, and Create haunts any dirt into soul soil: soul sand from dirt,
+    // around the wraith mechanic above (soul sand feeds the quartz/gold splashing and the blends)
+    event.remove({id: 'mekanism:crushing/soul_soil_to_soul_sand'})
     event.remove({id: 'forbidden_arcanus:blasting/arcane_crystal_dust_from_blasting'})
     event.remove({id: 'forbidden_arcanus:smelting/arcane_crystal_dust_from_smelting'})
     event.remove({id: 'forbidden_arcanus:aureal_bottle'})
@@ -98,8 +101,8 @@ BlockEvents.rightClicked(event =>{
 // soul sand valleys). The sand under the wraith counts too, not only the block at its feet.
 LevelEvents.tick(event =>{
   if (event.level.time % 20 != 0) {return}
-  event.level.entities.forEach(Wraith =>{
-    if (String(Wraith.type) != 'quark:wraith') return
+  // audit 5 H-3: a typed lookup (orbitMagic.js entitiesOfType), not every entity of the level wrapped for JS
+  entitiesOfType(event.level, 'quark:wraith').forEach(Wraith =>{
     let sand = Wraith.block.id == 'forbidden_arcanus:soulless_sand' ? Wraith.block : Wraith.block.down
     if (sand.id == 'forbidden_arcanus:soulless_sand'){
       sand.set('minecraft:soul_sand')

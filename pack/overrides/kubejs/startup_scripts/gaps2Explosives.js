@@ -114,6 +114,54 @@ function caePos(x, y, z) {
     return new CAE_BlockPos(Math.floor(x), Math.floor(y), Math.floor(z))
 }
 
+// audit 5 H-2: FTB Chunks keeps explosions out of claims through ExplosionEvent.Detonate, which the block sweeps below never
+// raise (they set blocks themselves), so a nuke or tectonic bomb wiped other teams' bases. A block in a claimed chunk is now
+// changed only when the claim allows explosions or the bomb's owner is a member or ally of that team; a bomb with no known
+// owner (lit by redstone, fired from a dispenser, a TNT minecart) stays out of every such claim, as FTB Chunks does with
+// explosions of unknown source. Returns p => true for the positions to leave alone (one claim lookup per chunk).
+let caeClaimApi = null
+function caeClaimGuard(level, explosive) {
+    let owner = null
+    try {
+        let o = explosive.getOwner()
+        if (o != null && o.isPlayer()) owner = o.uuid
+    } catch (err) { owner = null }
+    let cache = {}
+    return p => {
+        let cx = p.getX() >> 4, cz = p.getZ() >> 4
+        let key = cx + ',' + cz
+        if (cache[key] === undefined) cache[key] = caeClaimProtects(level, cx, cz, owner)
+        return cache[key]
+    }
+}
+function caeClaimProtects(level, cx, cz, owner) {
+    try {
+        if (caeClaimApi == null) {
+            caeClaimApi = {
+                api: Java.loadClass('dev.ftb.mods.ftbchunks.api.FTBChunksAPI'),
+                pos: Java.loadClass('dev.ftb.mods.ftblibrary.math.ChunkDimPos'),
+                cfg: Java.loadClass('dev.ftb.mods.ftbchunks.FTBChunksWorldConfig'),
+                key: Java.loadClass('net.minecraft.resources.ResourceKey'),
+                regs: Java.loadClass('net.minecraft.core.registries.Registries')
+            }
+        }
+        if (caeClaimApi.cfg.DISABLE_PROTECTION.get()) return false
+        // ChunkDimPos(Level, BlockPos) is ambiguous to Rhino, and scripts see level.dimension as a property, so the level's
+        // key is built from its id and the (ResourceKey, chunk x, chunk z) constructor is used
+        let dim = caeClaimApi.key.create(caeClaimApi.regs.DIMENSION, CAE_RL.parse(caeDimKey(level)))
+        let c = caeClaimApi.api.api().getManager().getChunk(new caeClaimApi.pos(dim, cx, cz))
+        if (c == null || c.allowExplosions()) return false
+        if (owner == null) return true
+        let team = c.getTeamData()
+        return !(team.isTeamMember(owner) || team.isAlly(owner))
+    } catch (err) {
+        if (!caeClaimWarned) console.warn('gaps2Explosives.js: claim check (claims unprotected): ' + err)
+        caeClaimWarned = true
+        return false
+    }
+}
+let caeClaimWarned = false
+
 // ---------------------------------------------------------------------------------------------------------------------
 // tagging the primed TNT of a TNT block, and the explosion that comes from it
 // ---------------------------------------------------------------------------------------------------------------------
@@ -224,7 +272,8 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.tick.LevelTickEvent$Post', ev
         let removed = false
         for (let i = CAE_AIR_QUEUE.length - 1; i >= 0; i--) {
             let q = CAE_AIR_QUEUE[i]
-            if (q.level !== level || now < q.expire) continue
+            // audit 5 H-5: an entry whose chunks were all unloaded is retried every 100 ticks, not walked every tick
+            if (q.level !== level || now < q.expire || (q.retry !== undefined && now < q.retry)) continue
             // audit 4 S-6: blocks in unloaded chunks stay queued until their chunk loads (they used to be forgotten, so air
             // left by a bomb thrown just before a restart or a walk away stayed for ever)
             let air = CAE_Blocks.AIR.defaultBlockState()
@@ -234,7 +283,7 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.tick.LevelTickEvent$Post', ev
                 if (!level.hasChunkAt(p)) { left.push(p); continue }
                 if (caeBlockId(level.getBlockState(p)) == q.block) level.setBlock(p, air, 3)
             }
-            if (left.length == q.blocks.length) continue
+            if (left.length == q.blocks.length) { q.retry = now + 100; continue }
             removed = true
             if (left.length > 0) { q.blocks = left } else { CAE_AIR_QUEUE.splice(i, 1) }
         }
@@ -468,6 +517,7 @@ function caeNuke(level, explosive, pos, R) {
     // protection there), and never an unbreakable block (the geode catalysts, the portal core: resistance 1200 or less,
     // location-bound, and this sets them to air with no drops)
     let sweep = caeDimKey(level) != 'cae:void'
+    let claimed = caeClaimGuard(level, explosive)
     for (let dx = -b; dx <= b && sweep; dx++) {
         for (let dz = -b; dz <= b; dz++) {
             for (let dy = -Math.floor(b / 2); dy <= b; dy++) {
@@ -479,7 +529,7 @@ function caeNuke(level, explosive, pos, R) {
                 if (dist >= b2) continue
                 let st = level.getBlockState(p)
                 if (st.isAir() || st.getDestroySpeed(level, p) < 0) continue
-                if (st.getBlock().getExplosionResistance() < maxRes - maxRes * dist / b2) level.setBlock(p, air, 3)
+                if (st.getBlock().getExplosionResistance() < maxRes - maxRes * dist / b2 && !claimed(p)) level.setBlock(p, air, 3)
             }
         }
     }
@@ -511,7 +561,8 @@ function caeEarthBlock(level, p) {
     return /^minecraft:(dirt|coarse_dirt|rooted_dirt|podzol|mycelium|grass_block|dirt_path|farmland|mud|packed_mud|clay|snow_block|snow|moss_block)$/.test(caeBlockId(st))
 }
 function caeEarth(level, explosive, pos, R) {
-    caeSphere(level, pos, R, 1.0, p => { if (caeEarthBlock(level, p)) level.destroyBlock(p, true, explosive) })
+    let claimed = caeClaimGuard(level, explosive)
+    caeSphere(level, pos, R, 1.0, p => { if (caeEarthBlock(level, p) && !claimed(p)) level.destroyBlock(p, true, explosive) })
     caeEntitiesNear(level, pos, R, e => { if (e.living) caeEffect(level, e, 'cae:sundered', 300, 1, true) })
     let box = new CAE_AABB(pos.x - R, pos.y - R, pos.z - R, pos.x + R, pos.y + R, pos.z + R).inflate(1.0)
     let items = level.getEntitiesOfClass(CAE_ItemEntity, box)
@@ -667,7 +718,8 @@ function caeDetonate(level, explosive, def, tag, pos) {
             }
             silent = true
         } else if (kind == 'ice') {
-            caeSphere(level, pos, R, 1.0, p => caeIceBlock(level, p))
+            let claimed = caeClaimGuard(level, explosive)
+            caeSphere(level, pos, R, 1.0, p => { if (!claimed(p)) caeIceBlock(level, p) })
             caeEntitiesNear(level, pos, R, e => {
                 if (e.isOnFire()) e.clearFire()
                 if (e.living) caeEffect(level, e, 'cae:chilled', 300, 1, true)
@@ -677,8 +729,9 @@ function caeDetonate(level, explosive, def, tag, pos) {
             caeEntitiesNear(level, pos, R, e => {
                 if (!e.fireImmune() && !e.isInWater() && !e.isOnFire()) e.igniteForSeconds(15)
             })
-            caeSphere(level, pos, R, 0.6, p => caeFireSpecial(level, p, null))
-            caeSphere(level, pos, R, 0.2, p => caeFireBlock(level, p))
+            let claimed = caeClaimGuard(level, explosive)
+            caeSphere(level, pos, R, 0.6, p => { if (!claimed(p)) caeFireSpecial(level, p, null) })
+            caeSphere(level, pos, R, 0.2, p => { if (!claimed(p)) caeFireBlock(level, p) })
             caeCloud(level, 'minecraft:flame', pos, R)
         }
     } else if (kind == 'glow') {

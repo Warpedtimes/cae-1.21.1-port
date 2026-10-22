@@ -1520,7 +1520,7 @@
 			"Max Cost" = 0.7
 			"Spawn Cost" = 0.15
 			#Allowed values: (0,)
-			"Spawn Weight" = 5
+			"Spawn Weight" = 8
 			#Allowed values: [1,)
 			"Min Group Size" = 1
 			#Allowed values: [1,)

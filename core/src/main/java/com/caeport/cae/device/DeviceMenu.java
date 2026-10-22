@@ -117,6 +117,23 @@ public class DeviceMenu extends AbstractContainerMenu {
         return be != null && be.stillValid(player);
     }
 
+    /**
+     * moveItemStackTo over [start, end), but only into slots that accept the stack: vanilla's first (merge) pass skips
+     * mayPlace, so shift-clicks topped up output slots holding the same item (audit 5 C-3). Merges first, then empty slots.
+     */
+    protected boolean moveIntoAccepting(ItemStack stack, int start, int end) {
+        boolean moved = false;
+        for (int pass = 0; pass < 2; pass++) {
+            for (int i = start; i < end && !stack.isEmpty(); i++) {
+                Slot s = slots.get(i);
+                if (s.hasItem() == (pass == 0) && s.mayPlace(stack)) {
+                    moved |= moveItemStackTo(stack, i, i + 1, false);
+                }
+            }
+        }
+        return moved;
+    }
+
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         Slot slot = slots.get(index);
@@ -134,7 +151,7 @@ public class DeviceMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            boolean moved = nDev > 0 && moveItemStackTo(stack, 0, nDev, false);
+            boolean moved = nDev > 0 && moveIntoAccepting(stack, 0, nDev);
             if (!moved && nAug > 0 && augmentsVisible) {
                 moved = moveItemStackTo(stack, nDev, playerStart, false);
             }

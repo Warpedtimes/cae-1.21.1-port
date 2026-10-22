@@ -709,13 +709,13 @@
 			}]
 		}
 		{
-			title: "For Server Admins: ClearItems.js"
+			title: "For Server Admins: clearItems.js"
 			x: -6.5d
 			y: -11.0d
 			subtitle: "Click for Info."
 			description: [
 				"Did you know this pack has an inbuilt clear items system? (that is superior to other ones I might add)"
-				"To activate, simply go into your server files and go into kubejs/server_scripts/ClearItems.js Now, acces the file and change the first line (let activated = false) to (let activated = true)"
+				"To activate, simply go into your server files and go into kubejs/server_scripts/clearItems.js Now, open the file and change the line (let activated = false) to (let activated = true)"
 			]
 			id: "442079A1265BAFD5"
 			tasks: [{

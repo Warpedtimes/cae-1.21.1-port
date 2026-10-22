@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "x",
+    "x",
+    "x"
+  ],
+  "key": {
+    "x": {
+      "item": "architects_palette:cerebral_tile_slab"
+    }
+  },
+  "result": {
+    "id": "architects_palette:cerebral_tile_vertical_slab",
+    "count": 3
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "x",
+    "x",
+    "x"
+  ],
+  "key": {
+    "x": {
+      "item": "architects_palette:moonshale_slab"
+    }
+  },
+  "result": {
+    "id": "architects_palette:moonshale_vertical_slab",
+    "count": 3
+  }
+}

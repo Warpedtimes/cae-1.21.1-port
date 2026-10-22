@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "x",
+    "x",
+    "x"
+  ],
+  "key": {
+    "x": {
+      "item": "architects_palette:myonite_brick_slab"
+    }
+  },
+  "result": {
+    "id": "architects_palette:myonite_brick_vertical_slab",
+    "count": 3
+  }
+}

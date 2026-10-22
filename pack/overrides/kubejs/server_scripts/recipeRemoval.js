@@ -41,6 +41,9 @@ ServerEvents.recipes(event => {
     event.remove({output: /waystones\:.*sharestone/})
     event.remove({output: /waystone\:.*scroll/})
     event.remove({output: "waystones:warp_plate"})
+    // audit 5 Q-2: Waystones 21.1 added Portstones, placed teleporters with no XP cost, the kind of block the sharestone
+    // and warp plate removals above keep out
+    event.remove({output: /waystones\:.*portstone/})
     event.remove({id: "create:filling/redstone"})
     event.remove({id: "createaddition:mixing/netherrack"})
     event.remove({id: "pneumaticcraft:block_heat_properties/minecraft/magma"})

@@ -100,7 +100,8 @@ var caeArsCrushLoot = { 'ars_nouveau:whirlisprig': 'cae:whirl', 'ars_nouveau:ame
 LevelEvents.tick(event => {
     if (event.level.time % 10 != 0) return
     try {
-        event.level.entities.forEach(e => {
+        // audit 5 H-3: typed lookups (orbitMagic.js entitiesOfType), not every entity of the level wrapped for JS
+        Object.keys(caeArsCrushLoot).forEach(type => entitiesOfType(event.level, type).forEach(e => {
             let loot = caeArsCrushLoot[String(e.type)]
             if (!loot || String(e.block.id) != 'create:crushing_wheel_controller') return
             let controller = e.block.entity
@@ -111,7 +112,7 @@ LevelEvents.tick(event => {
             // a wild whirlisprig's onDispel does nothing (only a tamed one drops its charm): it dies all the same
             if (e.isAlive()) e.discard()
             event.server.runCommandSilent(`execute in ${event.level.dimension} run loot spawn ${ox} ${oy} ${oz} loot ${loot}`)
-        })
+        }))
     } catch (err) {
         console.warn('caeArsCrushLoot: ' + err)
     }
@@ -154,13 +155,14 @@ BlockEvents.rightClicked(event =>{
     }
 })
 let fortnite = 0;
+let CaeM4EntityType = Java.loadClass('net.minecraft.world.entity.EntityType')
 LevelEvents.tick(event => {
     if (fortnite != 0){fortnite--}
     else{
     fortnite = 20;
     // port: '@e[type=item, nbt={Item:{id:"minecraft:nether_star"}}]' replaced by a filter over level.entities
-    event.level.entities.forEach(Orb => {
-        if (String(Orb.type) != 'minecraft:item') return
+    // audit 5 (quests reviewer, S-4 kind): only item entities are looked up (the type test runs in Java), not every entity
+    event.level.getEntities(CaeM4EntityType.ITEM, e => true).forEach(Orb => {
         if (Orb.y >= 320 && Orb.item.id == 'minecraft:nether_star'){
         const amt = Orb.item.count
         let pos = Orb.block

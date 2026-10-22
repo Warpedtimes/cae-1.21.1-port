@@ -111,14 +111,16 @@ public class CatalystBlock extends Block {
             }
             for (Iterator<Map.Entry<BlockPos, Pending>> it = pending.entrySet().iterator(); it.hasNext(); ) {
                 Map.Entry<BlockPos, Pending> e = it.next();
+                if (!level.isLoaded(e.getKey())) {
+                    // audit 4 S-13: kept until its chunk is loaded again (it was dropped, and the redstone lost); audit 5 C-2:
+                    // the delay only counts down while the chunk is loaded
+                    continue;
+                }
                 if (--e.getValue().ticks > 0) {
                     continue;
                 }
-                if (!level.isLoaded(e.getKey())) {
-                    continue; // audit 4 S-13: kept until its chunk is loaded again (it was dropped, and the redstone lost)
-                }
                 it.remove();
-                if (level.isLoaded(e.getKey()) && level.isEmptyBlock(e.getKey())) {
+                if (level.isEmptyBlock(e.getKey())) {
                     level.setBlock(e.getKey(), e.getValue().state, Block.UPDATE_ALL);
                 }
             }

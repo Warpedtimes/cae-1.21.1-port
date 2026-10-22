@@ -35,6 +35,7 @@ RecipeViewerEvents.removeEntries('item', event => {
     event.remove(/waystones\:.*sharestone/)
     event.remove(/waystone\:.*scroll/)
     hide("waystones:warp_plate")
+    event.remove(/waystones\:.*portstone/) // audit 5 Q-2: no recipe (recipeRemoval.js)
     event.remove(/integrateddynamics\:part.*porter_world/)
     event.remove(/integratedtunnels\:part.*porter_world/)
     hide("integratedtunnels:part_player_simulator")

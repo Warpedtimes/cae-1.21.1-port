@@ -10,7 +10,8 @@ LevelEvents.tick(event => {
         // port: level.getEntities('@e[type=...]') selectors are gone; filter the entity list by type instead
         // 1211: entity.type is the entity type id string (EntityKJS.kjs$getType). Unsure the 1.21.1 build of Immersive Weathering
         // (Renewed) still has immersive_weathering:falling_layer; if not the list is just empty.
-        let layers = event.level.getEntities().filter(e => e.type == 'immersive_weathering:falling_layer')
+        // audit 5 H-3: a typed lookup (orbitMagic.js entitiesOfType; empty if the type doesn't exist)
+        let layers = entitiesOfType(event.level, 'immersive_weathering:falling_layer')
         layers.forEach(Orb => {
             omgatnite++
         })

@@ -11,7 +11,7 @@
             {
               "function": "minecraft:exploration_map",
               "decoration": "minecraft:red_x",
-              "skip_existing_chunks": true,
+              "skip_existing_chunks": false,
               "search_radius": 5000,
               "destination": "cae:arcane_temple",
               "zoom": 2

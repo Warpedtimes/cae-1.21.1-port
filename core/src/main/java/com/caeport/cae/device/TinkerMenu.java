@@ -4,6 +4,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
@@ -134,12 +135,26 @@ public class TinkerMenu extends DeviceMenu {
         bench.setChanged();
     }
 
-    @Override
-    public void broadcastChanges() {
+    /** the three slots follow the item in the bench (server side) */
+    private void syncAugments() {
         if (bench.getLevel() != null && !bench.getLevel().isClientSide && !ItemStack.matches(tinkerSlot().getItem(), lastTinker)) {
             loadAugments();
         }
+    }
+
+    @Override
+    public void broadcastChanges() {
+        syncAugments();
         super.broadcastChanges();
+    }
+
+    // audit 5 C-1: the slots were only refreshed by broadcastChanges (once a tick). A click that swapped the bench's item
+    // followed by a click on an augment slot in the same tick (lag, or a macro) wrote the old item's augments onto the new
+    // item while the old one kept them: an augment dupe. Every click now sees the augments of the item that is there.
+    @Override
+    public void clicked(int slotId, int button, ClickType type, Player player) {
+        syncAugments();
+        super.clicked(slotId, button, type, player);
     }
 
     @Override
@@ -154,6 +169,7 @@ public class TinkerMenu extends DeviceMenu {
     public boolean clickMenuButton(Player player, int id) {
         // changing the mode first puts the augments back into the item
         if (id == TinkerBenchBE.BTN_MODE) {
+            syncAugments();
             writeAugments();
         }
         return super.clickMenuButton(player, id);
@@ -175,7 +191,7 @@ public class TinkerMenu extends DeviceMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            boolean moved = moveItemStackTo(stack, 0, nDev, false);
+            boolean moved = moveIntoAccepting(stack, 0, nDev);
             if (!moved && bench.allowAugmentation() && itemAugmentable()) {
                 moved = moveItemStackTo(stack, playerEnd, playerEnd + itemAugmentSlots.size(), false);
             }

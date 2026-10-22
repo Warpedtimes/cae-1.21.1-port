@@ -5,6 +5,7 @@
 //   - the placed backpack block entity saves the whole stack as `backpackData` = {id, count, components: {...}}
 //     (BackpackBlockEntity.saveAdditional), where the old `tag` is now `components`;
 //   - the pack's own upgrade counters (leather, string, pocket, obelisk, pcb) live in the minecraft:custom_data component.
+let CaeBpItemStack = Java.loadClass('net.minecraft.world.item.ItemStack')
 const CAE_BP_INV = 'sophisticatedcore:number_of_inventory_slots'
 const CAE_BP_UPG = 'sophisticatedcore:number_of_upgrade_slots'
 
@@ -61,6 +62,13 @@ BlockEvents.rightClicked(event =>{
     backpackData.put('components', comps)
     data.put('backpackData', backpackData)
     block.mergeEntityData(data)
+    // audit 5 H-1: loading the tag only parks the stack in SB's pendingLoadedBackpack until the next chunk load; the live
+    // wrapper kept the old size, and breaking or picking up the backpack before that dropped the old stack (the upgrade and
+    // its item lost). setBackpack rebuilds the wrapper from the upgraded stack and clears the pending one.
+    try {
+        let stack = CaeBpItemStack.parseOptional(event.level.registryAccess(), backpackData)
+        if (!stack.isEmpty()) {block.entity.setBackpack(stack)}
+    } catch (e) {console.warn('backpackUpgrading: refreshing the placed backpack failed: ' + e)}
     if (!event.player.isCreative()) {item.shrink(1)}
     event.cancel()
 })

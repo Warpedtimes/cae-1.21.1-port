@@ -24,6 +24,11 @@ ServerEvents.tags('item', event => {
     event.add('create:upright_on_belt', 'tiab:time_in_a_bottle')
     // 1211: the 1.18 stem_cell had .meat() (wolves eat it); KubeJS 7 food has no meat flag, the #minecraft:meat tag does that in 1.21
     event.add('minecraft:meat', 'cae:stem_cell')
+    // audit 5 E-2: Regions Unexplored tags its raw redstone block (crafted from 4 redstone) as a redstone ore, so ore
+    // processing (Mekanism enriching, the Integrated Dynamics squeezers) turned 4 redstone into 8-13: a redstone loop
+    ;['c:ores/redstone', 'c:ores', 'minecraft:redstone_ores'].forEach(t => event.remove(t, 'regions_unexplored:raw_redstone_block'))
+    // audit 5 E-7: Create's mud mixing recipe uses this item tag, which only exists as a block tag in vanilla
+    event.add('minecraft:convertable_to_mud', ['minecraft:dirt', 'minecraft:coarse_dirt', 'minecraft:rooted_dirt'])
 
     event.add('create:upright_on_belt', 'forbidden_arcanus:arcane_crystal_obelisk')
     event.add('create:funkynuggets','minecraft:iron_nugget')

@@ -148,28 +148,25 @@ Ponder.registry((event) => {
         'cae:corrupted_pixie',
         'cae:corrupted_pixie',
         'cae:pixie',
-        'cae:pixie',
-        'forbidden_arcanus:utrem_jar'])
+        'cae:pixie'])
         .scene(
             "corrupted_pixie",
-            "Converting Corrupted Pixies into Corrupted Pixie Jars...!",
+            "Making Pixies and Aureal Essence",
             "corrupted_pixie",
             (scene, util) => {
+           // audit 5 Q-1: the 1.18.2 scene put a Corrupted Pixie into a Utrem Jar. The port has no jar step: the pixies are
+           // plain items (chapterM3.js: deploying, splashing, emptying), so the scene shows that chain on an Item Drain.
+           scene.world.modifyBlock([2, 1, 2], () => Block.id("create:item_drain"), false);
            scene.showStructure()
-           scene.idle(40);
-           scene.text(60, "This is A Utrem Jar", [2.0, 1.5, 2.5])
+           scene.idle(30);
+           scene.text(90, "Deploy Arcane Crystal Dust onto a Soul to make a Corrupted Pixie", [2.5, 1.5, 2.5])
               .placeNearTarget()
               .attachKeyFrame();
-            scene.idle(70);
-            scene.showControls(30, [2.5, 1.5, 2.5], PonderPointing.DOWN)
-            .rightClick()
-            .withItem("cae:corrupted_pixie");
-            scene.idle(50);
-            scene.world.modifyBlock([2, 1, 2], () => Block.id("forbidden_arcanus:utrem_jar"), true);
-            scene.idleSeconds(2)
-            scene.text(90, "Rightclick it with a Corrupted Pixie, and Boom. You got yourself a Corrupted Pixie Jar", [2.0, 1.5, 2.0]).attachKeyFrame();
-            scene.idleSeconds(5)
-            scene.text(70, "You can now mine it for the Corrupted Pixie Jar Item! ", [2.5, 1.5, 2.5])
+            scene.idle(100);
+            scene.text(90, "Wash the Corrupted Pixie with an Encased Fan blowing through water: it comes out as a Pixie", [2.5, 1.5, 2.5]).attachKeyFrame();
+            scene.idle(100);
+            scene.text(110, "Empty the Pixie in an Item Drain for 723 mB of Aureal Essence. A Spout fills 333 mB into an Empty Vial for an Aureal Bottle", [2.5, 1.5, 2.5]).attachKeyFrame();
+            scene.idle(120);
       });
       	// 1211: the original's single hephaestus_forge is tier_1 in FA 2.6.1 (the block the Mundabitur interaction places)
       	event.create("forbidden_arcanus:hephaestus_forge_tier_1")

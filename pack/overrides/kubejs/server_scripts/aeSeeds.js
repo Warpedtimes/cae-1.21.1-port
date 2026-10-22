@@ -133,7 +133,8 @@ LevelEvents.tick(event => {
   let clock = (CAE_SEED_CLOCK[dim] || 0) + 1
   if (clock >= 100) {
     clock = 0
-    level.entities.forEach(e => {
+    // audit 5 H-3: item entities only (orbitMagic.js entitiesOfType), not every entity of the level wrapped for JS
+    entitiesOfType(level, 'minecraft:item').forEach(e => {
       if (caeSeedIsSeedEntity(e)) caeSeedTrack(level, e)
     })
   }

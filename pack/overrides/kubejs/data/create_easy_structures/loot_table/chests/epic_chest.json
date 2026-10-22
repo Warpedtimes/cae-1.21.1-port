@@ -129,7 +129,7 @@
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
-              "enchantments": [
+              "options": [
                 "minecraft:efficiency",
                 "minecraft:fortune",
                 "minecraft:unbreaking",

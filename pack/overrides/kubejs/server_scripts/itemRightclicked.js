@@ -181,6 +181,8 @@ BlockEvents.rightClicked(event =>{
         } else {
             event.block.set('air')
             event.server.runCommandSilent(`execute in ${event.level.dimension} positioned ${event.block.x} ${event.block.y} ${event.block.z} run loot spawn ~ ~ ~ loot cae:temple`)
+            // audit 5 H-4: the click went on to open a cartography menu on the removed table; cancel() ends the handler here
+            event.cancel()
         }
     }
 	if (event.item.id == "pneumaticcraft:pneumatic_wrench" && String(event.block.id).startsWith("create:")) {

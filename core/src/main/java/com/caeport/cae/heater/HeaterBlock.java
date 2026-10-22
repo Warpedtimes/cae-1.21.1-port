@@ -78,6 +78,16 @@ public class HeaterBlock extends Block implements EntityBlock {
         return (lvl, pos, st, be) -> ((HeaterBlockEntity) be).tick();
     }
 
+    // audit 5 C-4: NeoForge only calls onNeighborChange for comparator updates, so lava, magma or fire placed next to the
+    // heater after its first tick was never taken into its heat hull; a block update does it now
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        if (level.getBlockEntity(pos) instanceof HeaterBlockEntity heater) {
+            heater.updateHeatExchanger();
+        }
+    }
+
     @Override
     public void onNeighborChange(BlockState state, LevelReader level, BlockPos pos, BlockPos neighbor) {
         super.onNeighborChange(state, level, pos, neighbor);
