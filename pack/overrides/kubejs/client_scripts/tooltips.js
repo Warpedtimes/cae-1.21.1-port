@@ -4,16 +4,21 @@
 //       event.item (ItemStack), event.lines (java List<Component>), event.shift / ctrl / alt / advanced / creative
 // An empty or non-matching filter would turn into "every item" in modifyTooltips, so ids are checked with Item.exists first.
 ItemEvents.modifyTooltips(event => {
-    let darkPurple = (id, line) => {
+    // The pack's hint lines. The 1.18.2 original drew them dark purple, which reads as unstyled lore; gray matches the
+    // pack's other hint lines. A "\n" in a hint starts a new tooltip line.
+    let hint = (id, line) => {
         if (!Item.exists(id)) return
         event.modify(id, tt => {
-            tt.insert(1, [Text.darkPurple(line)])
+            tt.insert(1, line.split('\n').map(l => Text.gray(l.trim())))
         })
     }
 
-    darkPurple('ars_nouveau:source_gem', 'Made by Casting Source onto Runic Tablets. (the tooltip below is wrong)')
-    darkPurple('ars_nouveau:magebloom_crop', 'Sighted on floating Islands, stashed by the Ancients. Can also be made by the following:')
-    darkPurple('ars_nouveau:magebloom', 'Sighted on floating Islands, stashed by the Ancients.')
+    hint('ars_nouveau:source_gem', 'Made by Casting Source onto Runic Tablets.')
+    // Ars Nouveau's own line says Source Gems come from an Imbuement Chamber; the pack removed those recipes
+    // (recipeRemoval.js), so the line is dropped (see the handler below)
+    if (Item.exists('ars_nouveau:source_gem')) event.modify('ars_nouveau:source_gem', tt => tt.dynamic('cae_source_gem_drop_ars_line'))
+    hint('ars_nouveau:magebloom_crop', 'Sighted on floating Islands, stashed by the Ancients. Can also be made by the following:')
+    hint('ars_nouveau:magebloom', 'Sighted on floating Islands, stashed by the Ancients.')
 
     let toltips =[
         ['cae:obsidian_glass', "Completely Indestructible by Withers."], // 1211: thermal
@@ -47,10 +52,10 @@ ItemEvents.modifyTooltips(event => {
         ["cae:asurine_catalyst", "This Block can be found below Sea Level in a Geode. Rightclick it with a piece of Redstone Dust, and it will spew out blocks of its relatives into the surrounding, allowing them to be farmed"],
         ["cae:crimsite_catalyst", "This Block can be found below Sea Level in a Geode. Rightclick it with a piece of Redstone Dust, and it will spew out blocks of its relatives into the surrounding, allowing them to be farmed"],
         ["forbidden_arcanus:stellarite_piece","Throw Nether Stars above y320 to make them transform to stellarite"],
-        ["kubejs:fragment_of_patience","§c *Important: The Saw processing will always set the Shard to Stage 1, so make sure the saw only gets used once!.* \n §5 7 Processing Steps are involved, with 7 machines, the order of processing steps are randomized on every world Load. The first step will always be cutting \nTheres a 1/1000 Chance for each cycle to bear success.\nThe key here is to make a factory thats super generalized."]
+        ["kubejs:fragment_of_patience","§c*Important: The Saw processing will always set the Shard to Stage 1, so make sure the saw only gets used once!.* \n 7 Processing Steps are involved, with 7 machines, the order of processing steps are randomized on every world Load. The first step will always be cutting \nTheres a 1/1000 Chance for each cycle to bear success.\nThe key here is to make a factory thats super generalized."]
     ]
     toltips.forEach(i => {
-        darkPurple(i[0], i[1])
+        hint(i[0], i[1])
     });
 
     // Sophisticated Backpacks upgrade progress, hidden while Shift is held (the dynamic handlers below check event.shift)
@@ -65,6 +70,16 @@ ItemEvents.modifyTooltips(event => {
 
     // Task items (the `quests:*task*` items registered in tradecardRegistry.js)
     event.modify(/quests:.*task/, tt => tt.dynamic('cae_task_roll'))
+})
+
+// Ars Nouveau wraps its Source Gem line (lang key tooltip.source_gem) into plain-text pieces about 200 px wide, so the
+// pieces are matched against the translated text rather than by key.
+ItemEvents.dynamicTooltips('cae_source_gem_drop_ars_line', event => {
+    let wrong = String(Text.translate('tooltip.source_gem').string)
+    event.lines.removeIf(line => {
+        let s = String(line.string).trim()
+        return s.length > 0 && wrong.indexOf(s) >= 0
+    })
 })
 
 ItemEvents.dynamicTooltips('cae_backpack_progress', event => {

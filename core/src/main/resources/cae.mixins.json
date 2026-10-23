@@ -19,7 +19,8 @@
   ],
   "client": [
     "PncCreativeIronScreenMixin",
-    "VeinMiningToggleMixin"
+    "VeinMiningToggleMixin",
+    "CreateCTDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -3,10 +3,15 @@
 // 1211: FTB Quests 2101 only lets a player run /ftbquests block_rewards (PermissionsHelper.hasEditorPermission needs a player
 // source), so the server-run command never blocked anything. The team's flag is set directly (it saves and syncs itself).
 let CaeQuestFile = Java.loadClass('dev.ftb.mods.ftbquests.quest.ServerQuestFile')
+// The Entity overload finds the player's FTB team (a party's own id); the UUID one takes a team id, which is only the
+// player's uuid while they play solo. Called plainly with a player, Rhino can't choose between them (KubeJS turns nearly any
+// value into a UUID) and throws "ambiguous", so the trial never blocked rewards. The overload is named explicitly; it
+// returns null for a player without a team.
+function caeTeamData(player) {
+    return CaeQuestFile.INSTANCE['getOrCreateTeamData(net.minecraft.world.entity.Entity)'](player)
+}
 function caeBlockRewards(player, blocked) {
-    // the Entity overload finds the player's FTB team (a party's own id); the UUID one takes a team id, which is only the
-    // player's uuid while they play solo
-    try { CaeQuestFile.INSTANCE.getOrCreateTeamData(player).setRewardsBlocked(blocked) } catch (e) { console.warn('structure.js: block rewards: ' + e) }
+    try { caeTeamData(player).setRewardsBlocked(blocked) } catch (e) { console.warn('structure.js: block rewards: ' + e) }
 }
 // 1211: /setblock fails on a chunk that isn't loaded, and the rooms are placed right after a teleport. Load the chunks a room
 // covers (templates are at most 62 blocks wide) before its structure block is set; the void's chunks are empty, so this is cheap.
@@ -24,7 +29,7 @@ function caeLevel(server, dim) {
 // 1211: FTB Quests blocks rewards per team, so one player entering the trial blocks the whole team. The server remembers who is in
 // the trial (player uuid -> team id) and unblocks a team only when the last of its members in the trial finishes it.
 function caeTrialTeam(player) {
-    try { return String(CaeQuestFile.INSTANCE.getOrCreateTeamData(player).getTeamId()) } catch (e) { return String(player.uuid) }
+    try { return String(caeTeamData(player).getTeamId()) } catch (e) { return String(player.uuid) }
 }
 function caeTrialEnter(player) {
     player.server.persistentData.putString('caeTrial_' + player.uuid, caeTrialTeam(player))
@@ -74,8 +79,8 @@ function caeTrialUnblockStale(player) {
         if (k.startsWith('caeTrial_') && String(pd.getString(k)) == team) { return }
     }
     try {
-        let data = CaeQuestFile.INSTANCE.getOrCreateTeamData(player)
-        if (data.areRewardsBlocked()) {
+        let data = caeTeamData(player)
+        if (data && data.areRewardsBlocked()) {
             data.setRewardsBlocked(false)
             console.warn('structure.js: unblocked the quest rewards of ' + player.name.string + "'s team (nobody of it is in the trial)")
         }

@@ -166,6 +166,7 @@
                 {
                   "translate": "item.create_ltab.potion_of_luck_lore",
                   "fallback": "Increases the chances of getting better loot from chests",
+                  "color": "gray",
                   "italic": false
                 }
               ],
