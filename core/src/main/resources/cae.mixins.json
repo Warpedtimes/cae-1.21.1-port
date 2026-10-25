@@ -16,7 +16,8 @@
     "FtbQuestsTasklessMixin",
     "PncMenuBlockEntityMixin",
     "FaPermafrostBucketMixin",
-    "FunnelTurnsMixin"
+    "FunnelTurnsMixin",
+    "UnifiedMapTeamsMixin"
   ],
   "client": [
     "PncCreativeIronScreenMixin",

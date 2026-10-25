@@ -66,7 +66,10 @@
   "Sable: Physics Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
   "Create Aeronautics: Compatibility": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
   "Create Aeronautics: Mekanism Compatibility": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
-  "Create Aeronautics x Curios API Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page"
+  "Create Aeronautics x Curios API Compat": "Create Aeronautics add-on: not shipped (owner's choice, 19 Oct 2026); tested compatible, see the wiki's Added mods page",
+  "Xaero's Maps: Multiplayer+": "replaced by Unified Xaero Worldmap (25 Oct 2026): a player with an empty map got nothing back, and it has no team setting",
+  "Kotlin for Forge": "only Xaero's Maps: Multiplayer+ needed it",
+  "YetAnotherConfigLib (YACL)": "only Xaero's Maps: Multiplayer+ needed it"
  },
  "mods": [
   {
@@ -1292,18 +1295,6 @@
    "side": "both"
   },
   {
-   "name": "Kotlin for Forge",
-   "mr": [
-    "ordsPcFz",
-    "uhJhCT7X"
-   ],
-   "file": "kotlinforforge-5.12.0-all.jar",
-   "url": "https://cdn.modrinth.com/data/ordsPcFz/versions/uhJhCT7X/kotlinforforge-5.12.0-all.jar",
-   "sha1": "d10d062caf1aad9aec82d7852f2fee1781735c1f",
-   "side": "both",
-   "why": "Required by Xaero's Maps: Multiplayer+"
-  },
-  {
    "name": "KubeJS",
    "cf": [
     238086,
@@ -2042,6 +2033,16 @@
    "why": "Worldgen: adds more and bigger structures"
   },
   {
+   "name": "Unified Xaero Worldmap 2.0.4 (NeoForge 1.21.1)",
+   "cf": [
+    1704237,
+    9232540
+   ],
+   "file": "unified-xaero-worldmap-2.0.4+1.21.1-neoforge.jar",
+   "side": "both",
+   "why": "Shares the explored Xaero world map through the server; the core mod keeps one map per FTB team"
+  },
+  {
    "name": "UnionLib",
    "mr": [
     "EkkPwdCY",
@@ -2081,18 +2082,6 @@
    "side": "both"
   },
   {
-   "name": "Xaero's Maps: Multiplayer+",
-   "mr": [
-    "stTaMuWa",
-    "uKcnI7GC"
-   ],
-   "file": "xmmp-1.2.2+1.21.1-neoforge.jar",
-   "url": "https://cdn.modrinth.com/data/stTaMuWa/versions/uKcnI7GC/xmmp-1.2.2%2B1.21.1-neoforge.jar",
-   "sha1": "32e25dd45a678af2460b5fb2012e16fcb7f123ac",
-   "side": "both",
-   "why": "XMMP: shares the explored Xaero world map between players through the server"
-  },
-  {
    "name": "Xaero's Minimap",
    "mr": [
     "1bokaNcj",
@@ -2115,18 +2104,6 @@
    "sha1": "2936c9cb9dfbdab145fe6f1e8ae2c68915246a5f",
    "side": "both",
    "why": "Popular map mod; XMMP syncs its explored map between players"
-  },
-  {
-   "name": "YetAnotherConfigLib (YACL)",
-   "mr": [
-    "1eAoo2KR",
-    "7TVdVtxF"
-   ],
-   "file": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
-   "url": "https://cdn.modrinth.com/data/1eAoo2KR/versions/7TVdVtxF/yet_another_config_lib_v3-3.8.2%2B1.21.1-neoforge.jar",
-   "sha1": "fe270c9f6e0a8142cf316944087f5109cef08bbb",
-   "side": "both",
-   "why": "Required by Xaero's Maps: Multiplayer+"
   },
   {
    "name": "YUNG's API",
