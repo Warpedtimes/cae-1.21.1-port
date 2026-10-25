@@ -132,6 +132,8 @@ ServerEvents.recipes(event =>{
     let smithing = (output, base, addition) => {
         event.shapeless(output, [base, addition]).modifyResult(caeBpCopyHandler(output))
     }
+    // 1211 (audit L3): the bundle only exists in a world with the vanilla "bundle" experiment on. The live world has it
+    // since 25 Oct 2026, and new worlds get it by default (server.properties initial-enabled-packs, core mod for singleplayer).
     smithing("kubejs:leather_pocket", "minecraft:bundle", "minecraft:iron_ingot")
     event.remove({output:"sophisticatedbackpacks:upgrade_base"})
     event.shaped("sophisticatedbackpacks:upgrade_base", [" T ", "TDT", " T "], {T:"kubejs:runic_tablet", D:"forbidden_arcanus:polished_darkstone"})

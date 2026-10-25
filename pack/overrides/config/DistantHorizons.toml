@@ -518,7 +518,7 @@ _version = 5
 				# Holes are most likely to appear when flying through unloaded terrain. 
 				# 
 				# Increasing the vanilla render distance increases the effectiveness of this setting.
-				overdrawPrevention = "-1.0"
+				overdrawPrevention = "0.2"
 				#
 				# Identical to the other frustum culling option
 				# only used when a shader mod is present using the DH API
@@ -756,7 +756,7 @@ _version = 5
 				# If true LODs will fade away as you get closer to them. 
 				# If false LODs will cut off abruptly at a set distance from the camera. 
 				# This setting is affected by the vanilla overdraw prevention config.
-				ditherDhFade = true
+				ditherDhFade = false
 				#
 				# If true DH will try to use the camera position when 
 				# determining LOD quality drop-off. 

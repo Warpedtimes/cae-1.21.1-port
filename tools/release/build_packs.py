@@ -297,6 +297,8 @@ def license_text(rel, plan, embed_all, side_filter):
             lic = "see project (custom or conflicting licence; not re-uploaded): " + r["reason"]
         L.append(f"| {it['mod']['name'].strip()} | {lic} | {where} | {link} |")
     L.append("| Create: Arcane Engineering core (cae-3.0.0.jar) | port code MIT; original assets by FortnitePro420Xx | bundled | |")
+    L.append("| CAE Tools (caetools jar: Tinkers' Construct's tools and weapons, with Mantle built in) | MIT (SlimeKnights; "
+             "1.21.1 port by BeNach0C; licence text inside the jar) | bundled | https://github.com/SlimeKnights/TinkersConstruct |")
     return "\n".join(L) + "\n"
 
 
@@ -305,6 +307,7 @@ def stat_embed(plan, embed_all, side_filter=lambda m: True):
 
 
 CF_MAP = os.path.join(HERE, "cf_map.json")
+ICON = os.path.join(PACK, "icon.png")
 
 
 def build_curseforge(rel, plan, excluded):
@@ -338,6 +341,10 @@ def build_curseforge(rel, plan, excluded):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         add_text(z, "manifest.json", json.dumps(manifest, indent=1))
         add_text(z, "modlist.html", f"<ul>{rows}</ul>\n")
+        # the original pack's icon: Prism Launcher 10+ takes icon.png from the zip root as the instance icon (the
+        # CurseForge format has no icon field; the CurseForge app only shows icons from its own project pages)
+        if os.path.exists(ICON):
+            add_file(z, "icon.png", ICON)
         for it in embedded:
             add_file(z, "overrides/mods/" + it["mod"]["file"], it["jar"])
         for jar in plan.local:
@@ -454,7 +461,7 @@ def scan(path):
             if base in FORBIDDEN_NAMES:
                 bad.append((info.filename, "forbidden file"))
             data = z.read(info.filename)
-            if info.filename.endswith(".jar") and "cae-" not in base:
+            if info.filename.endswith(".jar") and "cae-" not in base and not base.startswith("caetools-"):
                 continue   # third-party jars: names only
             if info.filename.endswith(".jar"):
                 inner = zipfile.ZipFile(io.BytesIO(data))

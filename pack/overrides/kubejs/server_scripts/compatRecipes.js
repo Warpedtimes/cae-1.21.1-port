@@ -982,15 +982,17 @@ ServerEvents.recipes(event => {
     // and bell, Create: Metallurgy's molten bronze) before bronze inputs become copper below. Otherwise a copper ingot in a
     // press also matched Alloyed's bronze sheet recipe, and copper made bronze blocks, casings and molten bronze.
     // Mekanism's are hidden in JEI by client_scripts/jeiHideItems.js.
-    event.remove({ output: /bronze/ })
+    // caetools is left out: its amethyst bronze is copper and amethyst, not bronze, and nothing of its makes plain bronze
+    event.remove({ output: /bronze/, not: { mod: 'caetools' } })
     ;['alloying/bronze', 'bulk_melting/bronze/block', 'bulk_melting/bronze/raw_block', 'casting_in_basin/bronze/block',
         'casting_in_table/bronze/gear', 'casting_in_table/bronze/ingot', 'casting_in_table/bronze/nugget',
         'casting_in_table/bronze/plate', 'casting_in_table/bronze/rod', 'melting/bronze/coin', 'melting/bronze/dirty_dust',
         'melting/bronze/dust', 'melting/bronze/gear', 'melting/bronze/ingot', 'melting/bronze/nugget', 'melting/bronze/plate',
         'melting/bronze/raw_material', 'melting/bronze/rod', 'melting/bronze/wire'
     ].forEach(id => event.remove({ id: 'createmetallurgy:' + id }))
-    event.replaceInput({}, '#c:ingots/bronze', "minecraft:copper_ingot")
-    event.replaceInput({}, '#c:nuggets/bronze', "create:copper_nugget")
+    // not in caetools: its bronze tool material would take copper ingots too, so copper could become bronze parts
+    event.replaceInput({ not: { mod: 'caetools' } }, '#c:ingots/bronze', "minecraft:copper_ingot")
+    event.replaceInput({ not: { mod: 'caetools' } }, '#c:nuggets/bronze', "create:copper_nugget")
     if (CAE_THERMAL) { // 1211: thermal
         event.replaceInput({}, '#c:dusts/iron', "mekanism:dust_iron")
         event.replaceInput({}, '#c:dusts/copper', "mekanism:dust_copper")

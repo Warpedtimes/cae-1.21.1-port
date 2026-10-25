@@ -1,6 +1,6 @@
 {
   "name": "Create: Arcane Engineering (1.21.1 Port)",
-  "version": "1.2.8",
+  "version": "1.3.0",
   "slug": "cae-1.21.1-port",
   "minecraft": "1.21.1",
   "loader": "neoforge",

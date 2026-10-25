@@ -164,3 +164,28 @@ ServerEvents.recipes(event => {
     // necrotic bone (Tinkers dropped it from wither skeletons; reliquary withered_rib and a slaying task need it): haunt a bone
     event.recipes.create.haunting('cae:necrotic_bone', 'minecraft:bone').id('cae:necrotic_bone_from_haunting')
 })
+
+// 1211 caetools: the pack's Tinkers' tools mod (caetools/PORT-TOOLS.md) brings its own Metallurgy recipes, and two melt what
+// this file already melts. This file's win: cae:molten_diamond is what the engineering circuit fills with (assembly.js), and
+// Create's honey is the pack's honey. So caetools' diamond and honey block melting go, and the pack's molten diamond joins the
+// fluid tag caetools' diamond recipes read (its honey recipes read c:honey, which already holds Create's honey).
+ServerEvents.recipes(event => {
+    if (!Platform.isLoaded('caetools')) { return }
+    ;['diamond/gem', 'diamond/block', 'slime/honey_block'].forEach(p => {
+        event.remove({ id: 'caetools:metallurgy/melting/smeltery/melting/' + p })
+    })
+})
+
+ServerEvents.tags('fluid', event => {
+    if (!Platform.isLoaded('caetools')) { return }
+    event.add('caetools:molten_diamond', 'cae:molten_diamond')
+})
+
+// The necrotic bone: config/caetools-common.toml turns off caetools' wither skeleton drop (Architect's Palette's withered
+// bone wins that drop, as in 1.18.2), so the pack's haunted bone above joins the tags caetools' necrotic material,
+// modifier and severing read.
+ServerEvents.tags('item', event => {
+    if (!Platform.isLoaded('caetools')) { return }
+    event.add('c:wither_bones', 'cae:necrotic_bone')
+    event.add('c:bones/wither', 'cae:necrotic_bone')
+})

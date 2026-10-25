@@ -15,12 +15,14 @@
     "VolcanicSourcelinkLilyMixin",
     "FtbQuestsTasklessMixin",
     "PncMenuBlockEntityMixin",
-    "FaPermafrostBucketMixin"
+    "FaPermafrostBucketMixin",
+    "FunnelTurnsMixin"
   ],
   "client": [
     "PncCreativeIronScreenMixin",
     "VeinMiningToggleMixin",
-    "CreateCTDataMixin"
+    "CreateCTDataMixin",
+    "CreateWorldBundleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

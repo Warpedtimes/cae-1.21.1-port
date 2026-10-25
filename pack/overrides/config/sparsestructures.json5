@@ -14,6 +14,11 @@
     { "structure": "cae:koro_shrine", "factor": 1 },
     { "structure": "cae:workhouse", "factor": 1.5 },       // the pack's cottages, towers and factories (40/30 -> 60/45)
     { "structure": "ae2:meteorite", "factor": 1 },         // skystone: quests rely on finding meteorites
+    // caetools' slime islands: the slimes and slime crystals for its tools; as rare as in 1.18.2 (no Sparse Structures)
+    { "structure": "caetools:overworld_sky_island", "factor": 1 },
+    { "structure": "caetools:overworld_ocean_island", "factor": 1 },
+    { "structure": "caetools:nether_ocean_island", "factor": 1 },
+    { "structure": "caetools:end_sky_island", "factor": 1 },
     { "structure": "integrated_stronghold:stronghold", "factor": 1 }, // End portal, 85/50 already
     { "structure": "minecraft:strongholds", "factor": 1 },
     { "structure": "minecraft:end_cities", "factor": 1.5 },

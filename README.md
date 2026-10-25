@@ -1,6 +1,6 @@
 # Create: Arcane Engineering (1.21.1 Port)
 
-Version 1.2.8
+Version 1.3.0
 
 This is an **unofficial community port** of **Create: Arcane Engineering** ported using **AI (CLAUDE)**, a Minecraft modpack made by
 **FortnitePro420Xx**. The original runs on Minecraft 1.18.2 with Forge. This port runs on **Minecraft 1.21.1 with
@@ -17,7 +17,8 @@ Original pack: <https://www.curseforge.com/minecraft/modpacks/create-arcane-engi
 - **Thermal is gone.** Thermal has no 1.21.1 version. Mekanism and Mekanism Generators took over its machines and
   power. The coins, the explosives, the metals and several devices were rebuilt as pack items.
   See [Thermal to Mekanism](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Thermal-to-Mekanism).
-- **Tinkers' Construct is gone.** Create: Metallurgy does the melting and casting.
+- **Tinkers' smeltery is gone; its tools are back.** Create: Metallurgy does the melting and casting, and CAE
+  Tools brings back Tinkers' tools and weapons, their parts cast on Metallurgy's table.
   See [Tinkers to Metallurgy](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Tinkers-to-Metallurgy).
 - **More to explore.** The world adds Regions Unexplored and Tectonic. Barren biomes are rarer. Many more structure mods
   are added. See [Worldgen and Structures](https://github.com/Warpedtimes/cae-1.21.1-port/wiki/Worldgen-and-Structures).
@@ -42,7 +43,7 @@ turned on. You can turn shaders off. See [Install](https://github.com/Warpedtime
 
 ## How to install
 
-1. Download **`CAE-1.21.1-Port-1.2.8-Client.zip`** from the
+1. Download **`CAE-1.21.1-Port-1.3.0-Client.zip`** from the
    [Releases page](https://github.com/Warpedtimes/cae-1.21.1-port/releases).
 2. Import it into your launcher:
    - **[Prism Launcher](https://prismlauncher.org/)**: **Add Instance**, then **Import**, and pick the file.
@@ -56,7 +57,7 @@ Step by step instructions, with the memory setting and first launch tips, are in
 
 ## How to run a server
 
-1. Download **`CAE-1.21.1-Port-1.2.8-Server.zip`** from the Releases page and unzip it into an empty folder.
+1. Download **`CAE-1.21.1-Port-1.3.0-Server.zip`** from the Releases page and unzip it into an empty folder.
 2. Install Java 21 and Python 3, then run `python setup.py` once. It installs NeoForge and downloads the mods the zip
    can't include.
 3. Accept the EULA in `eula.txt` and start the server with `start.sh` or `start.bat`. The details are in

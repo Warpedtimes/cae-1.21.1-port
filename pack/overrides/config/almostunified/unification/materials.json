@@ -34,7 +34,8 @@
   "ignored_recipe_types": [
     "cucumber:shaped_tag",
     "createmetallurgy:casting_in_table",
-    "createmetallurgy:casting_in_basin"
+    "createmetallurgy:casting_in_basin",
+    "caetools:material_fluid"
   ],
   "ignored_recipe_ids": [],
   "recipe_viewer_hiding": true,
