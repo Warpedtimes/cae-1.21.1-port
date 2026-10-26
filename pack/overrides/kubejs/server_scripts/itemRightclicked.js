@@ -3,6 +3,34 @@ function distance(vector){
 	let x = vector.x * vector.x + vector.y * vector.y + vector.z * vector.z
 	return Math.floor(Math.sqrt(x))
 }
+
+// Owner's request (26 Oct 2026): the wooden axe can also lift the four geode catalysts 10 blocks up (out of a flooded
+// geode), as it lifts the skystone one. The original only lifted the skystone one, so it's off unless an op runs
+// /caecatalystlift on (or the owner of a singleplayer world does). The setting is saved in the world, so pack updates leave it as it is.
+let CAE_GEODE_CATALYSTS = ['cae:veridium_catalyst', 'cae:asurine_catalyst', 'cae:ochrum_catalyst', 'cae:crimsite_catalyst']
+let CAE_CATALYST_LIFT_KEY = 'caeGeodeCatalystLift'
+
+ServerEvents.commandRegistry(event => {
+	let Commands = event.commands
+	// sendSystemMessage: KubeJS turns a JS arrow given to sendSuccess's Supplier into the text "ArrowFunction ..."
+	let tell = (ctx, msg) => ctx.source.sendSystemMessage(Text.of(msg))
+	let set = (ctx, on) => {
+		ctx.source.server.persistentData.putBoolean(CAE_CATALYST_LIFT_KEY, on)
+		tell(ctx, on ? 'Wooden axe now lifts the geode catalysts too' : 'Wooden axe now lifts only the skystone catalyst')
+		return 1
+	}
+	// ops, or the owner of a singleplayer world (without cheats the host is permission level 0)
+	event.register(Commands.literal('caecatalystlift')
+		.requires(src => src.hasPermission(2) ||
+			(src.server.isSingleplayer() && src.player != null && src.server.isSingleplayerOwner(src.player.getGameProfile())))
+		.executes(ctx => {
+			let on = ctx.source.server.persistentData.getBoolean(CAE_CATALYST_LIFT_KEY)
+			tell(ctx, 'Geode catalyst lift is ' + (on ? 'on' : 'off') + ' (/caecatalystlift on|off)')
+			return 1
+		})
+		.then(Commands.literal('on').executes(ctx => set(ctx, true)))
+		.then(Commands.literal('off').executes(ctx => set(ctx, false))))
+})
 // 1211: Forbidden Arcanus' orb (gone from FA 2.6) used itself up on right-click and gave 6000 ticks of creative flight
 // (FA config items.orb_of_temporary_flight.time); cae:orb_of_temporary_flight is a plain item, so this does both.
 // Without the shrink every right-click handed out another spawner core shell.
@@ -162,13 +190,17 @@ BlockEvents.rightClicked(event =>{
 		//this is not to be annoying and hack your servers. Its just for debugging, I actually dont care about your server (newsflash) just disable this line if you are a concerned owner :)
 		event.server.runCommandSilent(`playsound cae:developer player @e[type=player] ${event.player.x} ${event.player.y} ${event.player.z}`)
 	}
-    if (event.block.id == 'cae:skystone_catalyst' && event.item.id == "minecraft:wooden_axe") {
+    // The four geode catalysts lift too, but only on a server that switched it on (/caecatalystlift, below)
+    let caeLiftable = event.block.id == 'cae:skystone_catalyst' || (CAE_GEODE_CATALYSTS.includes(String(event.block.id))
+        && event.server.persistentData.getBoolean(CAE_CATALYST_LIFT_KEY))
+    if (caeLiftable && event.item.id == "minecraft:wooden_axe") {
         // 1211: only into a free spot inside the world (it overwrote whatever was 10 up, and above the build limit the
         // catalyst was simply gone); water still counts as free, the point is lifting it out of an ocean
+        let catalyst = String(event.block.id)
         let up = event.block.offset(0,10,0)
         if (up.y < event.level.getMaxBuildHeight() && up.blockState.canBeReplaced()) {
             event.block.set('air')
-            up.set('cae:skystone_catalyst')
+            up.set(catalyst)
         } else {
             event.player.setStatusMessage(Text.red('The catalyst needs free space 10 blocks above it'))
         }

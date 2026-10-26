@@ -1,7 +1,11 @@
 package com.caeport.cae.compat;
 
+import com.caeport.cae.Cae;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 import java.util.Map;
 import java.util.UUID;
@@ -13,8 +17,15 @@ import java.util.concurrent.ConcurrentHashMap;
  * Teams are looked up on the server thread and read from Unified Xaero Worldmap's map thread, which must not call into
  * FTB Teams itself. A player whose team isn't known yet gets a map of their own, so nothing leaks to other teams.
  */
+@EventBusSubscriber(modid = Cae.ID)
 public final class TeamMaps {
     private static final Map<UUID, UUID> TEAM_OF = new ConcurrentHashMap<>();
+
+    /** A singleplayer game can open another world in the same JVM: start it with no teams from the last one. */
+    @SubscribeEvent
+    public static void onServerStopped(ServerStoppedEvent event) {
+        TEAM_OF.clear();
+    }
     /** The team whose map the map thread is working on, for the methods that aren't told which player asked. */
     private static final ThreadLocal<UUID> CURRENT = new ThreadLocal<>();
 

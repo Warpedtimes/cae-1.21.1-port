@@ -129,7 +129,9 @@ public final class OreRetrogen {
 
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
-        if (event.getLevel() instanceof Level level) {
+        // server levels only: in singleplayer the client level unloads on every dimension change, which would drop the
+        // server's queue for that dimension
+        if (event.getLevel() instanceof ServerLevel level) {
             {
                 PENDING.remove(level.dimension());
             }

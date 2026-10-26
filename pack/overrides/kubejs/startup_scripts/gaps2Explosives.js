@@ -76,7 +76,9 @@ const CAE_BLOCK_OF_TAG = {}
 Object.keys(CAE_TNT_TAG_OF_BLOCK).forEach(id => { CAE_BLOCK_OF_TAG[CAE_TNT_TAG_OF_BLOCK[id]] = id })
 
 let caeInBoom = false
-let caeAirLoaded = false
+// the server the lists below belong to: startup scripts live as long as the game, and in singleplayer one game opens
+// several worlds (or the same one again), so a new server starts with empty lists and reloads its own air queue
+let caeAirServer = null
 // electric fields (ElectricField entity of CoFH): {level, pos, radius, expire}
 const CAE_FIELDS = []
 // grenades in flight: {e, level, last position}. Whatever removes one without the impact handler having detonated it (tag cae_spent)
@@ -265,9 +267,13 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.tick.LevelTickEvent$Post', ev
         let level = event.getLevel()
         if (level.isClientSide()) return
         let now = level.time
-        if (!caeAirLoaded) {
-            caeAirLoaded = true
-            caeAirLoad(level.getServer())
+        if (caeAirServer !== level.getServer()) {
+            caeAirServer = level.getServer()
+            CAE_AIR_QUEUE.length = 0
+            CAE_FIELDS.length = 0
+            CAE_THROWN.length = 0
+            Object.keys(CAE_PENDING_TNT).forEach(k => { delete CAE_PENDING_TNT[k] })
+            caeAirLoad(caeAirServer)
         }
         let removed = false
         for (let i = CAE_AIR_QUEUE.length - 1; i >= 0; i--) {

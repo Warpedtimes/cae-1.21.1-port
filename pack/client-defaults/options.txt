@@ -2,3 +2,4 @@ version:3465
 onboardAccessibility:false
 key_key.ok_zoomer.zoom:key.keyboard.grave.accent
 key_fullbrightnesstoggle.key.togglebrightness:key.keyboard.n
+simulationDistance:8
